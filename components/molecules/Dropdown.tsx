@@ -16,8 +16,8 @@ export type DropdownProps = {
 export default function Dropdown({ title, options = [] }: DropdownProps) {
   return (
     <Menu as="div" className="relative inline-block text-left">
-      <Menu.Button className="h-10 hover:bg-neutral-800 inline-flex w-full justify-center rounded-sm px-4 py-2 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75">
-        {title}
+      <Menu.Button className="h-10 hover:bg-neutral-800 inline-flex w-full justify-center items-center rounded-sm px-4 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75">
+        <span className="text-lg">{title}</span>
         <FiChevronDown className="ml-2 -mr-1 h-5 w-5 mt-1" aria-hidden="true" />
       </Menu.Button>
       <Transition
