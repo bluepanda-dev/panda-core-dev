@@ -1,0 +1,55 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: 'class',
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        neutral: {
+          50: '#ffffff',
+          100: '#efefef',
+          200: '#dcdcdc',
+          300: '#bdbdbd',
+          400: '#989898',
+          500: '#7c7c7c',
+          600: '#656565',
+          700: '#525252',
+          800: '#464646',
+          900: '#3d3d3d',
+        },
+        primary: {
+          50: '#fdf2f8',
+          100: '#fbe8f2',
+          200: '#fad0e6',
+          300: '#f7aad1',
+          400: '#f076b1',
+          500: '#e74d93',
+          600: '#d52d71',
+          700: '#c51f5d',
+          800: '#991b49',
+          900: '#801b40',
+        },
+        secondary: {
+          50: '#f4f7fb',
+          100: '#e9eef5',
+          200: '#cedbe9',
+          300: '#a3bdd6',
+          400: '#7199bf',
+          500: '#4f7ca8',
+          600: '#3c638d',
+          700: '#325072',
+          800: '#2c4560',
+          900: '#243447',
+        },
+        accent: '#ffe600',
+        normal: '#0e1111',
+        success: '#1db954',
+        failure: '#f20505',
+      },
+    },
+  },
+  plugins: [],
+}
