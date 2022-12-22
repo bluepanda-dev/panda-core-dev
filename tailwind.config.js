@@ -45,7 +45,7 @@ module.exports = {
           900: '#243447',
         },
         accent: '#ffe600',
-        normal: '#0e1111',
+        normal: '#000',
         success: '#1db954',
         failure: '#f20505',
       },
