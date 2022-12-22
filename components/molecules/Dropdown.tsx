@@ -33,8 +33,6 @@ export default function Dropdown({ title, options = [] }: DropdownProps) {
           {options.map((option, index) => (
             <Menu.Item key={index}>
               {({ active }) => {
-                console.log('active', active)
-
                 return (
                   <button
                     onClick={option.onClick}

@@ -33,7 +33,7 @@ export default function NavBar() {
       </div>
       <div className="flex items-center gap-2">
         <Link href="/pricing">
-          <Button>Pricing</Button>
+          <Button>Restricted Area</Button>
         </Link>
         <Dropdown options={AccountOptions} title={'Options'} />
       </div>
