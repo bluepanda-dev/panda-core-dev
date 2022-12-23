@@ -25,7 +25,7 @@ export default function NavBar() {
   ]
 
   return (
-    <nav className="backdrop-blur-md bg-neutral-50 dark:bg-normal-900 opacity-95 fixed top-0 w-full p-2 flex justify-between items-center border-b border-neutral-800">
+    <nav className="backdrop-blur-xl bg-neutral-50 dark:bg-normal-900 opacity-75 fixed top-0 w-full p-2 flex justify-between items-center border-b border-neutral-800">
       <div>
         <Link href="/">
           <Image src="/logo.png" alt="" width={45} height={22} />
