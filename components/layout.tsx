@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
 import NavBar from './organisms/NavBar'
+import Footer from '@components/organisms/Footer'
 
 interface Props {
   children?: ReactNode
@@ -7,9 +8,12 @@ interface Props {
 
 export default function Layout({ children }: Props) {
   return (
-    <div className="bg-neutral-50 dark:bg-normal text-normal dark:text-neutral-50">
+    <>
       <NavBar />
-      <main className="mt-14">{children}</main>
-    </div>
+      <div className="bg-neutral-50 dark:bg-normal-900 text-normal dark:text-neutral-50 flex flex-col min-h-screen">
+        <main className="mt-14 flex-grow">{children}</main>
+        <Footer />
+      </div>
+    </>
   )
 }

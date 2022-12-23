@@ -26,5 +26,5 @@ html.light {
 
 html.dark {
   color-scheme: dark;
-  @apply bg-normal;
+  @apply bg-normal-900;
 }
