@@ -28,7 +28,7 @@ export default function Accordion({
                     <FiChevronsUp
                       className={`${
                         open ? 'rotate-180 transform' : ''
-                      } h-5 w-5 text-primary-600`}
+                      } h-5 w-5 text-primary-600 z-0`}
                     />
                   </Disclosure.Button>
                   <Disclosure.Panel className="text-neutral-600 pt-4 pb-2 text-sm text-left px-4">

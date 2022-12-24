@@ -8,6 +8,7 @@ import Accordion from './Accordion'
 import SimpleRadioGroup, {
   RadioOption,
 } from '@components/molecules/SimpleRadioGroup'
+import SimpleTabs from '@components/molecules/SimpleTabs'
 
 type ComponentsSampleProps = {
   className?: string
@@ -27,6 +28,15 @@ const options = [
     content: 'Description 1',
   },
 ]
+
+const TabsSample = () => {
+  const tabs = {
+    'My Tab Title': <Container className="h-48" title="Your Tab 1 content" />,
+    Tab2: <Container className="h-48" title="Your Tab 2 content" />,
+    Tab3: <Container className="h-48" title="Your Tab 3 content" />,
+  }
+  return <SimpleTabs tabs={tabs} />
+}
 
 const RadioSample = () => {
   const [selectedRadio, setSelectedRadio] = useState<RadioOption>(options[0])
@@ -80,7 +90,7 @@ const AccordionSample = () => {
 
 export default function ComponentsSample({ className }: ComponentsSampleProps) {
   const [activeComponent, setActiveComponent] = useState<
-    'radio' | 'accordion'
+    'radio' | 'accordion' | 'tabs'
   >()
   const [isOpen, setIsOpen] = useState(false)
 
@@ -113,6 +123,13 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
         setActiveComponent('accordion')
       },
     },
+    {
+      label: 'Tabs',
+      icon: <FiMenu />,
+      onClick: () => {
+        setActiveComponent('tabs')
+      },
+    },
   ]
 
   return (
@@ -128,6 +145,7 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
       <Container className="min-h-[8em] h-full md:col-span-2 py-16 px-4 !items-start">
         {activeComponent === 'radio' && <RadioSample />}
         {activeComponent === 'accordion' && <AccordionSample />}
+        {activeComponent === 'tabs' && <TabsSample />}
       </Container>
     </div>
   )
