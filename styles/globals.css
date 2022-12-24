@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'react-toastify/dist/ReactToastify.css';
+
+
 * {
   box-sizing: border-box;
   padding: 0;
