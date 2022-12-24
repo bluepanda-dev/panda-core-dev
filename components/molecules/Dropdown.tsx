@@ -11,12 +11,18 @@ export type Option = {
 export type DropdownProps = {
   title?: string
   icon?: React.ReactNode
+  className?: string
   options: Option[]
 }
 
-export default function Dropdown({ title, icon, options = [] }: DropdownProps) {
+export default function Dropdown({
+  title,
+  icon,
+  className = '',
+  options = [],
+}: DropdownProps) {
   return (
-    <Menu as="div" className="relative inline-block text-left">
+    <Menu as="div" className={`relative inline-block text-left ${className}`}>
       <Menu.Button className="h-10 hover:bg-neutral-800 inline-flex w-full justify-center items-center rounded-sm px-4 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75">
         {title && <span className="text-lg">{title}</span>}
         {icon ? (
@@ -37,14 +43,14 @@ export default function Dropdown({ title, icon, options = [] }: DropdownProps) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right shadow-lg rounded-md border">
+        <Menu.Items className="absolute bg-primary-50 dark:bg-normal-900 right-0 mt-2 w-56 origin-top-right shadow-lg rounded-md border">
           {options.map((option, index) => (
             <Menu.Item key={index}>
               {({ active }) => {
                 return (
                   <button
                     onClick={option.onClick}
-                    className={`bg-primary-50 dark:bg-normal-900 cursor-pointer flex w-full rounded-md items-center px-2 py-2 text-sm gap-2
+                    className={`cursor-pointer flex w-full rounded-md items-center px-2 py-2 text-sm gap-2
                     ${
                       active
                         ? 'bg-primary-600 text-white dark:bg-primary-900'
