@@ -9,6 +9,7 @@ import SimpleRadioGroup, {
   RadioOption,
 } from '@components/molecules/SimpleRadioGroup'
 import SimpleTabs from '@components/molecules/SimpleTabs'
+import SidePanel from './SidePanel'
 
 type ComponentsSampleProps = {
   className?: string
@@ -93,8 +94,26 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
     'radio' | 'accordion' | 'tabs'
   >()
   const [isOpen, setIsOpen] = useState(false)
+  const [isSideOpen, setIsSideOpen] = useState(false)
+  const [side, setSide] = useState<'left' | 'right'>('left')
 
   const AccountOptions = [
+    {
+      label: 'Side Panel Right',
+      icon: <FiMenu />,
+      onClick: () => {
+        setSide('right')
+        setIsSideOpen(true)
+      },
+    },
+    {
+      label: 'Side Panel Left',
+      icon: <FiMenu />,
+      onClick: () => {
+        setSide('left')
+        setIsSideOpen(true)
+      },
+    },
     {
       label: 'Simple Modal',
       icon: <FiMenu />,
@@ -137,6 +156,14 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
       <Modal isOpen={isOpen} closeModal={() => setIsOpen(false)} title="Title">
         <Container className="h-48" />
       </Modal>
+      <SidePanel
+        isOpen={isSideOpen}
+        closeModal={() => setIsSideOpen(false)}
+        side={side}
+        title="Title"
+      >
+        <Container className="h-full" />
+      </SidePanel>
       <Dropdown
         className="!absolute right-0 top-0"
         options={AccountOptions}
