@@ -1,3 +1,12 @@
 {
-  "title": "Unsere einfache Panda Plus Template"
+  "title": "Unsere einfache Panda Plus Template",
+  "content": "Hier ist der Inhalt",
+  "components": "Komponenten",
+  "settings": "Einstellungen",
+  "switchTheme": "Wechseln {{theme}} mode",
+  "lanOptions": {
+    "en": "Englisch",
+    "es": "Spanisch",
+    "de": "Deutsch"
+  }
 }

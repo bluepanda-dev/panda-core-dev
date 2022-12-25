@@ -1,21 +1,45 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FiSun, FiMenu } from 'react-icons/fi'
 import Image from 'next/image'
 import Link from 'next/link'
 import Dropdown from '@components/molecules/Dropdown'
-import Button from '@components/atoms/Button'
 import { useTheme } from '@core/hooks/useTheme'
 import { Theme, ToastContainer } from 'react-toastify'
+import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 
 export default function NavBar() {
+  const router = useRouter()
+  const { t, i18n } = useTranslation('common', { useSuspense: true })
   const { themeDark, themeLight, theme } = useTheme()
 
   const AccountOptions = [
     {
-      label: `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`,
+      label: t('switchTheme', { theme: theme === 'light' ? 'dark' : 'light' }),
       icon: <FiSun />,
       onClick: () => {
         theme === 'dark' ? themeLight() : themeDark()
+      },
+    },
+  ]
+
+  const lanOptions = [
+    {
+      label: t('lanOptions.en'),
+      onClick: () => {
+        router.push('/', '', { locale: 'en' })
+      },
+    },
+    {
+      label: t('lanOptions.es'),
+      onClick: () => {
+        router.push('/', '', { locale: 'es' })
+      },
+    },
+    {
+      label: t('lanOptions.de'),
+      onClick: () => {
+        router.push('/', '', { locale: 'de' })
       },
     },
   ]
@@ -29,10 +53,12 @@ export default function NavBar() {
           </Link>
         </div>
         <div className="items-center gap-2 hidden md:flex">
-          <Dropdown options={AccountOptions} title={'Settings'} />
+          <Dropdown options={AccountOptions} title={'Setting'} />
+          <Dropdown options={lanOptions} title={i18n.language} />
         </div>
         <div className="items-center gap-2 md:hidden">
           <Dropdown options={AccountOptions} icon={<FiMenu />} />
+          <Dropdown options={lanOptions} title={i18n.language} />
         </div>
       </nav>
       <ToastContainer position="bottom-right" theme={theme as Theme} />
