@@ -29,9 +29,6 @@ export default function NavBar() {
           </Link>
         </div>
         <div className="items-center gap-2 hidden md:flex">
-          <Link href="/pricing">
-            <Button>Restricted Area</Button>
-          </Link>
           <Dropdown options={AccountOptions} title={'Settings'} />
         </div>
         <div className="items-center gap-2 md:hidden">
