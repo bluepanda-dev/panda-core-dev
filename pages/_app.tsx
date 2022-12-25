@@ -8,6 +8,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <Suspense fallback="loading">
       <Head>
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
         <link rel="manifest" href="/manifest.json" />
       </Head>
       <Component {...pageProps} />

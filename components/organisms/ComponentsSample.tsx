@@ -170,9 +170,10 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
         title={'Components'}
       />
       <Container className="min-h-[8em] h-full md:col-span-2 py-16 px-4 !items-start">
-        {activeComponent === 'radio' && <RadioSample />}
-        {activeComponent === 'accordion' && <AccordionSample />}
-        {activeComponent === 'tabs' && <TabsSample />}
+        {activeComponent &&
+          ((activeComponent === 'radio' && <RadioSample />) ||
+            (activeComponent === 'accordion' && <AccordionSample />) ||
+            (activeComponent === 'tabs' && <TabsSample />))}
       </Container>
     </div>
   )
