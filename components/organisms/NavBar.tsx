@@ -53,7 +53,7 @@ export default function NavBar() {
           </Link>
         </div>
         <div className="items-center gap-2 hidden md:flex">
-          <Dropdown options={AccountOptions} title={t('settings')} />
+          <Dropdown options={AccountOptions} title={t('settings') ?? ''} />
           <Dropdown options={lanOptions} title={i18n.language} />
         </div>
         <div className="items-center gap-2 md:hidden">
