@@ -19,7 +19,7 @@ export default function Hero() {
   return (
     <div className="text-6xl md:text-9xl py-12 font-extrabold text-center flex flex-col justify-center">
       {words.map((word, index) => (
-        <div className="relative leading-snug md:leading-normal" key={index}>
+        <div className="relative leading-snug md:leading-tight" key={index}>
           {index === active && (
             <span
               className={`absolute animate-[appearing_4s_ease-in-out_infinite] bg-clip-text text-transparent bg-gradient-to-r 
@@ -38,6 +38,9 @@ export default function Hero() {
           <span className="">{word}</span>
         </div>
       ))}
+      <div className="text-neutral-400 flex justify-center text-xl md:text-2xl font-extralight mt-6 md:mt-16 px-8 ">
+        <div className="md:max-w-lg">{t('hero.content')}</div>
+      </div>
     </div>
   )
 }
