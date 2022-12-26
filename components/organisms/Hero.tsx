@@ -17,12 +17,12 @@ export default function Hero() {
   }, [])
 
   return (
-    <div className="text-9xl py-12 font-extrabold text-center flex flex-col justify-center">
+    <div className="text-6xl md:text-9xl py-12 font-extrabold text-center flex flex-col justify-center">
       {words.map((word, index) => (
-        <div className="relative leading-normal" key={index}>
+        <div className="relative leading-snug md:leading-normal" key={index}>
           {index === active && (
             <span
-              className={`top-0 absolute animate-[appearing_4s_ease-in-out_infinite] bg-clip-text text-transparent bg-gradient-to-r 
+              className={`absolute animate-[appearing_4s_ease-in-out_infinite] bg-clip-text text-transparent bg-gradient-to-r 
               ${
                 index === 0
                   ? 'from-primary-600 to-violet-600'
