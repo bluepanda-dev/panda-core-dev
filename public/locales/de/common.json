@@ -8,5 +8,10 @@
     "en": "Englisch",
     "es": "Spanisch",
     "de": "Deutsch"
+  },
+  "hero": {
+    "first": "Benutz",
+    "second": "Entwickle",
+    "third": "Ship"
   }
 }

@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 
 export default function NavBar() {
   const router = useRouter()
-  const { t, i18n } = useTranslation('common', { useSuspense: true })
+  const { t, i18n } = useTranslation()
   const { themeDark, themeLight, theme } = useTheme()
 
   const AccountOptions = [
@@ -53,7 +53,7 @@ export default function NavBar() {
           </Link>
         </div>
         <div className="items-center gap-2 hidden md:flex">
-          <Dropdown options={AccountOptions} title={'Setting'} />
+          <Dropdown options={AccountOptions} title={t('settings')} />
           <Dropdown options={lanOptions} title={i18n.language} />
         </div>
         <div className="items-center gap-2 md:hidden">

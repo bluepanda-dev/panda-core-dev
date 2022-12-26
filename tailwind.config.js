@@ -7,6 +7,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        appearing: {
+          '25%, 50%, 75%': { opacity: 1 },
+          '0%, 100%': { opacity: 0 },
+        },
+      },
       colors: {
         neutral: {
           50: '#ffffff',

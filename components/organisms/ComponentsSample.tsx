@@ -10,6 +10,7 @@ import SimpleRadioGroup, {
 } from '@components/molecules/SimpleRadioGroup'
 import SimpleTabs from '@components/molecules/SimpleTabs'
 import SidePanel from './SidePanel'
+import { useTranslation } from 'next-i18next'
 
 type ComponentsSampleProps = {
   className?: string
@@ -90,6 +91,7 @@ const AccordionSample = () => {
 }
 
 export default function ComponentsSample({ className }: ComponentsSampleProps) {
+  const { t } = useTranslation()
   const [activeComponent, setActiveComponent] = useState<
     'radio' | 'accordion' | 'tabs'
   >()
@@ -167,7 +169,7 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
       <Dropdown
         className="!absolute right-0 top-0"
         options={AccountOptions}
-        title={'Components'}
+        title={t('components') ?? ''}
       />
       <Container className="min-h-[8em] h-full md:col-span-2 py-16 px-4 !items-start">
         {activeComponent &&

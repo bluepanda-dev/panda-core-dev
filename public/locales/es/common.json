@@ -8,5 +8,10 @@
     "en": "Ingles",
     "es": "Espanol",
     "de": "Aleman"
+  },
+  "hero": {
+    "first": "Usa",
+    "second": "Desarrolla",
+    "third": "Sube"
   }
 }
