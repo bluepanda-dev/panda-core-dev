@@ -15,6 +15,52 @@
     "third": "Ship",
     "content": "Put yourself ahead of the competition with our Panda Plus template, save months of work."
   },
+  "plans": {
+    "title": "Plans",
+    "cta": "Get Started",
+    "content": "Choose the plan that's right for you",
+    "list": [
+      {
+        "title": "Open Blue Panda",
+        "price": "Free",
+        "details": "For small teams or hobby projects",
+        "list": [
+          "1 user",
+          "1 project",
+          "1 GB storage",
+          "1 GB bandwidth",
+          "Email support"
+        ]
+      },
+      {
+        "title": "Panda Plus",
+        "price": "$9 USD",
+        "priceYrl": "$8 USD",
+        "_popular": "true",
+        "details": "For medium teams",
+        "list": [
+          "5 users",
+          "5 projects",
+          "5 GB storage",
+          "5 GB bandwidth",
+          "Priority email support"
+        ]
+      },
+      {
+        "title": "Panda Pro",
+        "price": "$19 USD",
+        "priceYrl": "$16 USD",
+        "details": "Firebase, Headless CMS, Stripe and more",
+        "list": [
+          "Unlimited users",
+          "Unlimited projects",
+          "Unlimited storage",
+          "Unlimited bandwidth",
+          "Phone & email support"
+        ]
+      }
+    ]
+  },
   "whyUsTitle": "Why Us?",
   "keepMeInformed": {
     "title": "Subscribe US",

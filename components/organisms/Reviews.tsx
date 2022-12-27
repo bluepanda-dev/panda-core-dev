@@ -14,8 +14,8 @@ type Review = {
 
 const ReviewCard = ({ children, subtitle, name }: ReviewProps) => {
   return (
-    <div className=" max-w-sm bg-neutral-50 bg-opacity-20 rounded-md p-4">
-      <div className="rounded-lg flex gap-4 items-center">
+    <div className="max-w-sm bg-neutral-50 bg-opacity-20 rounded-md p-4 py-6">
+      <div className="flex gap-4">
         <div className="basis-3/5 text-neutral-100 text-md text-left">
           {children}
         </div>
@@ -37,7 +37,9 @@ export default function Reviews() {
 
   return (
     <div className="py-24 w-full bg-gradient-to-r from-accent-500 via-orange-600 to-primary-500 text-neutral-50">
-      <div className="text-center text-6xl font-bold">{t('reviews.title')}</div>
+      <div className="text-center text-6xl font-bold pb-16">
+        {t('reviews.title')}
+      </div>
       <div className="py-12 w-full flex  justify-center">
         <div className="px-2 md:px-24 flex flex-col flex-wrap sm:flex-row justify-center gap-16 items-center w-full max-w-8xl">
           {options.map((option, index) => (
