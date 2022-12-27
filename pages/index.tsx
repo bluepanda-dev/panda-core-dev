@@ -8,6 +8,7 @@ import Hero from '@components/organisms/Hero'
 import Features from '@components/organisms/Features'
 import WhyUs from '@components/organisms/WhyUs'
 import Faqs from '@components/organisms/Faqs'
+import KeepMeInformed from '@components/organisms/KeepMeInformed'
 
 export default function Home() {
   const { t } = useTranslation()
@@ -21,6 +22,7 @@ export default function Home() {
         <Hero />
         <Features />
         <WhyUs />
+        <KeepMeInformed />
         <Faqs />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-4xl">
           <ComponentsSample className="md:col-span-3" />
