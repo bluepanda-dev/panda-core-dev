@@ -27,45 +27,48 @@ export default function Features() {
   const features = [
     {
       title: t('features.0.title'),
-      face: <img src="/features/rainbow.png" alt="feature-1" />,
+      face: <img src="/features/rainbow.png" />,
       content: t('features.0.content'),
     },
     {
       title: t('features.1.title'),
-      face: <img src="/features/brown.png" alt="feature-1" />,
+      face: <img src="/features/brown.png" />,
       content: t('features.1.content'),
     },
     {
       title: t('features.2.title'),
-      face: <img src="/features/blue.png" alt="feature-1" />,
+      face: <img src="/features/blue.png" />,
       content: t('features.2.content'),
     },
     {
       title: t('features.3.title'),
-      face: <img src="/features/green.png" alt="feature-1" />,
+      face: <img src="/features/green.png" />,
       content: t('features.3.content'),
     },
     {
       title: t('features.4.title'),
-      face: <img src="/features/magenta.png" alt="feature-1" />,
+      face: <img src="/features/magenta.png" />,
       content: t('features.4.content'),
     },
     {
       title: t('features.5.title'),
-      face: <img src="/features/cyan.png" alt="feature-1" />,
+      face: <img src="/features/cyan.png" />,
       content: t('features.5.content'),
     },
   ]
 
   return (
-    <div className="py-12  w-full flex justify-center">
-      <div className="grid px-2 md:px-0 sm:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-8 max-w-5xl">
-        {features.map((feature, index) => (
-          <Feature key={index} title={feature.title} face={feature.face}>
-            {feature.content}
-          </Feature>
-        ))}
+    <>
+      <div className="text-center text-6xl font-bold">{t('featuresTitle')}</div>
+      <div className="py-12 w-full flex justify-center">
+        <div className="grid px-2 md:px-0 sm:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-8 max-w-5xl">
+          {features.map((feature, index) => (
+            <Feature key={index} title={feature.title} face={feature.face}>
+              {feature.content}
+            </Feature>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
