@@ -16,6 +16,31 @@
     "content": "Put yourself ahead of the competition with our Panda Plus template, save months of work."
   },
   "whyUsTitle": "Why Us?",
+  "faqs": {
+    "title": "FAQs",
+    "questions": [
+      {
+        "question": "What is this template?",
+        "answer": "Answer 1"
+      },
+      {
+        "question": "Which languages are supported?",
+        "answer": "Answer 2"
+      },
+      {
+        "question": "How do I use this template?",
+        "answer": "Answer 3"
+      },
+      {
+        "question": "How do I change the language?",
+        "answer": "Answer 3"
+      },
+      {
+        "question": "How do I change the theme?",
+        "answer": "Answer 3"
+      }
+    ]
+  },
   "whyUs": [
     {
       "title": "Build Customer Loyalty",

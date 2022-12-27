@@ -7,6 +7,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Hero from '@components/organisms/Hero'
 import Features from '@components/organisms/Features'
 import WhyUs from '@components/organisms/WhyUs'
+import Faqs from '@components/organisms/Faqs'
 
 export default function Home() {
   const { t } = useTranslation()
@@ -20,6 +21,7 @@ export default function Home() {
         <Hero />
         <Features />
         <WhyUs />
+        <Faqs />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-4xl">
           <ComponentsSample className="md:col-span-3" />
           <Container className="h-48 md:col-span-2" />
