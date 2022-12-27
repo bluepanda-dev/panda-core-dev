@@ -20,9 +20,29 @@
     "title": "Subscribe US",
     "cta": "Subscribe"
   },
+  "reviews": {
+    "title": "Reviews",
+    "list": [
+      {
+        "name": "Jane Doe",
+        "position": "CTO",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ipsun dolor sit amet, consectetur adipiscing elit."
+      },
+      {
+        "name": "John Smith",
+        "position": "Manager",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ipsum dolor sit amet, consectetur adipiscing elit."
+      },
+      {
+        "name": "Yoda Doe",
+        "position": "Developer",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ipsum dolor sit amet, consectetur adipiscing elit."
+      }
+    ]
+  },
   "faqs": {
     "title": "FAQs",
-    "questions": [
+    "list": [
       {
         "question": "What is this template?",
         "answer": "Answer 1"
