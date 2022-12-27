@@ -5,6 +5,7 @@ import Layout from '@components/layout'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Hero from '@components/organisms/Hero'
+import Features from '@components/organisms/Features'
 
 export default function Home() {
   const { t } = useTranslation()
@@ -16,6 +17,7 @@ export default function Home() {
       </Head>
       <main className="md:p-6">
         <Hero />
+        <Features />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-4xl">
           <ComponentsSample className="md:col-span-3" />
           <Container className="h-48 md:col-span-2" />
