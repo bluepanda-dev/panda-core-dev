@@ -15,6 +15,27 @@
     "third": "Ship",
     "content": "Put yourself ahead of the competition with our Panda Plus template, save months of work."
   },
+  "timeline": {
+    "title": "Timeline",
+    "list": [
+      {
+        "title": "Lorem Ipsun",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+      },
+      {
+        "title": "Lorem Ipsun",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+      },
+      {
+        "title": "Lorem Ipsun",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+      },
+      {
+        "title": "Lorem Ipsun",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+      }
+    ]
+  },
   "customers": {
     "title": "Customers"
   },

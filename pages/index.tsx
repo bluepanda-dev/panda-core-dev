@@ -13,6 +13,7 @@ import Reviews from '@components/organisms/Reviews'
 import Plans from '@components/organisms/Plans'
 import OurNumbers from '@components/organisms/OurNumbers'
 import Customers from '@components/organisms/Customers'
+import TimeLine from '@components/organisms/TimeLine'
 
 export default function Home() {
   const { t } = useTranslation()
@@ -29,6 +30,7 @@ export default function Home() {
         <KeepMeInformed />
         <Reviews />
         <Plans />
+        <TimeLine />
         <OurNumbers />
         <Customers />
         <Faqs />
