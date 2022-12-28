@@ -14,7 +14,7 @@ const Why = ({ children, face, title }: WhyProps) => {
       <div className="rounded-lg flex flex-col gap-4 items-center h-56">
         <div className="h-1/3">{face}</div>
         <div className="text-2xl">{title}</div>
-        <div className="grow text-normal-400 text-md text-center">
+        <div className="grow text-normal-400 dark:text-normal-100 text-md text-center">
           {children}
         </div>
       </div>

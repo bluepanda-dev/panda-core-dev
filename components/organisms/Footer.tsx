@@ -35,7 +35,7 @@ export default function Footer() {
             <h2 className="mb-4 md:border-none border-b border-neutral-800 pb-2">
               Contact Us
             </h2>
-            <ul className="list-none text-normal-400">
+            <ul className="list-none text-normal-400 dark:text-normal-100">
               <li className="pb-2">info@example.com</li>
               <li className="pb-2">Slack</li>
             </ul>
@@ -44,7 +44,7 @@ export default function Footer() {
             <h2 className="mb-4 md:border-none border-b border-neutral-800 pb-2">
               Features
             </h2>
-            <ul className="list-none text-normal-400">
+            <ul className="list-none text-normal-400 dark:text-normal-100">
               <li className="pb-2">Ship faster </li>
               <li className="pb-2">Simplicity first</li>
               <li className="pb-2">Support for you </li>
@@ -55,14 +55,14 @@ export default function Footer() {
             <h2 className="mb-4 md:border-none border-b border-neutral-800 pb-2">
               Tech Stack
             </h2>
-            <ul className="list-none text-normal-400">
+            <ul className="list-none text-normal-400 dark:text-normal-100">
               <li className="pb-2">ReactJS</li>
               <li className="pb-2">NextJS</li>
               <li className="pb-2">TailwindCSS</li>
             </ul>
           </div>
         </div>
-        <div className="text-normal-500 px-4 flex flex-col gap-4 items-right md:text-right">
+        <div className="text-normal-500 dark:text-normal-100 px-4 flex flex-col gap-4 items-right md:text-right">
           <span>Copyright © 2023 Blue Panda. All rights reserved.</span>
           <div className="flex gap-4 flex-wrap md:justify-end">
             <FaFacebookSquare size={32} />
