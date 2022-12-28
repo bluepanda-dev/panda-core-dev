@@ -17,7 +17,7 @@ export default function Faqs() {
   )
 
   return (
-    <>
+    <div className="py-24">
       <div className="text-center text-6xl font-bold">{t('faqs.title')}</div>
       <div className="py-12 w-full flex justify-center">
         <div className="px-2 md:px-0 flex justify-center items-center w-full">
@@ -29,6 +29,6 @@ export default function Faqs() {
           />
         </div>
       </div>
-    </>
+    </div>
   )
 }

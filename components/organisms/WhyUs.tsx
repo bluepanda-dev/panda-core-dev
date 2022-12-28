@@ -43,7 +43,7 @@ export default function WhyUs() {
   ]
 
   return (
-    <>
+    <div className="py-24">
       <div className="text-center text-6xl font-bold">{t('whyUsTitle')}</div>
       <div className="py-12 w-full flex justify-center">
         <div className="grid px-2 md:px-0 md:grid-cols-3 justify-center items-center gap-8 max-w-5xl">
@@ -54,6 +54,6 @@ export default function WhyUs() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   )
 }

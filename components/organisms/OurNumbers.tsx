@@ -10,7 +10,7 @@ export default function Reviews() {
   const options = t('ourNumbers.list', { returnObjects: true }) as OurNumber[]
 
   return (
-    <div className="py-24 w-full bg-neutral-100 dark:bg-normal-800">
+    <div className="py-4 pt-14 w-full bg-neutral-100 dark:bg-normal-800">
       <div className="text-center text-6xl font-bold pb-16">
         {t('ourNumbers.title')}
       </div>
