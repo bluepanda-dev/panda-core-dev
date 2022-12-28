@@ -16,7 +16,7 @@ export default function Reviews() {
       </div>
       <div className="w-full flex relative justify-center">
         <div
-          className="bg-gradient-to-b from-neutral-200 to-primary-400 dark:from-primary-200 dark:to-primary-700 absolute w-px h-full"
+          className="hidden sm:block bg-gradient-to-b from-neutral-200 to-primary-400 dark:from-primary-200 dark:to-primary-700 absolute w-px h-full"
           style={{ left: '50%' }}
         ></div>
         <div className="mb-48 px-2 md:px-24 flex flex-col justify-center gap-16 items-center w-full">
@@ -30,10 +30,10 @@ export default function Reviews() {
               }
             >
               <div className="order-1 w-5/12"></div>
-              <div className="z-20 flex items-center order-1 border bg-neutral-50 dark:bg-normal-900 shadow-xl w-8 h-8 rounded-full">
+              <div className="absolute sm:relative flex z-20 items-center order-1 border bg-neutral-50 dark:bg-normal-900 shadow-xl w-8 h-8 rounded-full">
                 <h1 className="mx-auto font-semibold text-lg">{index + 1}</h1>
               </div>
-              <div className="order-1 border rounded-lg shadow-xl w-5/12 px-6 py-4">
+              <div className="order-1 border rounded-lg shadow-xl sm:w-5/12 px-6 py-4">
                 <h3 className="mb-3 font-bold text-xl">Lorem Ipsum</h3>
                 <p className="text-sm leading-snug tracking-wide dark:text-neutral-400 text-opacity-100">
                   Lorem Ipsum is simply dummy text of the printing and
