@@ -4,7 +4,7 @@ export default function KeepMeInformed() {
   const { t } = useTranslation('common')
 
   return (
-    <div className="md:py-24">
+    <div className="md:py-16">
       <div className="text-center text-6xl font-bold">
         {t('keepMeInformed.title')}
       </div>

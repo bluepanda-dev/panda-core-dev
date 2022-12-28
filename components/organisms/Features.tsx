@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 type FeatureProps = {
   title: string
@@ -27,32 +28,74 @@ export default function Features() {
   const features = [
     {
       title: t('features.0.title'),
-      face: <img src="/features/rainbow.webp" />,
+      face: (
+        <Image
+          src="/features/rainbow.webp"
+          alt="Features"
+          width={140}
+          height={48}
+        />
+      ),
       content: t('features.0.content'),
     },
     {
       title: t('features.1.title'),
-      face: <img src="/features/brown.webp" />,
+      face: (
+        <Image
+          src="/features/brown.webp"
+          alt="Features"
+          width={140}
+          height={48}
+        />
+      ),
       content: t('features.1.content'),
     },
     {
       title: t('features.2.title'),
-      face: <img src="/features/blue.webp" />,
+      face: (
+        <Image
+          src="/features/blue.webp"
+          alt="Features"
+          width={140}
+          height={48}
+        />
+      ),
       content: t('features.2.content'),
     },
     {
       title: t('features.3.title'),
-      face: <img src="/features/green.webp" />,
+      face: (
+        <Image
+          src="/features/green.webp"
+          alt="Features"
+          width={140}
+          height={48}
+        />
+      ),
       content: t('features.3.content'),
     },
     {
       title: t('features.4.title'),
-      face: <img src="/features/magenta.webp" />,
+      face: (
+        <Image
+          src="/features/magenta.webp"
+          alt="Features"
+          width={140}
+          height={48}
+        />
+      ),
       content: t('features.4.content'),
     },
     {
       title: t('features.5.title'),
-      face: <img src="/features/cyan.webp" />,
+      face: (
+        <Image
+          src="/features/cyan.webp"
+          alt="Features"
+          width={140}
+          height={48}
+        />
+      ),
       content: t('features.5.content'),
     },
   ]

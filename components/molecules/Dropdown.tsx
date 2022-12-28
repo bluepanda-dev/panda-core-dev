@@ -50,6 +50,9 @@ export default function Dropdown({
                 return (
                   <button
                     onClick={option.onClick}
+                    role={option.label}
+                    aria-label={option.label}
+                    title={option.label}
                     className={`cursor-pointer flex w-full rounded-md items-center px-2 py-2 text-sm gap-2
                     ${
                       active

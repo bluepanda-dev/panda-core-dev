@@ -48,7 +48,7 @@ export default function NavBar() {
     <>
       <nav className="z-10 bg-neutral-50 dark:bg-normal-900 fixed top-0 w-full p-2 flex justify-between items-center border-b border-neutral-800">
         <div>
-          <Link href="/">
+          <Link href="/" aria-label="home link">
             <Image src="/logo.webp" alt="" width={45} height={22} />
           </Link>
         </div>

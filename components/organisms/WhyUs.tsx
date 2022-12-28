@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next'
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 type WhyProps = {
   title: string
@@ -27,25 +28,49 @@ export default function WhyUs() {
   const options = [
     {
       title: t('whyUs.0.title'),
-      face: <img src="/logo.webp" className="h-full sepia" />,
+      face: (
+        <Image
+          src="/logo.webp"
+          alt="Why Us"
+          className="sepia"
+          width={90}
+          height={48}
+        />
+      ),
       content: t('whyUs.0.content'),
     },
     {
       title: t('whyUs.1.title'),
-      face: <img src="/logo.webp" className="h-full sepia" />,
+      face: (
+        <Image
+          src="/logo.webp"
+          alt="Why Us"
+          className="sepia"
+          width={90}
+          height={48}
+        />
+      ),
       content: t('whyUs.1.content'),
     },
     {
       title: t('whyUs.2.title'),
-      face: <img src="/logo.webp" className="h-full sepia" />,
+      face: (
+        <Image
+          src="/logo.webp"
+          alt="Why Us"
+          className="sepia"
+          width={90}
+          height={48}
+        />
+      ),
       content: t('whyUs.2.content'),
     },
   ]
 
   return (
-    <div className="py-24">
+    <div className="py-16">
       <div className="text-center text-6xl font-bold">{t('whyUsTitle')}</div>
-      <div className="py-12 w-full flex justify-center">
+      <div className="pt-36 w-full flex justify-center">
         <div className="grid px-2 md:px-0 md:grid-cols-3 justify-center items-center gap-8 max-w-5xl">
           {options.map((option, index) => (
             <Why key={index} title={option.title} face={option.face}>
