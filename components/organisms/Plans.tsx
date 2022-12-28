@@ -27,10 +27,10 @@ const PlanCard = ({ plan }: PlanProps) => {
     `}
     >
       <div className="flex flex-col gap-4">
-        <div className="text-2xl bg-clip-text text-transparent bg-gradient-to-r from-success-500 to-accent-500">
+        <div className="from-success-500 to-accent-500 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r">
           {plan.title}
         </div>
-        <div className="text-3xl">{plan.price}</div>
+        <div className="text-3xl font-bold">{plan.price}</div>
         <div className="text-neutral-100 text-md text-left">
           <ul>
             {plan.list.map((item, index) => (

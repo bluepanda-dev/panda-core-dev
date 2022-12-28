@@ -11,6 +11,7 @@ import Faqs from '@components/organisms/Faqs'
 import KeepMeInformed from '@components/organisms/KeepMeInformed'
 import Reviews from '@components/organisms/Reviews'
 import Plans from '@components/organisms/Plans'
+import OurNumbers from '@components/organisms/OurNumbers'
 
 export default function Home() {
   const { t } = useTranslation()
@@ -27,6 +28,7 @@ export default function Home() {
         <KeepMeInformed />
         <Reviews />
         <Plans />
+        <OurNumbers />
         <Faqs />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-4xl">
           <ComponentsSample className="md:col-span-3" />
