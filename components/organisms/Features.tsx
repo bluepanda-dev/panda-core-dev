@@ -15,7 +15,9 @@ const Feature = ({ children, face, title }: FeatureProps) => {
         <div className="basis-2/5">{face}</div>
         <div className="basis-3/5 flex flex-col gap-2 px-1 items-start self-start mt-4">
           <div className="text-lg">{title}</div>
-          <div className="text-normal-400 text-sm">{children}</div>
+          <div className="text-normal-400 dark:text-normal-100 text-sm">
+            {children}
+          </div>
         </div>
       </div>
     </div>

@@ -23,7 +23,10 @@ export default function Dropdown({
 }: DropdownProps) {
   return (
     <Menu as="div" className={`relative inline-block text-left ${className}`}>
-      <Menu.Button className="h-10 hover:bg-neutral-800 inline-flex w-full justify-center items-center rounded-sm px-4 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75">
+      <Menu.Button
+        aria-label="Menu"
+        className="h-10 hover:bg-neutral-800 inline-flex w-full justify-center items-center rounded-sm px-4 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75"
+      >
         {title && <span className="text-lg">{title}</span>}
         {icon ? (
           icon

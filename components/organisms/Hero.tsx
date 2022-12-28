@@ -38,7 +38,7 @@ export default function Hero() {
           <span className="">{word}</span>
         </div>
       ))}
-      <div className="text-neutral-400 flex justify-center text-xl md:text-2xl font-extralight mt-6 md:mt-16 px-8 ">
+      <div className="text-neutral-600 dark:text-neutral-400 flex justify-center text-xl md:text-2xl font-extralight mt-6 md:mt-16 px-8 ">
         <div className="md:max-w-lg">{t('hero.content')}</div>
       </div>
     </div>
