@@ -12,6 +12,7 @@ import KeepMeInformed from '@components/organisms/KeepMeInformed'
 import Reviews from '@components/organisms/Reviews'
 import Plans from '@components/organisms/Plans'
 import OurNumbers from '@components/organisms/OurNumbers'
+import Customers from '@components/organisms/Customers'
 
 export default function Home() {
   const { t } = useTranslation()
@@ -29,6 +30,7 @@ export default function Home() {
         <Reviews />
         <Plans />
         <OurNumbers />
+        <Customers />
         <Faqs />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-4xl">
           <ComponentsSample className="md:col-span-3" />
