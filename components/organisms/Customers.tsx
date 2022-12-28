@@ -5,19 +5,19 @@ export default function Reviews() {
 
   const customers = [
     {
-      image: '/logo.png',
+      image: '/logo.webp',
     },
     {
-      image: '/logo.png',
+      image: '/logo.webp',
     },
     {
-      image: '/logo.png',
+      image: '/logo.webp',
     },
     {
-      image: '/logo.png',
+      image: '/logo.webp',
     },
     {
-      image: '/logo.png',
+      image: '/logo.webp',
     },
   ]
 

@@ -27,32 +27,32 @@ export default function Features() {
   const features = [
     {
       title: t('features.0.title'),
-      face: <img src="/features/rainbow.png" />,
+      face: <img src="/features/rainbow.webp" />,
       content: t('features.0.content'),
     },
     {
       title: t('features.1.title'),
-      face: <img src="/features/brown.png" />,
+      face: <img src="/features/brown.webp" />,
       content: t('features.1.content'),
     },
     {
       title: t('features.2.title'),
-      face: <img src="/features/blue.png" />,
+      face: <img src="/features/blue.webp" />,
       content: t('features.2.content'),
     },
     {
       title: t('features.3.title'),
-      face: <img src="/features/green.png" />,
+      face: <img src="/features/green.webp" />,
       content: t('features.3.content'),
     },
     {
       title: t('features.4.title'),
-      face: <img src="/features/magenta.png" />,
+      face: <img src="/features/magenta.webp" />,
       content: t('features.4.content'),
     },
     {
       title: t('features.5.title'),
-      face: <img src="/features/cyan.png" />,
+      face: <img src="/features/cyan.webp" />,
       content: t('features.5.content'),
     },
   ]

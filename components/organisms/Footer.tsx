@@ -24,7 +24,7 @@ export default function Footer() {
       <footer className="relative bg-neutral-100 dark:bg-normal-800 border-t border-neutral-800 py-4">
         <div className="justify-center grid grid-cols-1 md:grid-cols-3 items-center px-4 py-12 w-full">
           <img
-            src="/logo-v2.png"
+            src="/logo-v2.webp"
             className="absolute -left-16 lg:-left-32 bottom-0 w-48 lg:w-64 xl:w-80 hidden md:block opacity-70 grayscale "
           />
           <div className="h-full md:justify-self-end">
@@ -67,7 +67,7 @@ export default function Footer() {
           </div>
         </div>
         <img
-          src="/logo-v2.png"
+          src="/logo-v2.webp"
           className="bottom-0 -right-16 absolute w-64 md:hidden opacity-30 grayscale "
         />
       </footer>

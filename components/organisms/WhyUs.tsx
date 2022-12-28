@@ -27,17 +27,17 @@ export default function WhyUs() {
   const options = [
     {
       title: t('whyUs.0.title'),
-      face: <img src="/logo.png" className="h-full sepia" />,
+      face: <img src="/logo.webp" className="h-full sepia" />,
       content: t('whyUs.0.content'),
     },
     {
       title: t('whyUs.1.title'),
-      face: <img src="/logo.png" className="h-full sepia" />,
+      face: <img src="/logo.webp" className="h-full sepia" />,
       content: t('whyUs.1.content'),
     },
     {
       title: t('whyUs.2.title'),
-      face: <img src="/logo.png" className="h-full sepia" />,
+      face: <img src="/logo.webp" className="h-full sepia" />,
       content: t('whyUs.2.content'),
     },
   ]
