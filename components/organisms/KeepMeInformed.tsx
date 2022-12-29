@@ -1,3 +1,4 @@
+import Button from '@components/atoms/Button'
 import { useTranslation } from 'next-i18next'
 
 export default function KeepMeInformed() {
@@ -15,12 +16,7 @@ export default function KeepMeInformed() {
             placeholder="Email"
             className="bg-neutral-100 dark:bg-normal-700 focus:border-primary-500 dark:focus:border-primary-800 caret-primary-600 h-12 tracking-wide focus:border-2 outline-0 rounded-sm grow p-2 text-xl"
           />
-          <button
-            type="button"
-            className="text-neutral-50 bg-primary-700 inline-flex rounded-sm border border-transparent px-4 py-2 text-xl font-medium hover:bg-primary-500"
-          >
-            {t('keepMeInformed.cta')}
-          </button>
+          <Button isSpecial={true}>{t('keepMeInformed.cta')}</Button>
         </div>
       </div>
     </div>

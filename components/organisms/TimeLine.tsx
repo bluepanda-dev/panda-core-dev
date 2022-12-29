@@ -1,4 +1,5 @@
 import { useTranslation } from 'next-i18next'
+import { FiCheck } from 'react-icons/fi'
 
 type TimeLineData = {
   figure: string
@@ -45,7 +46,9 @@ export default function Reviews() {
               </div>
             </div>
           ))}
-          <div className="bg-gradient-to-r from-primary-400 to-primary-700 z-20 flex items-center order-1 shadow-xl w-12 h-12 rounded-full absolute bottom-0"></div>
+          <div className="bg-gradient-to-r from-primary-400 to-primary-700 z-20 justify-center hidden sm:flex items-center order-1 shadow-xl w-12 h-12 rounded-full absolute bottom-0">
+            <FiCheck className="font-bold text-3xl text-neutral-50" />
+          </div>
         </div>
       </div>
     </div>

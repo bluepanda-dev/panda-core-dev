@@ -1,3 +1,4 @@
+import Button from '@components/atoms/Button'
 import { useTranslation } from 'next-i18next'
 import { FiCheckCircle } from 'react-icons/fi'
 
@@ -42,18 +43,7 @@ const PlanCard = ({ plan }: PlanProps) => {
           </ul>
         </div>
         <div className="absolute right-4 bottom-10">
-          <button
-            type="button"
-            className={`text-neutral-50 bg-primary-700 inline-flex rounded-sm border border-transparent px-4 py-2 text-xl font-medium hover:bg-primary-500
-              ${
-                plan._popular
-                  ? 'border-none bg-gradient-to-r from-success-400 to-accent-600 hover:from-primary-500 hover:to-accent-500'
-                  : ''
-              }
-                `}
-          >
-            {t('plans.cta')}
-          </button>
+          <Button isSpecial={true}>{t('plans.cta')}</Button>
         </div>
         <div className="absolute right-4 lg:left-6 bottom-2 lg:bottom-28 text-neutral-300">
           {plan.details}
