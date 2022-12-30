@@ -68,9 +68,9 @@ export default function WhyUs() {
   ]
 
   return (
-    <div className="py-16">
+    <div>
       <div className="text-center text-6xl font-bold">{t('whyUsTitle')}</div>
-      <div className="pt-36 w-full flex justify-center">
+      <div className="pt-24 w-full flex justify-center">
         <div className="grid px-2 md:px-0 md:grid-cols-3 justify-center items-center gap-8 max-w-5xl">
           {options.map((option, index) => (
             <Why key={index} title={option.title} face={option.face}>

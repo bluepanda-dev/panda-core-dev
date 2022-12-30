@@ -53,17 +53,15 @@ const PlanCard = ({ plan }: PlanProps) => {
   )
 }
 
-export default function Reviews() {
+export default function Plans() {
   const { t } = useTranslation('common')
 
   const options = t('plans.list', { returnObjects: true }) as Plan[]
 
   return (
-    <div className="py-24 w-full">
-      <div className="text-center text-6xl font-bold pb-16">
-        {t('plans.title')}
-      </div>
-      <div className="py-12 w-full flex justify-center">
+    <div className="w-full">
+      <div className="text-center text-6xl font-bold">{t('plans.title')}</div>
+      <div className="pt-24  w-full flex justify-center">
         <div className="max-w-[90em] px-2 md:px-24 grid grid-cols-1 lg:grid-cols-3 justify-center justify-items-center gap-16 items-center w-full">
           {options.map((option, index) => (
             <PlanCard key={index} plan={option}></PlanCard>

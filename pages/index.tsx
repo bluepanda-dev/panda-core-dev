@@ -24,17 +24,17 @@ export default function Home() {
       <Head>
         <title>{t('title')}</title>
       </Head>
-      <main className="flex flex-col gap-y-16">
+      <main className="flex flex-col gap-y-36 md:gap-y-48 mt-12">
         <Hero />
         <Features />
         <WhyUs />
-        <KeepMeInformed />
         <Reviews />
         <Plans />
         <TimeLine />
         <OurNumbers />
         <Customers />
         <CodeExample />
+        <KeepMeInformed />
         <Faqs />
       </main>
     </Layout>

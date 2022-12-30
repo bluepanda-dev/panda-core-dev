@@ -12,16 +12,16 @@ export default function Reviews() {
   const options = t('timeline.list', { returnObjects: true }) as TimeLineData[]
 
   return (
-    <div className="py-4 pt-14 w-full">
-      <div className="text-center text-6xl font-bold pb-24">
+    <div className="w-full">
+      <div className="text-center text-6xl font-bold pb-4">
         {t('timeline.title')}
       </div>
-      <div className="w-full flex relative justify-center">
+      <div className="w-full flex relative justify-center pt-24">
         <div
           className="hidden sm:block bg-gradient-to-b from-neutral-200 to-primary-400 dark:from-primary-200 dark:to-primary-700 absolute w-px h-full"
           style={{ left: '50%' }}
         ></div>
-        <div className="mb-48 px-2 md:px-24 flex flex-col justify-center gap-16 items-center w-full">
+        <div className="mb-8 px-2 md:px-24 flex flex-col justify-center gap-16 items-center w-full">
           {options.map((option, index) => (
             <div
               key={index}

@@ -17,7 +17,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <div className="text-7xl md:text-9xl py-12 font-extrabold text-center flex flex-col justify-center">
+    <div className="text-7xl md:text-9xl font-extrabold text-center flex flex-col justify-center">
       {words.map((word, index) => (
         <div className="relative leading-tight md:leading-tight" key={index}>
           {index === active && (

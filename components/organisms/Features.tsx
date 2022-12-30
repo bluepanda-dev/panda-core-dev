@@ -103,9 +103,9 @@ export default function Features() {
   ]
 
   return (
-    <>
+    <div>
       <div className="text-center text-6xl font-bold">{t('featuresTitle')}</div>
-      <div className="py-12 w-full flex justify-center">
+      <div className="pt-24 w-full flex justify-center">
         <div className="grid px-2 md:px-0 sm:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-8 max-w-5xl">
           {features.map((feature, index) => (
             <Feature key={index} title={feature.title} face={feature.face}>
@@ -114,6 +114,6 @@ export default function Features() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   )
 }

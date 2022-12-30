@@ -36,11 +36,9 @@ export default function Reviews() {
   const options = t('reviews.list', { returnObjects: true }) as Review[]
 
   return (
-    <div className="py-24 w-full bg-gradient-to-r from-accent-500 via-orange-600 to-primary-500 text-neutral-50">
-      <div className="text-center text-6xl font-bold pb-16">
-        {t('reviews.title')}
-      </div>
-      <div className="py-12 w-full flex  justify-center">
+    <div className="py-8 w-full bg-gradient-to-r from-accent-500 via-orange-600 to-primary-500 text-neutral-50">
+      <div className="text-center text-6xl font-bold">{t('reviews.title')}</div>
+      <div className="pt-24 w-full flex  justify-center">
         <div className="px-2 md:px-24 flex flex-col flex-wrap sm:flex-row justify-center gap-16 items-center w-full max-w-8xl">
           {options.map((option, index) => (
             <ReviewCard

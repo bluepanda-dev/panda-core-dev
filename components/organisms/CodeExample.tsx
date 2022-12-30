@@ -24,11 +24,11 @@ export default function BlurExample() {
 }
 `
   return (
-    <div className="md:py-16 relative">
+    <div className="relative">
       <div className="text-center text-6xl font-bold">
         {t('codeExample.title')}
       </div>
-      <div className="py-12 w-full flex  justify-center">
+      <div className="pt-24 w-full flex  justify-center">
         <div className="px-2 md:px-0 flex flex-col sm:flex-row justify-center gap-4 items-center w-full">
           <div>
             <input
