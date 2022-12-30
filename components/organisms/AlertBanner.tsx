@@ -21,7 +21,12 @@ export default function Faqs() {
         {t('alertBanner.message')}
       </div>
       <div className="absolute right-6 top-2">
-        <button type="button" aria-label="close alert" onClick={handleClose}>
+        <button
+          type="button"
+          aria-label="close alert"
+          className="hover:text-primary-400"
+          onClick={handleClose}
+        >
           X
         </button>
       </div>

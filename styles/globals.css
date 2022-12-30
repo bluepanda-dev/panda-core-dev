@@ -31,3 +31,7 @@ html.dark {
   color-scheme: dark;
   @apply bg-normal-900;
 }
+
+code {
+  border-radius: 10px;
+}
