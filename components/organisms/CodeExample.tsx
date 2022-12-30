@@ -46,8 +46,8 @@ export default function BlurExample() {
               alt="blue panda"
               className={`w-80`}
               style={{ filter: `blur(${blur}px)` }}
-              width={190}
-              height={48}
+              width={290}
+              height={148}
             />
           </div>
         </div>
