@@ -16,7 +16,7 @@ export default function Reviews() {
       <div className="text-center text-6xl font-bold pb-4">
         {t('timeline.title')}
       </div>
-      <div className="w-full flex relative justify-center pt-24">
+      <div className="w-full flex relative justify-center mt-24">
         <div
           className="hidden sm:block bg-gradient-to-b from-neutral-200 to-primary-400 dark:from-primary-200 dark:to-primary-700 absolute w-px h-full"
           style={{ left: '50%' }}
