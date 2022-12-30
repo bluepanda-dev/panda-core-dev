@@ -23,7 +23,7 @@ export default function Code({ inner, css }: CodeProps) {
   return (
     <div
       style={css}
-      className="rounded-lg relative drop-shadow-sm dark:border dark:border-y-success-500 dark:border-x-primary-500"
+      className="rounded-lg relative drop-shadow-sm dark:border dark:border-y-neutral-900 dark:border-x-neutral-600"
     >
       <div className="absolute flex gap-2 left-2 top-2">
         <div className="w-3 h-3 rounded-full bg-red-600"></div>
