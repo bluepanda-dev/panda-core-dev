@@ -9,6 +9,13 @@
     "es": "Spanish",
     "de": "German"
   },
+  "codeExample": {
+    "title": "Your Code Example"
+  },
+  "alertBanner": {
+    "id": "example-msg",
+    "message": "Banner Message (close it)"
+  },
   "hero": {
     "first": "Use",
     "second": "Develop",

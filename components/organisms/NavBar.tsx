@@ -7,11 +7,22 @@ import { useTheme } from '@core/hooks/useTheme'
 import { Theme, ToastContainer } from 'react-toastify'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import AlertBanner from '@components/organisms/AlertBanner'
+import { isAlertBannerActive } from '@core/store/Common'
+import { useAtom } from 'jotai'
 
 export default function NavBar() {
   const router = useRouter()
   const { t, i18n } = useTranslation()
   const { themeDark, themeLight, theme } = useTheme()
+  const [scrollPosition, setScrollPosition] = useState(0)
+  const [alertActive] = useAtom(isAlertBannerActive)
+
+  const handleScroll = () => {
+    const position = window.pageYOffset
+    setScrollPosition(position)
+    console.log('pos:>>', position)
+  }
 
   const AccountOptions = [
     {
@@ -44,9 +55,22 @@ export default function NavBar() {
     },
   ]
 
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <>
-      <nav className="z-50 bg-neutral-50 dark:bg-normal-900 fixed top-0 w-full p-2 flex justify-between items-center border-b border-neutral-800">
+      {alertActive && <AlertBanner />}
+      <nav
+        className={`z-50 backdrop-blur-sm bg-neutral-50/30 dark:bg-normal-900/30 fixed top-0 w-full p-2 flex justify-between items-center border-b border-neutral-800
+        ${scrollPosition <= 0.5 && alertActive ? 'mt-12' : ''}
+      `}
+      >
         <div>
           <Link href="/" aria-label="home link">
             <Image src="/logo.webp" alt="" width={45} height={22} />
