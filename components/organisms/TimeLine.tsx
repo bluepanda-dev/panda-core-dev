@@ -1,20 +1,14 @@
-import { useTranslation } from 'next-i18next'
+import { useDataPages } from '@core/hooks/useDataPages'
+import { TimeLineData } from '@core/types'
 import { FiCheck } from 'react-icons/fi'
 
-type TimeLineData = {
-  title: string
-  content: string
-}
-
 export default function Reviews() {
-  const { t } = useTranslation('common')
-
-  const options = t('timeline.list', { returnObjects: true }) as TimeLineData[]
+  const { timeLine } = useDataPages()
 
   return (
     <div className="w-full">
       <div className="text-center text-6xl font-bold pb-4">
-        {t('timeline.title')}
+        {timeLine.title}
       </div>
       <div className="w-full flex relative justify-center mt-24">
         <div
@@ -22,7 +16,7 @@ export default function Reviews() {
           style={{ left: '50%' }}
         ></div>
         <div className="mb-8 px-2 md:px-24 flex flex-col justify-center gap-16 items-center w-full">
-          {options.map((option, index) => (
+          {timeLine.list.map((option, index) => (
             <div
               key={index}
               className={

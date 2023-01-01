@@ -1,20 +1,11 @@
-import { useTranslation } from 'next-i18next'
-import { useState, useEffect } from 'react'
-import { FiChevronRight } from 'react-icons/fi'
-import Image from 'next/image'
 import Button from '@components/atoms/Button'
+import Image from 'next/image'
+import { useDataPages } from '@core/hooks/useDataPages'
+import { ProductCard } from '@core/types'
+import { FiChevronRight } from 'react-icons/fi'
 
-type Product = {
-  _id: number
-  title: string
-  description: string
-  price: string
-  features: string[]
-  _image: string
-}
-
-const Product = ({ product }: { product: Product }) => {
-  const { t } = useTranslation()
+const Product = ({ product }: { product: ProductCard }) => {
+  const { products } = useDataPages()
 
   return (
     <div className="w-full max-w-sm justify-self-center rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-400">
@@ -42,7 +33,7 @@ const Product = ({ product }: { product: Product }) => {
         </div>
         <div className="p-6">
           <Button className="text-neutral-50 bg-primary-700 shadow-lg shadow-primary-700/50 hover:bg-primary-500">
-            {t('buyNow')}
+            {products.texts!.buyNow}
           </Button>
         </div>
       </div>
@@ -51,18 +42,14 @@ const Product = ({ product }: { product: Product }) => {
 }
 
 export default function Products() {
-  const { t } = useTranslation()
-
-  const products = t('products.list', { returnObjects: true }) as Product[]
+  const { products } = useDataPages()
 
   return (
     <div>
-      <div className="text-center text-6xl font-bold">
-        {t('products.title')}
-      </div>
+      <div className="text-center text-6xl font-bold">{products.title}</div>
       <div className="pt-24 w-full flex justify-center">
         <div className="w-full grid px-2 md:px-0 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center max-w-5xl">
-          {products.map((product, index) => (
+          {products.list!.map((product, index) => (
             <Product key={index} product={product} />
           ))}
         </div>

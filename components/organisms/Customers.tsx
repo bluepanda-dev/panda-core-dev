@@ -1,10 +1,10 @@
-import { useTranslation } from 'next-i18next'
+import { useDataPages } from '@core/hooks/useDataPages'
 import Image from 'next/image'
 
 export default function Reviews() {
-  const { t } = useTranslation()
+  const { customers } = useDataPages()
 
-  const customers = [
+  const customersLogos = [
     {
       image: '/logo.webp',
     },
@@ -24,15 +24,13 @@ export default function Reviews() {
 
   return (
     <div className="w-full">
-      <div className="text-center text-6xl font-bold">
-        {t('customers.title')}
-      </div>
+      <div className="text-center text-6xl font-bold">{customers.title}</div>
       <div className="pt-24  w-full flex  justify-center">
         <div className="relative flex overflow-x-hidden">
           <div className="absolute top-0 z-10 w-32 h-full bg-gradient-to-r from-neutral-50 dark:from-normal-900"></div>
           <div className="absolute top-0 right-0 z-10 w-32 h-full bg-gradient-to-l from-neutral-50 dark:from-normal-900"></div>
           <div className="py-12 animate-marquee whitespace-nowrap flex">
-            {customers.map((customer, index) => (
+            {customersLogos.map((customer, index) => (
               <span key={index}>
                 <Image
                   src={customer.image}
@@ -45,7 +43,7 @@ export default function Reviews() {
             ))}
           </div>
           <div className="absolute top-0 py-12 animate-marquee2 whitespace-nowrap flex">
-            {customers.map((customer, index) => (
+            {customersLogos.map((customer, index) => (
               <span key={index}>
                 <Image
                   src={customer.image}

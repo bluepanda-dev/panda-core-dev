@@ -1,9 +1,10 @@
-import { useTranslation } from 'next-i18next'
+import { useDataPages } from '@core/hooks/useDataPages'
 import { useState, useEffect } from 'react'
 
 export default function Hero() {
-  const { t } = useTranslation('common')
-  const words = [t('hero.first'), t('hero.second'), t('hero.third')]
+  const { hero } = useDataPages()
+
+  const words = hero.list!
   const [active, setActive] = useState(0)
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export default function Hero() {
         </div>
       ))}
       <div className="text-neutral-600 dark:text-neutral-400 flex justify-center text-xl md:text-2xl font-extralight mt-6 md:mt-16 px-8 ">
-        <div className="md:max-w-lg">{t('hero.content')}</div>
+        <div className="md:max-w-lg">{hero.content}</div>
       </div>
     </div>
   )

@@ -166,7 +166,7 @@
         "title": "Open Blue Panda",
         "price": "Free",
         "details": "For small teams or hobby projects",
-        "list": [
+        "features": [
           "1 user",
           "1 project",
           "1 GB storage",
@@ -180,7 +180,7 @@
         "priceYrl": "$8 USD",
         "_popular": "true",
         "details": "For medium teams",
-        "list": [
+        "features": [
           "5 users",
           "5 projects",
           "5 GB storage",
@@ -193,7 +193,7 @@
         "price": "$19 USD",
         "priceYrl": "$16 USD",
         "details": "Firebase, Headless CMS, Stripe and more",
-        "list": [
+        "features": [
           "Unlimited users",
           "Unlimited projects",
           "Unlimited storage",
