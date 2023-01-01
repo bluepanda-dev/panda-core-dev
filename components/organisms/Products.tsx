@@ -8,8 +8,8 @@ const Product = ({ product }: { product: ProductCard }) => {
   const { products } = useDataPages()
 
   return (
-    <div className="w-full max-w-sm justify-self-center rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-400">
-      <div className="bg-neutral-50 dark:bg-normal-900 rounded-lg m-0.5 dark:m-[1px] flex flex-col">
+    <div className="w-full max-w-sm justify-self-center pb-1 rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-400">
+      <div className="bg-neutral-50 dark:bg-normal-900 h-full rounded-lg m-0.5 dark:m-[1px] flex flex-col">
         <div className="w-full rounded-t-lg flex justify-center">
           <Image alt="logo" src={product._image} width={180} height={48} />
         </div>

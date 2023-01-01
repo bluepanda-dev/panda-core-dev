@@ -48,9 +48,9 @@ export default function Plans() {
   return (
     <div className="w-full">
       <div className="text-center text-6xl font-bold">{plans.title}</div>
-      <div className="pt-24  w-full flex justify-center">
+      <div className="pt-24 w-full flex justify-center">
         <div className="max-w-[90em] px-2 md:px-24 grid grid-cols-1 lg:grid-cols-3 justify-center justify-items-center gap-16 items-center w-full">
-          {plans.list.map((plan, index) => (
+          {plans.list!.map((plan, index) => (
             <PlanCard key={index} plan={plan}></PlanCard>
           ))}
         </div>

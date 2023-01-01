@@ -18,9 +18,6 @@ export default function Footer() {
   }, [])
   return (
     <div className="relative mt-16">
-      <div className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-primary-500 absolute z-10 text-4xl md:text-6xl font-bold left-4 ">
-        Animated by Lottie Web
-      </div>
       <div id="lottie-animation" className="w-full" />
       <footer className="relative bg-neutral-100 dark:bg-normal-800 border-t border-neutral-800 py-4">
         <div className="justify-center grid grid-cols-1 md:grid-cols-3 items-center px-4 py-12 w-full">
