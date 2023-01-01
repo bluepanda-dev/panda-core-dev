@@ -7,9 +7,9 @@ import { useTheme } from '@core/hooks/useTheme'
 import { Theme, ToastContainer } from 'react-toastify'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-import AlertBanner from '@components/organisms/AlertBanner'
 import { isAlertBannerActive } from '@core/store/Common'
 import { useAtom } from 'jotai'
+import AlertBanner from '@components/molecules/AlertBanner'
 
 export default function NavBar() {
   const router = useRouter()

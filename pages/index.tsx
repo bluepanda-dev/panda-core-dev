@@ -1,5 +1,5 @@
 import Container from '@components/atoms/Container'
-import ComponentsSample from '@components/organisms/ComponentsSample'
+import ComponentsSample from '@components/molecules/ComponentsSample'
 import Head from 'next/head'
 import Layout from '@components/layout'
 import { useTranslation } from 'next-i18next'

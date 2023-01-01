@@ -1,5 +1,5 @@
+import Accordion from '@components/molecules/Accordion'
 import { useTranslation } from 'next-i18next'
-import Accordion from './Accordion'
 
 type Faq = {
   question: string
