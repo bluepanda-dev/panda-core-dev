@@ -21,7 +21,6 @@ export default function NavBar() {
   const handleScroll = () => {
     const position = window.pageYOffset
     setScrollPosition(position)
-    console.log('pos:>>', position)
   }
 
   const AccountOptions = [

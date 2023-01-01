@@ -31,7 +31,7 @@ export default function Code({ inner, css }: CodeProps) {
         <div className="w-3 h-3 rounded-full bg-green-500"></div>
       </div>
       <pre>
-        <code className="bg-black text-[12px] md:text-[14px]" ref={codeSample}>
+        <code className="text-[12px] md:text-[14px]" ref={codeSample}>
           {inner}
         </code>
       </pre>

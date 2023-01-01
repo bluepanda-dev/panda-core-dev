@@ -9,6 +9,7 @@
     "es": "Spanish",
     "de": "German"
   },
+  "buyNow": "Buy Now",
   "codeExample": {
     "title": "Your Code Example"
   },
@@ -21,6 +22,95 @@
     "second": "Develop",
     "third": "Ship",
     "content": "Put yourself ahead of the competition with our Panda Plus template, save months of work."
+  },
+  "products": {
+    "title": "Our Products",
+    "list": [
+      {
+        "_id": 1,
+        "title": "Blue Panda Plus",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  ",
+        "price": "$149.99 USD",
+        "features": [
+          "Lorem ipsum dolor sit amet",
+          "Consectetur adipiscing elit",
+          "Sed euismod, nisl nec lacinia tincidunt",
+          "Nunc est aliquam nisl",
+          "Vitae aliquam nisl nunc vel lorem"
+        ],
+        "_image": "/products/1.webp"
+      },
+      {
+        "_id": 2,
+        "title": "Smart Blue Panda",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  ",
+        "price": "$249.99 USD",
+        "features": [
+          "Lorem ipsum dolor sit amet",
+          "Consectetur adipiscing elit",
+          "Sed euismod, nisl nec lacinia tincidunt",
+          "Nunc est aliquam nisl",
+          "Vitae aliquam nisl nunc vel lorem"
+        ],
+        "_image": "/products/2.webp"
+      },
+      {
+        "_id": 3,
+        "title": "Stripe Blue Panda",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  ",
+        "price": "$299.99 USD",
+        "features": [
+          "Lorem ipsum dolor sit amet",
+          "Consectetur adipiscing elit",
+          "Sed euismod, nisl nec lacinia tincidunt",
+          "Nunc est aliquam nisl",
+          "Vitae aliquam nisl nunc vel lorem"
+        ],
+        "_image": "/products/3.webp"
+      },
+      {
+        "_id": 4,
+        "title": "CMS Blue Panda",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  ",
+        "price": "$399.99 USD",
+        "features": [
+          "Lorem ipsum dolor sit amet",
+          "Consectetur adipiscing elit",
+          "Sed euismod, nisl nec lacinia tincidunt",
+          "Nunc est aliquam nisl",
+          "Vitae aliquam nisl nunc vel lorem"
+        ],
+        "_image": "/products/4.webp"
+      },
+      {
+        "_id": 5,
+        "title": "No Code Blue Panda",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  ",
+        "price": "$99.99 USD",
+        "features": [
+          "Lorem ipsum dolor sit amet",
+          "Consectetur adipiscing elit",
+          "Sed euismod, nisl nec lacinia tincidunt",
+          "Nunc est aliquam nisl",
+          "Vitae aliquam nisl nunc vel lorem"
+        ],
+        "_image": "/products/5.webp"
+      },
+      {
+        "_id": 6,
+        "title": "Free Blue Panda",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  ",
+        "price": "Free",
+        "features": [
+          "Lorem ipsum dolor sit amet",
+          "Consectetur adipiscing elit",
+          "Sed euismod, nisl nec lacinia tincidunt",
+          "Nunc est aliquam nisl",
+          "Vitae aliquam nisl nunc vel lorem"
+        ],
+        "_image": "/products/6.webp"
+      }
+    ]
   },
   "timeline": {
     "title": "Timeline",

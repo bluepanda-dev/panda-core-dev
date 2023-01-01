@@ -48,7 +48,6 @@ const RadioSample = () => {
       options={options}
       selected={selectedRadio}
       onSelect={(v) => {
-        console.log('onSelect', v)
         setSelectedRadio(v)
       }}
     />
