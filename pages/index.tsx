@@ -14,6 +14,7 @@ import Customers from '@components/organisms/Customers'
 import TimeLine from '@components/organisms/TimeLine'
 import CodeExample from '@components/organisms/CodeExample'
 import Products from '@components/organisms/Products'
+import ShowVideo from '@components/organisms/ShowVideo'
 
 export default function Home() {
   const { t } = useTranslation()
@@ -34,6 +35,7 @@ export default function Home() {
         <Customers />
         <CodeExample />
         <Products />
+        <ShowVideo />
         <KeepMeInformed />
         <Faqs />
       </main>

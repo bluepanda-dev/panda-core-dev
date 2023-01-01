@@ -69,14 +69,13 @@ export const useDataPages = () => {
     cta: t('keepMeInformed.cta')!,
   }
 
-  const faqs = {
+  const faqs: MetaPage<Faq> = {
     title: t('faqs.title')!,
-    list: (t('faqs.list', { returnObjects: true }) as Faq[]).map(
-      (option: Faq) => ({
-        title: option.question,
-        content: option.answer,
-      }),
-    ),
+    list: t('faqs.list', { returnObjects: true }) as Faq[],
+  }
+
+  const showVideo: MetaPage = {
+    title: t('showVideo.title')!,
   }
 
   return {
@@ -92,5 +91,6 @@ export const useDataPages = () => {
     products,
     keepMeInformed,
     faqs,
+    showVideo,
   }
 }

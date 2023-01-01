@@ -10,7 +10,10 @@ export default function Faqs() {
       <div className="pt-24 w-full flex justify-center">
         <div className="px-2 md:px-0 flex justify-center items-center w-full">
           <Accordion
-            options={faqs.list}
+            options={faqs.list!.map((faq) => ({
+              title: faq.question,
+              content: faq.answer,
+            }))}
             className="max-w-5xl text-2xl"
             contentClass="divide-y dark:divide-neutral-800 p-0"
             descriptionClass="px-2 !text-lg"

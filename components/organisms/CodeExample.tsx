@@ -1,6 +1,5 @@
 import CodeTerminal from '@components/molecules/CodeTerminal'
 import Image from 'next/image'
-import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 import { useDataPages } from '@core/hooks/useDataPages'
 

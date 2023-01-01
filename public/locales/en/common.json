@@ -17,6 +17,9 @@
     "id": "example-msg",
     "message": "Banner Message (close it)"
   },
+  "showVideo": {
+    "title": "Easy to extend and customize"
+  },
   "hero": {
     "first": "Use",
     "second": "Develop",
