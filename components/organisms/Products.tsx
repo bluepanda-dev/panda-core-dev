@@ -14,7 +14,7 @@ type Product = {
 }
 
 const Product = ({ product }: { product: Product }) => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation()
 
   return (
     <div className="w-full max-w-sm justify-self-center rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-400">
@@ -51,7 +51,7 @@ const Product = ({ product }: { product: Product }) => {
 }
 
 export default function Products() {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation()
 
   const products = t('products.list', { returnObjects: true }) as Product[]
 

@@ -1,5 +1,3 @@
-import Container from '@components/atoms/Container'
-import ComponentsSample from '@components/molecules/ComponentsSample'
 import Head from 'next/head'
 import Layout from '@components/layout'
 import { useTranslation } from 'next-i18next'
@@ -47,7 +45,6 @@ export async function getServerSideProps({ locale }: any) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
-      // Will be passed to the page component as props
     },
   }
 }

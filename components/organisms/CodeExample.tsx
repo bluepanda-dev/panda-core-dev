@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 
 export default function KeepMeInformed() {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation()
   const [blur, setBlur] = useState(0)
 
   const inner = `

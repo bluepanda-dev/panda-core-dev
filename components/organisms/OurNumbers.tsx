@@ -4,6 +4,7 @@ type OurNumber = {
   figure: string
   text: string
 }
+
 export default function Reviews() {
   const { t } = useTranslation('common')
 

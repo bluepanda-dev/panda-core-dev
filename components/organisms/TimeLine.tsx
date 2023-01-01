@@ -2,8 +2,8 @@ import { useTranslation } from 'next-i18next'
 import { FiCheck } from 'react-icons/fi'
 
 type TimeLineData = {
-  figure: string
-  text: string
+  title: string
+  content: string
 }
 
 export default function Reviews() {
@@ -36,13 +36,9 @@ export default function Reviews() {
                 <h1 className="mx-auto font-semibold text-lg">{index + 1}</h1>
               </div>
               <div className="order-1 border rounded-lg shadow-xl sm:w-5/12 px-6 py-4">
-                <h3 className="mb-3 font-bold text-xl">Lorem Ipsum</h3>
+                <h3 className="mb-3 font-bold text-xl">{option.title}</h3>
                 <p className="text-sm leading-snug tracking-wide dark:text-neutral-400 text-opacity-100">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industrys
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book.
+                  {option.content}
                 </p>
               </div>
             </div>

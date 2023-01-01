@@ -15,7 +15,7 @@ type PlanProps = {
 }
 
 const PlanCard = ({ plan }: PlanProps) => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation()
 
   return (
     <div

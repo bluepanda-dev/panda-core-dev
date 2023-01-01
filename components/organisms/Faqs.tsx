@@ -7,7 +7,7 @@ type Faq = {
 }
 
 export default function Faqs() {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation()
 
   const options = (t('faqs.list', { returnObjects: true }) as Faq[]).map(
     (option: Faq) => ({

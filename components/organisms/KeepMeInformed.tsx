@@ -2,7 +2,7 @@ import Button from '@components/atoms/Button'
 import { useTranslation } from 'next-i18next'
 
 export default function KeepMeInformed() {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation()
 
   return (
     <div>

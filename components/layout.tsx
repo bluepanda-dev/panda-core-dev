@@ -11,7 +11,7 @@ export default function Layout({ children }: Props) {
     <>
       <NavBar />
       <div className="bg-neutral-50 dark:bg-normal-900 text-normal dark:text-neutral-50 flex flex-col min-h-screen">
-        <main className="mt-14 flex-grow">{children}</main>
+        <main className="mt-14">{children}</main>
         <Footer />
       </div>
     </>

@@ -203,7 +203,6 @@
       }
     ]
   },
-  "whyUsTitle": "Why Us?",
   "keepMeInformed": {
     "title": "Subscribe US",
     "cta": "Subscribe"
@@ -253,45 +252,59 @@
       }
     ]
   },
-  "whyUs": [
-    {
-      "title": "Build Customer Loyalty",
-      "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
-    },
-    {
-      "title": "Create Urgency",
-      "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
-    },
-    {
-      "title": "Gamify Your Store",
-      "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
-    }
-  ],
-  "featuresTitle": "Features",
-  "features": [
-    {
-      "title": "Feature 1",
-      "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-    },
-    {
-      "title": "Feature 2",
-      "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-    },
-    {
-      "title": "Feature 3",
-      "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-    },
-    {
-      "title": "Feature 4",
-      "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-    },
-    {
-      "title": "Feature 5",
-      "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-    },
-    {
-      "title": "Feature 6",
-      "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-    }
-  ]
+  "whyUs": {
+    "title": "Why Us",
+    "list": [
+      {
+        "title": "Build Customer Loyalty",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+        "_image": "/logo.webp"
+      },
+      {
+        "title": "Create Urgency",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+        "_image": "/logo.webp"
+      },
+      {
+        "title": "Gamify Your Store",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+        "_image": "/logo.webp"
+      }
+    ]
+  },
+  "features": {
+    "title": "Features",
+    "list": [
+      {
+        "title": "Feature 1",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        "_image": "/features/rainbow.webp"
+      },
+      {
+        "title": "Feature 2",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        "_image": "/features/brown.webp"
+      },
+      {
+        "title": "Feature 3",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        "_image": "/features/blue.webp"
+      },
+      {
+        "title": "Feature 4",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        "_image": "/features/green.webp"
+      },
+      {
+        "title": "Feature 5",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        "_image": "/features/magenta.webp"
+      },
+      {
+        "title": "Feature 6",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        "_image": "/features/cyan.webp"
+      }
+    ]
+  }
 }

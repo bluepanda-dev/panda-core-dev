@@ -12,9 +12,9 @@ export default function Hero() {
         const index = prev === words.length - 1 ? 0 : prev + 1
         return index
       })
-    }, 4000)
+    }, 3800)
     return () => clearInterval(interval)
-  }, [])
+  }, [words.length])
 
   return (
     <div className="text-7xl md:text-9xl font-extrabold text-center flex flex-col justify-center">

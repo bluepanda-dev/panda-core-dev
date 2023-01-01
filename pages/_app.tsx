@@ -10,8 +10,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <Suspense fallback="loading">
       <Head>
         <meta name="viewport" content="width=device-width, user-scalable=no" />
-        <meta title="Blue Panda Dev" content="Production ready templates" />
-        <meta name="description" content="Template for Blue Panda Dev." />
+        <meta
+          title="Blue Panda Dev Demo"
+          content="Production ready templates"
+        />
+        <meta name="description" content="Template for Blue Panda Dev Plus." />
         <meta name="theme-color" content="#000000" />
         <link rel="manifest" href="/manifest.json" />
       </Head>

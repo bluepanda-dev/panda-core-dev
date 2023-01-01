@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 
 export default function Reviews() {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation()
 
   const customers = [
     {
