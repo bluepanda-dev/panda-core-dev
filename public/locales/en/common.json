@@ -139,6 +139,9 @@
   "customers": {
     "title": "Customers"
   },
+  "techStack": {
+    "title": "Tech Stack"
+  },
   "ourNumbers": {
     "title": "Our Numbers",
     "list": [

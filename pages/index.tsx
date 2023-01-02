@@ -15,6 +15,7 @@ import TimeLine from '@components/organisms/TimeLine'
 import CodeExample from '@components/organisms/CodeExample'
 import Products from '@components/organisms/Products'
 import ShowVideo from '@components/organisms/ShowVideo'
+import TechStack from '@components/organisms/TechStack'
 
 export default function Home() {
   const { t } = useTranslation()
@@ -38,6 +39,7 @@ export default function Home() {
         <ShowVideo />
         <KeepMeInformed />
         <Faqs />
+        <TechStack />
       </main>
     </Layout>
   )

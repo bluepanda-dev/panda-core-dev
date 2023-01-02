@@ -1,41 +1,50 @@
 import { useDataPages } from '@core/hooks/useDataPages'
 import Image from 'next/image'
 
-export default function Customers() {
-  const { customers } = useDataPages()
+export default function TechStack() {
+  const { techStack } = useDataPages()
 
-  const customersLogos = [
+  const logos = [
     {
-      image: '/logo.webp',
+      image: '/tech/react.webp',
     },
     {
-      image: '/logo.webp',
+      image: '/tech/next-js.webp',
     },
     {
-      image: '/logo.webp',
+      image: '/tech/blockchain.webp',
     },
     {
-      image: '/logo.webp',
+      image: '/tech/stripe.webp',
     },
     {
-      image: '/logo.webp',
+      image: '/tech/firebase.webp',
+    },
+    {
+      image: '/tech/pwa.webp',
+    },
+    {
+      image: '/tech/headlessui.webp',
+    },
+    {
+      image: '/tech/tailwindcss.webp',
     },
   ]
 
   return (
     <div className="w-full">
-      <div className="text-center text-6xl font-bold">{customers.title}</div>
+      <div className="text-center text-6xl font-bold">{techStack.title}</div>
       <div className="pt-24  w-full flex  justify-center">
-        <div className="relative flex overflow-x-hidden">
+        <div className="relative flex overflow-x-hidden items-center">
           <div className="absolute top-0 z-10 w-32 h-full bg-gradient-to-r from-neutral-50 dark:from-normal-900"></div>
           <div className="absolute top-0 right-0 z-10 w-32 h-full bg-gradient-to-l from-neutral-50 dark:from-normal-900"></div>
           <div className="py-12 animate-marquee whitespace-nowrap flex">
-            {customersLogos.map((customer, index) => (
-              <span key={index}>
+            {logos.map((logo, index) => (
+              <span key={index} className="self-center">
                 <Image
-                  src={customer.image}
-                  alt="customer"
-                  className="grayscale mx-6 w-16 md:w-24"
+                  src={logo.image}
+                  alt="tech stack"
+                  className="px-4 w-16 md:w-24"
                   width={90}
                   height={48}
                 />
@@ -43,12 +52,12 @@ export default function Customers() {
             ))}
           </div>
           <div className="absolute top-0 py-12 animate-marquee2 whitespace-nowrap flex">
-            {customersLogos.map((customer, index) => (
-              <span key={index}>
+            {logos.map((logo, index) => (
+              <span key={index} className="self-center">
                 <Image
-                  src={customer.image}
-                  alt="customer"
-                  className="grayscale mx-6 w-16 md:w-24"
+                  src={logo.image}
+                  alt="tech stack"
+                  className="px-4 w-16 md:w-24"
                   width={90}
                   height={48}
                 />

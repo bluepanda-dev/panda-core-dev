@@ -52,6 +52,10 @@ export const useDataPages = () => {
     title: t('customers.title')!,
   }
 
+  const techStack: MetaPage = {
+    title: t('techStack.title')!,
+  }
+
   const codeExample: MetaPage = {
     title: t('codeExample.title')!,
   }
@@ -92,5 +96,6 @@ export const useDataPages = () => {
     keepMeInformed,
     faqs,
     showVideo,
+    techStack,
   }
 }
