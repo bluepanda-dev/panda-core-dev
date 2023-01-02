@@ -16,7 +16,7 @@ export default function Reviews() {
           style={{ left: '50%' }}
         ></div>
         <div className="mb-8 px-2 md:px-24 flex flex-col justify-center gap-16 items-center w-full">
-          {timeLine.list.map((option, index) => (
+          {timeLine.list!.map((option, index) => (
             <div
               key={index}
               className={

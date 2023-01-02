@@ -32,7 +32,7 @@ export default function Reviews() {
       <div className="text-center text-6xl font-bold">{reviews.title}</div>
       <div className="pt-24 w-full flex  justify-center">
         <div className="px-2 md:px-24 flex flex-col flex-wrap sm:flex-row justify-center gap-16 items-center w-full max-w-8xl">
-          {reviews.list.map((option, index) => (
+          {reviews.list!.map((option, index) => (
             <ReviewCard
               key={index}
               name={option.name}

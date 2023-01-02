@@ -28,7 +28,7 @@ export default function Features() {
       <div className="text-center text-6xl font-bold">{features.title}</div>
       <div className="pt-24 w-full flex justify-center">
         <div className="grid px-2 md:px-0 sm:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-8 max-w-5xl">
-          {features.list.map((feature, index) => (
+          {features.list!.map((feature, index) => (
             <Feature key={index} feature={feature} />
           ))}
         </div>

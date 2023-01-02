@@ -32,7 +32,7 @@ export default function WhyUs() {
       <div className="text-center text-6xl font-bold">{whyUs.title}</div>
       <div className="pt-24 w-full flex justify-center">
         <div className="grid px-2 md:px-0 md:grid-cols-3 justify-center items-center gap-8 max-w-5xl">
-          {whyUs.list.map((option, index) => (
+          {whyUs.list!.map((option, index) => (
             <Why key={index} why={option} />
           ))}
         </div>
