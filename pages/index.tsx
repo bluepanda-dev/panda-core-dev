@@ -16,6 +16,7 @@ import CodeExample from '@components/organisms/CodeExample'
 import Products from '@components/organisms/Products'
 import ShowVideo from '@components/organisms/ShowVideo'
 import TechStack from '@components/organisms/TechStack'
+import ComponentsSample from '@components/molecules/ComponentsSample'
 
 export default function Home() {
   const { t } = useTranslation()
@@ -40,6 +41,7 @@ export default function Home() {
         <KeepMeInformed />
         <Faqs />
         <TechStack />
+        <ComponentsSample className="m-4" />
       </main>
     </Layout>
   )

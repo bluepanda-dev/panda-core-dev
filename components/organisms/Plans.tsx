@@ -20,14 +20,14 @@ const PlanCard = ({ plan }: { plan: PlanCard }) => {
         <div className="text-neutral-100 text-md text-left">
           <ul>
             {plan.features.map((item, index) => (
-              <li key={index} className="flex items-center gap-2">
+              <li key={index} className="flex items-center gap-2 md:py-1">
                 <FiCheckCircle className="text-success-500" />
                 <span className="text-neutral-300">{item}</span>
               </li>
             ))}
           </ul>
         </div>
-        <div className="absolute right-4 bottom-10">
+        <div className="absolute right-4 bottom-10 lg:bottom-4">
           <Button isSpecial={true}>{plans.cta}</Button>
         </div>
         <div className="absolute right-4 lg:left-6 bottom-2 lg:bottom-28 text-neutral-300">
@@ -45,7 +45,7 @@ export default function Plans() {
     <div className="w-full">
       <div className="text-center text-6xl font-bold">{plans.title}</div>
       <div className="pt-24 w-full flex justify-center">
-        <div className="max-w-[90em] px-2 md:px-24 grid grid-cols-1 lg:grid-cols-3 justify-center justify-items-center gap-16 items-center w-full">
+        <div className="max-w-[90em] px-2 md:px-24 grid grid-cols-1 lg:grid-cols-3 justify-center justify-items-center gap-8 xl:gap-16 items-center w-full">
           {plans.list!.map((plan, index) => (
             <PlanCard key={index} plan={plan}></PlanCard>
           ))}

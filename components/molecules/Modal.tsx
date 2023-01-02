@@ -1,32 +1,33 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import Button from '@components/atoms/Button'
 
 type DialogProps = {
   title: string
   isOpen: boolean
   children: React.ReactNode
-  closeModal: () => void
+  closeModal?: () => void
   closeText?: string
-  className?: string
+  hasCloseButton?: boolean
 }
 
 export default function Modal({
   title,
-  className,
   isOpen,
   children,
   closeText = 'Close',
   closeModal = () => {},
+  hasCloseButton = true,
 }: DialogProps) {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Dialog as="div" className="relative z-50" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
             enterFrom="opacity-0"
-            enterTo="opacity-100"
+            enterTo="opacity-100 bg-normal-400/50 dark:bg-normal-900/50"
             leave="ease-in duration-200"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
@@ -54,13 +55,15 @@ export default function Modal({
                   </Dialog.Title>
                   <div>{children}</div>
                   <div className="mt-4 flex justify-end">
-                    <button
-                      type="button"
-                      className="text-neutral-50 bg-primary-700 inline-flex rounded-md border border-transparent px-4 py-2 text-sm font-medium hover:bg-primary-500 "
-                      onClick={closeModal}
-                    >
-                      {closeText}
-                    </button>
+                    {hasCloseButton && (
+                      <Button
+                        className="w-auto"
+                        isSpecial={true}
+                        onClick={closeModal}
+                      >
+                        {closeText}
+                      </Button>
+                    )}
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

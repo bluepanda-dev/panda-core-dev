@@ -66,7 +66,7 @@ export default function NavBar() {
     <>
       {alertActive && <AlertBanner />}
       <nav
-        className={`z-50 backdrop-blur-sm bg-neutral-50/30 dark:bg-normal-900/30 fixed top-0 w-full p-2 flex justify-between items-center border-b border-neutral-800
+        className={`z-40 backdrop-blur-sm bg-neutral-50/30 dark:bg-normal-900/30 fixed top-0 w-full p-2 flex justify-between items-center border-b border-neutral-800
         ${scrollPosition <= 0.5 && alertActive ? 'mt-12' : ''}
       `}
       >

@@ -3,9 +3,22 @@ import Image from 'next/image'
 import { useDataPages } from '@core/hooks/useDataPages'
 import { ProductCard } from '@core/types'
 import { FiChevronRight } from 'react-icons/fi'
+import Modal from '@components/molecules/Modal'
+import { useState } from 'react'
+import Container from '@components/atoms/Container'
 
-const Product = ({ product }: { product: ProductCard }) => {
+const Product = ({
+  product,
+  onBuy,
+}: {
+  product: ProductCard
+  onBuy: (product: ProductCard) => void
+}) => {
   const { products } = useDataPages()
+
+  function handleBuy(product: ProductCard) {
+    onBuy(product)
+  }
 
   return (
     <div className="w-full max-w-sm justify-self-center pb-1 rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-400">
@@ -32,7 +45,10 @@ const Product = ({ product }: { product: ProductCard }) => {
           </ul>
         </div>
         <div className="p-6">
-          <Button className="text-neutral-50 bg-primary-700 shadow-lg shadow-primary-700/50 hover:bg-primary-500">
+          <Button
+            onClick={() => handleBuy(product)}
+            className="text-neutral-50 bg-primary-700 shadow-lg shadow-primary-700/50 hover:bg-primary-500"
+          >
             {products.texts!.buyNow}
           </Button>
         </div>
@@ -42,7 +58,14 @@ const Product = ({ product }: { product: ProductCard }) => {
 }
 
 export default function Products() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [product, setProduct] = useState<ProductCard | null>(null)
   const { products } = useDataPages()
+
+  function handleBuy(product: ProductCard) {
+    setProduct(product)
+    setIsOpen(true)
+  }
 
   return (
     <div>
@@ -50,10 +73,34 @@ export default function Products() {
       <div className="pt-24 w-full flex justify-center">
         <div className="w-full grid px-2 md:px-0 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center max-w-5xl">
           {products.list!.map((product, index) => (
-            <Product key={index} product={product} />
+            <Product key={index} product={product} onBuy={handleBuy} />
           ))}
         </div>
       </div>
+      <Modal
+        isOpen={isOpen}
+        closeModal={() => setIsOpen(false)}
+        hasCloseButton={false}
+        title={product?.title ?? ''}
+      >
+        <Container className="h-48 mt-4 mb-10" />
+
+        <Image
+          className="absolute right-2 top-0 w-16"
+          alt="logo"
+          src={product?._image ?? ''}
+          width={180}
+          height={48}
+        />
+
+        <Button
+          className="w-auto absolute bottom-3 right-3 !h-10"
+          isSpecial={true}
+          onClick={() => setIsOpen(false)}
+        >
+          {products.texts!.buyNow}
+        </Button>
+      </Modal>
     </div>
   )
 }

@@ -35,3 +35,7 @@ html.dark {
 code {
   border-radius: 10px;
 }
+
+.grecaptcha-badge {
+  visibility: hidden;
+}

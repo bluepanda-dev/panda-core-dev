@@ -44,7 +44,7 @@ export default function TechStack() {
                 <Image
                   src={logo.image}
                   alt="tech stack"
-                  className="px-4 w-16 md:w-24"
+                  className="px-2 w-20 md:w-24"
                   width={90}
                   height={48}
                 />
@@ -57,7 +57,7 @@ export default function TechStack() {
                 <Image
                   src={logo.image}
                   alt="tech stack"
-                  className="px-4 w-16 md:w-24"
+                  className="px-2 w-20 md:w-24"
                   width={90}
                   height={48}
                 />

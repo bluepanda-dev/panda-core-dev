@@ -28,7 +28,7 @@ const ScrollButton = () => {
   }, [])
 
   return (
-    <div className="fixed z-50 bottom-24 right-4 ">
+    <div className="fixed z-10 bottom-24 right-4 ">
       <Button
         className="hover:bg-transparent"
         icon={
