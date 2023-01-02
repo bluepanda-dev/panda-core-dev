@@ -1,23 +1,24 @@
 import { useDataPages } from '@core/hooks/useDataPages'
+import { ReviewCard } from '@core/types'
+import Image from 'next/image'
 
-type ReviewProps = {
-  name: string
-  subtitle: string
-  children: React.ReactNode
-}
-
-const ReviewCard = ({ children, subtitle, name }: ReviewProps) => {
+const Review = ({ review }: { review: ReviewCard }) => {
   return (
-    <div className="max-w-sm bg-neutral-50 bg-opacity-20 rounded-md p-4 py-6">
+    <div className="max-w-sm bg-neutral-50 bg-opacity-20 rounded-md p-4 py-6 shadow-lg">
       <div className="flex gap-4">
-        <div className="basis-3/5 text-neutral-100 text-md text-left">
-          {children}
+        <div className="basis-3/5 text-neutral-200 text-md text-left">
+          {review.content}
         </div>
-        <div className="basis-2/5 self-end text-right">
-          <div className="self-end bg-clip-text text-transparent bg-gradient-to-r from-success-500 to-accent-500">
-            {name}
-          </div>
-          <div className="self-end opacity-70">{subtitle}</div>
+        <div className="basis-2/5 flex flex-col self-end justify-end text-right">
+          <Image
+            alt={'Reviewer'}
+            src={review._image}
+            width={100}
+            height={100}
+            className="w-16 h-16 border-4 rounded-full self-end"
+          />
+          <div className="self-end pt-2">{review.name}</div>
+          <div className="self-end">{review.position}</div>
         </div>
       </div>
     </div>
@@ -28,18 +29,12 @@ export default function Reviews() {
   const { reviews } = useDataPages()
 
   return (
-    <div className="py-8 w-full bg-gradient-to-r from-accent-500 via-orange-600 to-primary-500 text-neutral-50">
+    <div className="py-8 w-full bg-gradient-to-r from-primary-900 via-primary-800 to-primary-600 text-neutral-50">
       <div className="text-center text-6xl font-bold">{reviews.title}</div>
       <div className="pt-24 w-full flex  justify-center">
         <div className="px-2 md:px-24 flex flex-col flex-wrap sm:flex-row justify-center gap-16 items-center w-full max-w-8xl">
           {reviews.list!.map((option, index) => (
-            <ReviewCard
-              key={index}
-              name={option.name}
-              subtitle={option.position}
-            >
-              {option.content}
-            </ReviewCard>
+            <Review key={index} review={option} />
           ))}
         </div>
       </div>

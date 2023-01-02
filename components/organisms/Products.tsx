@@ -16,7 +16,7 @@ const Product = ({ product }: { product: ProductCard }) => {
         <div className="p-4 text-2xl relative">
           {product.title}
           <div className="absolute text-sm right-2 -top-3">
-            <span className="bg-accent-300 text-accent-800 rounded-lg p-1 ">
+            <span className="bg-primary-300 text-primary-800 rounded-lg p-1 ">
               {' '}
               {product.price}
             </span>

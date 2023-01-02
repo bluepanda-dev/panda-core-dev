@@ -14,6 +14,7 @@ export type ReviewCard = {
   name: string
   position: string
   content: string
+  _image: string
 }
 
 export type PlanCard = {

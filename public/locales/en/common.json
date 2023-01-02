@@ -219,17 +219,20 @@
       {
         "name": "Jane Doe",
         "position": "CTO",
-        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ipsun dolor sit amet, consectetur adipiscing elit."
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ipsun dolor sit amet, consectetur adipiscing elit.",
+        "_image": "/logo.webp"
       },
       {
         "name": "John Smith",
         "position": "Manager",
-        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ipsum dolor sit amet, consectetur adipiscing elit."
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ipsum dolor sit amet, consectetur adipiscing elit.",
+        "_image": "/logo.webp"
       },
       {
         "name": "Yoda Doe",
         "position": "Developer",
-        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ipsum dolor sit amet, consectetur adipiscing elit."
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ipsum dolor sit amet, consectetur adipiscing elit.",
+        "_image": "/logo.webp"
       }
     ]
   },

@@ -8,16 +8,12 @@ const PlanCard = ({ plan }: { plan: PlanCard }) => {
 
   return (
     <div
-      className={`shadow-lg border border-neutral-100 rounded-md relative p-6 w-full lg:max-w-md h-80 lg:h-[30em]
-    ${
-      plan._popular
-        ? 'ring-primary-500 border-primary-600 bg-gradient-to-r from-normal-600 to-normal-900 text-neutral-50 ring-8  border-8'
-        : ''
-    }
+      className={`shadow-lg border dark:border-normal-700 rounded-md relative p-6 w-full lg:max-w-md h-80 lg:h-[30em]
+    ${plan._popular ? 'bg-blue-900 text-neutral-50 lg:h-[35em]' : ''}
     `}
     >
       <div className="flex flex-col gap-4">
-        <div className="from-success-500 to-accent-500 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r">
+        <div className="from-accent-600 to-accent-500 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r">
           {plan.title}
         </div>
         <div className="text-3xl font-bold">{plan.price}</div>

@@ -1,6 +1,6 @@
 import { useDataPages } from '@core/hooks/useDataPages'
 
-export default function Reviews() {
+export default function OurNumbers() {
   const { ourNumbers } = useDataPages()
 
   return (
