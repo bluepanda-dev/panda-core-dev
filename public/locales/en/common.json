@@ -1,5 +1,5 @@
 {
-  "title": "Our Panda Plus Template",
+  "title": "Our Panda Plus Template Demo",
   "content": "Here is your content",
   "components": "Components",
   "settings": "Settings",
@@ -24,10 +24,10 @@
     "first": "Use",
     "second": "Develop",
     "third": "Ship",
-    "content": "Put yourself ahead of the competition with our Panda Plus template, save months of work."
+    "content": "Put yourself weeks ahead with our Panda templates, save months of work."
   },
   "products": {
-    "title": "Our Products",
+    "title": "Our Products (Demo)",
     "list": [
       {
         "_id": 1,
@@ -267,18 +267,18 @@
     "title": "Why Us",
     "list": [
       {
-        "title": "Build Customer Loyalty",
-        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+        "title": "We use our product",
+        "content": "All our products are built with Blue Panda Bases.",
         "_image": "/logo.webp"
       },
       {
-        "title": "Create Urgency",
-        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+        "title": "Made by experts",
+        "content": "Ex google engineers and +15 years of experience.",
         "_image": "/logo.webp"
       },
       {
-        "title": "Gamify Your Store",
-        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+        "title": "We support you",
+        "content": "We have a dedicated support team to help you on Slack.",
         "_image": "/logo.webp"
       }
     ]
@@ -287,33 +287,33 @@
     "title": "Features",
     "list": [
       {
-        "title": "Feature 1",
-        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        "title": "Easy to translate",
+        "content": "Support for your languages, sell easily in multiple countries. You modify from 1 file only.",
         "_image": "/features/rainbow.webp"
       },
       {
-        "title": "Feature 2",
-        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        "title": "Easy to customize",
+        "content": "Components, sections, pages, and more are readable and simple. You can customize everything.",
         "_image": "/features/brown.webp"
       },
       {
-        "title": "Feature 3",
-        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        "title": "Up to date",
+        "content": "Built with the latest version of React, Next.js, and Libs. You can use the latest features safely.",
         "_image": "/features/blue.webp"
       },
       {
-        "title": "Feature 4",
-        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        "title": "SEO & Performance",
+        "content": "All lighthouse scores are 100%. You can use this template for your SEO and performance from day one.",
         "_image": "/features/green.webp"
       },
       {
-        "title": "Feature 5",
-        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        "title": "Save time",
+        "content": "We use this template too for our websites, so we know how to save your time. You can use it for your business.",
         "_image": "/features/magenta.webp"
       },
       {
-        "title": "Feature 6",
-        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        "title": "Extendable",
+        "content": "This is a base for your project, you can extend it as you want. You can add new pages, components, and more.",
         "_image": "/features/cyan.webp"
       }
     ]

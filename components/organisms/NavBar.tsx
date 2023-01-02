@@ -78,6 +78,9 @@ export default function NavBar() {
             Blue Panda
           </div>
         </div>
+        <div className="font-semibold flex items-center gap-4 text-accent-700 dark:text-accent-500">
+          Demo - Template Panda Plus
+        </div>
         <div className="items-center gap-2 hidden md:flex">
           <Dropdown options={AccountOptions} title={t('settings') ?? ''} />
           <Dropdown options={lanOptions} title={i18n.language} />

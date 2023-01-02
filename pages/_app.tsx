@@ -5,8 +5,13 @@ import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 import { appWithTranslation } from 'next-i18next'
 import { Suspense } from 'react'
 import ScrollButton from '@components/molecules/ScrollButton'
+import Button from '@components/atoms/Button'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
+  function handleDemoButton() {
+    window.location.href = 'https://blue-panda.dev/'
+  }
+
   return (
     <Suspense fallback="loading">
       <Head>
@@ -31,6 +36,15 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <Component {...pageProps} />
       </GoogleReCaptchaProvider>
       <ScrollButton />
+      <div className="fixed bottom-0 left-0 m-4 z-50">
+        <Button
+          isSpecial={true}
+          onClick={handleDemoButton}
+          className="bg-blue-600/70 shadow-blue-700/50 hover:bg-blue-500"
+        >
+          Back to Blue Panda
+        </Button>
+      </div>
     </Suspense>
   )
 }

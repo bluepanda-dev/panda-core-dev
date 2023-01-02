@@ -10,8 +10,8 @@ const Feature = ({ feature }: { feature: FeatureCard }) => {
           <Image src={feature._image} alt="Features" width={140} height={48} />
         </div>
         <div className="basis-3/5 flex flex-col gap-2 px-1 items-start self-start mt-4">
-          <div className="text-lg">{feature.title}</div>
-          <div className="text-normal-400 dark:text-normal-100 text-sm">
+          <div className="text-xl">{feature.title}</div>
+          <div className="text-normal-400 dark:text-neutral-400 text-md">
             {feature.content}
           </div>
         </div>

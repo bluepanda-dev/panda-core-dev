@@ -16,7 +16,7 @@ const Why = ({ why }: { why: WhyUsCard }) => {
           />
         </div>
         <div className="text-2xl">{why.title}</div>
-        <div className="grow text-normal-400 dark:text-normal-100 text-md text-center">
+        <div className="grow text-normal-400 dark:text-normal-100 text-lg text-center">
           {why.content}
         </div>
       </div>
