@@ -78,7 +78,7 @@ export default function NavBar() {
             Blue Panda
           </div>
         </div>
-        <div className="font-semibold flex items-center gap-4 text-accent-700 dark:text-accent-500">
+        <div className="hidden font-semibold md:flex items-center gap-4 text-accent-700 dark:text-accent-500">
           Your are in a Demo Template
         </div>
         <div className="items-center gap-2 hidden md:flex">
