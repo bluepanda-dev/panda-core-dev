@@ -1,4 +1,5 @@
 import { useDataPages } from '@core/hooks/useDataPages'
+import { useUser } from '@core/hooks/useUser'
 import { useState, useEffect } from 'react'
 
 export default function Hero() {
@@ -6,8 +7,11 @@ export default function Hero() {
 
   const words = hero.list!
   const [active, setActive] = useState(0)
+  const { getCustomers } = useUser()
 
   useEffect(() => {
+    console.log('executing effect')
+    getCustomers()
     const interval = setInterval(() => {
       setActive((prev) => {
         const index = prev === words.length - 1 ? 0 : prev + 1

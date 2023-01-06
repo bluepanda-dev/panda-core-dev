@@ -17,9 +17,12 @@ import Products from '@components/organisms/Products'
 import ShowVideo from '@components/organisms/ShowVideo'
 import TechStack from '@components/organisms/TechStack'
 import ComponentsSample from '@components/molecules/ComponentsSample'
+import { useFirebase } from '@core/hooks/useFirebase'
 
 export default function Home() {
   const { t } = useTranslation()
+  const { app } = useFirebase()
+  console.log('app:> ', app)
 
   return (
     <Layout>

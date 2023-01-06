@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import { isAlertBannerActive } from '@core/store/Common'
 import { useAtom } from 'jotai'
 import AlertBanner from '@components/molecules/AlertBanner'
+import UserButton from '@components/molecules/UserButton'
 
 export default function NavBar() {
   const router = useRouter()
@@ -84,10 +85,12 @@ export default function NavBar() {
         <div className="items-center gap-2 hidden md:flex">
           <Dropdown options={AccountOptions} title={t('settings') ?? ''} />
           <Dropdown options={lanOptions} title={i18n.language} />
+          <UserButton />
         </div>
-        <div className="items-center gap-2 md:hidden">
+        <div className="grow justify-end flex items-center gap-2 md:hidden">
           <Dropdown options={AccountOptions} icon={<FiMenu />} />
           <Dropdown options={lanOptions} title={i18n.language} />
+          <UserButton />
         </div>
       </nav>
       <ToastContainer position="bottom-right" theme={theme as Theme} />
