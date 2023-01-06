@@ -71,7 +71,7 @@ export default function DropdownUser({
           <div className="y-1 ">
             <MenuAction text="My account" onClick={() => {}} />
 
-            <Link href="/downloads" passHref legacyBehavior>
+            <Link href="/downloads">
               <MenuAction text="My downloads" />
             </Link>
 

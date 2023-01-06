@@ -1,13 +1,15 @@
 import Layout from '@components/layout'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useUser } from '@core/hooks/useUser'
+import { doc, getDoc } from 'firebase/firestore/lite'
+import { useEffect, useState } from 'react'
 
 const Downloads = () => {
   // Fetch the user client-side
-  const { user } = useUser()
+  const { profile } = useUser()
 
   // Server-render loading state
-  if (!user) {
+  if (!profile) {
     return <Layout>Loading...</Layout>
   }
 
@@ -15,7 +17,7 @@ const Downloads = () => {
   return (
     <Layout>
       <h1>Your Profile</h1>
-      <pre>{JSON.stringify(user, null, 2)}</pre>
+      <pre>{JSON.stringify(profile, null, 2)}</pre>
     </Layout>
   )
 }

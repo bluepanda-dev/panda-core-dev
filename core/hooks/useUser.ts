@@ -1,10 +1,18 @@
-import { collection, getDocs } from 'firebase/firestore/lite'
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+} from 'firebase/firestore/lite'
 import { useFirebase } from './useFirebase'
 import {
   getAuth,
   signOut,
   signInWithPopup,
   GoogleAuthProvider,
+  TwitterAuthProvider,
+  GithubAuthProvider,
   onAuthStateChanged,
   Auth,
 } from 'firebase/auth'
@@ -15,6 +23,7 @@ import { useEffect, useState } from 'react'
 export const useUser = () => {
   const [auth, setAuth] = useState<Auth | undefined>(undefined)
   const [user, setUser] = useAtom(userAtom)
+  const [profile, setProfile] = useState<null | any>(null)
   const { db, app } = useFirebase()
 
   useEffect(() => {
@@ -27,6 +36,27 @@ export const useUser = () => {
         console.log('onAuthStateChanged', userData)
         if (userData) {
           setUser(userData)
+          setDoc(
+            doc(db, 'users', userData.uid),
+            {
+              uid: userData.uid,
+
+              email: userData.email,
+              emailVerified: userData.emailVerified,
+              displayName: userData.displayName,
+              photoURL: userData.photoURL,
+              providerData: {
+                providerId: userData.providerData[0].providerId,
+              },
+              metadata: {
+                createdAt: (userData.metadata as any).createdAt,
+                creationTime: userData.metadata.creationTime,
+                lastSignInTime: userData.metadata.lastSignInTime,
+                lastLoginAt: (userData.metadata as any).lastLoginAt,
+              },
+            },
+            { merge: true },
+          )
         } else {
           console.log('loging out')
           setUser(undefined)
@@ -35,25 +65,43 @@ export const useUser = () => {
     }
   }, [auth])
 
-  async function getCustomers() {
+  useEffect(() => {
+    async function setUpUser() {
+      if (user) {
+        setProfile(await fetchUser(user.uid))
+      }
+    }
+    setUpUser()
+  }, [user])
+
+  async function fetchUser(userId: string) {
     if (!db) {
       throw new Error('Not database configured')
     }
-    console.log('db:>>', db)
-    const querySnapshot = await getDocs(collection(db, 'customers'))
-    querySnapshot.forEach((doc) => {
-      console.log(`docs:>>>> ${doc.id} `, doc.data())
-    })
+
+    const docRef = doc(db, 'users', userId)
+    const docSnap = await getDoc(docRef)
+
+    if (docSnap.exists()) {
+      return docSnap.data()
+    }
+
+    return null
   }
 
   async function googleLogIn() {
     const provider = new GoogleAuthProvider()
-    console.log('auth', auth)
-    try {
-      await signInWithPopup(auth!, provider)
-    } catch (err) {
-      console.log('Err', err)
-    }
+    await signInWithPopup(auth!, provider)
+  }
+
+  async function twitterLogIn() {
+    const provider = new TwitterAuthProvider()
+    await signInWithPopup(auth!, provider)
+  }
+
+  async function githubLogIn() {
+    const provider = new GithubAuthProvider()
+    await signInWithPopup(auth!, provider)
   }
 
   function logOut() {
@@ -62,9 +110,11 @@ export const useUser = () => {
   }
 
   return {
-    getCustomers,
     user,
+    profile,
     googleLogIn,
+    twitterLogIn,
+    githubLogIn,
     logOut,
   }
 }
