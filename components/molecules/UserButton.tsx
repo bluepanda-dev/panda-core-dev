@@ -10,7 +10,9 @@ export default function UserButton() {
   return (
     <>
       {!user ? (
-        <Button onClick={googleLogIn}>Log In</Button>
+        <Button className="w-auto" onClick={googleLogIn}>
+          Log In
+        </Button>
       ) : (
         <>
           <DropdownUser image={user.photoURL!} />
