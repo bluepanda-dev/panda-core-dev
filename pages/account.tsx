@@ -17,7 +17,11 @@ const Account = () => {
 
   const tabs = {
     'My Profile': <Profile />,
-    Tab2: <Container className="h-48" title="Your Tab 2 content" />,
+    'Email notifications': (
+      <Container className="h-48" title="Your Tab 2 content" />
+    ),
+    Purchases: <Container className="h-48" title="Your Tab 2 content" />,
+    Other: <Container className="h-48" title="Your Tab 2 content" />,
   }
 
   // Once the user request finishes, show the user

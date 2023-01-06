@@ -17,7 +17,14 @@ export default function Profile() {
 
   return (
     <div className="relative max-w-2xl">
-      <div>
+      <div className="mt-8">
+        <div className="form-group mb-6">
+          <img
+            src={profile.photoURL}
+            className="ring-neutral-100 hover:ring-neutral-50 ring-2 w-24 h-24 rounded-full"
+          />
+        </div>
+
         <div className="form-group mb-6">
           <label htmlFor="display" className="form-label inline-block mb-2 ">
             Display Name

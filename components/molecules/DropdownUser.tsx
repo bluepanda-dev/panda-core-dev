@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { FiChevronDown } from 'react-icons/fi'
+import { FiLogOut, FiSettings } from 'react-icons/fi'
 import { Menu, Transition } from '@headlessui/react'
 import Button from '@components/atoms/Button'
 import { useUser } from '@core/hooks/useUser'
@@ -12,25 +12,27 @@ export type DropdownProps = {
 
 const MenuAction = ({
   text,
+  icon,
   onClick,
 }: {
   text: string
+  icon?: React.ReactNode
   onClick?: () => void
 }) => {
   return (
     <div className="py-1">
       <Menu.Item>
         {({ active }) => (
-          <button
-            onClick={onClick}
+          <div
             className={`${
               active
                 ? 'bg-primary-600 text-white dark:bg-primary-900'
                 : 'dark:text-neutral-400'
-            } group flex w-full items-center px-4 py-2 text-sm`}
+            } group flex w-full items-center px-4 py-2 text-sm gap-x-2 cursor-pointer`}
           >
-            {text}
-          </button>
+            {icon}
+            <button onClick={onClick}>{text}</button>
+          </div>
         )}
       </Menu.Item>
     </div>
@@ -72,13 +74,18 @@ export default function DropdownUser({
         <Menu.Items className="dark:border-neutral-500 absolute z-10 bg-primary-50 dark:bg-normal-900 right-0 mt-2 w-56 origin-top-right shadow-lg rounded-sm border">
           <div className="y-1 ">
             <Link href="/account">
-              <MenuAction text="My Account" onClick={() => {}} />
-            </Link>
-            <Link href="/downloads">
-              <MenuAction text="My Downloads" />
+              <MenuAction
+                icon={<FiSettings />}
+                text="My Account"
+                onClick={() => {}}
+              />
             </Link>
             <div className="bg-neutral-500 h-px w-full" />
-            <MenuAction text="Log out" onClick={() => logOut()} />
+            <MenuAction
+              icon={<FiLogOut />}
+              text="Log out"
+              onClick={() => logOut()}
+            />
             <div className="bg-neutral-500 h-px w-full" />
             <div className="p-4">
               <Button isSpecial={true}>Upgrade!</Button>
