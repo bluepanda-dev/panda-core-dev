@@ -22,7 +22,6 @@ import { useFirebase } from '@core/hooks/useFirebase'
 export default function Home() {
   const { t } = useTranslation()
   const { app } = useFirebase()
-  console.log('app:> ', app)
 
   return (
     <Layout>

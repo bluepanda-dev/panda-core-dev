@@ -24,7 +24,9 @@ const MenuAction = ({
           <button
             onClick={onClick}
             className={`${
-              active ? 'bg-normal-800 text-neutral-200' : 'text-neutral-500'
+              active
+                ? 'bg-primary-600 text-white dark:bg-primary-900'
+                : 'dark:text-neutral-400'
             } group flex w-full items-center px-4 py-2 text-sm`}
           >
             {text}
@@ -69,15 +71,13 @@ export default function DropdownUser({
       >
         <Menu.Items className="dark:border-neutral-500 absolute z-10 bg-primary-50 dark:bg-normal-900 right-0 mt-2 w-56 origin-top-right shadow-lg rounded-sm border">
           <div className="y-1 ">
-            <MenuAction text="My account" onClick={() => {}} />
-
-            <Link href="/downloads">
-              <MenuAction text="My downloads" />
+            <Link href="/account">
+              <MenuAction text="My Account" onClick={() => {}} />
             </Link>
-
-            <MenuAction text="Theme" onClick={() => {}} />
+            <Link href="/downloads">
+              <MenuAction text="My Downloads" />
+            </Link>
             <div className="bg-neutral-500 h-px w-full" />
-            <MenuAction text="other" onClick={() => {}} />
             <MenuAction text="Log out" onClick={() => logOut()} />
             <div className="bg-neutral-500 h-px w-full" />
             <div className="p-4">

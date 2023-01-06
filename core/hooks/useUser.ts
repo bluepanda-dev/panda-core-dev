@@ -19,6 +19,7 @@ import {
 import { userAtom } from '@core/store/Common'
 import { useAtom } from 'jotai'
 import { useEffect, useState } from 'react'
+import { Profile } from '@core/types'
 
 export const useUser = () => {
   const [auth, setAuth] = useState<Auth | undefined>(undefined)
@@ -89,6 +90,20 @@ export const useUser = () => {
     return null
   }
 
+  async function saveProfile(profile: Profile) {
+    if (!db) {
+      throw new Error('Not database configured')
+    }
+    console.log('saving profile', profile)
+    await setDoc(
+      doc(db, 'users', profile.uid),
+      {
+        website: profile.website,
+      },
+      { merge: true },
+    )
+  }
+
   async function googleLogIn() {
     const provider = new GoogleAuthProvider()
     await signInWithPopup(auth!, provider)
@@ -116,5 +131,6 @@ export const useUser = () => {
     twitterLogIn,
     githubLogIn,
     logOut,
+    saveProfile,
   }
 }

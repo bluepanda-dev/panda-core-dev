@@ -3,10 +3,16 @@ import { FaFacebookSquare, FaTwitterSquare, FaInstagram } from 'react-icons/fa'
 import lottie from 'lottie-web'
 import animationData from '../data/lottie-animation.json'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 export default function Footer() {
+  const { pathname } = useRouter()
+
   useEffect(() => {
-    if (!document.querySelector('#lottie-animation')!.innerHTML) {
+    if (
+      pathname === '' &&
+      !document.querySelector('#lottie-animation')!.innerHTML
+    ) {
       lottie.loadAnimation({
         container: document.querySelector('#lottie-animation')!,
         animationData,
@@ -15,10 +21,10 @@ export default function Footer() {
         autoplay: true,
       })
     }
-  }, [])
+  }, [pathname])
   return (
     <div className="relative mt-16">
-      <div id="lottie-animation" className="w-full" />
+      {pathname === '' && <div id="lottie-animation" className="w-full" />}
       <footer className="relative bg-neutral-100 dark:bg-normal-800 border-t border-neutral-800 py-4">
         <div className="justify-center grid grid-cols-1 md:grid-cols-3 items-center px-4 py-12 w-full">
           <Image
