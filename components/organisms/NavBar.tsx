@@ -75,7 +75,7 @@ export default function NavBar() {
           <Link href="/" aria-label="home link">
             <Image src="/logo.webp" alt="" width={45} height={22} />
           </Link>
-          <div className="from-blue-600 to-blue-900 dark:from-blue-400 dark:to-blue-800 text-xl bg-clip-text text-transparent bg-gradient-to-r pl-6">
+          <div className="hidden md:block from-blue-600 to-blue-900 dark:from-blue-400 dark:to-blue-800 text-xl bg-clip-text text-transparent bg-gradient-to-r pl-6">
             Blue Panda
           </div>
         </div>
