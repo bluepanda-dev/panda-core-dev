@@ -5,6 +5,7 @@ import { useUser } from '@core/hooks/useUser'
 import Container from '@components/atoms/Container'
 import SimpleTabs from '@components/molecules/SimpleTabs'
 import Profile from '@components/organisms/account/Profile'
+import Notifications from '@components/organisms/account/Notifications'
 
 const Account = () => {
   // Fetch the user client-side
@@ -17,9 +18,7 @@ const Account = () => {
 
   const tabs = {
     'My Profile': <Profile />,
-    'Email notifications': (
-      <Container className="h-48" title="Your Tab 2 content" />
-    ),
+    Notifications: <Notifications />,
     Purchases: <Container className="h-48" title="Your Tab 2 content" />,
     Other: <Container className="h-48" title="Your Tab 2 content" />,
   }
@@ -27,7 +26,7 @@ const Account = () => {
   // Once the user request finishes, show the user
   return (
     <Layout>
-      <div className="mx-8 my-16">
+      <div className="mx-8 my-16 h-full">
         <div className="text-center text-6xl font-bold">My Profile</div>
         <div className="mt-16">
           <SimpleTabs tabs={tabs} />

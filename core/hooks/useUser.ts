@@ -94,11 +94,11 @@ export const useUser = () => {
     if (!db) {
       throw new Error('Not database configured')
     }
-    console.log('saving profile', profile)
     await setDoc(
       doc(db, 'users', profile.uid),
       {
         website: profile.website,
+        notifications: profile.notifications,
       },
       { merge: true },
     )
