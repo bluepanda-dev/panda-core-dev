@@ -81,7 +81,7 @@ export default function DropdownUser({
             <MenuAction text="Log out" onClick={() => logOut()} />
             <div className="bg-neutral-500 h-px w-full" />
             <div className="p-4">
-              <Button isSpecial={true}>Upgrade</Button>
+              <Button isSpecial={true}>Upgrade!</Button>
             </div>
           </div>
         </Menu.Items>
