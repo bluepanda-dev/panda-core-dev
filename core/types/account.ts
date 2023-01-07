@@ -5,5 +5,5 @@ export type Profile = {
   photoURL: string
   uid: string
   website?: string
-  notifications: Record<string, boolean>
+  notifications?: Record<string, boolean>
 }
