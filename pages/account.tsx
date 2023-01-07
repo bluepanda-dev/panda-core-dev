@@ -27,9 +27,9 @@ const Account = () => {
   return (
     <Layout>
       <div className="mx-8 my-16 h-full">
-        <div className="text-center text-6xl font-bold">My Profile</div>
-        <div className="mt-16">
-          <SimpleTabs tabs={tabs} />
+        <div className="text-center text-4xl font-bold">My Profile</div>
+        <div className="ml-8 mt-8">
+          <SimpleTabs tabs={tabs} isVertical={true} />
         </div>
       </div>
     </Layout>

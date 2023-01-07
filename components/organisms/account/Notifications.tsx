@@ -44,7 +44,7 @@ export default function Notifications() {
 
   return (
     <div className="relative max-w-2xl">
-      <div className="mt-8">
+      <div>
         <div className="flex items-center gap-4 mb-6">
           <Switch
             checked={billing}
