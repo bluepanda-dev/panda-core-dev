@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { useDataPages } from '@core/hooks/useDataPages'
 
-export default function KeepMeInformed() {
+export default function CodeExample() {
   const { codeExample } = useDataPages()
   const [blur, setBlur] = useState(0)
 
