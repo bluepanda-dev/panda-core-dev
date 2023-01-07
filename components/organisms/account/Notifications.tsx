@@ -12,9 +12,8 @@ export default function Notifications() {
   const [offers, setOffers] = useState(false)
 
   function handleSave() {
-    console.log('Save', billing)
     saveProfile({
-      ...profile,
+      ...profile!,
       notifications: {
         ...profile?.notifications,
         billing,

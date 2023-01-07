@@ -1,20 +1,24 @@
 import Button from '@components/atoms/Button'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useUser } from '@core/hooks/useUser'
+import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
 export default function Profile() {
   const { saveProfile } = useUser()
   const { profile } = useUserContext()
-  console.log(profile)
-
-  // TODO remove this and avoid mutating directly
+  const [website, setWebsite] = useState('')
 
   function handleSave() {
-    console.log('Save')
-    saveProfile(profile!)
+    saveProfile({ ...profile!, website })
     toast('Saved successfully!')
   }
+
+  useEffect(() => {
+    if (profile?.website !== undefined) {
+      setWebsite(profile?.website)
+    }
+  }, [profile])
 
   if (!profile) {
     return <>Loading...</>
@@ -61,8 +65,8 @@ export default function Profile() {
             id="website"
             className="form-control block w-full px-3 py-1.5 text-base font-normal bg-clip-padding border rounded transition dark:text-neutral-300"
             placeholder="Enter website"
-            value={profile?.website}
-            onChange={(e) => (profile.website = e.target.value)}
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
           />
         </div>
         <div className="form-group mb-6">
