@@ -47,7 +47,8 @@ const Product = ({
         <div className="p-6">
           <Button
             onClick={() => handleBuy(product)}
-            className="text-neutral-50 bg-primary-700 shadow-lg shadow-primary-700/50 hover:bg-primary-500"
+            isSpecial={true}
+            loading={false}
           >
             {products.texts!.buyNow}
           </Button>
