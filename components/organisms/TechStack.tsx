@@ -32,7 +32,7 @@ export default function TechStack() {
   ]
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col justify-center">
       <div className="text-center text-6xl font-bold">{techStack.title}</div>
       <div className="pt-24  w-full flex  justify-center">
         <div className="relative flex overflow-x-hidden items-center">

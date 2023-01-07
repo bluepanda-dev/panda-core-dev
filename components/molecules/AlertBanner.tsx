@@ -3,7 +3,7 @@ import { useAtom } from 'jotai'
 import { useTranslation } from 'next-i18next'
 import { useEffect } from 'react'
 
-export default function Faqs() {
+export default function AlertBanner() {
   const { t } = useTranslation('common')
   const [active, setActive] = useAtom(isAlertBannerActive)
 

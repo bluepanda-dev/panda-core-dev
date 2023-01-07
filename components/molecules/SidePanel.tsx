@@ -11,7 +11,7 @@ type SidePanelProps = {
   side?: 'left' | 'right'
 }
 
-export default function Modal({
+export default function SidePanel({
   title,
   className,
   isOpen,

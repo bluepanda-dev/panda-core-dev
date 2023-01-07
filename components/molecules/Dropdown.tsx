@@ -25,7 +25,7 @@ export default function Dropdown({
     <Menu as="div" className={`relative inline-block text-left ${className}`}>
       <Menu.Button
         aria-label="Menu"
-        className="h-10 hover:bg-neutral-800 inline-flex w-full justify-center items-center rounded-sm px-4 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75"
+        className="h-10 hover:bg-neutral-100 dark:hover:bg-normal-700 inline-flex w-full justify-center items-center rounded-sm px-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75"
       >
         {title && <span className="text-lg">{title}</span>}
         {icon ? (

@@ -40,6 +40,15 @@ const TabsSample = () => {
   return <SimpleTabs tabs={tabs} />
 }
 
+const TabsSampleVertical = () => {
+  const tabs = {
+    'My Tab Title': <Container className="h-48" title="Your Tab 1 content" />,
+    Tab2: <Container className="h-48" title="Your Tab 2 content" />,
+    Tab3: <Container className="h-48" title="Your Tab 3 content" />,
+  }
+  return <SimpleTabs tabs={tabs} isVertical={true} />
+}
+
 const RadioSample = () => {
   const [selectedRadio, setSelectedRadio] = useState<RadioOption>(options[0])
 
@@ -92,7 +101,7 @@ const AccordionSample = () => {
 export default function ComponentsSample({ className }: ComponentsSampleProps) {
   const { t } = useTranslation()
   const [activeComponent, setActiveComponent] = useState<
-    'radio' | 'accordion' | 'tabs'
+    'radio' | 'accordion' | 'tabs' | 'tabs-v'
   >()
   const [isOpen, setIsOpen] = useState(false)
   const [isSideOpen, setIsSideOpen] = useState(false)
@@ -150,6 +159,13 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
         setActiveComponent('tabs')
       },
     },
+    {
+      label: 'Tabs Vertical',
+      icon: <FiMenu />,
+      onClick: () => {
+        setActiveComponent('tabs-v')
+      },
+    },
   ]
 
   return (
@@ -174,6 +190,7 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
         {activeComponent &&
           ((activeComponent === 'radio' && <RadioSample />) ||
             (activeComponent === 'accordion' && <AccordionSample />) ||
+            (activeComponent === 'tabs-v' && <TabsSampleVertical />) ||
             (activeComponent === 'tabs' && <TabsSample />))}
       </Container>
     </div>

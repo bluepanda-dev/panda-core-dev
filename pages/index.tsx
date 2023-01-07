@@ -17,6 +17,7 @@ import Products from '@components/organisms/Products'
 import ShowVideo from '@components/organisms/ShowVideo'
 import TechStack from '@components/organisms/TechStack'
 import ComponentsSample from '@components/molecules/ComponentsSample'
+import FareWell from '@components/organisms/FareWell'
 import { useFirebase } from '@core/hooks/useFirebase'
 
 export default function Home() {
@@ -41,8 +42,9 @@ export default function Home() {
         <Products />
         <ShowVideo />
         <KeepMeInformed />
-        <Faqs />
         <TechStack />
+        <Faqs />
+        <FareWell />
         <ComponentsSample className="m-4" />
       </main>
     </Layout>
