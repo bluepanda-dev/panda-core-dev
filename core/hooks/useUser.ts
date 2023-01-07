@@ -1,81 +1,20 @@
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  setDoc,
-} from 'firebase/firestore/lite'
+import { doc, getDoc, setDoc } from 'firebase/firestore/lite'
 import { useFirebase } from './useFirebase'
+import { Profile } from '@core/types'
 import {
-  getAuth,
   signOut,
   signInWithPopup,
   GoogleAuthProvider,
   TwitterAuthProvider,
   GithubAuthProvider,
-  onAuthStateChanged,
-  Auth,
 } from 'firebase/auth'
-import { userAtom } from '@core/store/Common'
-import { useAtom } from 'jotai'
-import { useEffect, useState } from 'react'
-import { Profile } from '@core/types'
+import { useUserContext } from '@core/contexts/UserContext'
 
 export const useUser = () => {
-  const [auth, setAuth] = useState<Auth | undefined>(undefined)
-  const [user, setUser] = useAtom(userAtom)
-  const [profile, setProfile] = useState<null | any>(null)
-  const { db, app } = useFirebase()
+  const { auth, setUser, setProfile } = useUserContext()
+  const { db } = useFirebase()
 
-  useEffect(() => {
-    setAuth(getAuth(app))
-  }, [])
-
-  useEffect(() => {
-    if (auth) {
-      onAuthStateChanged(auth, async (userData) => {
-        console.log('onAuthStateChanged', userData)
-        if (userData) {
-          setUser(userData)
-          setDoc(
-            doc(db, 'users', userData.uid),
-            {
-              uid: userData.uid,
-
-              email: userData.email,
-              emailVerified: userData.emailVerified,
-              displayName: userData.displayName,
-              photoURL: userData.photoURL,
-              providerData: {
-                providerId: userData.providerData[0].providerId,
-              },
-              metadata: {
-                createdAt: (userData.metadata as any).createdAt,
-                creationTime: userData.metadata.creationTime,
-                lastSignInTime: userData.metadata.lastSignInTime,
-                lastLoginAt: (userData.metadata as any).lastLoginAt,
-              },
-            },
-            { merge: true },
-          )
-        } else {
-          console.log('loging out')
-          setUser(undefined)
-        }
-      })
-    }
-  }, [auth])
-
-  useEffect(() => {
-    async function setUpUser() {
-      if (user) {
-        setProfile(await fetchUser(user.uid))
-      }
-    }
-    setUpUser()
-  }, [user])
-
-  async function fetchUser(userId: string) {
+  async function fetchUser(userId: string): Promise<Profile | undefined> {
     if (!db) {
       throw new Error('Not database configured')
     }
@@ -84,10 +23,10 @@ export const useUser = () => {
     const docSnap = await getDoc(docRef)
 
     if (docSnap.exists()) {
-      return docSnap.data()
+      return docSnap.data() as Profile
     }
 
-    return null
+    return undefined
   }
 
   async function saveProfile(profile: Profile) {
@@ -97,8 +36,7 @@ export const useUser = () => {
     await setDoc(
       doc(db, 'users', profile.uid),
       {
-        website: profile.website,
-        notifications: profile.notifications,
+        ...profile,
       },
       { merge: true },
     )
@@ -122,15 +60,15 @@ export const useUser = () => {
   function logOut() {
     signOut(auth!)
     setUser(undefined)
+    setProfile(undefined)
   }
 
   return {
-    user,
-    profile,
     googleLogIn,
     twitterLogIn,
     githubLogIn,
     logOut,
     saveProfile,
+    fetchUser,
   }
 }

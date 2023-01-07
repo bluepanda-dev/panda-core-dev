@@ -5,10 +5,12 @@ import DropdownUser from './DropdownUser'
 import { useState } from 'react'
 import Modal from './Modal'
 import { toast } from 'react-toastify'
+import { useUserContext } from '@core/contexts/UserContext'
 
 export default function UserButton() {
   const { t } = useTranslation('common')
-  const { googleLogIn, twitterLogIn, githubLogIn, user } = useUser()
+  const { googleLogIn, twitterLogIn, githubLogIn } = useUser()
+  const { user } = useUserContext()
   const [isOpen, setIsOpen] = useState(false)
 
   async function handleTwitterLogIn() {

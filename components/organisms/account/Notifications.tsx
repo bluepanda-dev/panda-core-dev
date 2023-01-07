@@ -1,11 +1,13 @@
 import Button from '@components/atoms/Button'
+import { useUserContext } from '@core/contexts/UserContext'
 import { useUser } from '@core/hooks/useUser'
 import { Switch } from '@headlessui/react'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
 export default function Notifications() {
-  const { profile, saveProfile } = useUser()
+  const { saveProfile } = useUser()
+  const { profile } = useUserContext()
   const [billing, setBilling] = useState(false)
   const [offers, setOffers] = useState(false)
 
@@ -23,8 +25,10 @@ export default function Notifications() {
   }
 
   useEffect(() => {
-    setBilling(profile?.notifications?.billing)
-    setOffers(profile?.notifications?.offers)
+    if (profile?.notifications !== undefined) {
+      setBilling(profile.notifications.billing)
+      setOffers(profile.notifications.offers)
+    }
   }, [profile])
 
   if (!profile) {

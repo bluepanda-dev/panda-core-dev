@@ -6,10 +6,10 @@ import Container from '@components/atoms/Container'
 import SimpleTabs from '@components/molecules/SimpleTabs'
 import Profile from '@components/organisms/account/Profile'
 import Notifications from '@components/organisms/account/Notifications'
+import { useUserContext } from '@core/contexts/UserContext'
 
 const Account = () => {
-  // Fetch the user client-side
-  const { profile } = useUser()
+  const { profile } = useUserContext()
 
   // Server-render loading state
   if (!profile) {

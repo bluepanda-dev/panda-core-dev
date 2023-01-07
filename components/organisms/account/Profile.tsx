@@ -1,13 +1,18 @@
 import Button from '@components/atoms/Button'
+import { useUserContext } from '@core/contexts/UserContext'
 import { useUser } from '@core/hooks/useUser'
 import { toast } from 'react-toastify'
 
 export default function Profile() {
-  const { profile, saveProfile } = useUser()
+  const { saveProfile } = useUser()
+  const { profile } = useUserContext()
+  console.log(profile)
+
+  // TODO remove this and avoid mutating directly
 
   function handleSave() {
     console.log('Save')
-    saveProfile(profile)
+    saveProfile(profile!)
     toast('Saved successfully!')
   }
 
