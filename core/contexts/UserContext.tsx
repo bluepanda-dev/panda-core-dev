@@ -66,7 +66,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
                 lastSignInTime: userData.metadata.lastSignInTime,
                 lastLoginAt: (userData.metadata as any).lastLoginAt,
               },
-            },
+            } as any,
             { merge: true },
           )
         } else {

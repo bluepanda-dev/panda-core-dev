@@ -1,11 +1,11 @@
 import Layout from '@components/layout'
+import { useUserContext } from '@core/contexts/UserContext'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useUser } from '@core/hooks/useUser'
 import { useEffect, useState } from 'react'
 
 const Downloads = () => {
   // Fetch the user client-side
-  const { profile } = useUser()
+  const { profile } = useUserContext()
 
   // Server-render loading state
   if (!profile) {

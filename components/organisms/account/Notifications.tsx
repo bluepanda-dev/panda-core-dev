@@ -6,13 +6,13 @@ import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
 export default function Notifications() {
-  const { saveProfile } = useUser()
+  const { saveUser } = useUser()
   const { profile } = useUserContext()
   const [billing, setBilling] = useState(false)
   const [offers, setOffers] = useState(false)
 
   function handleSave() {
-    saveProfile({
+    saveUser({
       ...profile!,
       notifications: {
         ...profile?.notifications,

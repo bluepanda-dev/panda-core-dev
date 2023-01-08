@@ -5,7 +5,7 @@ export function getProfileImage(profile: User) {
   let photoURL = profile.photoURL
   const providerData = profile.providerData[0] ?? profile.providerData
 
-  if (providerData.providerId === 'google.com') {
+  if (providerData.providerId === 'google.com' && profile.email) {
     const hash = md5(profile.email)
     photoURL = `https://www.gravatar.com/avatar/${hash}?d=identicon`
   }
