@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore/lite'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { useFirebase } from './useFirebase'
 import { Profile } from '@core/types'
 import {

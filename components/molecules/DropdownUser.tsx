@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { FiLogOut, FiSettings } from 'react-icons/fi'
+import { FiLogOut, FiSettings, FiUsers } from 'react-icons/fi'
 import { Menu, Transition } from '@headlessui/react'
 import Button from '@components/atoms/Button'
 import { useUser } from '@core/hooks/useUser'
@@ -77,6 +77,13 @@ export default function DropdownUser({
               <MenuAction
                 icon={<FiSettings />}
                 text="My Account"
+                onClick={() => {}}
+              />
+            </Link>
+            <Link href="/hideouts">
+              <MenuAction
+                icon={<FiUsers />}
+                text="My Hideouts"
                 onClick={() => {}}
               />
             </Link>

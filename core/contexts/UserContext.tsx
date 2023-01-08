@@ -2,10 +2,11 @@ import { useFirebase } from '@core/hooks/useFirebase'
 import { useUser } from '@core/hooks/useUser'
 import { Profile } from '@core/types'
 import { Auth, getAuth, onAuthStateChanged } from 'firebase/auth'
-import { setDoc, doc } from 'firebase/firestore/lite'
+import { setDoc, doc } from 'firebase/firestore'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 type UserContextType = {
+  loading: boolean
   user?: any
   profile?: Profile
   auth?: Auth
@@ -23,12 +24,14 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const { db, app } = useFirebase()
   const [auth, setAuth] = useState<Auth | undefined>(undefined)
   const [user, setUser] = useState<any>(undefined)
+  const [loading, setLoading] = useState(true)
   const [profile, setProfile] = useState<Profile | undefined>(undefined)
 
   const { fetchUser } = useUser()
 
   useEffect(() => {
     setAuth(getAuth(app))
+    setLoading(false)
   }, [app])
 
   useEffect(() => {
@@ -43,7 +46,6 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (auth) {
       onAuthStateChanged(auth, async (userData) => {
-        console.log('onAuthStateChanged', userData)
         if (userData) {
           setUser(userData)
           setDoc(
@@ -68,7 +70,6 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
             { merge: true },
           )
         } else {
-          console.log('loging out')
           setUser(undefined)
         }
       })
@@ -76,7 +77,9 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   }, [auth])
 
   return (
-    <UserContext.Provider value={{ user, profile, auth, setProfile, setUser }}>
+    <UserContext.Provider
+      value={{ user, profile, auth, setProfile, setUser, loading }}
+    >
       {children}
     </UserContext.Provider>
   )

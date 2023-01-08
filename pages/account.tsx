@@ -1,7 +1,6 @@
 import Layout from '@components/layout'
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useUser } from '@core/hooks/useUser'
 import Container from '@components/atoms/Container'
 import SimpleTabs from '@components/molecules/SimpleTabs'
 import Profile from '@components/organisms/account/Profile'

@@ -6,4 +6,5 @@ export type Profile = {
   uid: string
   website?: string
   notifications?: Record<string, boolean>
+  providerData?: { providerId: string }
 }
