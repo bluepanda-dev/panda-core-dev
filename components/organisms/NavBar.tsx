@@ -53,6 +53,12 @@ export default function NavBar() {
         router.push('/', '', { locale: 'de' })
       },
     },
+    {
+      label: t('lanOptions.jp'),
+      onClick: () => {
+        router.push('/', '', { locale: 'jp' })
+      },
+    },
   ]
 
   useEffect(() => {
