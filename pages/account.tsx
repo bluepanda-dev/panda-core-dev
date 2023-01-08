@@ -1,5 +1,4 @@
 import Layout from '@components/layout'
-
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Container from '@components/atoms/Container'
 import SimpleTabs from '@components/molecules/SimpleTabs'

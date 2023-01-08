@@ -8,7 +8,6 @@ import { useHideouts } from '@core/hooks/useHideouts'
 import { FiShare2, FiUser } from 'react-icons/fi'
 import { toast } from 'react-toastify'
 import Button from '@components/atoms/Button'
-import md5 from 'md5'
 import Link from 'next/link'
 
 const ProfilePic = ({
@@ -94,11 +93,6 @@ const Hideout = () => {
           })
         } else {
           console.log('new user', profile)
-          let photoURL = profile?.photoURL
-          if (profile?.providerData?.providerId === 'google.com') {
-            const hash = md5(profile?.email)
-            photoURL = `https://www.gravatar.com/avatar/${hash}?d=identicon`
-          }
           update({
             ...hideout!,
             activeUsers: [
@@ -107,7 +101,7 @@ const Hideout = () => {
               ) ?? []),
               {
                 displayName: profile?.displayName ?? 'Anonymus',
-                photoURL: photoURL ?? '',
+                photoURL: profile?.photoURL ?? '',
                 lastActive: new Date().getTime(),
                 uid: userID,
               },

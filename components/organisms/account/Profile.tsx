@@ -2,19 +2,56 @@ import Button from '@components/atoms/Button'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useUser } from '@core/hooks/useUser'
 import { useEffect, useState } from 'react'
+import { Profile as ProfileType } from '@core/types'
 import { toast } from 'react-toastify'
+import { FiShare2 } from 'react-icons/fi'
 
 export default function Profile() {
-  const { saveProfile } = useUser()
+  const [loading, setLoading] = useState(false)
+  const { saveUser, savePublicProfile } = useUser()
   const { profile } = useUserContext()
   const [website, setWebsite] = useState('')
+  const [publicProfile, setPublicProfile] = useState<ProfileType>()
 
-  function handleSave() {
-    saveProfile({ ...profile!, website })
+  const { fetchPublicProfile } = useUser()
+
+  async function handleSave() {
+    setLoading(true)
+    await saveUser({ ...profile!, website })
+    await savePublicProfile({
+      website,
+      displayName: profile!.displayName,
+      uid: profile!.uid,
+      photoURL: profile!.photoURL,
+    })
     toast('Saved successfully!')
+    setLoading(false)
+  }
+
+  function handleShare() {
+    navigator.clipboard.writeText(
+      new URL(`/profile/${profile!.uid}`, window.location.origin).toString(),
+    )
+    toast.success('Copied to clipboard')
+  }
+
+  async function handleMakePublic() {
+    await savePublicProfile({
+      website: profile!.website,
+      displayName: profile!.displayName,
+      uid: profile!.uid,
+      photoURL: profile!.photoURL,
+    })
+    setPublicProfile(profile)
+    toast('Profile is now public!')
   }
 
   useEffect(() => {
+    if (profile) {
+      fetchPublicProfile(profile.uid).then((user) => {
+        setPublicProfile(user)
+      })
+    }
     if (profile?.website !== undefined) {
       setWebsite(profile?.website)
     }
@@ -70,9 +107,27 @@ export default function Profile() {
           />
         </div>
         <div className="form-group mb-6">
-          <Button isSpecial={true} onClick={handleSave}>
+          <Button loading={loading} isSpecial={true} onClick={handleSave}>
             Save
           </Button>
+          {!publicProfile ? (
+            <div className="mt-6 flex flex-col">
+              <Button className="border" onClick={handleMakePublic}>
+                Make My Profile Public
+              </Button>
+              <span className="mt-4 text-right">Email will not be shared.</span>
+            </div>
+          ) : (
+            <div className="flex items-center justify-end mt-8 gap-4">
+              <span>Share your profile:</span>
+              <button
+                onClick={handleShare}
+                className="border-neutral-500 hover:border-primary-600 bg-primary-800 border rounded-md p-1 text-xl"
+              >
+                <FiShare2 />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

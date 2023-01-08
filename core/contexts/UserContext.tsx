@@ -1,8 +1,9 @@
 import { useFirebase } from '@core/hooks/useFirebase'
 import { useUser } from '@core/hooks/useUser'
-import { Profile } from '@core/types'
+import { Profile, USER_DB } from '@core/types'
+import { getProfileImage } from '@core/utils/images'
 import { Auth, getAuth, onAuthStateChanged } from 'firebase/auth'
-import { setDoc, doc } from 'firebase/firestore'
+import { doc, updateDoc } from 'firebase/firestore'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 type UserContextType = {
@@ -48,15 +49,14 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
       onAuthStateChanged(auth, async (userData) => {
         if (userData) {
           setUser(userData)
-          setDoc(
-            doc(db, 'users', userData.uid),
+          updateDoc(
+            doc(db, USER_DB, userData.uid),
             {
               uid: userData.uid,
-
               email: userData.email,
               emailVerified: userData.emailVerified,
               displayName: userData.displayName,
-              photoURL: userData.photoURL,
+              photoURL: getProfileImage(userData),
               providerData: {
                 providerId: userData.providerData[0].providerId,
               },

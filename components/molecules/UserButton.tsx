@@ -10,7 +10,7 @@ import { useUserContext } from '@core/contexts/UserContext'
 export default function UserButton() {
   const { t } = useTranslation('common')
   const { googleLogIn, twitterLogIn, githubLogIn } = useUser()
-  const { user } = useUserContext()
+  const { profile } = useUserContext()
   const [isOpen, setIsOpen] = useState(false)
 
   async function handleTwitterLogIn() {
@@ -53,13 +53,13 @@ export default function UserButton() {
         <Button onClick={handleTwitterLogIn}>Twitter</Button>
         <Button onClick={handleGitHubLogIn}>GitHub</Button>
       </Modal>
-      {!user ? (
+      {!profile ? (
         <Button className="w-auto" onClick={() => setIsOpen(true)}>
           Log In
         </Button>
       ) : (
         <>
-          <DropdownUser image={user.photoURL!} />
+          <DropdownUser image={profile.photoURL!} />
         </>
       )}
     </>

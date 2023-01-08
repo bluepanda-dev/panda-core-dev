@@ -1,6 +1,6 @@
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { useFirebase } from './useFirebase'
-import { Profile } from '@core/types'
+import { Profile, USER_DB, USER_PROFILE_DB } from '@core/types'
 import {
   signOut,
   signInWithPopup,
@@ -19,7 +19,25 @@ export const useUser = () => {
       throw new Error('Not database configured')
     }
 
-    const docRef = doc(db, 'users', userId)
+    const docRef = doc(db, USER_DB, userId)
+    const docSnap = await getDoc(docRef)
+
+    if (docSnap.exists()) {
+      const data = docSnap.data() as Profile
+      return data
+    }
+
+    return undefined
+  }
+
+  async function fetchPublicProfile(
+    userId: string,
+  ): Promise<Profile | undefined> {
+    if (!db) {
+      throw new Error('Not database configured')
+    }
+
+    const docRef = doc(db, USER_PROFILE_DB, userId)
     const docSnap = await getDoc(docRef)
 
     if (docSnap.exists()) {
@@ -29,12 +47,22 @@ export const useUser = () => {
     return undefined
   }
 
-  async function saveProfile(profile: Profile) {
+  async function savePublicProfile(profile: Profile) {
+    if (!db) {
+      throw new Error('Not database configured')
+    }
+    await setDoc(doc(db, USER_PROFILE_DB, profile.uid), {
+      ...profile,
+      uid: profile.uid,
+    })
+  }
+
+  async function saveUser(profile: Profile) {
     if (!db) {
       throw new Error('Not database configured')
     }
     await setDoc(
-      doc(db, 'users', profile.uid),
+      doc(db, USER_DB, profile.uid),
       {
         ...profile,
       },
@@ -68,7 +96,9 @@ export const useUser = () => {
     twitterLogIn,
     githubLogIn,
     logOut,
-    saveProfile,
+    saveUser,
+    savePublicProfile,
     fetchUser,
+    fetchPublicProfile,
   }
 }

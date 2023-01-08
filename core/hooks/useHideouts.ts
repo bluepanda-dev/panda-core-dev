@@ -1,4 +1,4 @@
-import { Hideout } from '@core/types'
+import { Hideout, USER_HIDEOUTS_DB } from '@core/types'
 import { v4 as uuidv4 } from 'uuid'
 import {
   collection,
@@ -32,7 +32,7 @@ export const useHideouts = () => {
     uid: string,
     callback: (data: Hideout) => void,
   ) {
-    const docRef = doc(db, 'hideouts', uid)
+    const docRef = doc(db, USER_HIDEOUTS_DB, uid)
     if (hideoutSub) {
       console.log('unsubscribe hideout')
       hideoutSub()
@@ -58,7 +58,7 @@ export const useHideouts = () => {
       hideoutsSub()
       console.log('onHideouts unsuib', uid)
     }
-    const q = query(collection(db, 'hideouts'), where('owner', '==', uid))
+    const q = query(collection(db, USER_HIDEOUTS_DB), where('owner', '==', uid))
     hideoutsSub = onSnapshot(q, (querySnapshot) => {
       const hideouts: Hideout[] = []
       querySnapshot.forEach((doc) => {
@@ -81,7 +81,7 @@ export const useHideouts = () => {
       throw new Error('Not database configured')
     }
     await setDoc(
-      doc(db, 'hideouts', hideout.uid),
+      doc(db, USER_HIDEOUTS_DB, hideout.uid),
       {
         ...hideout,
       },
@@ -93,9 +93,9 @@ export const useHideouts = () => {
     if (!db) {
       throw new Error('Not database configured')
     }
-    const newRef = await doc(collection(db, 'hideouts'))
+    const newRef = await doc(collection(db, USER_HIDEOUTS_DB))
 
-    await setDoc(doc(db, 'hideouts', newRef.id), {
+    await setDoc(doc(db, USER_HIDEOUTS_DB, newRef.id), {
       ...hideout,
       uid: newRef.id,
     })
