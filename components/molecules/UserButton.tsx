@@ -6,6 +6,8 @@ import { useState } from 'react'
 import Modal from './Modal'
 import { toast } from 'react-toastify'
 import { useUserContext } from '@core/contexts/UserContext'
+import { FiTwitter, FiGithub } from 'react-icons/fi'
+import { ImGoogle } from 'react-icons/im'
 
 export default function UserButton() {
   const { t } = useTranslation('common')
@@ -49,9 +51,17 @@ export default function UserButton() {
   return (
     <>
       <Modal isOpen={isOpen} closeModal={() => setIsOpen(false)} title="Log In">
-        <Button onClick={handleGoogleLogIn}>Google</Button>
-        <Button onClick={handleTwitterLogIn}>Twitter</Button>
-        <Button onClick={handleGitHubLogIn}>GitHub</Button>
+        <div className="mt-4 flex flex-col items-center justify-center">
+          <Button icon={<ImGoogle />} onClick={handleGoogleLogIn}>
+            Google
+          </Button>
+          <Button icon={<FiTwitter />} onClick={handleTwitterLogIn}>
+            Twitter
+          </Button>
+          <Button icon={<FiGithub />} onClick={handleGitHubLogIn}>
+            GitHub
+          </Button>
+        </div>
       </Modal>
       {!profile ? (
         <Button className="w-auto" onClick={() => setIsOpen(true)}>

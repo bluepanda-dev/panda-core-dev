@@ -3,7 +3,7 @@ import { useUser } from '@core/hooks/useUser'
 import { Profile, USER_DB } from '@core/types'
 import { getProfileImage } from '@core/utils/images'
 import { Auth, getAuth, onAuthStateChanged } from 'firebase/auth'
-import { doc, updateDoc } from 'firebase/firestore'
+import { doc, getDoc, updateDoc, setDoc } from 'firebase/firestore'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 type UserContextType = {
@@ -31,6 +31,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const { fetchUser } = useUser()
 
   useEffect(() => {
+    console.log('UserProvider: useEffect')
     setAuth(getAuth(app))
     setLoading(false)
   }, [app])
@@ -38,6 +39,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function setUpUser() {
       if (user) {
+        console.log('user', user)
         setProfile(await fetchUser(user!.uid))
       }
     }
@@ -48,10 +50,39 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     if (auth) {
       onAuthStateChanged(auth, async (userData) => {
         if (userData) {
+          console.log(
+            'UserProvider: onAuthStateChanged: userData',
+            userData.uid,
+          )
           setUser(userData)
-          updateDoc(
-            doc(db, USER_DB, userData.uid),
-            {
+
+          const docRef = doc(db, USER_DB, userData.uid)
+          const docSnap = await getDoc(docRef)
+          console.log('docSnap user exists??? ', docSnap)
+
+          if (docSnap.exists()) {
+            updateDoc(
+              doc(db, USER_DB, userData.uid),
+              {
+                uid: userData.uid,
+                email: userData.email,
+                emailVerified: userData.emailVerified,
+                displayName: userData.displayName,
+                photoURL: getProfileImage(userData),
+                providerData: {
+                  providerId: userData.providerData[0].providerId,
+                },
+                metadata: {
+                  createdAt: (userData.metadata as any).createdAt,
+                  creationTime: userData.metadata.creationTime,
+                  lastSignInTime: userData.metadata.lastSignInTime,
+                  lastLoginAt: (userData.metadata as any).lastLoginAt,
+                },
+              } as any,
+              { merge: true },
+            )
+          } else {
+            setDoc(doc(db, USER_DB, userData.uid), {
               uid: userData.uid,
               email: userData.email,
               emailVerified: userData.emailVerified,
@@ -66,9 +97,8 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
                 lastSignInTime: userData.metadata.lastSignInTime,
                 lastLoginAt: (userData.metadata as any).lastLoginAt,
               },
-            } as any,
-            { merge: true },
-          )
+            })
+          }
         } else {
           setUser(undefined)
         }

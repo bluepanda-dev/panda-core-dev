@@ -23,6 +23,7 @@ export const useUser = () => {
     const docSnap = await getDoc(docRef)
 
     if (docSnap.exists()) {
+      console.log('Document data:', docSnap.data())
       const data = docSnap.data() as Profile
       return data
     }
@@ -40,6 +41,7 @@ export const useUser = () => {
     const docRef = doc(db, USER_PROFILE_DB, userId)
     const docSnap = await getDoc(docRef)
 
+    console.log('docSnap', docSnap)
     if (docSnap.exists()) {
       return docSnap.data() as Profile
     }
