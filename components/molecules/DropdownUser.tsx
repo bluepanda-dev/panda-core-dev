@@ -4,6 +4,7 @@ import { Menu, Transition } from '@headlessui/react'
 import Button from '@components/atoms/Button'
 import { useUser } from '@core/hooks/useUser'
 import Link from 'next/link'
+import { useUserContext } from '@core/contexts/UserContext'
 
 export type DropdownProps = {
   className?: string
@@ -44,22 +45,32 @@ export default function DropdownUser({
   image = '',
 }: DropdownProps) {
   const { logOut } = useUser()
+  const { subscription } = useUserContext()
 
   return (
     <Menu
       as="div"
-      className={`w-16 relative inline-block text-left ${className}`}
+      className={`w-24 relative inline-block text-left ${className}`}
     >
       <Menu.Button
         aria-label="Menu"
         className="flex justify-center items-center h-10  w-full px-1"
       >
         {image && (
-          <img
-            src={image}
-            alt=""
-            className="ring-neutral-100 hover:ring-neutral-50 ring-2 w-8 h-8 rounded-full"
-          />
+          <div className="flex gap-2 items-center">
+            <img
+              src={image}
+              alt=""
+              className="ring-neutral-100 hover:ring-neutral-50 ring-2 w-8 h-8 rounded-full"
+            />
+            {subscription.subscriptionType && (
+              <div>
+                <span className="pb-1 bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
+                  {subscription.subscriptionType}
+                </span>
+              </div>
+            )}
+          </div>
         )}
       </Menu.Button>
       <Transition
@@ -87,12 +98,17 @@ export default function DropdownUser({
                 onClick={() => {}}
               />
             </Link>
+            <Link href="/hideouts-pro">
+              <MenuAction
+                icon={<FiUsers />}
+                text="My Hideouts (Pro)"
+                onClick={() => {}}
+              />
+            </Link>
             <div className="bg-neutral-500 h-px w-full" />
-            <MenuAction
-              icon={<FiLogOut />}
-              text="Log out"
-              onClick={() => logOut()}
-            />
+            <Link href="" onClick={() => logOut()}>
+              <MenuAction icon={<FiLogOut />} text="Log out" />
+            </Link>
             <div className="bg-neutral-500 h-px w-full" />
             <div className="p-4">
               <Button isSpecial={true}>Upgrade!</Button>

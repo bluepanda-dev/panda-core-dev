@@ -318,5 +318,13 @@
         "_image": "/features/cyan.webp"
       }
     ]
+  },
+  "payments": {
+    "successTitle": "Thank You",
+    "successContent": "Payment done successfully",
+    "ctaSuccess": "Go to Dashboard",
+    "errorTitle": "Payment Error",
+    "errorContent": "Something went wrong with your payment.",
+    "ctaError": "Go Home"
   }
 }

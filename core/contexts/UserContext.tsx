@@ -1,6 +1,8 @@
+import { useCustomer } from '@core/hooks/useCustomer'
 import { useFirebase } from '@core/hooks/useFirebase'
 import { useUser } from '@core/hooks/useUser'
 import { Profile, USER_DB } from '@core/types'
+import { Subscription } from '@core/types/customer'
 import { getProfileImage } from '@core/utils/images'
 import { Auth, getAuth, onAuthStateChanged } from 'firebase/auth'
 import { doc, getDoc, updateDoc, setDoc } from 'firebase/firestore'
@@ -13,6 +15,11 @@ type UserContextType = {
   auth?: Auth
   setUser: (user: any) => void
   setProfile: (profile: Profile | undefined) => void
+  subscription: {
+    subscriptionType: string
+    isPremium: boolean
+    activeSubscriptions: Subscription[]
+  }
 }
 
 const UserContext = createContext({} as UserContextType)
@@ -27,6 +34,12 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<any>(undefined)
   const [loading, setLoading] = useState(true)
   const [profile, setProfile] = useState<Profile | undefined>(undefined)
+  const {
+    fetchActiveSubscription,
+    subscriptionType,
+    isPremium,
+    activeSubscriptions,
+  } = useCustomer()
 
   const { fetchUser } = useUser()
 
@@ -39,8 +52,8 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function setUpUser() {
       if (user) {
-        console.log('user', user)
         setProfile(await fetchUser(user!.uid))
+        fetchActiveSubscription(user!.uid)
       }
     }
     setUpUser()
@@ -108,7 +121,19 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <UserContext.Provider
-      value={{ user, profile, auth, setProfile, setUser, loading }}
+      value={{
+        user,
+        profile,
+        auth,
+        setProfile,
+        setUser,
+        loading,
+        subscription: {
+          subscriptionType,
+          isPremium,
+          activeSubscriptions,
+        },
+      }}
     >
       {children}
     </UserContext.Provider>

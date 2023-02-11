@@ -88,6 +88,7 @@ export const useUser = () => {
   }
 
   function logOut() {
+    console.log('logOut')
     signOut(auth!)
     setUser(undefined)
     setProfile(undefined)

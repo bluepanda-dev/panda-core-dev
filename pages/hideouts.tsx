@@ -7,10 +7,11 @@ import { useState, useEffect } from 'react'
 import { useHideouts } from '@core/hooks/useHideouts'
 import Button from '@components/atoms/Button'
 import Link from 'next/link'
+import Plans from '@components/organisms/Plans'
 
 const Hideouts = () => {
   const [hideouts, setHideouts] = useState<Hideout[]>([])
-  const { profile } = useUserContext()
+  const { profile, subscription } = useUserContext()
   const { subscribeHideouts, add } = useHideouts()
 
   function handleAdd() {
@@ -25,8 +26,27 @@ const Hideouts = () => {
     }
   }, [profile])
 
+  console.log('subsss', subscription.activeSubscriptions)
+
   if (!profile) {
     return <Layout>Loading...</Layout>
+  }
+
+  if (!subscription.isPremium) {
+    return (
+      <Layout>
+        <div className="m-24 text-7xl md:text-7xl font-extrabold text-center flex flex-col justify-center">
+          <div className="relative leading-tight md:leading-tight">
+            <span
+              className={`bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-400`}
+            >
+              You need a plan
+            </span>
+          </div>
+        </div>
+        <Plans />
+      </Layout>
+    )
   }
 
   return (
