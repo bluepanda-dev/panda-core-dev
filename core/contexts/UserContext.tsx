@@ -2,7 +2,7 @@ import { useCustomer } from '@core/hooks/useCustomer'
 import { useFirebase } from '@core/hooks/useFirebase'
 import { useUser } from '@core/hooks/useUser'
 import { Profile, USER_DB } from '@core/types'
-import { Subscription } from '@core/types/customer'
+import { Invoice, Subscription } from '@core/types/customer'
 import { getProfileImage } from '@core/utils/images'
 import { Auth, getAuth, onAuthStateChanged } from 'firebase/auth'
 import { doc, getDoc, updateDoc, setDoc } from 'firebase/firestore'
@@ -18,7 +18,10 @@ type UserContextType = {
   subscription: {
     subscriptionType: string
     isPremium: boolean
-    activeSubscriptions: Subscription[]
+    activeSubscription: Subscription | null
+    price: number
+    nextPayment: string
+    invoices: Invoice[]
   }
 }
 
@@ -35,10 +38,13 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true)
   const [profile, setProfile] = useState<Profile | undefined>(undefined)
   const {
-    fetchActiveSubscription,
     subscriptionType,
     isPremium,
-    activeSubscriptions,
+    activeSubscription,
+    price,
+    nextPayment,
+    invoices,
+    fetchCustomerData,
   } = useCustomer()
 
   const { fetchUser } = useUser()
@@ -53,7 +59,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     async function setUpUser() {
       if (user) {
         setProfile(await fetchUser(user!.uid))
-        fetchActiveSubscription(user!.uid)
+        fetchCustomerData(user!.uid)
       }
     }
     setUpUser()
@@ -131,7 +137,10 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         subscription: {
           subscriptionType,
           isPremium,
-          activeSubscriptions,
+          activeSubscription,
+          price,
+          nextPayment,
+          invoices,
         },
       }}
     >

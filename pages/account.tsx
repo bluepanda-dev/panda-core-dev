@@ -3,6 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Container from '@components/atoms/Container'
 import SimpleTabs from '@components/molecules/SimpleTabs'
 import Profile from '@components/organisms/account/Profile'
+import Billing from '@components/organisms/account/Billing'
 import Notifications from '@components/organisms/account/Notifications'
 import { useUserContext } from '@core/contexts/UserContext'
 
@@ -17,7 +18,7 @@ const Account = () => {
   const tabs = {
     'My Profile': <Profile />,
     Notifications: <Notifications />,
-    Purchases: <Container className="h-48" title="Your Tab 2 content" />,
+    Billing: <Billing />,
     Other: <Container className="h-48" title="Your Tab 2 content" />,
   }
 
