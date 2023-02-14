@@ -5,6 +5,7 @@ import { getProfileImage } from '@core/utils/images'
 import { Auth, getAuth, onAuthStateChanged } from 'firebase/auth'
 import { doc, getDoc, updateDoc, setDoc } from 'firebase/firestore'
 import { createContext, useContext, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 type UserContextType = {
   loading: boolean
@@ -23,6 +24,7 @@ export function useUserContext() {
 
 export function UserProvider({ children }: { children: React.ReactNode }) {
   const { db, app } = useFirebase()
+  const { i18n } = useTranslation()
   const [auth, setAuth] = useState<Auth | undefined>(undefined)
   const [user, setUser] = useState<any>(undefined)
   const [loading, setLoading] = useState(true)
@@ -31,7 +33,6 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const { fetchUser } = useUser()
 
   useEffect(() => {
-    console.log('UserProvider: useEffect')
     setAuth(getAuth(app))
     setLoading(false)
   }, [app])
@@ -39,8 +40,10 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function setUpUser() {
       if (user) {
-        console.log('user', user)
-        setProfile(await fetchUser(user!.uid))
+        setTimeout(async () => {
+          const fetchedProfile = await fetchUser(user.uid)
+          setProfile(fetchedProfile)
+        }, 1000)
       }
     }
     setUpUser()
@@ -50,15 +53,10 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     if (auth) {
       onAuthStateChanged(auth, async (userData) => {
         if (userData) {
-          console.log(
-            'UserProvider: onAuthStateChanged: userData',
-            userData.uid,
-          )
           setUser(userData)
 
           const docRef = doc(db, USER_DB, userData.uid)
           const docSnap = await getDoc(docRef)
-          console.log('docSnap user exists??? ', docSnap)
 
           if (docSnap.exists()) {
             updateDoc(
@@ -67,7 +65,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
                 uid: userData.uid,
                 email: userData.email,
                 emailVerified: userData.emailVerified,
-                displayName: userData.displayName,
+                firstName: userData.displayName?.split(' ')[0],
                 photoURL: getProfileImage(userData),
                 providerData: {
                   providerId: userData.providerData[0].providerId,
@@ -78,6 +76,10 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
                   lastSignInTime: userData.metadata.lastSignInTime,
                   lastLoginAt: (userData.metadata as any).lastLoginAt,
                 },
+                language: i18n.language,
+                lastLogIn: new Intl.DateTimeFormat('en-US').format(
+                  new Date(Number((userData.metadata as any).lastLoginAt)),
+                ),
               } as any,
               { merge: true },
             )
@@ -87,6 +89,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
               email: userData.email,
               emailVerified: userData.emailVerified,
               displayName: userData.displayName,
+              firstName: userData.displayName?.split(' ')[0],
               photoURL: getProfileImage(userData),
               providerData: {
                 providerId: userData.providerData[0].providerId,
@@ -97,6 +100,13 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
                 lastSignInTime: userData.metadata.lastSignInTime,
                 lastLoginAt: (userData.metadata as any).lastLoginAt,
               },
+              language: i18n.language,
+              lastLogIn: new Intl.DateTimeFormat('en-US').format(
+                new Date(Number((userData.metadata as any).lastLoginAt)),
+              ),
+              created: new Intl.DateTimeFormat('en-US').format(
+                new Date(Number((userData.metadata as any).createdAt)),
+              ),
             })
           }
         } else {

@@ -92,7 +92,6 @@ const Hideout = () => {
               ),
           })
         } else {
-          console.log('new user', profile)
           update({
             ...hideout!,
             activeUsers: [
@@ -117,7 +116,6 @@ const Hideout = () => {
     async function setupHideout() {
       if (!loading && uid) {
         subscribeHideout(uid as string, (data: Hideout) => {
-          console.log('hideout', data)
           setHideout(data)
           if (data.sharableContent) {
             const newIdeas = JSON.parse(data.sharableContent).map(
@@ -125,8 +123,6 @@ const Hideout = () => {
                 const owner = data.activeUsers?.find(
                   (user) => user.uid === idea.owner,
                 )
-
-                console.log('owner', owner, idea.owner, data.activeUsers)
 
                 return {
                   ...idea,

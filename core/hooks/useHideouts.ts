@@ -34,12 +34,9 @@ export const useHideouts = () => {
   ) {
     const docRef = doc(db, USER_HIDEOUTS_DB, uid)
     if (hideoutSub) {
-      console.log('unsubscribe hideout')
       hideoutSub()
     }
-    console.log('subscribe hideout')
     hideoutSub = onSnapshot(docRef, (doc) => {
-      console.log('Current data: ', doc.data())
       callback(doc.data() as Hideout)
     })
 
@@ -56,7 +53,6 @@ export const useHideouts = () => {
   ) {
     if (hideoutsSub) {
       hideoutsSub()
-      console.log('onHideouts unsuib', uid)
     }
     const q = query(collection(db, USER_HIDEOUTS_DB), where('owner', '==', uid))
     hideoutsSub = onSnapshot(q, (querySnapshot) => {
@@ -64,7 +60,6 @@ export const useHideouts = () => {
       querySnapshot.forEach((doc) => {
         hideouts.push(doc.data() as Hideout)
       })
-      console.log('onHideouts', hideouts)
       callback(hideouts)
     })
 
