@@ -36,25 +36,25 @@ export default function NavBar() {
 
   const lanOptions = [
     {
-      label: t('lanOptions.en'),
+      label: `🇺🇸 ${t('lanOptions.en')}`,
       onClick: () => {
         router.push('/', '', { locale: 'en' })
       },
     },
     {
-      label: t('lanOptions.es'),
+      label: `🇪🇸 ${t('lanOptions.es')}`,
       onClick: () => {
         router.push('/', '', { locale: 'es' })
       },
     },
     {
-      label: t('lanOptions.de'),
+      label: `🇩🇪 ${t('lanOptions.de')}`,
       onClick: () => {
         router.push('/', '', { locale: 'de' })
       },
     },
     {
-      label: t('lanOptions.jp'),
+      label: `🇯🇵 ${t('lanOptions.jp')}`,
       onClick: () => {
         router.push('/', '', { locale: 'jp' })
       },
@@ -68,6 +68,19 @@ export default function NavBar() {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
+
+  function flag() {
+    switch (i18n.language) {
+      case 'en':
+        return '🇺🇸'
+      case 'es':
+        return '🇪🇸'
+      case 'de':
+        return '🇩🇪'
+      case 'jp':
+        return '🇯🇵'
+    }
+  }
 
   return (
     <>
@@ -90,12 +103,11 @@ export default function NavBar() {
         </div>
         <div className="items-center gap-2 hidden md:flex">
           <Dropdown options={AccountOptions} title={t('settings') ?? ''} />
-          <Dropdown options={lanOptions} title={i18n.language} />
+          <Dropdown options={lanOptions} title={flag()} />
           <UserButton />
         </div>
         <div className="grow justify-end flex items-center gap-2 md:hidden">
-          <Dropdown options={AccountOptions} icon={<FiMenu />} />
-          <Dropdown options={lanOptions} title={i18n.language} />
+          <Dropdown options={lanOptions} title={flag()} />
           <UserButton />
         </div>
       </nav>

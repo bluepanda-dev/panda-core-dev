@@ -11,6 +11,7 @@ import SimpleTabs from '@components/molecules/SimpleTabs'
 import SidePanel from './SidePanel'
 import { useTranslation } from 'next-i18next'
 import Accordion from './Accordion'
+import LoadingModal from '@components/molecules/LoadingModal'
 
 type ComponentsSampleProps = {
   className?: string
@@ -106,6 +107,7 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [isSideOpen, setIsSideOpen] = useState(false)
   const [side, setSide] = useState<'left' | 'right'>('left')
+  const [loading, setLoading] = useState(false)
 
   const AccountOptions = [
     {
@@ -166,10 +168,21 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
         setActiveComponent('tabs-v')
       },
     },
+    {
+      label: 'General Loading',
+      icon: <FiMenu />,
+      onClick: () => {
+        setLoading(true)
+        setTimeout(() => {
+          setLoading(false)
+        }, 5000)
+      },
+    },
   ]
 
   return (
     <div className={`relative ${className}`}>
+      <LoadingModal loading={loading} />
       <Modal isOpen={isOpen} closeModal={() => setIsOpen(false)} title="Title">
         <Container className="h-48" />
       </Modal>
