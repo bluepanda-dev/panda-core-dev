@@ -5,9 +5,12 @@ import SimpleTabs from '@components/molecules/SimpleTabs'
 import Profile from '@components/organisms/account/Profile'
 import Notifications from '@components/organisms/account/Notifications'
 import { useUserContext } from '@core/contexts/UserContext'
+import useBreakpoint from '@core/hooks/useBreakpoint'
+import { breakpointsWidths } from '@core/utils/breakpoints'
 
 const Account = () => {
   const { profile } = useUserContext()
+  const { windowSize } = useBreakpoint()
 
   // Server-render loading state
   if (!profile) {
@@ -26,8 +29,11 @@ const Account = () => {
     <Layout>
       <div className="mx-8 my-16 h-full">
         <div className="text-center text-4xl font-bold">My Profile</div>
-        <div className="ml-8 mt-8">
-          <SimpleTabs tabs={tabs} isVertical={true} />
+        <div className="ml-8 mt-8 flex justify-center">
+          <SimpleTabs
+            tabs={tabs}
+            isVertical={breakpointsWidths[2] < windowSize.width}
+          />
         </div>
       </div>
     </Layout>

@@ -25,7 +25,6 @@ const useBreakpoint = () => {
     handleResize()
 
     if (windowSize.width) {
-      console.log('breakpoints:', breakpoints, Object.keys(breakpoints))
       const bp = Object.keys(breakpoints)
         .map((b) => Number(b))
         .concat()
@@ -37,7 +36,7 @@ const useBreakpoint = () => {
     return () => window.removeEventListener('resize', handleResize)
   }, [windowSize.width])
 
-  return { breakpoint }
+  return { breakpoint, windowSize }
 }
 
 export default useBreakpoint
