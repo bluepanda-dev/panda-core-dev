@@ -1,7 +1,6 @@
 import { Tab } from '@headlessui/react'
 
 type SimpleTabProps = {
-  className?: string
   isVertical?: boolean
   tabs: { [key: string]: React.ReactNode }
 }
@@ -9,10 +8,9 @@ type SimpleTabProps = {
 export default function SimpleTabs({
   tabs,
   isVertical = false,
-  className = '',
 }: SimpleTabProps) {
   return (
-    <div className={`w-full md px-2 ${isVertical ? 'flex' : ''}`}>
+    <div className={`w-full px-2 ${isVertical ? 'flex' : ''}`}>
       <Tab.Group>
         <Tab.List
           className={`flex flex-wrap space-x-1 p-1 ${
@@ -35,7 +33,7 @@ export default function SimpleTabs({
             </Tab>
           ))}
         </Tab.List>
-        <Tab.Panels className="mt-2 grow h-full">
+        <Tab.Panels className="ml-0 md:ml-4 mt-4 md:mt-0 grow h-full">
           {Object.values(tabs).map((tab, idx) => (
             <Tab.Panel
               key={idx}

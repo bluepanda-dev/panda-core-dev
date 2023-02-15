@@ -26,10 +26,10 @@ const Account = () => {
 
   // Once the user request finishes, show the user
   return (
-    <Layout>
-      <div className="mx-8 my-16 h-full">
+    <Layout className="flex justify-center">
+      <div className="md:mx-8 my-16 h-full max-w-2xl w-full">
         <div className="text-center text-4xl font-bold">My Profile</div>
-        <div className="ml-8 mt-8 flex justify-center">
+        <div className="mt-8 flex justify-center">
           <SimpleTabs
             tabs={tabs}
             isVertical={breakpointsWidths[2] < windowSize.width}

@@ -62,7 +62,7 @@ export default function Profile() {
   }
 
   return (
-    <div className="relative max-w-2xl">
+    <div className="relative">
       <div>
         <div className="form-group mb-6">
           <img
