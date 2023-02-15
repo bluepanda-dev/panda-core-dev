@@ -26,8 +26,6 @@ const Hideouts = () => {
     }
   }, [profile])
 
-  console.log('subsss', subscription.activeSubscriptions)
-
   if (!profile) {
     return <Layout>Loading...</Layout>
   }
