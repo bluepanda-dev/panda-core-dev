@@ -74,7 +74,9 @@ export default function Billing() {
           {subscription.invoices.map((invoice) => (
             <div key={invoice.id} className="grid grid-cols-4 gap-4">
               <div>${invoice.amount / 100}</div>
-              <div>{dayjs.unix(invoice.created).format('DD/MM/YYYY')}</div>
+              <div>
+                {dayjs.unix(Number(invoice.created)).format('DD/MM/YYYY')}
+              </div>
               <div>{invoice.status}</div>
               <div>
                 <a
