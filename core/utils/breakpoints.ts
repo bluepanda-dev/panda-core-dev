@@ -1,10 +1,12 @@
 export type BreakPoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 
+export const breakpointsWidths = [0, 640, 768, 1024, 1280, 1536]
+
 export const breakpoints: Record<number, BreakPoint> = {
-  0: 'xs',
-  640: 'sm',
-  768: 'md',
-  1024: 'lg',
-  1280: 'xl',
-  1536: '2xl',
+  [breakpointsWidths[0]]: 'xs',
+  [breakpointsWidths[1]]: 'sm',
+  [breakpointsWidths[2]]: 'md',
+  [breakpointsWidths[3]]: 'lg',
+  [breakpointsWidths[4]]: 'xl',
+  [breakpointsWidths[5]]: '2xl',
 }
