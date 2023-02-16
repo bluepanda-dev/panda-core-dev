@@ -25,7 +25,7 @@ export default function Dropdown({
     <Menu as="div" className={`relative inline-block text-left ${className}`}>
       <Menu.Button
         aria-label="Menu"
-        className="h-10 hover:bg-neutral-100 dark:hover:bg-normal-700 inline-flex w-full justify-center items-center rounded-sm px-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75"
+        className="ui-selectable transition ease-in-out h-10 inline-flex w-full justify-center items-center rounded-sm px-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75"
       >
         {title && <span className="text-lg">{title}</span>}
         {icon ? (
@@ -46,7 +46,7 @@ export default function Dropdown({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute z-10 bg-primary-50 dark:bg-normal-900 right-0 mt-2 w-56 origin-top-right shadow-lg rounded-md border">
+        <Menu.Items className="ui-border-group bg-primary-50 dark:bg-normal-900 absolute z-10 right-0 mt-2 w-56 origin-top-right shadow-lg rounded-md ">
           {options.map((option, index) => (
             <Menu.Item key={index}>
               {({ active }) => {
@@ -59,8 +59,8 @@ export default function Dropdown({
                     className={`cursor-pointer flex w-full rounded-md items-center px-2 py-2 text-sm gap-2
                     ${
                       active
-                        ? 'bg-primary-600 text-white dark:bg-primary-900'
-                        : ''
+                        ? 'ui-hoverable'
+                        : 'text-normal-900 dark:text-normal-200'
                     }
                   `}
                   >
