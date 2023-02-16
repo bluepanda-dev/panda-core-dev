@@ -15,7 +15,7 @@ export default function SimpleTabs({
     <div className={`w-full md px-2 ${isVertical ? 'flex' : ''}`}>
       <Tab.Group>
         <Tab.List
-          className={`flex flex-wrap space-x-1 p-1 ${
+          className={`flex flex-wrap space-x-1 p-1 gap-1 ${
             isVertical ? 'flex-col' : ''
           } `}
         >
@@ -23,7 +23,7 @@ export default function SimpleTabs({
             <Tab
               key={tab}
               className={({ selected }) =>
-                `min-w-[10em] py-2 px-2 text-sm font-medium leading-5 hover:!text-primary-500
+                `!ml-0 min-w-[10em] p-2 text-sm font-medium leading-5 ui-hoverable 
                   ${
                     selected
                       ? 'text-primary-600 dark:text-primary-600 bg-neutral-100  dark:bg-normal-700'
