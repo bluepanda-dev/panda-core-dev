@@ -15,7 +15,7 @@ export default function Container({
 
   return (
     <div
-      className={`text-neutral-200 dark:text-neutral-400  border-neutral-200 dark:border-neutral-900 text-center border-dashed border-4 rounded-md flex items-center justify-center ${className}`}
+      className={`border-neutral-200 dark:border-neutral-900 text-center border-dashed border-4 rounded-md flex items-center justify-center ${className}`}
     >
       {children ? children : <span>{title ?? t('content')}</span>}
     </div>

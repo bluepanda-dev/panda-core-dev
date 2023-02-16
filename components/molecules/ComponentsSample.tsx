@@ -12,6 +12,8 @@ import SidePanel from './SidePanel'
 import { useTranslation } from 'next-i18next'
 import Accordion from './Accordion'
 import LoadingModal from '@components/molecules/LoadingModal'
+import Panel from '@components/molecules/Panel'
+import Button from '@components/atoms/Button'
 
 type ComponentsSampleProps = {
   className?: string
@@ -101,9 +103,7 @@ const AccordionSample = () => {
 
 export default function ComponentsSample({ className }: ComponentsSampleProps) {
   const { t } = useTranslation()
-  const [activeComponent, setActiveComponent] = useState<
-    'radio' | 'accordion' | 'tabs' | 'tabs-v'
-  >()
+  const [activeComponent, setActiveComponent] = useState('')
   const [isOpen, setIsOpen] = useState(false)
   const [isSideOpen, setIsSideOpen] = useState(false)
   const [side, setSide] = useState<'left' | 'right'>('left')
@@ -178,6 +178,13 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
         }, 5000)
       },
     },
+    {
+      label: 'Panel',
+      icon: <FiMenu />,
+      onClick: () => {
+        setActiveComponent('panel')
+      },
+    },
   ]
 
   return (
@@ -204,6 +211,41 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
           ((activeComponent === 'radio' && <RadioSample />) ||
             (activeComponent === 'accordion' && <AccordionSample />) ||
             (activeComponent === 'tabs-v' && <TabsSampleVertical />) ||
+            (activeComponent === 'panel' && (
+              <div className="flex flex-col w-4/5 gap-4">
+                <Panel
+                  title="Panel Title"
+                  description="Panel Description"
+                  hints={
+                    <span className="justify-self-start">Some hints......</span>
+                  }
+                  footer={
+                    <>
+                      <Button className="w-32">Cancel</Button>
+                      <Button isInverted={true} className="w-32">
+                        Save
+                      </Button>
+                    </>
+                  }
+                ></Panel>
+                <Panel
+                  title="Panel Title"
+                  description="Panel with danger type"
+                  hints={
+                    <span className="justify-self-start">Some hints......</span>
+                  }
+                  type="danger"
+                  footer={
+                    <>
+                      <Button className="w-32">Cancel</Button>
+                      <Button isInverted={true} className="w-32">
+                        Save
+                      </Button>
+                    </>
+                  }
+                ></Panel>
+              </div>
+            )) ||
             (activeComponent === 'tabs' && <TabsSample />))}
       </Container>
     </div>

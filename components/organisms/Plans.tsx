@@ -29,12 +29,12 @@ export const PlanCard = ({ price }: { price: Price }) => {
             ? `${price.unit_amount / 100} ${price.currency}`
             : price.stripe_metadata_type}
         </div>
-        <div className="text-neutral-100 text-md text-left">
+        <div className="text-md text-left">
           <ul>
             {features.map((item, index) => (
               <li key={index} className="flex items-center gap-2 md:py-1">
                 <FiCheckCircle className="text-success-500" />
-                <span className="text-neutral-300">{item}</span>
+                <span>{item}</span>
               </li>
             ))}
           </ul>
