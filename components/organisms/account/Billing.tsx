@@ -2,6 +2,7 @@ import { useUserContext } from '@core/contexts/UserContext'
 import { toast } from 'react-toastify'
 import * as dayjs from 'dayjs'
 import Button from '@components/atoms/Button'
+import Panel from '@components/molecules/Panel'
 import { useState } from 'react'
 import { useCustomer } from '@core/hooks/useCustomer'
 
@@ -45,10 +46,7 @@ export default function Billing() {
   return (
     <div className="relative max-w-2xl flex flex-col gap-8">
       <div>
-        <div className="flex items-center gap-4 mb-4 font-semibold dark:text-neutral-50 text-neutral-900">
-          Plan
-        </div>
-        <div className="">
+        <Panel title="Plan" description="">
           Your are on the
           <span
             className={`mx-2 pb-1 bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300
@@ -64,49 +62,50 @@ export default function Billing() {
           plan.
           {!!subscription.price &&
             `The next payment of $${subscription.price} will occur on ${subscription.nextPayment} `}
-        </div>
+        </Panel>
       </div>
       <div>
-        <div className="flex items-center gap-4 mb-4 font-semibold dark:text-neutral-50 text-neutral-900">
-          Receips
-        </div>
-        <div className="flex flex-col gap-4">
-          {subscription.invoices.map((invoice) => (
-            <div key={invoice.id} className="grid grid-cols-4 gap-4">
-              <div>${invoice.amount / 100}</div>
-              <div>
-                {dayjs.unix(Number(invoice.created)).format('DD/MM/YYYY')}
+        <Panel title="Receips" description="">
+          <div className="flex flex-col gap-4">
+            {subscription.invoices.map((invoice) => (
+              <div key={invoice.id} className="grid grid-cols-4 gap-4">
+                <div>${invoice.amount / 100}</div>
+                <div>
+                  {dayjs.unix(Number(invoice.created)).format('DD/MM/YYYY')}
+                </div>
+                <div>{invoice.status}</div>
+                <div>
+                  <a
+                    className="cursor-pointer text-primary-500 hover:text-primary-400"
+                    onClick={() =>
+                      downloadPDF(invoice.charges.data[0].receipt_url)
+                    }
+                  >
+                    download
+                  </a>
+                </div>
               </div>
-              <div>{invoice.status}</div>
-              <div>
-                <a
-                  className="cursor-pointer text-primary-500 hover:text-primary-400"
-                  onClick={() =>
-                    downloadPDF(invoice.charges.data[0].receipt_url)
-                  }
-                >
-                  download
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </Panel>
       </div>
       {subscription.activeSubscription?.uid && (
         <div>
-          <div className="flex items-center gap-4 mb-4 font-semibold text-red-500">
-            Danger Zone
-          </div>
-          <div className="flex flex-col gap-4">
-            <Button
-              isSpecial
-              onClick={handleCancel}
-              loading={loading}
-              className="disabled w-56 bg-red-500 hover:!bg-red-400"
-            >
-              Cancel Subscription
-            </Button>
-          </div>
+          <Panel
+            title="Danger Zone"
+            description="You will be unable to use the system after cancelling the subscription"
+            type="danger"
+            footer={
+              <Button
+                onClick={handleCancel}
+                loading={loading}
+                className="disabled w-48 text-neutral-100 bg-red-500 hover:!bg-red-400"
+                isSmall={true}
+              >
+                Cancel Subscription
+              </Button>
+            }
+          ></Panel>
         </div>
       )}
     </div>
