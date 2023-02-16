@@ -17,12 +17,12 @@ const PlanCard = ({ plan }: { plan: PlanCard }) => {
           {plan.title}
         </div>
         <div className="text-3xl font-bold">{plan.price}</div>
-        <div className="text-neutral-100 text-md text-left">
+        <div className="text-md text-left">
           <ul>
             {plan.features.map((item, index) => (
               <li key={index} className="flex items-center gap-2 md:py-1">
                 <FiCheckCircle className="text-success-500" />
-                <span className="text-neutral-300">{item}</span>
+                <span>{item}</span>
               </li>
             ))}
           </ul>
@@ -30,7 +30,7 @@ const PlanCard = ({ plan }: { plan: PlanCard }) => {
         <div className="absolute right-4 bottom-10 lg:bottom-4">
           <Button isSpecial={true}>{plans.cta}</Button>
         </div>
-        <div className="absolute right-4 lg:left-6 bottom-2 lg:bottom-28 text-neutral-300">
+        <div className="absolute right-4 lg:left-6 bottom-2 lg:bottom-28">
           {plan.details}
         </div>
       </div>

@@ -25,9 +25,7 @@ const MenuAction = ({
         {({ active }) => (
           <div
             className={`${
-              active
-                ? 'bg-primary-600 text-white dark:bg-primary-900'
-                : 'dark:text-neutral-400'
+              active ? 'ui-hoverable' : 'text-normal-900 dark:text-normal-200'
             } group flex w-full items-center px-4 py-2 text-sm gap-x-2 cursor-pointer`}
           >
             {icon}
