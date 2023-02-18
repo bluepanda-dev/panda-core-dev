@@ -6,18 +6,24 @@ import { FiChevronRight } from 'react-icons/fi'
 import Modal from '@components/molecules/Modal'
 import { useState } from 'react'
 import Container from '@components/atoms/Container'
+import { usePayments } from '@core/hooks/usePayments'
+import { Price } from '@core/types/payments'
 
 const Product = ({
   product,
+  price,
   onBuy,
 }: {
   product: ProductCard
-  onBuy: (product: ProductCard) => void
+  price: Price | null
+  onBuy: (product: ProductCard, price: Price) => void
 }) => {
   const { products } = useDataPages()
 
-  function handleBuy(product: ProductCard) {
-    onBuy(product)
+  function handleBuy(product: ProductCard, price: Price) {
+    if (price) {
+      onBuy(product, price)
+    }
   }
 
   return (
@@ -45,13 +51,15 @@ const Product = ({
           </ul>
         </div>
         <div className="p-6">
-          <Button
-            onClick={() => handleBuy(product)}
-            isSpecial={true}
-            loading={false}
-          >
-            {products.texts!.buyNow}
-          </Button>
+          {price && (
+            <Button
+              onClick={() => handleBuy(product, price)}
+              isSpecial={true}
+              loading={false}
+            >
+              {products.texts!.buyNow}
+            </Button>
+          )}
         </div>
       </div>
     </div>
@@ -61,11 +69,25 @@ const Product = ({
 export default function Products() {
   const [isOpen, setIsOpen] = useState(false)
   const [product, setProduct] = useState<ProductCard | null>(null)
+  const [price, setPrice] = useState<Price | null>(null)
   const { products } = useDataPages()
+  const { products: productList } = usePayments()
 
-  function handleBuy(product: ProductCard) {
+  console.log('list:>>> ', productList)
+
+  function handleBuy(product: ProductCard, price: Price) {
     setProduct(product)
+    setPrice(price)
     setIsOpen(true)
+  }
+
+  function obtainPriceByName(name: string) {
+    const found = productList.find((product) => product.name === name)
+    console.log('found:>>> ', found)
+    if (found?.prices) {
+      return found.prices[0]
+    }
+    return null
   }
 
   return (
@@ -74,7 +96,12 @@ export default function Products() {
       <div className="pt-24 w-full flex justify-center">
         <div className="w-full grid px-2 md:px-0 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center max-w-5xl">
           {products.list!.map((product, index) => (
-            <Product key={index} product={product} onBuy={handleBuy} />
+            <Product
+              key={index}
+              product={product}
+              onBuy={handleBuy}
+              price={obtainPriceByName(product.title)}
+            />
           ))}
         </div>
       </div>

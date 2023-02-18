@@ -16,15 +16,48 @@ export const usePayments = () => {
   const { profile } = useUserContext()
 
   const [planProduct, setPlanProduct] = useState<Product | null>(null)
+  const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(false)
+
+  async function fetchProducts() {
+    const q = query(
+      collection(db, PRODUCTS_DB),
+      where('active', '==', true),
+      where('role', '==', null),
+    )
+    const items = []
+    const querySnapshot = await getDocs(q)
+    for (const doc of querySnapshot.docs) {
+      const product = doc.data() as Product
+
+      const prices: Price[] = []
+
+      const subQuery = query(
+        collection(db, PRODUCTS_DB, doc.id, 'prices'),
+        where('active', '==', true),
+      )
+
+      const subcollectionSnapshot = await getDocs(subQuery)
+
+      subcollectionSnapshot.forEach((doc) => {
+        const price = doc.data() as Price
+        price.guid = doc.id
+        prices.push(price)
+      })
+
+      product.prices = prices
+
+      items.push(product)
+    }
+    setProducts([...items])
+  }
 
   async function fetchPlans() {
     const q = query(
       collection(db, PRODUCTS_DB),
       where('active', '==', true),
-      where('metadata.type', '==', 'plans'),
+      where('metadata.type', '!=', 'plans'),
     )
-    const products: Product[] = []
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach(async (doc) => {
       const prices: Price[] = []
@@ -76,10 +109,12 @@ export const usePayments = () => {
 
   useEffect(() => {
     fetchPlans()
+    fetchProducts()
   }, [])
 
   return {
     planProduct,
+    products,
     startSubscription,
     loading,
   }
