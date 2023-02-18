@@ -209,8 +209,8 @@ const Hideout = () => {
               {idea.text}
               <div className="absolute bottom-1 right-1">
                 <ProfilePic
-                  photoURL={idea.owner.photoURL}
-                  alt={idea.owner.displayName}
+                  photoURL={idea.owner?.photoURL}
+                  alt={idea.owner?.displayName}
                 />
               </div>
             </div>
