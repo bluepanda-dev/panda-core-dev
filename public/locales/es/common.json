@@ -9,6 +9,17 @@
     "es": "Espanol",
     "de": "Aleman"
   },
+  "buyNow": "Compra ahora",
+  "codeExample": {
+    "title": "Tu Ejemplo De Código"
+  },
+  "alertBanner": {
+    "id": "example-msg",
+    "message": "Mensaje de banner"
+  },
+  "showVideo": {
+    "title": "Fácil de extender y customizar"
+  },
   "hero": {
     "first": "Usa",
     "second": "Desarrolla",
