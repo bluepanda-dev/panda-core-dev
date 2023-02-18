@@ -56,10 +56,11 @@ export const usePayments = () => {
     const q = query(
       collection(db, PRODUCTS_DB),
       where('active', '==', true),
-      where('metadata.type', '!=', 'plans'),
+      where('metadata.type', '==', 'plans'),
     )
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach(async (doc) => {
+      console.log(doc.id, '=>', doc.data())
       const prices: Price[] = []
 
       const subQuery = query(
