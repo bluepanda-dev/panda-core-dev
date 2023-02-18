@@ -71,9 +71,7 @@ export default function Products() {
   const [product, setProduct] = useState<ProductCard | null>(null)
   const [price, setPrice] = useState<Price | null>(null)
   const { products } = useDataPages()
-  const { products: productList } = usePayments()
-
-  console.log('list:>>> ', productList)
+  const { products: productList, singlePayment, loading } = usePayments()
 
   function handleBuy(product: ProductCard, price: Price) {
     setProduct(product)
@@ -83,11 +81,14 @@ export default function Products() {
 
   function obtainPriceByName(name: string) {
     const found = productList.find((product) => product.name === name)
-    console.log('found:>>> ', found)
     if (found?.prices) {
       return found.prices[0]
     }
     return null
+  }
+
+  function handleBuyNow() {
+    singlePayment(price!)
   }
 
   return (
@@ -124,7 +125,8 @@ export default function Products() {
         <Button
           className="w-auto absolute bottom-3 right-3 !h-10"
           isSpecial={true}
-          onClick={() => setIsOpen(false)}
+          onClick={handleBuyNow}
+          loading={loading}
         >
           {products.texts!.buyNow}
         </Button>

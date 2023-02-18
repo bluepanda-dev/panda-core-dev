@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react'
-import { FiLogOut, FiSettings, FiUsers } from 'react-icons/fi'
+import { FiLogOut, FiSettings, FiUsers, FiShoppingBag } from 'react-icons/fi'
 import { Menu, Transition } from '@headlessui/react'
 import Button from '@components/atoms/Button'
 import { useUser } from '@core/hooks/useUser'
 import Link from 'next/link'
-import { useUserContext } from '@core/contexts/UserContext'
+import { useCustomerContext } from '@core/contexts/CustomerContext'
 
 export type DropdownProps = {
   className?: string
@@ -43,7 +43,7 @@ export default function DropdownUser({
   image = '',
 }: DropdownProps) {
   const { logOut } = useUser()
-  const { subscription } = useUserContext()
+  const { subscriptionType } = useCustomerContext()
 
   return (
     <Menu
@@ -61,18 +61,18 @@ export default function DropdownUser({
               alt=""
               className="ring-neutral-100 hover:ring-neutral-50 ring-2 w-8 h-8 rounded-full"
             />
-            {subscription.subscriptionType && (
+            {subscriptionType && (
               <div>
                 <span
                   className={`pb-1 bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300
                     ${
-                      subscription.subscriptionType === 'plus'
+                      subscriptionType === 'plus'
                         ? '!bg-primary-500 !text-primary-100'
                         : ''
                     }
                   `}
                 >
-                  {subscription.subscriptionType}
+                  {subscriptionType}
                 </span>
               </div>
             )}
@@ -101,6 +101,13 @@ export default function DropdownUser({
               <MenuAction
                 icon={<FiUsers />}
                 text="My Hideouts"
+                onClick={() => {}}
+              />
+            </Link>
+            <Link href="/orders">
+              <MenuAction
+                icon={<FiShoppingBag />}
+                text="My Orders"
                 onClick={() => {}}
               />
             </Link>

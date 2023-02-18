@@ -46,3 +46,14 @@ export type Invoice = {
   created: string
   charges: { data: { receipt_url: string }[] }
 }
+
+export type Order = {
+  id: string
+  amount: number
+  capture_method: string
+  description: string
+  status: string
+  created: string
+  charges: { data: { receipt_url: string }[] }
+  items: { description: string; price: Price }[]
+}

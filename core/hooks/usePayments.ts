@@ -108,6 +108,33 @@ export const usePayments = () => {
     })
   }
 
+  async function singlePayment(price: Price) {
+    setLoading(true)
+    const docRef = collection(
+      db,
+      'fe-customers',
+      profile!.uid,
+      'checkout_sessions',
+    )
+    const docR = await addDoc(docRef, {
+      mode: 'payment',
+      price: price.guid,
+      success_url: `${window.location.origin}/payment/success`,
+      cancel_url: `${window.location.origin}/payment/failure`,
+    })
+
+    onSnapshot(docR, (snap: any) => {
+      const { error, url } = snap.data()
+      if (error) {
+        alert(`An error occured: ${error.message}`)
+        setLoading(false)
+      }
+      if (url) {
+        window.location.assign(url)
+      }
+    })
+  }
+
   useEffect(() => {
     fetchPlans()
     fetchProducts()
@@ -117,6 +144,7 @@ export const usePayments = () => {
     planProduct,
     products,
     startSubscription,
+    singlePayment,
     loading,
   }
 }

@@ -1,5 +1,10 @@
 import { useFirebase } from './useFirebase'
-import { CUSTOMERS_DB, Invoice, Subscription } from '@core/types/customer'
+import {
+  CUSTOMERS_DB,
+  Invoice,
+  Order,
+  Subscription,
+} from '@core/types/customer'
 import {
   query,
   collection,
@@ -7,6 +12,7 @@ import {
   doc,
   setDoc,
   onSnapshot,
+  where,
 } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { useUserContext } from '@core/contexts/UserContext'
@@ -19,6 +25,7 @@ export const useCustomer = () => {
   const [price, setPrice] = useState(0)
   const [nextPayment, setNextPayment] = useState('')
   const [invoices, setInvoices] = useState<Invoice[]>([])
+  const [orders, setOrders] = useState<Order[]>([])
 
   const [activeSubscription, setActiveSubscription] =
     useState<Subscription | null>(null)
@@ -27,7 +34,6 @@ export const useCustomer = () => {
     subscriptionId: string,
     cb: (result: { canceled: boolean; error: string }) => void,
   ) {
-    console.log('cancel subscription', subscriptionId, user.uid)
     const docRef = doc(
       db,
       CUSTOMERS_DB,
@@ -41,7 +47,6 @@ export const useCustomer = () => {
 
     onSnapshot(docRef, (snap: any) => {
       const { error, canceled } = snap.data() as any
-      console.log('cancel subscription', error, canceled)
       if (error || canceled) {
         cb({ error: error?.message, canceled })
       }
@@ -52,9 +57,27 @@ export const useCustomer = () => {
     setInvoices([])
     const q = query(collection(db, CUSTOMERS_DB, uid, 'payments'))
     const querySnapshot = await getDocs(q)
-    console.log('querySnapshot', querySnapshot)
     setInvoices(
       querySnapshot.docs.map((doc) => doc.data() as Invoice).reverse(),
+    )
+  }
+
+  async function fetchOrders(uid: string) {
+    setOrders([])
+    const q = query(
+      collection(db, CUSTOMERS_DB, uid, 'payments'),
+      where('status', '==', 'succeeded'),
+    )
+    const querySnapshot = await getDocs(q)
+    console.log('order docs', querySnapshot.docs)
+    setOrders(
+      querySnapshot.docs
+        .filter(
+          (doc) =>
+            (doc.data() as Order).items &&
+            (doc.data() as Order).items[0]?.price.type === 'one_time',
+        )
+        .map((doc) => doc.data() as Order),
     )
   }
 
@@ -79,6 +102,7 @@ export const useCustomer = () => {
   async function fetchCustomerData(uid: string) {
     await fetchInvoices(uid)
     await fetchActiveSubscription(uid)
+    await fetchOrders(uid)
   }
 
   useEffect(() => {
@@ -93,7 +117,6 @@ export const useCustomer = () => {
       setNextPayment(
         activeSubscription.current_period_end.toDate().toDateString(),
       )
-      console.log('sub>>>>>>>', activeSubscription)
     } else {
       setSubscriptionType('free')
     }
@@ -105,9 +128,10 @@ export const useCustomer = () => {
     isPremium,
     subscriptionType,
     price,
-    nextPayment,
     invoices,
-    fetchCustomerData,
+    orders,
+    nextPayment,
     cancelSubscription,
+    fetchCustomerData,
   }
 }

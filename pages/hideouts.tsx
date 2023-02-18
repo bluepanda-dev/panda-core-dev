@@ -8,10 +8,12 @@ import { useHideouts } from '@core/hooks/useHideouts'
 import Button from '@components/atoms/Button'
 import Link from 'next/link'
 import Plans from '@components/organisms/Plans'
+import { useCustomerContext } from '@core/contexts/CustomerContext'
 
 const Hideouts = () => {
   const [hideouts, setHideouts] = useState<Hideout[]>([])
-  const { profile, subscription } = useUserContext()
+  const { profile } = useUserContext()
+  const { isPremium } = useCustomerContext()
   const { subscribeHideouts, add } = useHideouts()
 
   function handleAdd() {
@@ -30,7 +32,7 @@ const Hideouts = () => {
     return <Layout>Loading...</Layout>
   }
 
-  if (!subscription.isPremium) {
+  if (!isPremium) {
     return (
       <Layout>
         <div className="m-24 text-7xl md:text-7xl font-extrabold text-center flex flex-col justify-center">

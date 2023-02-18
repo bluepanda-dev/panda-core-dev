@@ -1,8 +1,6 @@
-import { useCustomer } from '@core/hooks/useCustomer'
 import { useFirebase } from '@core/hooks/useFirebase'
 import { useUser } from '@core/hooks/useUser'
 import { Profile, USER_DB } from '@core/types'
-import { Invoice, Subscription } from '@core/types/customer'
 import { getProfileImage } from '@core/utils/images'
 import { Auth, getAuth, onAuthStateChanged } from 'firebase/auth'
 import { doc, getDoc, updateDoc, setDoc } from 'firebase/firestore'
@@ -16,14 +14,6 @@ type UserContextType = {
   auth?: Auth
   setUser: (user: any) => void
   setProfile: (profile: Profile | undefined) => void
-  subscription: {
-    subscriptionType: string
-    isPremium: boolean
-    activeSubscription: Subscription | null
-    price: number
-    nextPayment: string
-    invoices: Invoice[]
-  }
 }
 
 const UserContext = createContext({} as UserContextType)
@@ -39,15 +29,6 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<any>(undefined)
   const [loading, setLoading] = useState(true)
   const [profile, setProfile] = useState<Profile | undefined>(undefined)
-  const {
-    subscriptionType,
-    isPremium,
-    activeSubscription,
-    price,
-    nextPayment,
-    invoices,
-    fetchCustomerData,
-  } = useCustomer()
 
   const { fetchUser } = useUser()
 
@@ -62,7 +43,6 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         setTimeout(async () => {
           const fetchedProfile = await fetchUser(user.uid)
           setProfile(fetchedProfile)
-          fetchCustomerData(user!.uid)
         }, 1000)
       }
     }
@@ -145,14 +125,6 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         setProfile,
         setUser,
         loading,
-        subscription: {
-          subscriptionType,
-          isPremium,
-          activeSubscription,
-          price,
-          nextPayment,
-          invoices,
-        },
       }}
     >
       {children}

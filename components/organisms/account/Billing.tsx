@@ -5,35 +5,39 @@ import Button from '@components/atoms/Button'
 import Panel from '@components/molecules/Panel'
 import Modal from '@components/molecules/Modal'
 import { useState } from 'react'
-import { useCustomer } from '@core/hooks/useCustomer'
 import { useRouter } from 'next/router'
+import { useCustomerContext } from '@core/contexts/CustomerContext'
 
 export default function Billing() {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const { profile, subscription } = useUserContext()
-  const { cancelSubscription } = useCustomer()
+  const { profile } = useUserContext()
+  const {
+    cancelSubscription,
+    invoices,
+    activeSubscription,
+    subscriptionType,
+    price,
+    nextPayment,
+  } = useCustomerContext()
 
   async function handleCancel() {
     setLoading(true)
     setIsOpen(false)
-    if (subscription.activeSubscription?.uid) {
-      await cancelSubscription(
-        subscription.activeSubscription.uid,
-        (result) => {
-          if (result.canceled) {
-            toast.success('Subscription canceled')
-          } else {
-            toast.error(`Something went wrong, ${result.error}`)
-          }
-          setLoading(false)
-          setTimeout(() => {
-            router.reload()
-          }, 1000)
-        },
-      )
+    if (activeSubscription?.uid) {
+      cancelSubscription(activeSubscription.uid, (result) => {
+        if (result.canceled) {
+          toast.success('Subscription canceled')
+        } else {
+          toast.error(`Something went wrong, ${result.error}`)
+        }
+        setLoading(false)
+        setTimeout(() => {
+          router.reload()
+        }, 1000)
+      })
     } else {
       setLoading(false)
     }
@@ -41,7 +45,7 @@ export default function Billing() {
 
   function downloadPDF(url: string) {
     // open blan window
-    window.open(`${url.split('?')[0]}/pdf`, '_blank')
+    window.open(`${url.split('?')[0]}`, '_blank')
   }
 
   if (!profile) {
@@ -83,23 +87,23 @@ export default function Billing() {
             <span
               className={`mx-2 pb-1 bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300
                     ${
-                      subscription.subscriptionType === 'plus'
+                      subscriptionType === 'plus'
                         ? '!bg-primary-500 !text-primary-100'
                         : ''
                     }
                   `}
             >
-              {subscription.subscriptionType}
+              {subscriptionType}
             </span>
             plan.
-            {!!subscription.price &&
-              `The next payment of $${subscription.price} will occur on ${subscription.nextPayment} `}
+            {!!price &&
+              `The next payment of $${price} will occur on ${nextPayment} `}
           </Panel>
         </div>
         <div>
           <Panel title="Receips" description="">
             <div className="flex flex-col gap-4">
-              {subscription.invoices.map((invoice) => (
+              {invoices.map((invoice) => (
                 <div key={invoice.id} className="grid grid-cols-4 gap-4">
                   <div>${invoice.amount / 100}</div>
                   <div>
@@ -121,7 +125,7 @@ export default function Billing() {
             </div>
           </Panel>
         </div>
-        {subscription.activeSubscription?.uid && (
+        {activeSubscription?.uid && (
           <div>
             <Panel
               title="Danger Zone"
