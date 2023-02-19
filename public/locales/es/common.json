@@ -7,6 +7,12 @@
   "myHideouts": "Mis escondites",
   "logOut": "Salir",
   "upgrade": "Subscribete",
+  "contactUs": "Contáctanos",
+  "shipFaster": "Rápida entrega",
+  "simplicityFirst": "La simplicidad primero",
+  "supportForYou": "Soporte para tí",
+  "madeWithLove": "Hecho con 💙",
+  "youAreInDemo": "Usted está en una plantilla de demostración",
   "switchTheme": "Cambiar a {{theme}} mode",
   "lanOptions": {
     "en": "Ingles",
@@ -18,5 +24,11 @@
     "second": "Desarrolla",
     "third": "Sube",
     "content": "Ponte en marcha con nuestra plantilla Panda Plus, facil de extender y utilizar, hecha con las ultimas integraciones y tecnologias."
+  },
+  "techStack": {
+    "title": "Stack tecnológico"
+  },
+  "features": {
+    "title": "Features"
   }
 }
