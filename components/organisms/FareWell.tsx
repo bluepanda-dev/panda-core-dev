@@ -6,16 +6,6 @@ export default function FareWell() {
 
   const supportUsText = () => {
     switch (i18n.language) {
-      case 'en':
-        return (
-          <div>
-            <span className="text-red-500">Thank </span>{' '}
-            <span className="text-yellow-500">you</span>{' '}
-            <span className="text-blue-500">for</span>{' '}
-            <span className="text-purple-500">support</span>{' '}
-            <span className="text-cyan-500">us</span>
-          </div>
-        )
       case 'es':
         return (
           <div>
