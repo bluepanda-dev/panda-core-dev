@@ -3,6 +3,10 @@
   "content": "Here is your content",
   "components": "Components",
   "settings": "Settings",
+  "myAccount": "My account",
+  "myHideouts": "My Hideouts",
+  "logOut": "Log Out",
+  "upgrade": "Upgrade",
   "switchTheme": "Switch to {{theme}} mode",
   "lanOptions": {
     "en": "English",

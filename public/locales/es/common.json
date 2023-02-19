@@ -3,6 +3,10 @@
   "content": "Aquí va tu contenido",
   "components": "Componentes",
   "settings": "Configuración",
+  "myAccount": "Mi cuenta",
+  "myHideouts": "Mis escondites",
+  "logOut": "Salir",
+  "upgrade": "Subscribete",
   "switchTheme": "Cambiar a {{theme}} mode",
   "lanOptions": {
     "en": "Ingles",

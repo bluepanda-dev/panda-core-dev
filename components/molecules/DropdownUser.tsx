@@ -1,9 +1,12 @@
+/* eslint-disable prettier/prettier */
 import React, { Fragment } from 'react'
 import { FiLogOut, FiSettings, FiUsers } from 'react-icons/fi'
 import { Menu, Transition } from '@headlessui/react'
 import Button from '@components/atoms/Button'
 import { useUser } from '@core/hooks/useUser'
 import Link from 'next/link'
+import { useDataPages } from '@core/hooks/useDataPages'
+import { useTranslation } from 'react-i18next'
 
 export type DropdownProps = {
   className?: string
@@ -42,6 +45,7 @@ export default function DropdownUser({
   image = '',
 }: DropdownProps) {
   const { logOut } = useUser()
+  const { t } = useTranslation()
 
   return (
     <Menu
@@ -74,26 +78,26 @@ export default function DropdownUser({
             <Link href="/account">
               <MenuAction
                 icon={<FiSettings />}
-                text="My Account"
+                text={t('myAccount')}
                 onClick={() => {}}
               />
             </Link>
             <Link href="/hideouts">
               <MenuAction
                 icon={<FiUsers />}
-                text="My Hideouts"
+                text={t('myHideouts')}
                 onClick={() => {}}
               />
             </Link>
             <div className="bg-neutral-500 h-px w-full" />
             <MenuAction
               icon={<FiLogOut />}
-              text="Log out"
+              text={t('logOut')}
               onClick={() => logOut()}
             />
             <div className="bg-neutral-500 h-px w-full" />
             <div className="p-4">
-              <Button isSpecial={true}>Upgrade!</Button>
+              <Button isSpecial={true}>{t('upgrade')}!</Button>
             </div>
           </div>
         </Menu.Items>
