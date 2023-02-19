@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, { Fragment } from 'react'
 import { FiLogOut, FiSettings, FiUsers } from 'react-icons/fi'
 import { Menu, Transition } from '@headlessui/react'
