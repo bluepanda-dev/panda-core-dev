@@ -5,7 +5,6 @@ import { Menu, Transition } from '@headlessui/react'
 import Button from '@components/atoms/Button'
 import { useUser } from '@core/hooks/useUser'
 import Link from 'next/link'
-import { useDataPages } from '@core/hooks/useDataPages'
 import { useTranslation } from 'react-i18next'
 
 export type DropdownProps = {
