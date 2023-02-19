@@ -4,6 +4,7 @@ import {
   Invoice,
   Order,
   Subscription,
+  VAULT_DB,
 } from '@core/types/customer'
 import {
   query,
@@ -13,6 +14,7 @@ import {
   setDoc,
   onSnapshot,
   where,
+  getDoc,
 } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { useUserContext } from '@core/contexts/UserContext'
@@ -60,6 +62,18 @@ export const useCustomer = () => {
     setInvoices(
       querySnapshot.docs.map((doc) => doc.data() as Invoice).reverse(),
     )
+  }
+
+  async function fetchVault(id: string, productUID: string) {
+    const docRef = doc(db, VAULT_DB, productUID)
+    const docSnap = await getDoc(docRef)
+
+    if (docSnap.exists()) {
+      const data = docSnap.data()
+      return data
+    }
+
+    return undefined
   }
 
   async function fetchOrders(uid: string) {
@@ -133,5 +147,6 @@ export const useCustomer = () => {
     nextPayment,
     cancelSubscription,
     fetchCustomerData,
+    fetchVault,
   }
 }

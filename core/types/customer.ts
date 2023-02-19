@@ -1,6 +1,7 @@
 import { Price } from './payments'
 
 export const CUSTOMERS_DB = 'fe-customers'
+export const VAULT_DB = 'fe-vault'
 
 export type SubscriptionPlan = {
   active: boolean

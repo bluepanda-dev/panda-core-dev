@@ -15,6 +15,7 @@ type CustomerContextType = {
     cb: (result: { canceled: boolean; error: string }) => void,
   ) => void
   orders: Order[]
+  fetchVault: (id: string, uid: string) => void
 }
 
 const CustomerContext = createContext({} as CustomerContextType)
@@ -36,6 +37,7 @@ export function CustomerProvider({ children }: { children: React.ReactNode }) {
     orders,
     fetchCustomerData,
     cancelSubscription,
+    fetchVault,
   } = useCustomer()
 
   useEffect(() => {
@@ -60,6 +62,7 @@ export function CustomerProvider({ children }: { children: React.ReactNode }) {
         invoices,
         orders,
         cancelSubscription,
+        fetchVault,
       }}
     >
       {children}

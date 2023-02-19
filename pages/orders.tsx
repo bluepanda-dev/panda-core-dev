@@ -1,43 +1,54 @@
 import Layout from '@components/layout'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useUserContext } from '@core/contexts/UserContext'
-import { usePayments } from '@core/hooks/usePayments'
 import { useCustomerContext } from '@core/contexts/CustomerContext'
 import { useDataPages } from '@core/hooks/useDataPages'
 import { useState, useEffect } from 'react'
-import { ProductCard } from '@core/types'
+import { ProductCard, Order } from '@core/types'
 import Button from '@components/atoms/Button'
 import Panel from '@components/molecules/Panel'
-import { Order } from '@stripe/stripe-js'
+
+type HydratedProduct = ProductCard & { order: Order }
 
 const Orders = () => {
   const { profile } = useUserContext()
-  const { orders } = useCustomerContext()
+  const { orders, fetchVault } = useCustomerContext()
   const { products } = useDataPages()
-  const [ownProducts, setOwnProducts] = useState<
-    (ProductCard & { order: Order })[]
-  >([])
+  const [ownProducts, setOwnProducts] = useState<HydratedProduct[]>([])
 
   useEffect(() => {
+    setOwnProducts([])
     if (orders) {
-      const ownProducts = products.list
-        ?.filter((product) => {
-          const found = orders.find(
-            (order) => order.items[0].description === product.title,
-          )
-          if (!found) return false
-          return product.title === found.items[0].description
-        })
-        .map((product) => {
-          const found = orders.find(
-            (order) => order.items[0].description === product.title,
-          )
-          if (found) {
+      const list =
+        products.list
+          ?.filter((product) => {
+            const found = orders.find(
+              (order) => order.items[0].description === product.title,
+            )
+            if (!found) return false
+            return product.title === found.items[0].description
+          })
+          .map((product) => {
+            const found = orders.find(
+              (order) => order.items[0].description === product.title,
+            )
             return { ...product, order: found }
-          }
-          return product
-        })
-      if (ownProducts) setOwnProducts(ownProducts)
+          }) ?? []
+
+      if (list) {
+        setOwnProducts(list as HydratedProduct[])
+      }
+
+      list.map(async (product) => {
+        if (product.order) {
+          console.log('p[roduct:>]', product.order.items[0].price.product)
+          const res = await fetchVault(
+            product.order.id,
+            product.order.items[0].price.product,
+          )
+          console.log('res:>]', res)
+        }
+      })
     }
   }, [orders])
 
