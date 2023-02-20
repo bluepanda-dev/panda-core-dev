@@ -7,6 +7,7 @@ import {
   GoogleAuthProvider,
   TwitterAuthProvider,
   GithubAuthProvider,
+  FacebookAuthProvider,
 } from 'firebase/auth'
 import { useUserContext } from '@core/contexts/UserContext'
 
@@ -85,6 +86,11 @@ export const useUser = () => {
     await signInWithPopup(auth!, provider)
   }
 
+  async function facebookLogIn() {
+    const provider = new FacebookAuthProvider()
+    await signInWithPopup(auth!, provider)
+  }
+
   function logOut() {
     signOut(auth!)
     setUser(undefined)
@@ -95,6 +101,7 @@ export const useUser = () => {
     googleLogIn,
     twitterLogIn,
     githubLogIn,
+    facebookLogIn,
     logOut,
     saveUser,
     savePublicProfile,
