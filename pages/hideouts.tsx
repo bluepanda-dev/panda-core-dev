@@ -51,7 +51,7 @@ const Hideouts = () => {
                 <div className="font-light">{hideout.uid}</div>
                 <div className="font-thin">{hideout.name}</div>
                 <div className="font-thin">
-                  Active users: {hideout.activeUsers?.length ?? 0}
+                  {t('activeUsers')}: {hideout.activeUsers?.length ?? 0}
                 </div>
               </Link>
             </div>
