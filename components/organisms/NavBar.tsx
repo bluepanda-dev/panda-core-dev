@@ -99,7 +99,7 @@ export default function NavBar() {
           </div>
         </div>
         <div className="hidden font-semibold md:flex items-center gap-4 text-accent-700 dark:text-accent-500">
-          Your are in a Demo Template
+          {t('youAreInDemo')}
         </div>
         <div className="items-center gap-2 hidden md:flex">
           <Dropdown options={AccountOptions} title={t('settings') ?? ''} />

@@ -5,6 +5,7 @@ import Button from '@components/atoms/Button'
 import { useUser } from '@core/hooks/useUser'
 import Link from 'next/link'
 import { useCustomerContext } from '@core/contexts/CustomerContext'
+import { useTranslation } from 'react-i18next'
 
 export type DropdownProps = {
   className?: string
@@ -44,6 +45,7 @@ export default function DropdownUser({
 }: DropdownProps) {
   const { logOut } = useUser()
   const { subscriptionType } = useCustomerContext()
+  const { t } = useTranslation()
 
   return (
     <Menu
@@ -93,14 +95,14 @@ export default function DropdownUser({
             <Link href="/account">
               <MenuAction
                 icon={<FiSettings />}
-                text="My Account"
+                text={t('myAccount')}
                 onClick={() => {}}
               />
             </Link>
             <Link href="/hideouts">
               <MenuAction
                 icon={<FiUsers />}
-                text="My Hideouts"
+                text={t('myHideouts')}
                 onClick={() => {}}
               />
             </Link>
@@ -113,11 +115,11 @@ export default function DropdownUser({
             </Link>
             <div className="bg-neutral-500 h-px w-full" />
             <Link href="" onClick={() => logOut()}>
-              <MenuAction icon={<FiLogOut />} text="Log out" />
+              <MenuAction icon={<FiLogOut />} text={t('logOut')} />
             </Link>
             <div className="bg-neutral-500 h-px w-full" />
             <div className="p-4">
-              <Button isSpecial={true}>Upgrade!</Button>
+              <Button isSpecial={true}>{t('upgrade')}!</Button>
             </div>
           </div>
         </Menu.Items>

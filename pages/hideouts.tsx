@@ -9,8 +9,11 @@ import Button from '@components/atoms/Button'
 import Link from 'next/link'
 import Plans from '@components/organisms/Plans'
 import { useCustomerContext } from '@core/contexts/CustomerContext'
+import { useTranslation } from 'react-i18next'
 
 const Hideouts = () => {
+  const { t } = useTranslation('hideouts')
+
   const [hideouts, setHideouts] = useState<Hideout[]>([])
   const { profile } = useUserContext()
   const { isPremium } = useCustomerContext()
@@ -55,7 +58,7 @@ const Hideouts = () => {
         <div className="text-center text-4xl font-bold">My Hideouts</div>
         <div className="mt-8">
           <Button isSpecial={true} className="!w-auto" onClick={handleAdd}>
-            Add new hideout
+            {t('addNew')}
           </Button>
         </div>
         <div className="mt-8 grid gap-8 md:grid-cols-3 lg:grid-cols-5">
@@ -68,7 +71,7 @@ const Hideouts = () => {
                 <div className="font-light">{hideout.uid}</div>
                 <div className="font-thin">{hideout.name}</div>
                 <div className="font-thin">
-                  Active users: {hideout.activeUsers?.length ?? 0}
+                  {t('activeUsers')}: {hideout.activeUsers?.length ?? 0}
                 </div>
               </Link>
             </div>
@@ -84,7 +87,7 @@ export default Hideouts
 export async function getServerSideProps({ locale }: any) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['hideouts', 'common'])),
     },
   }
 }
