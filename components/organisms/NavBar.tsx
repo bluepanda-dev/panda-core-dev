@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { FiSun, FiMenu } from 'react-icons/fi'
 import Image from 'next/image'
 import Link from 'next/link'
 import Dropdown from '@components/molecules/Dropdown'
@@ -15,7 +14,7 @@ import UserButton from '@components/molecules/UserButton'
 export default function NavBar() {
   const router = useRouter()
   const { t, i18n } = useTranslation()
-  const { themeDark, themeLight, theme } = useTheme()
+  const { theme } = useTheme()
   const [scrollPosition, setScrollPosition] = useState(0)
   const [alertActive] = useAtom(isAlertBannerActive)
 
@@ -23,16 +22,6 @@ export default function NavBar() {
     const position = window.pageYOffset
     setScrollPosition(position)
   }
-
-  const AccountOptions = [
-    {
-      label: t('switchTheme', { theme: theme === 'light' ? 'dark' : 'light' }),
-      icon: <FiSun />,
-      onClick: () => {
-        theme === 'dark' ? themeLight() : themeDark()
-      },
-    },
-  ]
 
   const lanOptions = [
     {
@@ -102,7 +91,6 @@ export default function NavBar() {
           {t('youAreInDemo')}
         </div>
         <div className="items-center gap-2 hidden md:flex">
-          <Dropdown options={AccountOptions} title={t('settings') ?? ''} />
           <Dropdown options={lanOptions} title={flag()} />
           <UserButton />
         </div>

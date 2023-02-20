@@ -1,11 +1,18 @@
 import React, { Fragment } from 'react'
-import { FiLogOut, FiSettings, FiUsers, FiShoppingBag } from 'react-icons/fi'
+import {
+  FiLogOut,
+  FiSettings,
+  FiUsers,
+  FiSun,
+  FiShoppingBag,
+} from 'react-icons/fi'
 import { Menu, Transition } from '@headlessui/react'
 import Button from '@components/atoms/Button'
 import { useUser } from '@core/hooks/useUser'
 import Link from 'next/link'
 import { useCustomerContext } from '@core/contexts/CustomerContext'
 import { useTranslation } from 'react-i18next'
+import { useTheme } from '@core/hooks/useTheme'
 
 export type DropdownProps = {
   className?: string
@@ -46,6 +53,7 @@ export default function DropdownUser({
   const { logOut } = useUser()
   const { subscriptionType } = useCustomerContext()
   const { t } = useTranslation()
+  const { themeDark, themeLight, theme } = useTheme()
 
   return (
     <Menu
@@ -110,6 +118,18 @@ export default function DropdownUser({
               <MenuAction
                 icon={<FiShoppingBag />}
                 text="My Orders"
+                onClick={() => {}}
+              />
+            </Link>
+            <Link
+              href=""
+              onClick={() => (theme === 'dark' ? themeLight() : themeDark())}
+            >
+              <MenuAction
+                icon={<FiSun />}
+                text={t('switchTheme', {
+                  theme: theme === 'light' ? 'dark' : 'light',
+                })}
                 onClick={() => {}}
               />
             </Link>
