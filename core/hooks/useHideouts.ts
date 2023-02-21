@@ -1,23 +1,12 @@
 import { Hideout, USER_HIDEOUTS_DB } from '@core/types'
 import { v4 as uuidv4 } from 'uuid'
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  onSnapshot,
-  query,
-  setDoc,
-  where,
-} from 'firebase/firestore'
-import { useFirebase } from './useFirebase'
+import { where } from 'firebase/firestore'
+import { useQuery } from './useQuery'
 
 const ANONYMOUS_UID_KEY = 'anonymous-uid'
 
 export const useHideouts = () => {
-  const { db } = useFirebase()
-  let hideoutsSub: () => void = () => {}
-  let hideoutSub: () => void = () => {}
+  const { subscribe, subscribeCollection, update, add } = useQuery()
 
   function getVisitorUID() {
     let anonymusUID = localStorage.getItem(ANONYMOUS_UID_KEY)
@@ -32,75 +21,41 @@ export const useHideouts = () => {
     uid: string,
     callback: (data: Hideout) => void,
   ) {
-    const docRef = doc(db, USER_HIDEOUTS_DB, uid)
-    if (hideoutSub) {
-      hideoutSub()
-    }
-    hideoutSub = onSnapshot(docRef, (doc) => {
-      callback(doc.data() as Hideout)
-    })
-
-    const docSnap = await getDoc(docRef)
-
-    if (docSnap.exists()) {
-      callback(docSnap.data() as Hideout)
-    }
+    subscribe<Hideout>(
+      (data: Hideout) => {
+        callback(data)
+      },
+      USER_HIDEOUTS_DB,
+      uid,
+    )
   }
 
   async function subscribeHideouts(
     uid: string,
     callback: (data: Hideout[]) => void,
   ) {
-    if (hideoutsSub) {
-      hideoutsSub()
-    }
-    const q = query(collection(db, USER_HIDEOUTS_DB), where('owner', '==', uid))
-    hideoutsSub = onSnapshot(q, (querySnapshot) => {
-      const hideouts: Hideout[] = []
-      querySnapshot.forEach((doc) => {
-        hideouts.push(doc.data() as Hideout)
-      })
-      callback(hideouts)
-    })
-
-    const hideouts: Hideout[] = []
-    const querySnapshot = await getDocs(q)
-    querySnapshot.forEach((doc) => {
-      hideouts.push(doc.data() as Hideout)
-    })
-    callback(hideouts)
-  }
-
-  async function update(hideout: Hideout) {
-    if (!db) {
-      throw new Error('Not database configured')
-    }
-    await setDoc(
-      doc(db, USER_HIDEOUTS_DB, hideout.uid),
-      {
-        ...hideout,
+    subscribeCollection<Hideout>(
+      (data: Hideout[]) => {
+        callback(data)
       },
-      { merge: true },
+      where('owner', '==', uid),
+      USER_HIDEOUTS_DB,
     )
   }
 
-  async function add(hideout: Omit<Hideout, 'uid'>) {
-    if (!db) {
-      throw new Error('Not database configured')
-    }
-    const newRef = await doc(collection(db, USER_HIDEOUTS_DB))
+  async function handleUpdate(hideout: Hideout) {
+    await update(hideout, USER_HIDEOUTS_DB, hideout.uid)
+  }
 
-    await setDoc(doc(db, USER_HIDEOUTS_DB, newRef.id), {
-      ...hideout,
-      uid: newRef.id,
-    })
+  async function handleAdd(hideout: Omit<Hideout, 'uid'>) {
+    await add(hideout, USER_HIDEOUTS_DB)
   }
 
   return {
     subscribeHideout,
     subscribeHideouts,
-    update,
-    add,
+    handleUpdate,
+    handleAdd,
     getVisitorUID,
   }
 }
