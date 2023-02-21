@@ -42,7 +42,7 @@ const ProfilePic = ({
 
 const Hideout = () => {
   const router = useRouter()
-  const { subscribeHideout, update, getVisitorUID } = useHideouts()
+  const { subscribeHideout, handleUpdate, getVisitorUID } = useHideouts()
   const { profile, loading } = useUserContext()
   const { uid } = router.query
   const [sharableLink, setSharableLink] = useState('')
@@ -62,7 +62,7 @@ const Hideout = () => {
       return
     }
 
-    update({
+    handleUpdate({
       ...hideout!,
       sharableContent: JSON.stringify([
         ...(hideout!.sharableContent
@@ -83,7 +83,7 @@ const Hideout = () => {
           hideout &&
           hideout.activeUsers?.find((user) => user.uid === userID)
         ) {
-          update({
+          handleUpdate({
             ...hideout,
             activeUsers: hideout?.activeUsers
               ?.filter((user) => user.uid !== registeredUser)
@@ -94,7 +94,7 @@ const Hideout = () => {
               ),
           })
         } else {
-          update({
+          handleUpdate({
             ...hideout!,
             activeUsers: [
               ...(hideout!.activeUsers?.filter(

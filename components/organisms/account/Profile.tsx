@@ -16,13 +16,19 @@ export default function Profile() {
   const { fetchPublicProfile } = useUser()
 
   async function handleSave() {
+    if (!profile?.email) {
+      toast.error('You need to enter an email to save your profile')
+      return
+    }
     setLoading(true)
+    console.log('saving profile', profile)
     await saveUser({ ...profile!, website })
     await savePublicProfile({
       website,
       displayName: profile!.displayName,
       uid: profile!.uid,
       photoURL: profile!.photoURL,
+      email: profile!.email,
     })
     toast('Saved successfully!')
     setLoading(false)
@@ -36,6 +42,12 @@ export default function Profile() {
   }
 
   async function handleMakePublic() {
+    if (!profile?.email || !website) {
+      toast.error(
+        'You need to enter an email and website in to make your profile public',
+      )
+      return
+    }
     await savePublicProfile({
       website: profile!.website,
       displayName: profile!.displayName,
@@ -53,6 +65,7 @@ export default function Profile() {
       })
     }
     if (profile?.website !== undefined) {
+      console.log('setting website', profile.website)
       setWebsite(profile?.website)
     }
   }, [profile])
@@ -88,23 +101,26 @@ export default function Profile() {
           </label>
           <input
             id="email"
-            disabled
             className="form-control block w-full px-3 py-1.5 text-base font-normal bg-clip-padding border rounded transition dark:text-neutral-300"
             placeholder="Enter email"
             value={profile?.email}
+            onChange={(e) => (profile.email = e.target.value)}
           />
         </div>
         <div className="form-group mb-6">
           <label htmlFor="website" className="form-label inline-block mb-2 ">
             Website (extra info for your profile)
           </label>
-          <input
-            id="website"
-            className="form-control block w-full px-3 py-1.5 text-base font-normal bg-clip-padding border rounded transition dark:text-neutral-300"
-            placeholder="Enter website"
-            value={website}
-            onChange={(e) => setWebsite(e.target.value)}
-          />
+
+          {website !== undefined && (
+            <input
+              id="website"
+              className="form-control block w-full px-3 py-1.5 text-base font-normal bg-clip-padding border rounded transition dark:text-neutral-300"
+              placeholder="Enter website"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+            />
+          )}
         </div>
         <div className="form-group mb-6">
           <Button loading={loading} isSpecial={true} onClick={handleSave}>
