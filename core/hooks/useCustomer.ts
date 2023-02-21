@@ -18,10 +18,12 @@ import {
 } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { useUserContext } from '@core/contexts/UserContext'
+import { useQuery } from './useQuery'
 
 export const useCustomer = () => {
   const { db } = useFirebase()
   const { user } = useUserContext()
+  const { update } = useQuery()
   const [isPremium, setIsPremium] = useState(false)
   const [subscriptionType, setSubscriptionType] = useState('')
   const [price, setPrice] = useState(0)
@@ -36,18 +38,17 @@ export const useCustomer = () => {
     subscriptionId: string,
     cb: (result: { canceled: boolean; error: string }) => void,
   ) {
-    const docRef = doc(
-      db,
+    const refDoc = await update(
+      { processing: true },
       CUSTOMERS_DB,
       user.uid,
       'cancel_subscriptions',
       subscriptionId,
     )
-    const refDoc = await setDoc(docRef, {
-      proccessing: true,
-    })
 
-    onSnapshot(docRef, (snap: any) => {
+    console.log('refDoc', refDoc)
+
+    onSnapshot(refDoc, (snap: any) => {
       const { error, canceled } = snap.data() as any
       if (error || canceled) {
         cb({ error: error?.message, canceled })

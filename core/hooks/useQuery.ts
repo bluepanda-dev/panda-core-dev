@@ -61,14 +61,18 @@ export const useQuery = () => {
     if (!db) {
       throw new Error('Not database configured')
     }
+    // @ts-ignore
+    const docRef = doc(db, ...route)
+
     await setDoc(
-      // @ts-ignore
-      doc(db, ...route),
+      docRef,
       {
         ...payload,
       },
       { merge: true },
     )
+
+    return docRef
   }
 
   async function add<T>(payload: T, ...route: string[]) {
