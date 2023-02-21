@@ -1,29 +1,18 @@
-import { useFirebase } from './useFirebase'
 import {
   CUSTOMERS_DB,
+  VAULT_DB,
   Invoice,
   Order,
   Subscription,
-  VAULT_DB,
 } from '@core/types/customer'
-import {
-  query,
-  collection,
-  getDocs,
-  doc,
-  setDoc,
-  onSnapshot,
-  where,
-  getDoc,
-} from 'firebase/firestore'
+import { where, onSnapshot } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useQuery } from './useQuery'
 
 export const useCustomer = () => {
-  const { db } = useFirebase()
   const { user } = useUserContext()
-  const { update } = useQuery()
+  const { update, fetchAllWhere, fetch, fetchAll } = useQuery()
   const [isPremium, setIsPremium] = useState(false)
   const [subscriptionType, setSubscriptionType] = useState('')
   const [price, setPrice] = useState(0)
@@ -46,8 +35,6 @@ export const useCustomer = () => {
       subscriptionId,
     )
 
-    console.log('refDoc', refDoc)
-
     onSnapshot(refDoc, (snap: any) => {
       const { error, canceled } = snap.data() as any
       if (error || canceled) {
@@ -58,52 +45,35 @@ export const useCustomer = () => {
 
   async function fetchInvoices(uid: string) {
     setInvoices([])
-    const q = query(collection(db, CUSTOMERS_DB, uid, 'payments'))
-    const querySnapshot = await getDocs(q)
-    setInvoices(
-      querySnapshot.docs.map((doc) => doc.data() as Invoice).reverse(),
-    )
+    const list: Invoice[] = await fetchAll(CUSTOMERS_DB, uid, 'payments')
+    setInvoices(list && list.reverse())
   }
 
   async function fetchVault(id: string, productUID: string) {
-    const docRef = doc(db, VAULT_DB, productUID)
-    const docSnap = await getDoc(docRef)
-
-    if (docSnap.exists()) {
-      const data = docSnap.data()
-      return data
-    }
-
-    return undefined
+    return await fetch(VAULT_DB, productUID)
   }
 
   async function fetchOrders(uid: string) {
     setOrders([])
-    const q = query(
-      collection(db, CUSTOMERS_DB, uid, 'payments'),
-      where('status', '==', 'succeeded'),
+    let list =
+      (await fetchAllWhere<Order>(
+        where('status', '==', 'succeeded'),
+        CUSTOMERS_DB,
+        uid,
+        'payments',
+      )) ?? []
+    list = list.filter(
+      (item) => item.items && item.items[0]?.price.type === 'one_time',
     )
-    const querySnapshot = await getDocs(q)
-    console.log('order docs', querySnapshot.docs)
-    setOrders(
-      querySnapshot.docs
-        .filter(
-          (doc) =>
-            (doc.data() as Order).items &&
-            (doc.data() as Order).items[0]?.price.type === 'one_time',
-        )
-        .map((doc) => doc.data() as Order),
-    )
+    setOrders(list)
   }
 
   async function fetchActiveSubscription(uid: string) {
     setActiveSubscription(null)
-    const q = query(collection(db, CUSTOMERS_DB, uid, 'subscriptions'))
-    const querySnapshot = await getDocs(q)
-    const subs = querySnapshot.docs.map((doc) => {
-      const sub = doc.data() as Subscription
-      sub.uid = doc.id
-      return sub
+    let list = await fetchAll<Subscription>(CUSTOMERS_DB, uid, 'subscriptions')
+
+    const subs = list.map((sub) => {
+      return { ...sub, uid: sub.docId }
     })
 
     const sub = subs.find(

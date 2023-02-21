@@ -76,9 +76,6 @@ export const useQuery = () => {
   }
 
   async function add<T>(payload: T, ...route: string[]) {
-    if (!db) {
-      throw new Error('Not database configured')
-    }
     // @ts-ignore
     const newRef = await doc(collection(db, ...route))
 
@@ -100,10 +97,6 @@ export const useQuery = () => {
   }
 
   async function fetch<T>(...route: string[]): Promise<T | undefined> {
-    if (!db) {
-      throw new Error('Not database configured')
-    }
-
     // @ts-ignore
     const docRef = doc(db, ...route)
     const docSnap = await getDoc(docRef)
@@ -116,5 +109,40 @@ export const useQuery = () => {
     return undefined
   }
 
-  return { subscribe, subscribeCollection, update, add, save, fetch }
+  async function fetchAllWhere<T>(
+    whereCondition: QueryConstraint | null,
+    ...route: string[]
+  ): Promise<(T & { docId: string })[] | undefined> {
+    // @ts-ignore
+    const q = query(collection(db, ...route), whereCondition)
+    const querySnapshot = await getDocs(q)
+
+    return querySnapshot.docs.map((doc) => ({
+      docId: doc.id,
+      ...(doc.data() as T),
+    }))
+  }
+
+  async function fetchAll<T>(
+    ...route: string[]
+  ): Promise<(T & { docId: string })[]> {
+    // @ts-ignore
+    const q = query(collection(db, ...route))
+    const querySnapshot = await getDocs(q)
+    return querySnapshot.docs.map((doc) => ({
+      docId: doc.id,
+      ...(doc.data() as T),
+    }))
+  }
+
+  return {
+    subscribe,
+    subscribeCollection,
+    update,
+    add,
+    save,
+    fetch,
+    fetchAll,
+    fetchAllWhere,
+  }
 }
