@@ -20,13 +20,11 @@ export const useQuery = () => {
 
     onSnapshot(docRef, (doc) => {
       callback(doc.data() as T)
-      console.log('Current data: ', doc.data())
     })
 
     const docSnap = await getDoc(docRef)
 
     if (docSnap.exists()) {
-      console.log('existss Current data: ')
       callback(docSnap.data() as T)
     }
   }

@@ -9,7 +9,6 @@ export default function Hero() {
   const [active, setActive] = useState(0)
 
   useEffect(() => {
-    console.log('executing effect')
     const interval = setInterval(() => {
       setActive((prev) => {
         const index = prev === words.length - 1 ? 0 : prev + 1
