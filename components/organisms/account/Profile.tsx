@@ -22,7 +22,6 @@ export default function Profile() {
       return
     }
     setLoading(true)
-    console.log('saving profile', profile)
     await saveUser({ ...profile!, website, email })
     await savePublicProfile({
       website,
@@ -67,7 +66,6 @@ export default function Profile() {
       })
     }
     if (profile?.website !== undefined) {
-      console.log('setting website', profile.website)
       setWebsite(profile?.website)
     }
     if (profile?.email !== undefined) {
