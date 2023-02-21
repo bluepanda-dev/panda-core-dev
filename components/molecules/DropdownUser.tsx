@@ -121,8 +121,7 @@ export default function DropdownUser({
                 onClick={() => {}}
               />
             </Link>
-            <Link
-              href=""
+            <div
               onClick={() => (theme === 'dark' ? themeLight() : themeDark())}
             >
               <MenuAction
@@ -130,9 +129,8 @@ export default function DropdownUser({
                 text={t('switchTheme', {
                   theme: theme === 'light' ? 'dark' : 'light',
                 })}
-                onClick={() => {}}
               />
-            </Link>
+            </div>
             <div className="bg-neutral-500 h-px w-full" />
             <Link href="" onClick={() => logOut()}>
               <MenuAction icon={<FiLogOut />} text={t('logOut')} />
