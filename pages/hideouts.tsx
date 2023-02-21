@@ -35,7 +35,7 @@ const Hideouts = () => {
   return (
     <Layout>
       <div className="mx-8 my-16 h-full">
-        <div className="text-center text-4xl font-bold">My Hideouts</div>
+        <div className="text-center text-4xl font-bold">{t('myHideouts')}</div>
         <div className="mt-8">
           <Button isSpecial={true} className="!w-auto" onClick={add}>
             {t('addNew')}

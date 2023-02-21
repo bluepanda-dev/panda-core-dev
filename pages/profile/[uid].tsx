@@ -7,6 +7,7 @@ import { useUserContext } from '@core/contexts/UserContext'
 import { useHideouts } from '@core/hooks/useHideouts'
 import Link from 'next/link'
 import { useUser } from '@core/hooks/useUser'
+import { useTranslation } from 'next-i18next'
 
 const Hideout = () => {
   const router = useRouter()
@@ -16,6 +17,7 @@ const Hideout = () => {
   const [profile, setProfile] = useState<Profile>()
   const { fetchPublicProfile } = useUser()
   const { uid } = router.query
+  const { t } = useTranslation('hideouts')
 
   useEffect(() => {
     if (uid) {
@@ -47,7 +49,7 @@ const Hideout = () => {
 
         <div className="text-neutral-600 dark:text-neutral-400 flex justify-center text-xl md:text-2xl font-extralight mt-6 md:mt-16 px-8 ">
           <div className="md:max-w-lg text-center">
-            Here is the public profile of {profile.displayName}
+            {t('hereIs')} {profile.displayName}
           </div>
         </div>
         <div className="mt-8 grid gap-8 md:grid-cols-3 lg:grid-cols-5">
@@ -60,7 +62,7 @@ const Hideout = () => {
                 <div className="font-light">{hideout.uid}</div>
                 <div className="font-thin">{hideout.name}</div>
                 <div className="font-thin">
-                  Active users: {hideout.activeUsers?.length ?? 0}
+                  {t('activeUsers')}: {hideout.activeUsers?.length ?? 0}
                 </div>
               </Link>
             </div>
@@ -76,7 +78,7 @@ export default Hideout
 export async function getServerSideProps({ locale }: any) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['hideouts', 'common'])),
     },
   }
 }
