@@ -85,5 +85,32 @@ export const useQuery = () => {
     })
   }
 
-  return { subscribe, subscribeCollection, update, add }
+  async function save<T>(payload: T, ...route: string[]) {
+    if (!db) {
+      throw new Error('Not database configured')
+    }
+    // @ts-ignore
+    await setDoc(doc(db, ...route), {
+      ...payload,
+    })
+  }
+
+  async function fetch<T>(...route: string[]): Promise<T | undefined> {
+    if (!db) {
+      throw new Error('Not database configured')
+    }
+
+    // @ts-ignore
+    const docRef = doc(db, ...route)
+    const docSnap = await getDoc(docRef)
+
+    if (docSnap.exists()) {
+      const data = docSnap.data() as T
+      return data
+    }
+
+    return undefined
+  }
+
+  return { subscribe, subscribeCollection, update, add, save, fetch }
 }

@@ -1,5 +1,3 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore'
-import { useFirebase } from './useFirebase'
 import { Profile, USER_DB, USER_PROFILE_DB } from '@core/types'
 import {
   signOut,
@@ -10,65 +8,26 @@ import {
   FacebookAuthProvider,
 } from 'firebase/auth'
 import { useUserContext } from '@core/contexts/UserContext'
+import { useQuery } from './useQuery'
 
 export const useUser = () => {
   const { auth, setUser, setProfile } = useUserContext()
-  const { db } = useFirebase()
+  const { fetch, save } = useQuery()
 
-  async function fetchUser(userId: string): Promise<Profile | undefined> {
-    if (!db) {
-      throw new Error('Not database configured')
-    }
-
-    const docRef = doc(db, USER_DB, userId)
-    const docSnap = await getDoc(docRef)
-
-    if (docSnap.exists()) {
-      const data = docSnap.data() as Profile
-      return data
-    }
-
-    return undefined
+  async function fetchUser(userId: string) {
+    return await fetch<Profile>(USER_DB, userId)
   }
 
-  async function fetchPublicProfile(
-    userId: string,
-  ): Promise<Profile | undefined> {
-    if (!db) {
-      throw new Error('Not database configured')
-    }
-
-    const docRef = doc(db, USER_PROFILE_DB, userId)
-    const docSnap = await getDoc(docRef)
-
-    if (docSnap.exists()) {
-      return docSnap.data() as Profile
-    }
-
-    return undefined
+  async function fetchPublicProfile(userId: string) {
+    return await fetch<Profile>(USER_PROFILE_DB, userId)
   }
 
   async function savePublicProfile(profile: Profile) {
-    if (!db) {
-      throw new Error('Not database configured')
-    }
-    await setDoc(doc(db, USER_PROFILE_DB, profile.uid), {
-      ...profile,
-      uid: profile.uid,
-    })
+    save(profile, USER_PROFILE_DB, profile.uid)
   }
 
   async function saveUser(profile: Profile) {
-    if (!db) {
-      throw new Error('Not database configured')
-    }
-    await setDoc(
-      doc(db, USER_DB, profile.uid),
-      {
-        ...profile,
-      },
-      { merge: true },
-    )
+    await save(profile, USER_DB, profile.uid)
   }
 
   async function googleLogIn() {
