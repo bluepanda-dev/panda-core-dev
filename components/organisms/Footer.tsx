@@ -4,7 +4,7 @@ import lottie from 'lottie-web'
 import animationData from '../data/lottie-animation.json'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 import { useDataPages } from '@core/hooks/useDataPages'
 
 export default function Footer() {
