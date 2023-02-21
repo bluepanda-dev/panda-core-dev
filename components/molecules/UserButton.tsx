@@ -1,4 +1,3 @@
-import { useTranslation } from 'next-i18next'
 import { useUser } from '@core/hooks/useUser'
 import Button from '@components/atoms/Button'
 import DropdownUser from './DropdownUser'
