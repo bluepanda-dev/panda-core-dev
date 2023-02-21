@@ -15,7 +15,7 @@ type CustomerContextType = {
     cb: (result: { canceled: boolean; error: string }) => void,
   ) => void
   orders: Order[]
-  fetchVault: (id: string, uid: string) => void
+  fetchVault: (id: string, uid: string) => any
 }
 
 const CustomerContext = createContext({} as CustomerContextType)

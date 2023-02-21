@@ -53,6 +53,8 @@ export type Order = {
   amount: number
   capture_method: string
   description: string
+  download?: string
+  invoice?: string
   status: string
   created: string
   charges: { data: { receipt_url: string }[] }

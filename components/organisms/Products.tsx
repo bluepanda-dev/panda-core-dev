@@ -51,7 +51,7 @@ const Product = ({
           </ul>
         </div>
         <div className="p-6">
-          {price && (
+          {price ? (
             <Button
               onClick={() => handleBuy(product, price)}
               isSpecial={true}
@@ -59,6 +59,8 @@ const Product = ({
             >
               {products.texts!.buyNow}
             </Button>
+          ) : (
+            <div className="text-lg text-center pt-2">Out of stock</div>
           )}
         </div>
       </div>

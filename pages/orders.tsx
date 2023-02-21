@@ -1,5 +1,6 @@
 import Layout from '@components/layout'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import * as dayjs from 'dayjs'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useCustomerContext } from '@core/contexts/CustomerContext'
 import { useDataPages } from '@core/hooks/useDataPages'
@@ -16,10 +17,22 @@ const Orders = () => {
   const { products } = useDataPages()
   const [ownProducts, setOwnProducts] = useState<HydratedProduct[]>([])
 
-  useEffect(() => {
-    setOwnProducts([])
+  function handleDownload(download?: string) {
+    if (download) {
+      window.open(download, '_blank')
+    }
+  }
+
+  function handleInvoice(invoice?: string) {
+    if (invoice) {
+      window.open(invoice, '_blank')
+    }
+  }
+
+  async function fetchOwnProducts() {
     if (orders) {
-      const list =
+      console.log('orders:>>>>> ', orders)
+      let list =
         products.list
           ?.filter((product) => {
             const found = orders.find(
@@ -35,21 +48,38 @@ const Orders = () => {
             return { ...product, order: found }
           }) ?? []
 
+      list = await Promise.all(
+        list.map(async (product) => {
+          if (product.order) {
+            const res = await fetchVault(
+              product.order.id,
+              product.order.items[0].price.product,
+            )
+            product.order.invoice = product.order.charges.data[0].receipt_url
+            if (res) {
+              return {
+                ...product,
+                order: {
+                  ...product.order,
+                  download: res.download,
+                },
+              }
+            }
+          }
+
+          return product
+        }),
+      )
+
       if (list) {
         setOwnProducts(list as HydratedProduct[])
       }
-
-      list.map(async (product) => {
-        if (product.order) {
-          console.log('p[roduct:>]', product.order.items[0].price.product)
-          const res = await fetchVault(
-            product.order.id,
-            product.order.items[0].price.product,
-          )
-          console.log('res:>]', res)
-        }
-      })
     }
+  }
+
+  useEffect(() => {
+    setOwnProducts([])
+    fetchOwnProducts()
   }, [orders])
 
   // Server-render loading state
@@ -63,18 +93,48 @@ const Orders = () => {
     <Layout className="flex justify-center">
       <div className="md:mx-8 my-16 h-full max-w-2xl w-full">
         <div className="text-center text-4xl font-bold">My Orders</div>
-        <div className="mt-8 flex justify-center">
+        <div className="mt-8 flex flex-col gap-6 justify-center">
           {ownProducts.map((product) => (
             <Panel
               key={product.order.id}
               title={product.title}
-              description="You will be unable to use the system after cancelling the subscription"
-              footer={
-                <Button isInverted={true} className="w-48" isSmall={true}>
-                  Download
-                </Button>
+              description={product.description}
+              hints={
+                <span>
+                  Purchased on{' '}
+                  {dayjs
+                    .unix(Number(product.order.created))
+                    .format('DD/MM/YYYY')}
+                </span>
               }
-            ></Panel>
+              footer={
+                <>
+                  {product.order.invoice && (
+                    <Button
+                      onClick={() => handleInvoice(product.order.invoice)}
+                      className="w-48"
+                      isSmall={true}
+                    >
+                      Invoice
+                    </Button>
+                  )}
+                  {product.order.download && (
+                    <Button
+                      onClick={() => handleDownload(product.order.download)}
+                      isInverted={true}
+                      className="w-48"
+                      isSmall={true}
+                    >
+                      Download
+                    </Button>
+                  )}
+                </>
+              }
+            >
+              <span className="absolute right-2 top-2 dark:bg-normal-700 dark:text-neutral-300 rounded-lg p-1">
+                {product.price}
+              </span>
+            </Panel>
           ))}
         </div>
       </div>
