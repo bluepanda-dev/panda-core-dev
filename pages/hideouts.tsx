@@ -17,10 +17,10 @@ const Hideouts = () => {
   const [hideouts, setHideouts] = useState<Hideout[]>([])
   const { profile } = useUserContext()
   const { isPremium } = useCustomerContext()
-  const { subscribeHideouts, add } = useHideouts()
+  const { subscribeHideouts, handleAdd } = useHideouts()
 
-  function handleAdd() {
-    add({ owner: profile!.uid as string, name: 'New hideout' })
+  function add() {
+    handleAdd({ owner: profile!.uid as string, name: 'New hideout' })
   }
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const Hideouts = () => {
       <div className="mx-8 my-16 h-full">
         <div className="text-center text-4xl font-bold">My Hideouts</div>
         <div className="mt-8">
-          <Button isSpecial={true} className="!w-auto" onClick={handleAdd}>
+          <Button isSpecial={true} className="!w-auto" onClick={add}>
             {t('addNew')}
           </Button>
         </div>
