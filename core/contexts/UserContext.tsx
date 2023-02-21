@@ -63,7 +63,6 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
               doc(db, USER_DB, userData.uid),
               {
                 uid: userData.uid,
-                email: userData.email,
                 emailVerified: userData.emailVerified,
                 firstName: userData.displayName?.split(' ')[0],
                 photoURL: getProfileImage(userData),
