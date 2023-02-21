@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import { useHideouts } from '@core/hooks/useHideouts'
 import Button from '@components/atoms/Button'
 import Link from 'next/link'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 const Hideouts = () => {
   const { t } = useTranslation('hideouts')
@@ -29,7 +29,7 @@ const Hideouts = () => {
   }, [profile])
 
   if (!profile) {
-    return <Layout>Loading...</Layout>
+    return <Layout>{t('loading')}...</Layout>
   }
 
   return (
