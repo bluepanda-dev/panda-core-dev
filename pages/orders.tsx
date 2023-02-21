@@ -31,8 +31,7 @@ const Orders = () => {
 
   async function fetchOwnProducts() {
     if (orders) {
-      console.log('orders:>>>>> ', orders)
-      let list =
+      const productsMatch =
         products.list
           ?.filter((product) => {
             const found = orders.find(
@@ -48,20 +47,21 @@ const Orders = () => {
             return { ...product, order: found }
           }) ?? []
 
-      list = await Promise.all(
-        list.map(async (product) => {
+      // it checks if the product has metadata such as download link
+      const hydratedOrder = await Promise.all(
+        productsMatch.map(async (product) => {
           if (product.order) {
-            const res = await fetchVault(
+            const response = await fetchVault(
               product.order.id,
               product.order.items[0].price.product,
             )
             product.order.invoice = product.order.charges.data[0].receipt_url
-            if (res) {
+            if (response) {
               return {
                 ...product,
                 order: {
                   ...product.order,
-                  download: res.download,
+                  download: response.download,
                 },
               }
             }
@@ -71,8 +71,8 @@ const Orders = () => {
         }),
       )
 
-      if (list) {
-        setOwnProducts(list as HydratedProduct[])
+      if (hydratedOrder) {
+        setOwnProducts(hydratedOrder as HydratedProduct[])
       }
     }
   }
