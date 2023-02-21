@@ -11,24 +11,25 @@ export default function Profile() {
   const { saveUser, savePublicProfile } = useUser()
   const { profile } = useUserContext()
   const [website, setWebsite] = useState('')
+  const [email, setEmail] = useState('')
   const [publicProfile, setPublicProfile] = useState<ProfileType>()
 
   const { fetchPublicProfile } = useUser()
 
   async function handleSave() {
-    if (!profile?.email) {
+    if (!email) {
       toast.error('You need to enter an email to save your profile')
       return
     }
     setLoading(true)
     console.log('saving profile', profile)
-    await saveUser({ ...profile!, website })
+    await saveUser({ ...profile!, website, email })
     await savePublicProfile({
       website,
+      email,
       displayName: profile!.displayName,
       uid: profile!.uid,
       photoURL: profile!.photoURL,
-      email: profile!.email,
     })
     toast('Saved successfully!')
     setLoading(false)
@@ -42,14 +43,15 @@ export default function Profile() {
   }
 
   async function handleMakePublic() {
-    if (!profile?.email || !website) {
+    if (!email || !website) {
       toast.error(
         'You need to enter an email and website in to make your profile public',
       )
       return
     }
     await savePublicProfile({
-      website: profile!.website,
+      website,
+      email,
       displayName: profile!.displayName,
       uid: profile!.uid,
       photoURL: profile!.photoURL,
@@ -67,6 +69,9 @@ export default function Profile() {
     if (profile?.website !== undefined) {
       console.log('setting website', profile.website)
       setWebsite(profile?.website)
+    }
+    if (profile?.email !== undefined) {
+      setEmail(profile?.email)
     }
   }, [profile])
 
@@ -103,8 +108,8 @@ export default function Profile() {
             id="email"
             className="form-control block w-full px-3 py-1.5 text-base font-normal bg-clip-padding border rounded transition dark:text-neutral-300"
             placeholder="Enter email"
-            value={profile?.email}
-            onChange={(e) => (profile.email = e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="form-group mb-6">
@@ -112,15 +117,13 @@ export default function Profile() {
             Website (extra info for your profile)
           </label>
 
-          {website !== undefined && (
-            <input
-              id="website"
-              className="form-control block w-full px-3 py-1.5 text-base font-normal bg-clip-padding border rounded transition dark:text-neutral-300"
-              placeholder="Enter website"
-              value={website}
-              onChange={(e) => setWebsite(e.target.value)}
-            />
-          )}
+          <input
+            id="website"
+            className="form-control block w-full px-3 py-1.5 text-base font-normal bg-clip-padding border rounded transition dark:text-neutral-300"
+            placeholder="Enter website"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+          />
         </div>
         <div className="form-group mb-6">
           <Button loading={loading} isSpecial={true} onClick={handleSave}>
