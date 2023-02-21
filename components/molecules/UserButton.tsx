@@ -17,8 +17,8 @@ export default function UserButton() {
   async function handleLogIn(provider: () => Promise<void>) {
     try {
       await provider()
-    } catch (error) {
-      toast('Wow there was a problem!')
+    } catch (error: any) {
+      toast(`Wow there was a problem! ${error?.message}`)
       console.log(error)
     } finally {
       setIsOpen(false)
