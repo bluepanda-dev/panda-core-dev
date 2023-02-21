@@ -1,100 +1,84 @@
 import { Price, Product, PRODUCTS_DB } from '@core/types/payments'
 import { useEffect, useState } from 'react'
-import {
-  collection,
-  addDoc,
-  getDocs,
-  query,
-  where,
-  onSnapshot,
-} from 'firebase/firestore'
-import { useFirebase } from './useFirebase'
+import { where, onSnapshot } from 'firebase/firestore'
 import { useUserContext } from '@core/contexts/UserContext'
+import { useQuery } from './useQuery'
 
 export const usePayments = () => {
-  const { db } = useFirebase()
   const { profile } = useUserContext()
+  const { fetchAllWhere, addToCollection } = useQuery()
 
   const [planProduct, setPlanProduct] = useState<Product | null>(null)
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(false)
 
   async function fetchProducts() {
-    const q = query(
-      collection(db, PRODUCTS_DB),
-      where('active', '==', true),
-      where('role', '==', null),
-    )
     const items = []
-    const querySnapshot = await getDocs(q)
-    for (const doc of querySnapshot.docs) {
-      const product = doc.data() as Product
 
+    const list =
+      (await fetchAllWhere<Product>(
+        [where('active', '==', true), where('role', '==', null)],
+        PRODUCTS_DB,
+      )) ?? []
+
+    for (const product of list) {
       const prices: Price[] = []
 
-      const subQuery = query(
-        collection(db, PRODUCTS_DB, doc.id, 'prices'),
-        where('active', '==', true),
-      )
+      const subList =
+        (await fetchAllWhere<Price>(
+          where('active', '==', true),
+          PRODUCTS_DB,
+          product.docId,
+          'prices',
+        )) ?? []
 
-      const subcollectionSnapshot = await getDocs(subQuery)
-
-      subcollectionSnapshot.forEach((doc) => {
-        const price = doc.data() as Price
-        price.guid = doc.id
+      subList.forEach((price) => {
+        price.guid = price.docId
         prices.push(price)
       })
-
-      product.prices = prices
-
-      items.push(product)
+      items.push({ ...product, prices })
     }
     setProducts([...items])
   }
 
   async function fetchPlans() {
-    const q = query(
-      collection(db, PRODUCTS_DB),
-      where('active', '==', true),
-      where('metadata.type', '==', 'plans'),
-    )
-    const querySnapshot = await getDocs(q)
-    querySnapshot.forEach(async (doc) => {
-      console.log(doc.id, '=>', doc.data())
+    const list =
+      (await fetchAllWhere<Product>(
+        [where('active', '==', true), where('metadata.type', '==', 'plans')],
+        PRODUCTS_DB,
+      )) ?? []
+
+    list.forEach(async (product) => {
       const prices: Price[] = []
 
-      const subQuery = query(
-        collection(db, PRODUCTS_DB, doc.id, 'prices'),
-        where('active', '==', true),
-      )
+      const subList =
+        (await fetchAllWhere<Price>(
+          where('active', '==', true),
+          PRODUCTS_DB,
+          product.docId,
+          'prices',
+        )) ?? []
 
-      const subcollectionSnapshot = await getDocs(subQuery)
-
-      subcollectionSnapshot.forEach((doc) => {
-        const price = doc.data() as Price
-        price.guid = doc.id
+      subList.forEach((price) => {
+        price.guid = price.docId
         prices.push(price)
       })
-
-      const product = doc.data() as Product
-      product.prices = prices
-      setPlanProduct(product)
+      setPlanProduct({ ...product, prices })
     })
   }
 
   async function startSubscription(price: Price) {
     setLoading(true)
-    const docRef = collection(
-      db,
+    const docR = await addToCollection(
+      {
+        price: price.guid,
+        success_url: `${window.location.origin}/payment/success`,
+        cancel_url: `${window.location.origin}/payment/failure`,
+      },
       'fe-customers',
       profile!.uid,
       'checkout_sessions',
     )
-    const docR = await addDoc(docRef, {
-      price: price.guid,
-      success_url: `${window.location.origin}/payment/success`,
-      cancel_url: `${window.location.origin}/payment/failure`,
-    })
 
     onSnapshot(docR, (snap: any) => {
       const { error, url } = snap.data()
@@ -110,18 +94,19 @@ export const usePayments = () => {
 
   async function singlePayment(price: Price) {
     setLoading(true)
-    const docRef = collection(
-      db,
+
+    const docR = await addToCollection(
+      {
+        mode: 'payment',
+        price: price.guid,
+        success_url: `${window.location.origin}/payment/success`,
+        cancel_url: `${window.location.origin}/payment/failure`,
+      },
+
       'fe-customers',
       profile!.uid,
       'checkout_sessions',
     )
-    const docR = await addDoc(docRef, {
-      mode: 'payment',
-      price: price.guid,
-      success_url: `${window.location.origin}/payment/success`,
-      cancel_url: `${window.location.origin}/payment/failure`,
-    })
 
     onSnapshot(docR, (snap: any) => {
       const { error, url } = snap.data()

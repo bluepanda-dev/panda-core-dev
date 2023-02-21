@@ -1,4 +1,5 @@
 import {
+  addDoc,
   collection,
   doc,
   getDoc,
@@ -7,7 +8,6 @@ import {
   query,
   QueryConstraint,
   setDoc,
-  where,
 } from 'firebase/firestore'
 import { useFirebase } from './useFirebase'
 
@@ -110,11 +110,14 @@ export const useQuery = () => {
   }
 
   async function fetchAllWhere<T>(
-    whereCondition: QueryConstraint | null,
+    whereCondition: QueryConstraint | null | QueryConstraint[],
     ...route: string[]
   ): Promise<(T & { docId: string })[] | undefined> {
-    // @ts-ignore
-    const q = query(collection(db, ...route), whereCondition)
+    const q = query(
+      // @ts-ignore
+      collection(db, ...route),
+      ...(Array.isArray(whereCondition) ? whereCondition : [whereCondition]),
+    )
     const querySnapshot = await getDocs(q)
 
     return querySnapshot.docs.map((doc) => ({
@@ -135,11 +138,26 @@ export const useQuery = () => {
     }))
   }
 
+  async function addToCollection<T extends Object>(
+    payload: T,
+    ...route: string[]
+  ) {
+    // @ts-ignore
+    const docRef = collection(db, ...route)
+
+    const docR = await addDoc(docRef, {
+      ...payload,
+    })
+
+    return docR
+  }
+
   return {
     subscribe,
     subscribeCollection,
     update,
     add,
+    addToCollection,
     save,
     fetch,
     fetchAll,
