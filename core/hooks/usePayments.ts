@@ -1,4 +1,4 @@
-import { Price, Product, PRODUCTS_DB } from '@core/types/payments'
+import { CREDITS_DB, Price, Product, PRODUCTS_DB } from '@core/types/payments'
 import { useEffect, useState } from 'react'
 import { where, onSnapshot } from 'firebase/firestore'
 import { useUserContext } from '@core/contexts/UserContext'
@@ -6,11 +6,10 @@ import { useQuery } from './useQuery'
 
 export const usePayments = () => {
   const { profile } = useUserContext()
-  const { fetchAllWhere, addToCollection } = useQuery()
+  const { fetchAll, fetchAllWhere, addToCollection } = useQuery()
 
   const [planProduct, setPlanProduct] = useState<Product | null>(null)
   const [products, setProducts] = useState<Product[]>([])
-  const [creditProducts, setCreditProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(false)
 
   async function fetchProducts() {
@@ -121,26 +120,27 @@ export const usePayments = () => {
     })
   }
 
+  async function fetchCreditsProducts() {
+    const list = await fetchAll<{ name: string }>(CREDITS_DB)
+
+    const credits = products.filter((p) =>
+      list.some((c) => c.docId === p.docId),
+    )
+
+    return credits
+  }
+
   useEffect(() => {
     fetchPlans()
     fetchProducts()
   }, [])
 
-  useEffect(() => {
-    if (products.length) {
-      const credits = products.filter((p) =>
-        p.prices.some((pr) => pr.transform_quantity?.round),
-      )
-      setCreditProducts(credits)
-    }
-  }, [products])
-
   return {
     planProduct,
     products,
-    creditProducts,
     startSubscription,
     singlePayment,
+    fetchCreditsProducts,
     loading,
   }
 }

@@ -9,6 +9,7 @@ import { where, onSnapshot } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useQuery } from './useQuery'
+import { CREDITS_DB, SPENDINGS_DB } from '@core/types/payments'
 
 export const useCustomer = () => {
   const { user } = useUserContext()
@@ -19,6 +20,8 @@ export const useCustomer = () => {
   const [nextPayment, setNextPayment] = useState('')
   const [invoices, setInvoices] = useState<Invoice[]>([])
   const [orders, setOrders] = useState<Order[]>([])
+  const [totalCredits, setTotalCredits] = useState<number>(0)
+  const [totalSpending, setTotalSpending] = useState<number>(0)
 
   const [activeSubscription, setActiveSubscription] =
     useState<Subscription | null>(null)
@@ -45,7 +48,34 @@ export const useCustomer = () => {
 
   async function fetchInvoices(uid: string) {
     setInvoices([])
-    const list: Invoice[] = await fetchAll(CUSTOMERS_DB, uid, 'payments')
+    const list: Invoice[] =
+      (await fetchAll(CUSTOMERS_DB, uid, 'payments')) ?? []
+
+    const credits = await fetchAll<{ name: string }>(CREDITS_DB)
+    const spendings =
+      (await fetchAll<{ amount: number }>(SPENDINGS_DB, uid, 'transactions')) ??
+      []
+
+    const totalSpending = spendings.reduce((acc, curr) => {
+      return acc + curr.amount
+    }, 0)
+
+    const filteredCredits = list
+      .filter((item) => item?.items?.length)
+      .filter((item) =>
+        credits.some(
+          (c) =>
+            c.docId === item?.items[0].price.product &&
+            item.status === 'succeeded',
+        ),
+      )
+
+    const totalCustomerCredits = filteredCredits.reduce((acc, curr) => {
+      return acc + curr.items[0].price.transform_quantity.divide_by
+    }, 0)
+
+    setTotalCredits(totalCustomerCredits - totalSpending)
+    setTotalSpending(totalSpending)
     setInvoices(list && list.reverse())
   }
 
@@ -62,9 +92,11 @@ export const useCustomer = () => {
         uid,
         'payments',
       )) ?? []
+
     list = list.filter(
       (item) => item.items && item.items[0]?.price.type === 'one_time',
     )
+
     setOrders(list)
   }
 
@@ -119,5 +151,7 @@ export const useCustomer = () => {
     cancelSubscription,
     fetchCustomerData,
     fetchVault,
+    totalCredits,
+    totalSpending,
   }
 }

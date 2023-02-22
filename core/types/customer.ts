@@ -46,6 +46,8 @@ export type Invoice = {
   status: string
   created: string
   charges: { data: { receipt_url: string }[] }
+  items: { description: string; price: Price }[]
+  docId?: string
 }
 
 export type Order = {
@@ -57,6 +59,6 @@ export type Order = {
   invoice?: string
   status: string
   created: string
-  charges: { data: { receipt_url: string }[] }
   items: { description: string; price: Price }[]
+  charges: { data: { receipt_url: string }[] }
 }

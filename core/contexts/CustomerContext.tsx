@@ -1,6 +1,6 @@
 import { useCustomer } from '@core/hooks/useCustomer'
 import { Invoice, Order, Subscription } from '@core/types/customer'
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect } from 'react'
 import { useUserContext } from './UserContext'
 
 type CustomerContextType = {
@@ -16,6 +16,8 @@ type CustomerContextType = {
   ) => void
   orders: Order[]
   fetchVault: (id: string, uid: string) => any
+  totalCredits: number
+  totalSpending: number
 }
 
 const CustomerContext = createContext({} as CustomerContextType)
@@ -38,6 +40,8 @@ export function CustomerProvider({ children }: { children: React.ReactNode }) {
     fetchCustomerData,
     cancelSubscription,
     fetchVault,
+    totalCredits,
+    totalSpending,
   } = useCustomer()
 
   useEffect(() => {
@@ -63,6 +67,8 @@ export function CustomerProvider({ children }: { children: React.ReactNode }) {
         orders,
         cancelSubscription,
         fetchVault,
+        totalCredits,
+        totalSpending,
       }}
     >
       {children}
