@@ -48,7 +48,9 @@ export default function Card({
       </div>
       {(footer || hints) && (
         <div className="border-t rounded-b-lg px-2 border-neutral-600 bg-neutral-100 dark:bg-normal-800 flex h-14 w-full items-center">
-          <div className="ml-4 w-full text-left hidden sm:block">{hints}</div>
+          {hints && (
+            <div className="ml-4 w-full text-left hidden sm:block">{hints}</div>
+          )}
           <div className="w-full flex justify-end gap-2">{footer}</div>
         </div>
       )}
