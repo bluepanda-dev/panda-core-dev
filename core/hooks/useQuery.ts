@@ -1,4 +1,5 @@
 import {
+  addDoc,
   collection,
   doc,
   getDoc,
@@ -7,7 +8,6 @@ import {
   query,
   QueryConstraint,
   setDoc,
-  where,
 } from 'firebase/firestore'
 import { useFirebase } from './useFirebase'
 
@@ -59,20 +59,21 @@ export const useQuery = () => {
     if (!db) {
       throw new Error('Not database configured')
     }
+    // @ts-ignore
+    const docRef = doc(db, ...route)
+
     await setDoc(
-      // @ts-ignore
-      doc(db, ...route),
+      docRef,
       {
         ...payload,
       },
       { merge: true },
     )
+
+    return docRef
   }
 
   async function add<T>(payload: T, ...route: string[]) {
-    if (!db) {
-      throw new Error('Not database configured')
-    }
     // @ts-ignore
     const newRef = await doc(collection(db, ...route))
 
@@ -94,10 +95,6 @@ export const useQuery = () => {
   }
 
   async function fetch<T>(...route: string[]): Promise<T | undefined> {
-    if (!db) {
-      throw new Error('Not database configured')
-    }
-
     // @ts-ignore
     const docRef = doc(db, ...route)
     const docSnap = await getDoc(docRef)
@@ -110,5 +107,58 @@ export const useQuery = () => {
     return undefined
   }
 
-  return { subscribe, subscribeCollection, update, add, save, fetch }
+  async function fetchAllWhere<T>(
+    whereCondition: QueryConstraint | QueryConstraint[],
+    ...route: string[]
+  ): Promise<(T & { docId: string })[] | undefined> {
+    const q = query(
+      // @ts-ignore
+      collection(db, ...route),
+      ...(Array.isArray(whereCondition) ? whereCondition : [whereCondition]),
+    )
+    const querySnapshot = await getDocs(q)
+
+    return querySnapshot.docs.map((doc) => ({
+      docId: doc.id,
+      ...(doc.data() as T),
+    }))
+  }
+
+  async function fetchAll<T>(
+    ...route: string[]
+  ): Promise<(T & { docId: string })[]> {
+    // @ts-ignore
+    const q = query(collection(db, ...route))
+    const querySnapshot = await getDocs(q)
+    return querySnapshot.docs.map((doc) => ({
+      docId: doc.id,
+      ...(doc.data() as T),
+    }))
+  }
+
+  async function addToCollection<T extends Object>(
+    payload: T,
+    ...route: string[]
+  ) {
+    // @ts-ignore
+    const docRef = collection(db, ...route)
+
+    const docR = await addDoc(docRef, {
+      ...payload,
+    })
+
+    return docR
+  }
+
+  return {
+    subscribe,
+    subscribeCollection,
+    update,
+    add,
+    addToCollection,
+    save,
+    fetch,
+    fetchAll,
+    fetchAllWhere,
+  }
 }
