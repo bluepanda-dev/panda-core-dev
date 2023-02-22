@@ -10,6 +10,7 @@ export const usePayments = () => {
 
   const [planProduct, setPlanProduct] = useState<Product | null>(null)
   const [products, setProducts] = useState<Product[]>([])
+  const [creditProducts, setCreditProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(false)
 
   async function fetchProducts() {
@@ -125,9 +126,19 @@ export const usePayments = () => {
     fetchProducts()
   }, [])
 
+  useEffect(() => {
+    if (products.length) {
+      const credits = products.filter((p) =>
+        p.prices.some((pr) => pr.transform_quantity?.round),
+      )
+      setCreditProducts(credits)
+    }
+  }, [products])
+
   return {
     planProduct,
     products,
+    creditProducts,
     startSubscription,
     singlePayment,
     loading,

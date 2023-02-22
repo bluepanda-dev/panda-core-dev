@@ -14,6 +14,7 @@ export type Price = {
   stripe_metadata_description: string
   stripe_metadata_order: string
   stripe_metadata_type: string
+  transform_quantity: { round: string; divide_by: number }
 }
 
 export type Product = {
@@ -22,4 +23,6 @@ export type Product = {
   description: string
   role: string
   prices: Price[]
+  images: string[]
+  docId?: string
 }

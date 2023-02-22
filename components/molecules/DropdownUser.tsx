@@ -5,6 +5,7 @@ import {
   FiUsers,
   FiSun,
   FiShoppingBag,
+  FiStar,
 } from 'react-icons/fi'
 import { Menu, Transition } from '@headlessui/react'
 import Button from '@components/atoms/Button'
@@ -115,11 +116,10 @@ export default function DropdownUser({
               />
             </Link>
             <Link href="/orders">
-              <MenuAction
-                icon={<FiShoppingBag />}
-                text="My Orders"
-                onClick={() => {}}
-              />
+              <MenuAction icon={<FiShoppingBag />} text="My Orders" />
+            </Link>
+            <Link href="/credits">
+              <MenuAction icon={<FiStar />} text="My Credits" />
             </Link>
             <div
               onClick={() => (theme === 'dark' ? themeLight() : themeDark())}
