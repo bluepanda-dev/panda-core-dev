@@ -17,7 +17,7 @@ const Hideout = () => {
   const [profile, setProfile] = useState<Profile>()
   const { fetchPublicProfile } = useUser()
   const { uid } = router.query
-  const { t } = useTranslation('profile')
+  const { t } = useTranslation(['profile', 'common'])
 
   useEffect(() => {
     if (uid) {
@@ -36,7 +36,7 @@ const Hideout = () => {
   }, [profile])
 
   if (!profile) {
-    return <>{t('loading')}...</>
+    return <>{t('loading', { ns: 'common' })}...</>
   }
 
   return (
