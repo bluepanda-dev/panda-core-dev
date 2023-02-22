@@ -9,6 +9,7 @@ import { FiShare2, FiUser } from 'react-icons/fi'
 import { toast } from 'react-toastify'
 import Button from '@components/atoms/Button'
 import Link from 'next/link'
+import { useTranslation } from 'next-i18next'
 
 const ProfilePic = ({
   photoURL,
@@ -49,6 +50,7 @@ const Hideout = () => {
   const [hideout, setHideout] = useState<Hideout | undefined>()
   const [ideas, setIdeas] = useState<{ text: string; owner: HideoutUser }[]>([])
   const [newIdea, setNewIdea] = useState('')
+  const { t } = useTranslation(['hideouts', 'common'])
 
   function handleShare() {
     navigator.clipboard.writeText(sharableLink)
@@ -141,7 +143,7 @@ const Hideout = () => {
   }, [profile, loading, uid])
 
   if (!hideout) {
-    return <>Loading...</>
+    return <>{t('loading', { ns: 'common' })}...</>
   }
 
   // TODO: remove ideas
@@ -154,7 +156,7 @@ const Hideout = () => {
       {profile && (
         <div className="absolute right-2 top-2">
           <Link href={`/hideouts`}>
-            <Button>My Hideouts</Button>
+            <Button>{t('myHideouts')}</Button>
           </Link>
         </div>
       )}
@@ -163,13 +165,10 @@ const Hideout = () => {
         <div className="text-center text-4xl font-bold">{hideout.name}</div>
 
         <div className="text-neutral-600 dark:text-neutral-400 flex justify-center text-xl md:text-2xl font-extralight mt-6 md:mt-16 px-8 ">
-          <div className="md:max-w-lg text-center">
-            Here you can test sharable content with other anonymous and
-            registered users
-          </div>
+          <div className="md:max-w-lg text-center">{t('hereYouCan')}</div>
         </div>
         <div className="mt-8 flex justify-end items-center gap-4">
-          <span>Active Users:</span>
+          <span>{t('activeUsers')}:</span>
           <div className="ml-4 flex gap-1">
             {hideout.activeUsers?.map((user, index) => (
               <div key={index} style={{ marginLeft: '-18px' }}>
@@ -181,7 +180,7 @@ const Hideout = () => {
               </div>
             ))}
           </div>
-          <span>Share it:</span>
+          <span>{t('shareIt')}:</span>
           <button
             onClick={handleShare}
             className="border-neutral-500 hover:border-primary-600 bg-primary-800 border rounded-md p-1 text-xl"
@@ -197,7 +196,7 @@ const Hideout = () => {
             onChange={(e) => setNewIdea(e.target.value)}
           />
           <Button isSpecial={true} onClick={handleAddIdea} className="!w-auto">
-            Add new idea
+            {t('addNewIdea')}
           </Button>
         </div>
         <div className="mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -226,7 +225,7 @@ export default Hideout
 export async function getServerSideProps({ locale }: any) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['hideouts', 'common'])),
     },
   }
 }

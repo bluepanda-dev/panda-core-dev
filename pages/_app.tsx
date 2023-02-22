@@ -1,13 +1,16 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { appWithTranslation } from 'next-i18next'
+import { appWithTranslation, useTranslation } from 'next-i18next'
 import { Suspense } from 'react'
 import ScrollButton from '@components/molecules/ScrollButton'
 import Button from '@components/atoms/Button'
 import { UserProvider } from '@core/contexts/UserContext'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
+  const { t } = useTranslation('common')
+
   function handleDemoButton() {
     window.location.href = 'https://blue-panda.dev/'
   }
@@ -39,7 +42,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             onClick={handleDemoButton}
             className="bg-blue-600/70 shadow-blue-700/50 hover:bg-blue-500"
           >
-            Back to Blue Panda
+            {t('backTo')}
           </Button>
         </div>
       </UserProvider>
@@ -48,3 +51,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 }
 
 export default appWithTranslation(MyApp)
+
+export async function getServerSideProps({ locale }: any) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  }
+}

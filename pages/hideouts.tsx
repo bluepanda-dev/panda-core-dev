@@ -7,10 +7,10 @@ import { useState, useEffect } from 'react'
 import { useHideouts } from '@core/hooks/useHideouts'
 import Button from '@components/atoms/Button'
 import Link from 'next/link'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 const Hideouts = () => {
-  const { t } = useTranslation('hideouts')
+  const { t } = useTranslation(['hideouts', 'common'])
 
   const [hideouts, setHideouts] = useState<Hideout[]>([])
   const { profile } = useUserContext()
@@ -29,13 +29,13 @@ const Hideouts = () => {
   }, [profile])
 
   if (!profile) {
-    return <Layout>Loading...</Layout>
+    return <Layout>{t('loading', { ns: 'common' })}...</Layout>
   }
 
   return (
     <Layout>
       <div className="mx-8 my-16 h-full">
-        <div className="text-center text-4xl font-bold">My Hideouts</div>
+        <div className="text-center text-4xl font-bold">{t('myHideouts')}</div>
         <div className="mt-8">
           <Button isSpecial={true} className="!w-auto" onClick={add}>
             {t('addNew')}

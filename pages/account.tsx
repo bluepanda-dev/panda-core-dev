@@ -7,14 +7,16 @@ import Notifications from '@components/organisms/account/Notifications'
 import { useUserContext } from '@core/contexts/UserContext'
 import useBreakpoint from '@core/hooks/useBreakpoint'
 import { breakpointsWidths } from '@core/utils/breakpoints'
+import { useTranslation } from 'next-i18next'
 
 const Account = () => {
+  const { t } = useTranslation('common')
   const { profile } = useUserContext()
   const { windowSize } = useBreakpoint()
 
   // Server-render loading state
   if (!profile) {
-    return <Layout>Loading...</Layout>
+    return <Layout>{t('loading')}...</Layout>
   }
 
   const tabs = {
@@ -28,7 +30,7 @@ const Account = () => {
   return (
     <Layout className="flex justify-center">
       <div className="md:mx-8 my-16 h-full max-w-2xl w-full">
-        <div className="text-center text-4xl font-bold">My Profile</div>
+        <div className="text-center text-4xl font-bold">{t('myProfile')}</div>
         <div className="mt-8 flex justify-center">
           <SimpleTabs
             tabs={tabs}
