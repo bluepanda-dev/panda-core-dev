@@ -87,8 +87,6 @@ const Orders = () => {
     return <Layout>Loading...</Layout>
   }
 
-  console.log('orders:>>>', ownProducts)
-
   return (
     <Layout className="flex justify-center">
       <div className="md:mx-8 my-16 h-full max-w-2xl w-full">
