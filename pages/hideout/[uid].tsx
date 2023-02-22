@@ -50,7 +50,7 @@ const Hideout = () => {
   const [hideout, setHideout] = useState<Hideout | undefined>()
   const [ideas, setIdeas] = useState<{ text: string; owner: HideoutUser }[]>([])
   const [newIdea, setNewIdea] = useState('')
-  const { t } = useTranslation('hideouts')
+  const { t } = useTranslation(['hideouts', 'common'])
 
   function handleShare() {
     navigator.clipboard.writeText(sharableLink)
@@ -143,7 +143,7 @@ const Hideout = () => {
   }, [profile, loading, uid])
 
   if (!hideout) {
-    return <>Loading...</>
+    return <>{t('loading', { ns: 'common' })}...</>
   }
 
   // TODO: remove ideas

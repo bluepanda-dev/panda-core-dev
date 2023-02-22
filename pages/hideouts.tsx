@@ -10,7 +10,7 @@ import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 
 const Hideouts = () => {
-  const { t } = useTranslation('hideouts')
+  const { t } = useTranslation(['hideouts', 'common'])
 
   const [hideouts, setHideouts] = useState<Hideout[]>([])
   const { profile } = useUserContext()
@@ -29,7 +29,7 @@ const Hideouts = () => {
   }, [profile])
 
   if (!profile) {
-    return <Layout>{t('loading')}...</Layout>
+    return <Layout>{t('loading', { ns: 'common' })}...</Layout>
   }
 
   return (
