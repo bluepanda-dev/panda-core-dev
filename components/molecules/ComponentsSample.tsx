@@ -231,9 +231,6 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
                 <Panel
                   title="Panel Title"
                   description="Panel with danger type"
-                  hints={
-                    <span className="justify-self-start">Some hints......</span>
-                  }
                   type="danger"
                   footer={
                     <>
