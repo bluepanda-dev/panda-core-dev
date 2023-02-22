@@ -17,7 +17,7 @@ const Hideout = () => {
   const [profile, setProfile] = useState<Profile>()
   const { fetchPublicProfile } = useUser()
   const { uid } = router.query
-  const { t } = useTranslation('hideouts')
+  const { t } = useTranslation('profile')
 
   useEffect(() => {
     if (uid) {
@@ -36,7 +36,7 @@ const Hideout = () => {
   }, [profile])
 
   if (!profile) {
-    return <>Loading...</>
+    return <>{t('loading')}...</>
   }
 
   return (
@@ -78,7 +78,7 @@ export default Hideout
 export async function getServerSideProps({ locale }: any) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['hideouts', 'common'])),
+      ...(await serverSideTranslations(locale, ['profile', 'common'])),
     },
   }
 }
