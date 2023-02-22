@@ -108,7 +108,7 @@ export const useQuery = () => {
   }
 
   async function fetchAllWhere<T>(
-    whereCondition: QueryConstraint | null | QueryConstraint[],
+    whereCondition: QueryConstraint | QueryConstraint[],
     ...route: string[]
   ): Promise<(T & { docId: string })[] | undefined> {
     const q = query(
