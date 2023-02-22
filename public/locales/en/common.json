@@ -4,7 +4,10 @@
   "components": "Components",
   "settings": "Settings",
   "myAccount": "My account",
+  "myProfile": "My profile",
   "myHideouts": "My Hideouts",
+  "loading": "Loading",
+  "downloads": "Downloads",
   "logOut": "Log Out",
   "upgrade": "Upgrade",
   "contactUs": "Contact us",
@@ -14,6 +17,7 @@
   "madeWithLove": "Made with 💙",
   "youAreInDemo": "You are in a Demo Template",
   "switchTheme": "Switch to {{theme}} mode",
+  "backTo": "Back to Blue Panda",
   "lanOptions": {
     "en": "English",
     "es": "Spanish",
