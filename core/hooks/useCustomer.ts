@@ -9,7 +9,7 @@ import { where, onSnapshot } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useQuery } from './useQuery'
-import { CREDITS_DB, SPENDINGS_DB } from '@core/types/payments'
+import { CREDITS_DB } from '@core/types/payments'
 
 export const useCustomer = () => {
   const { user } = useUserContext()
@@ -52,12 +52,17 @@ export const useCustomer = () => {
       (await fetchAll(CUSTOMERS_DB, uid, 'payments')) ?? []
 
     const credits = await fetchAll<{ name: string }>(CREDITS_DB)
+
     const spendings =
-      (await fetchAll<{ amount: number }>(SPENDINGS_DB, uid, 'transactions')) ??
-      []
+      (await fetchAllWhere<{ amountCharged: number }>(
+        where('proccessed', '==', true),
+        CUSTOMERS_DB,
+        uid,
+        'credits_spendings',
+      )) ?? []
 
     const totalSpending = spendings.reduce((acc, curr) => {
-      return acc + curr.amount
+      return acc + curr.amountCharged
     }, 0)
 
     const filteredCredits = list
