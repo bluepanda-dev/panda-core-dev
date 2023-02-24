@@ -7,6 +7,8 @@ import Panel from '@components/molecules/Panel'
 import { usePayments } from '@core/hooks/usePayments'
 import { Product } from '@core/types/payments'
 import { useCustomerContext } from '@core/contexts/CustomerContext'
+import { useCredits } from '@core/hooks/useCredits'
+import { CreditItem } from '@core/types/credits'
 
 const Credits = () => {
   const { profile } = useUserContext()
@@ -14,13 +16,19 @@ const Credits = () => {
     usePayments()
   const [creditProducts, setCreditProducts] = useState<Product[]>([])
   const { totalCredits, totalSpending } = useCustomerContext()
+  const { creditItems, fetchCreditItems, buyWithCredits } = useCredits()
 
   useEffect(() => {
     async function fetchCredits() {
       setCreditProducts(await fetchCreditsProducts())
+      await fetchCreditItems()
     }
     fetchCredits()
   }, [products])
+
+  function handleBuy(item: CreditItem) {
+    buyWithCredits(item)
+  }
 
   // Server-render loading state
   if (!profile) {
@@ -80,6 +88,21 @@ const Credits = () => {
           <div className="text-center text-4xl font-bold">Spend Credits</div>
           <div className="mt-8 flex gap-6 justify-center">
             You have used {totalSpending} credits
+          </div>
+          <div>
+            Sample of credits usages
+            <div>
+              <div className="text-primary-500">Buy Images</div>
+              <div>
+                {creditItems.map((item, index) => (
+                  <div className="max-w-[150px]" key={index}>
+                    <img src={item.preview} />
+                    <div>{item.cost} credits</div>
+                    <Button onClick={() => handleBuy(item)}>Buy</Button>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
