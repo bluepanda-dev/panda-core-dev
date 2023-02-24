@@ -7,3 +7,15 @@ export interface CreditItem {
   cost: number
   docId: string
 }
+
+export interface ProtectedItem {
+  download?: string
+  raw?: string
+}
+
+export interface CreditSpending {
+  amountCharged: number
+  item: string
+  protectedItem: ProtectedItem
+  docId: string
+}

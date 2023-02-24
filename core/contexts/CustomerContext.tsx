@@ -16,8 +16,6 @@ type CustomerContextType = {
   ) => void
   orders: Order[]
   fetchVault: (id: string, uid: string) => any
-  totalCredits: number
-  totalSpending: number
 }
 
 const CustomerContext = createContext({} as CustomerContextType)
@@ -40,8 +38,6 @@ export function CustomerProvider({ children }: { children: React.ReactNode }) {
     fetchCustomerData,
     cancelSubscription,
     fetchVault,
-    totalCredits,
-    totalSpending,
   } = useCustomer()
 
   useEffect(() => {
@@ -67,8 +63,6 @@ export function CustomerProvider({ children }: { children: React.ReactNode }) {
         orders,
         cancelSubscription,
         fetchVault,
-        totalCredits,
-        totalSpending,
       }}
     >
       {children}

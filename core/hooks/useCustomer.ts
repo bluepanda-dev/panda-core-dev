@@ -20,8 +20,6 @@ export const useCustomer = () => {
   const [nextPayment, setNextPayment] = useState('')
   const [invoices, setInvoices] = useState<Invoice[]>([])
   const [orders, setOrders] = useState<Order[]>([])
-  const [totalCredits, setTotalCredits] = useState<number>(0)
-  const [totalSpending, setTotalSpending] = useState<number>(0)
 
   const [activeSubscription, setActiveSubscription] =
     useState<Subscription | null>(null)
@@ -51,36 +49,6 @@ export const useCustomer = () => {
     const list: Invoice[] =
       (await fetchAll(CUSTOMERS_DB, uid, 'payments')) ?? []
 
-    const credits = await fetchAll<{ name: string }>(CREDITS_DB)
-
-    const spendings =
-      (await fetchAllWhere<{ amountCharged: number }>(
-        where('proccessed', '==', true),
-        CUSTOMERS_DB,
-        uid,
-        'credits_spendings',
-      )) ?? []
-
-    const totalSpending = spendings.reduce((acc, curr) => {
-      return acc + curr.amountCharged
-    }, 0)
-
-    const filteredCredits = list
-      .filter((item) => item?.items?.length)
-      .filter((item) =>
-        credits.some(
-          (c) =>
-            c.docId === item?.items[0].price.product &&
-            item.status === 'succeeded',
-        ),
-      )
-
-    const totalCustomerCredits = filteredCredits.reduce((acc, curr) => {
-      return acc + curr.items[0].price.transform_quantity.divide_by
-    }, 0)
-
-    setTotalCredits(totalCustomerCredits - totalSpending)
-    setTotalSpending(totalSpending)
     setInvoices(list && list.reverse())
   }
 
@@ -156,7 +124,5 @@ export const useCustomer = () => {
     cancelSubscription,
     fetchCustomerData,
     fetchVault,
-    totalCredits,
-    totalSpending,
   }
 }

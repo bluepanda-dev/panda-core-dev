@@ -6,17 +6,28 @@ import Button from '@components/atoms/Button'
 import Panel from '@components/molecules/Panel'
 import { usePayments } from '@core/hooks/usePayments'
 import { Product } from '@core/types/payments'
-import { useCustomerContext } from '@core/contexts/CustomerContext'
 import { useCredits } from '@core/hooks/useCredits'
 import { CreditItem } from '@core/types/credits'
 
 const Credits = () => {
   const { profile } = useUserContext()
-  const { fetchCreditsProducts, singlePayment, products, loading } =
-    usePayments()
+  const {
+    fetchCreditsProducts,
+    singlePayment,
+    products,
+    loading: paymentsLoading,
+  } = usePayments()
   const [creditProducts, setCreditProducts] = useState<Product[]>([])
-  const { totalCredits, totalSpending } = useCustomerContext()
-  const { creditItems, fetchCreditItems, buyWithCredits } = useCredits()
+  const {
+    fetchCreditItems,
+    fetchSpendings,
+    buyWithCredits,
+    creditItems,
+    totalCredits,
+    totalSpending,
+    spendings,
+    loading: creditsLoading,
+  } = useCredits()
 
   useEffect(() => {
     async function fetchCredits() {
@@ -26,23 +37,82 @@ const Credits = () => {
     fetchCredits()
   }, [products])
 
+  useEffect(() => {
+    if (profile) {
+      fetchSpendings(profile.uid)
+    }
+  }, [profile])
+
   function handleBuy(item: CreditItem) {
+    console.log('buying', item)
     buyWithCredits(item)
   }
 
   // Server-render loading state
-  if (!profile) {
+  if (!profile || paymentsLoading || creditsLoading) {
     return <Layout>Loading...</Layout>
   }
 
-  console.log('credits::: ', creditProducts)
+  const spendingLabel = (item: CreditItem) => {
+    const found = spendings.find((spending) => spending.item === item.docId)
+    if (found) {
+      return (
+        <span className="absolute right-2 top-2 dark:bg-success-700 dark:text-success-300 rounded-lg p-1">
+          You own it
+        </span>
+      )
+    }
+
+    return (
+      <span className="absolute right-2 top-2 dark:bg-normal-700 dark:text-neutral-300 rounded-lg p-1">
+        {item.cost} credits
+      </span>
+    )
+  }
+
+  const spendingCTA = (item: CreditItem) => {
+    const found = spendings.find((spending) => spending.item === item.docId)
+    if (found) {
+      if (found.protectedItem.download) {
+        return (
+          <Button isInverted={true} isSmall={true} className="w-24">
+            Download
+          </Button>
+        )
+      } else {
+        return <code>{found.protectedItem.raw}</code>
+      }
+    }
+
+    return (
+      <Button
+        className="w-24"
+        isSpecial={true}
+        isSmall={true}
+        onClick={() => handleBuy(item)}
+      >
+        Buy
+      </Button>
+    )
+  }
+
+  console.log('spendings', spendings)
 
   return (
-    <Layout className="flex justify-center">
-      <div className="my-16 h-full max-w-6xl w-full flex flex-col md:flex-row gap-8">
-        <div className="flex-1">
-          <div className="text-center text-4xl font-bold mb-12">
-            Buy Credits
+    <Layout>
+      <div>
+        <div className="mt-4 text-center text-4xl font-bold">My Credits</div>
+        <div className="mt-8 flex gap-6 justify-center">
+          <span className="dark:bg-yellow-700 dark:text-yellow-100 rounded-lg p-1">
+            I have {totalCredits} credits
+          </span>
+        </div>
+      </div>
+      <div className="px-4 mt-12 h-full w-full flex flex-col md:flex-row gap-8  justify-center">
+        <div className="basis-1/2 max-w-2xl">
+          <div className="text-center text-4xl font-bold">Buy Credits</div>
+          <div className="mt-8 flex gap-6 justify-center mb-4">
+            Buy credits to unlock protected content
           </div>
           <div className="flex flex-col gap-4 mx-6 md:mx-0">
             {creditProducts.map((product) =>
@@ -52,10 +122,7 @@ const Credits = () => {
                   title={`${price.transform_quantity.divide_by} ${product.name}`}
                   footer={
                     <>
-                      <Button
-                        loading={loading}
-                        onClick={() => singlePayment(price)}
-                      >
+                      <Button onClick={() => singlePayment(price)}>
                         Buy for ${price.unit_amount / 100}
                       </Button>
                     </>
@@ -78,30 +145,23 @@ const Credits = () => {
             )}
           </div>
         </div>
-        <div className="flex-1">
-          <div className="text-center text-4xl font-bold">My Credits</div>
-          <div className="mt-8 flex gap-6 justify-center">
-            You have {totalCredits} credits
-          </div>
-        </div>
-        <div className="flex-1">
+        <div className="basis-1/2 max-w-2xl">
           <div className="text-center text-4xl font-bold">Spend Credits</div>
-          <div className="mt-8 flex gap-6 justify-center">
+          <div className="mt-8 flex gap-6 justify-center mb-4">
             You have used {totalSpending} credits
           </div>
           <div>
-            Sample of credits usages
-            <div>
-              <div className="text-primary-500">Buy Images</div>
-              <div>
-                {creditItems.map((item, index) => (
-                  <div className="max-w-[150px]" key={index}>
-                    <img src={item.preview} />
-                    <div>{item.cost} credits</div>
-                    <Button onClick={() => handleBuy(item)}>Buy</Button>
-                  </div>
-                ))}
-              </div>
+            <div className="flex flex-col gap-4 mx-6 md:mx-0">
+              {creditItems.map((item, index) => (
+                <Panel
+                  key={index}
+                  title={`${item.name}`}
+                  footer={spendingCTA(item)}
+                >
+                  <img className="max-w-[150px]" src={item.preview} />
+                  {spendingLabel(item)}
+                </Panel>
+              ))}
             </div>
           </div>
         </div>
