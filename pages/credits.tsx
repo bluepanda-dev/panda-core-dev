@@ -61,20 +61,20 @@ const Credits = () => {
     const found = spendings.find((spending) => spending.item === item.docId)
     if (found) {
       return (
-        <span className="absolute right-2 top-2 dark:bg-success-700 dark:text-success-300 rounded-lg p-1">
+        <span className="text-sm md:text-md absolute right-0 top-0 dark:bg-success-700 dark:text-success-300 rounded-sm p-1">
           You own it
         </span>
       )
     }
 
     return (
-      <span className="absolute right-2 top-2 dark:bg-normal-700 dark:text-neutral-300 rounded-lg p-1">
+      <span className="text-sm md:text-md absolute right-0 top-0 dark:bg-normal-700 dark:text-neutral-300 rounded-sm p-1">
         {item.cost} credits
       </span>
     )
   }
 
-  const spendingCTA = (item: CreditItem) => {
+  const spendingFooter = (item: CreditItem) => {
     const found = spendings.find((spending) => spending.item === item.docId)
     if (found) {
       if (found.protectedItem.download) {
@@ -84,7 +84,11 @@ const Credits = () => {
           </Button>
         )
       } else {
-        return <code>{found.protectedItem.raw}</code>
+        return (
+          <code className="w-full text-xs md:text-sm">
+            {found.protectedItem.raw}
+          </code>
+        )
       }
     }
 
@@ -160,7 +164,7 @@ const Credits = () => {
                 <Panel
                   key={index}
                   title={`${item.name}`}
-                  footer={spendingCTA(item)}
+                  footer={spendingFooter(item)}
                 >
                   <img className="max-w-[150px]" src={item.preview} />
                   {spendingLabel(item)}

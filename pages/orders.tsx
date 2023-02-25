@@ -88,7 +88,7 @@ const Orders = () => {
 
   return (
     <Layout className="flex justify-center">
-      <div className="md:mx-8 my-16 h-full max-w-2xl w-full">
+      <div className="mx-2 md:mx-8 my-16 h-full max-w-2xl w-full">
         <div className="text-center text-4xl font-bold">My Orders</div>
         <div className="mt-8 flex flex-col gap-6 justify-center">
           {ownProducts.map((product) => (
