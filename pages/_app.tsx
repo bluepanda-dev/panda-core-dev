@@ -8,9 +8,14 @@ import Button from '@components/atoms/Button'
 import { UserProvider } from '@core/contexts/UserContext'
 import { CustomerProvider } from '@core/contexts/CustomerContext'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import LoadingModal from '@components/molecules/LoadingModal'
+import { loadingAtom } from '@core/store/Common'
+import { useAtom } from 'jotai'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { t } = useTranslation('common')
+
+  const [loading] = useAtom(loadingAtom)
 
   function handleDemoButton() {
     window.location.href = 'https://blue-panda.dev/'
@@ -44,9 +49,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
               onClick={handleDemoButton}
               className="bg-blue-600/70 shadow-blue-700/50 hover:bg-blue-500"
             >
-              {t('backTo')}{' '}
+              {t('backTo')}
             </Button>
           </div>
+          <LoadingModal loading={loading} />
         </CustomerProvider>
       </UserProvider>
     </Suspense>

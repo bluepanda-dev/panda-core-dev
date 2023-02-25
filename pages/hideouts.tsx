@@ -10,10 +10,13 @@ import Link from 'next/link'
 import Plans from '@components/organisms/Plans'
 import { useCustomerContext } from '@core/contexts/CustomerContext'
 import { useTranslation } from 'next-i18next'
+import { loadingAtom } from '@core/store/Common'
+import { useAtom } from 'jotai'
 
 const Hideouts = () => {
   const { t } = useTranslation(['hideouts', 'common'])
 
+  const [, setLoading] = useAtom(loadingAtom)
   const [hideouts, setHideouts] = useState<Hideout[]>([])
   const { profile } = useUserContext()
   const { isPremium } = useCustomerContext()
@@ -24,9 +27,14 @@ const Hideouts = () => {
   }
 
   useEffect(() => {
+    setLoading(true)
+  }, [])
+
+  useEffect(() => {
     if (profile) {
       subscribeHideouts(profile.uid, (data: Hideout[]) => {
         setHideouts(data)
+        setLoading(false)
       })
     }
   }, [profile])
