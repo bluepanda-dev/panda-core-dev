@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useDataPages } from '@core/hooks/useDataPages'
-import { useUser } from '@core/hooks/useUser'
 
 export default function Hero() {
   const { hero } = useDataPages()

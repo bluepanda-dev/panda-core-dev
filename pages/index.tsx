@@ -10,19 +10,17 @@ import FareWell from '@components/organisms/FareWell'
 import Features from '@components/organisms/Features'
 import Hero from '@components/organisms/Hero'
 import KeepMeInformed from '@components/organisms/KeepMeInformed'
-import Plans from '@components/organisms/Plans'
 import OurNumbers from '@components/organisms/OurNumbers'
-import TimeLine from '@components/organisms/TimeLine'
+import Plans from '@components/organisms/Plans'
 import Products from '@components/organisms/Products'
 import Reviews from '@components/organisms/Reviews'
 import ShowVideo from '@components/organisms/ShowVideo'
 import TechStack from '@components/organisms/TechStack'
+import TimeLine from '@components/organisms/TimeLine'
 import WhyUs from '@components/organisms/WhyUs'
-import { useFirebase } from '@core/hooks/useFirebase'
 
 export default function Home() {
   const { t } = useTranslation()
-  const { app } = useFirebase()
 
   return (
     <Layout>
