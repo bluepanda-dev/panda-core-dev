@@ -67,11 +67,12 @@ html.dark .ui-hoverable {
   @apply hover:text-neutral-200;
 }
 
-.ui-title {
-  @apply text-2xl font-normal
+html.dark .ui-link {
+  @apply cursor-pointer text-primary-500 hover:text-primary-600;
 }
 
-.ui-focus-text {
+.ui-title {
+  @apply text-2xl font-normal
 }
 
 /* loader css */

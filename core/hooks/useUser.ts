@@ -1,4 +1,3 @@
-import { Profile, USER_DB, USER_PROFILE_DB } from '@core/types'
 import {
   signOut,
   signInWithPopup,
@@ -6,8 +5,11 @@ import {
   TwitterAuthProvider,
   GithubAuthProvider,
   FacebookAuthProvider,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
 } from 'firebase/auth'
 import { useUserContext } from '@core/contexts/UserContext'
+import { Profile, USER_DB, USER_PROFILE_DB } from '@core/types'
 import { useQuery } from './useQuery'
 
 export const useUser = () => {
@@ -32,22 +34,30 @@ export const useUser = () => {
 
   async function googleLogIn() {
     const provider = new GoogleAuthProvider()
-    await signInWithPopup(auth!, provider)
+    return await signInWithPopup(auth!, provider)
   }
 
   async function twitterLogIn() {
     const provider = new TwitterAuthProvider()
-    await signInWithPopup(auth!, provider)
+    return await signInWithPopup(auth!, provider)
   }
 
   async function githubLogIn() {
     const provider = new GithubAuthProvider()
-    await signInWithPopup(auth!, provider)
+    return await signInWithPopup(auth!, provider)
   }
 
   async function facebookLogIn() {
     const provider = new FacebookAuthProvider()
-    await signInWithPopup(auth!, provider)
+    return await signInWithPopup(auth!, provider)
+  }
+
+  async function nativeLogIn(email: string, password: string) {
+    return await signInWithEmailAndPassword(auth!, email, password)
+  }
+
+  async function nativeCreateAccount(email: string, password: string) {
+    return await createUserWithEmailAndPassword(auth!, email, password)
   }
 
   function logOut() {
@@ -61,6 +71,8 @@ export const useUser = () => {
     twitterLogIn,
     githubLogIn,
     facebookLogIn,
+    nativeLogIn,
+    nativeCreateAccount,
     logOut,
     saveUser,
     savePublicProfile,
