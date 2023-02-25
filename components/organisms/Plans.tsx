@@ -3,11 +3,12 @@ import { useDataPages } from '@core/hooks/useDataPages'
 import { FiCheckCircle } from 'react-icons/fi'
 import { usePayments } from '@core/hooks/usePayments'
 import { Price } from '@core/types/payments'
+import { useEffect } from 'react'
 
 export const PlanCard = ({ price }: { price: Price }) => {
   const { plans } = useDataPages()
   const features = price.stripe_metadata_features.split('\n') as string[]
-  const { startSubscription, loading } = usePayments()
+  const { startSubscription } = usePayments()
   // TODO remove all hardfcoded text like enterprise, etc
 
   return (
@@ -41,18 +42,14 @@ export const PlanCard = ({ price }: { price: Price }) => {
         </div>
         {price.unit_amount > 0 && (
           <div className="absolute right-4 bottom-10 lg:bottom-4">
-            <Button
-              loading={loading}
-              isSpecial={true}
-              onClick={() => startSubscription(price)}
-            >
+            <Button isSpecial={true} onClick={() => startSubscription(price)}>
               {plans.cta}
             </Button>
           </div>
         )}
         {price.stripe_metadata_type === 'enterprise' && (
           <div className="absolute right-4 bottom-10 lg:bottom-4">
-            <Button loading={loading}>Contact us</Button>
+            <Button>Contact us</Button>
           </div>
         )}
         <div className="absolute right-4 lg:left-6 bottom-2 lg:bottom-28 text-neutral-300">
@@ -65,7 +62,11 @@ export const PlanCard = ({ price }: { price: Price }) => {
 
 export default function Plans() {
   const { plans } = useDataPages()
-  const { planProduct } = usePayments()
+  const { planProduct, setUp } = usePayments()
+
+  useEffect(() => {
+    setUp()
+  }, [])
 
   return (
     <div className="w-full">

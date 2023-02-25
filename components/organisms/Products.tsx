@@ -4,7 +4,7 @@ import { useDataPages } from '@core/hooks/useDataPages'
 import { ProductCard } from '@core/types'
 import { FiChevronRight } from 'react-icons/fi'
 import Modal from '@components/molecules/Modal'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Container from '@components/atoms/Container'
 import { usePayments } from '@core/hooks/usePayments'
 import { Price } from '@core/types/payments'
@@ -69,11 +69,12 @@ const Product = ({
 }
 
 export default function Products() {
+  const [buying, setBuying] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [product, setProduct] = useState<ProductCard | null>(null)
   const [price, setPrice] = useState<Price | null>(null)
   const { products } = useDataPages()
-  const { products: productList, singlePayment, loading } = usePayments()
+  const { products: productList, singlePayment, setUp } = usePayments()
 
   function handleBuy(product: ProductCard, price: Price) {
     setProduct(product)
@@ -90,8 +91,15 @@ export default function Products() {
   }
 
   function handleBuyNow() {
-    singlePayment(price!)
+    setBuying(true)
+    singlePayment(price!, () => {
+      setBuying(false)
+    })
   }
+
+  useEffect(() => {
+    setUp()
+  }, [])
 
   return (
     <div>
@@ -128,7 +136,7 @@ export default function Products() {
           className="w-auto absolute bottom-3 right-3 !h-10"
           isSpecial={true}
           onClick={handleBuyNow}
-          loading={loading}
+          loading={buying}
         >
           {products.texts!.buyNow}
         </Button>

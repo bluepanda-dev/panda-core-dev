@@ -6,7 +6,6 @@ import { useQuery } from './useQuery'
 import { CreditItem, CreditSpending } from '@core/types/credits'
 import { CREDITS_DB, CREDITS_ITEMS_DB } from '@core/types/credits'
 import { CUSTOMERS_DB, Invoice } from '@core/types'
-import { usePayments } from './usePayments'
 import { Product, PRODUCTS_DB, Price } from '@core/types/payments'
 
 export const useCredits = () => {
@@ -94,7 +93,7 @@ export const useCredits = () => {
     setTotalSpending(totalSpending)
   }
 
-  async function buyWithCredits(item: CreditItem) {
+  async function buyWithCredits(item: CreditItem, onDone: () => void) {
     const docR = await addToCollection(
       {
         amount: item.cost,
@@ -109,11 +108,13 @@ export const useCredits = () => {
       const { error } = snap.data()
       if (error) {
         alert(`An error occured: ${error.message}`)
+        onDone()
       }
       if (snap.data().proccessed) {
         toast('Credits successful used')
         await fetchCreditItems()
         await fetchSpendings(profile!.uid)
+        onDone()
       }
     })
   }

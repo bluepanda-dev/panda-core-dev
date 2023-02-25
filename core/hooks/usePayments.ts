@@ -1,4 +1,4 @@
-import { CREDITS_DB, Price, Product, PRODUCTS_DB } from '@core/types/payments'
+import { Price, Product, PRODUCTS_DB } from '@core/types/payments'
 import { useState } from 'react'
 import { where, onSnapshot } from 'firebase/firestore'
 import { useUserContext } from '@core/contexts/UserContext'
@@ -90,7 +90,7 @@ export const usePayments = () => {
     })
   }
 
-  async function singlePayment(price: Price) {
+  async function singlePayment(price: Price, done?: () => void) {
     const docR = await addToCollection(
       {
         mode: 'payment',
@@ -108,9 +108,11 @@ export const usePayments = () => {
       const { error, url } = snap.data()
       if (error) {
         alert(`An error occured: ${error.message}`)
+        done && done()
       }
       if (url) {
         window.location.assign(url)
+        done && done()
       }
     })
   }

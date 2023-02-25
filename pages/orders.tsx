@@ -13,7 +13,7 @@ type HydratedProduct = ProductCard & { order: Order }
 
 const Orders = () => {
   const { profile } = useUserContext()
-  const { orders, fetchVault } = useCustomerContext()
+  const { orders } = useCustomerContext()
   const { products } = useDataPages()
   const [ownProducts, setOwnProducts] = useState<HydratedProduct[]>([])
 
@@ -51,19 +51,18 @@ const Orders = () => {
       const hydratedOrder = await Promise.all(
         productsMatch.map(async (product) => {
           if (product.order) {
-            const response = await fetchVault(
+            product.order.invoice = product.order.charges.data[0].receipt_url
+            // FIXME IMPROVE FETCH VAULT BY STH SIMILAR TO CREDITS
+            /*const response = await fetchVault(
               product.order.id,
               product.order.items[0].price.product,
-            )
-            product.order.invoice = product.order.charges.data[0].receipt_url
-            if (response) {
-              return {
-                ...product,
-                order: {
-                  ...product.order,
-                  download: response.download,
-                },
-              }
+            )*/
+            return {
+              ...product,
+              order: {
+                ...product.order,
+                // download: response.download,
+              },
             }
           }
 
