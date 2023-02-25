@@ -1,5 +1,5 @@
-import { Fragment, useEffect } from 'react'
 import { Transition } from '@headlessui/react'
+import { Fragment, useEffect } from 'react'
 
 type SidePanelProps = {
   title: string

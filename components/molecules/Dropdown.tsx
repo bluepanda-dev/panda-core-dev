@@ -1,6 +1,6 @@
+import { Menu, Transition } from '@headlessui/react'
 import React, { Fragment } from 'react'
 import { FiChevronDown } from 'react-icons/fi'
-import { Menu, Transition } from '@headlessui/react'
 
 export type Option = {
   label: string

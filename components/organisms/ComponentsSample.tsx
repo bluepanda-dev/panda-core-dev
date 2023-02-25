@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { FiMenu } from 'react-icons/fi'
-import Dropdown from '@components/molecules/Dropdown'
-import Modal from './Modal'
-import Container from '@components/atoms/Container'
 import { toast } from 'react-toastify'
-import Accordion from './Accordion'
+import Container from '@components/atoms/Container'
+import Dropdown from '@components/molecules/Dropdown'
 import SimpleRadioGroup, {
   RadioOption,
 } from '@components/molecules/SimpleRadioGroup'
 import SimpleTabs from '@components/molecules/SimpleTabs'
+import Accordion from './Accordion'
+import Modal from './Modal'
 import SidePanel from './SidePanel'
 
 type ComponentsSampleProps = {

@@ -1,11 +1,11 @@
-import React from 'react'
-import { FiSun, FiMenu } from 'react-icons/fi'
 import Image from 'next/image'
 import Link from 'next/link'
-import Dropdown from '@components/molecules/Dropdown'
-import Button from '@components/atoms/Button'
-import { useTheme } from '@core/hooks/useTheme'
+import React from 'react'
+import { FiSun, FiMenu } from 'react-icons/fi'
 import { Theme, ToastContainer } from 'react-toastify'
+import Button from '@components/atoms/Button'
+import Dropdown from '@components/molecules/Dropdown'
+import { useTheme } from '@core/hooks/useTheme'
 
 export default function NavBar() {
   const { themeDark, themeLight, theme } = useTheme()

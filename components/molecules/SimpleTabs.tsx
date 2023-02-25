@@ -1,5 +1,5 @@
-import { FiCheckCircle } from 'react-icons/fi'
 import { Tab } from '@headlessui/react'
+import { FiCheckCircle } from 'react-icons/fi'
 
 type SimpleTabProps = {
   className?: string
