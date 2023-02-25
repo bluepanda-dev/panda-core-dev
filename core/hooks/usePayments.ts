@@ -1,16 +1,16 @@
 import { CREDITS_DB, Price, Product, PRODUCTS_DB } from '@core/types/payments'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { where, onSnapshot } from 'firebase/firestore'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useQuery } from './useQuery'
 
 export const usePayments = () => {
   const { profile } = useUserContext()
-  const { fetchAll, fetchAllWhere, addToCollection } = useQuery()
+  const { fetchAllWhere, addToCollection } = useQuery()
 
   const [planProduct, setPlanProduct] = useState<Product | null>(null)
   const [products, setProducts] = useState<Product[]>([])
-  const [loading, setLoading] = useState(false)
+  const [settingUp, setSettingUp] = useState(false)
 
   async function fetchProducts() {
     const items = []
@@ -38,7 +38,7 @@ export const usePayments = () => {
       })
       items.push({ ...product, prices })
     }
-    setProducts([...items])
+    return items
   }
 
   async function fetchPlans() {
@@ -47,28 +47,27 @@ export const usePayments = () => {
         [where('active', '==', true), where('metadata.type', '==', 'plans')],
         PRODUCTS_DB,
       )) ?? []
+    // there is only one plan which has multiple prices
+    const product = list[0]
 
-    list.forEach(async (product) => {
-      const prices: Price[] = []
+    const prices: Price[] = []
 
-      const subList =
-        (await fetchAllWhere<Price>(
-          where('active', '==', true),
-          PRODUCTS_DB,
-          product.docId,
-          'prices',
-        )) ?? []
+    const subList =
+      (await fetchAllWhere<Price>(
+        where('active', '==', true),
+        PRODUCTS_DB,
+        product.docId,
+        'prices',
+      )) ?? []
 
-      subList.forEach((price) => {
-        price.guid = price.docId
-        prices.push(price)
-      })
-      setPlanProduct({ ...product, prices })
+    subList.forEach((price) => {
+      price.guid = price.docId
+      prices.push(price)
     })
+    return { ...product, prices }
   }
 
   async function startSubscription(price: Price) {
-    setLoading(true)
     const docR = await addToCollection(
       {
         price: price.guid,
@@ -84,7 +83,6 @@ export const usePayments = () => {
       const { error, url } = snap.data()
       if (error) {
         alert(`An error occured: ${error.message}`)
-        setLoading(false)
       }
       if (url) {
         window.location.assign(url)
@@ -93,8 +91,6 @@ export const usePayments = () => {
   }
 
   async function singlePayment(price: Price) {
-    setLoading(true)
-
     const docR = await addToCollection(
       {
         mode: 'payment',
@@ -112,7 +108,6 @@ export const usePayments = () => {
       const { error, url } = snap.data()
       if (error) {
         alert(`An error occured: ${error.message}`)
-        setLoading(false)
       }
       if (url) {
         window.location.assign(url)
@@ -120,27 +115,19 @@ export const usePayments = () => {
     })
   }
 
-  async function fetchCreditsProducts() {
-    const list = await fetchAll<{ name: string }>(CREDITS_DB)
-
-    const credits = products.filter((p) =>
-      list.some((c) => c.docId === p.docId),
-    )
-
-    return credits
+  async function setUp() {
+    setSettingUp(true)
+    await fetchPlans().then((product) => setPlanProduct(product))
+    await fetchProducts().then((products) => setProducts(products))
+    setSettingUp(false)
   }
-
-  useEffect(() => {
-    fetchPlans()
-    fetchProducts()
-  }, [])
 
   return {
     planProduct,
     products,
     startSubscription,
     singlePayment,
-    fetchCreditsProducts,
-    loading,
+    setUp,
+    settingUp,
   }
 }

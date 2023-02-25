@@ -15,7 +15,8 @@ type CustomerContextType = {
     cb: (result: { canceled: boolean; error: string }) => void,
   ) => void
   orders: Order[]
-  fetchVault: (id: string, uid: string) => any
+  setUp: (uid: string) => any
+  settingUp: boolean
 }
 
 const CustomerContext = createContext({} as CustomerContextType)
@@ -35,20 +36,15 @@ export function CustomerProvider({ children }: { children: React.ReactNode }) {
     nextPayment,
     invoices,
     orders,
-    fetchCustomerData,
     cancelSubscription,
-    fetchVault,
+    setUp,
+    settingUp,
   } = useCustomer()
 
   useEffect(() => {
-    async function setUp() {
-      if (profile) {
-        setTimeout(async () => {
-          fetchCustomerData(profile!.uid)
-        }, 1000)
-      }
+    if (profile) {
+      setUp(profile!.uid)
     }
-    setUp()
   }, [profile])
 
   return (
@@ -62,7 +58,8 @@ export function CustomerProvider({ children }: { children: React.ReactNode }) {
         invoices,
         orders,
         cancelSubscription,
-        fetchVault,
+        setUp,
+        settingUp,
       }}
     >
       {children}

@@ -5,52 +5,53 @@ import { useState, useEffect } from 'react'
 import Button from '@components/atoms/Button'
 import Panel from '@components/molecules/Panel'
 import { usePayments } from '@core/hooks/usePayments'
-import { Product } from '@core/types/payments'
 import { useCredits } from '@core/hooks/useCredits'
 import { CreditItem } from '@core/types/credits'
+import { loadingAtom } from '@core/store/Common'
+import { useAtom } from 'jotai'
 
 const Credits = () => {
   const { profile } = useUserContext()
+  const [, setLoading] = useAtom(loadingAtom)
+  const [preparingPage, setPreparingPage] = useState(true)
+  const { singlePayment } = usePayments()
   const {
-    fetchCreditsProducts,
-    singlePayment,
-    products,
-    loading: paymentsLoading,
-  } = usePayments()
-  const [creditProducts, setCreditProducts] = useState<Product[]>([])
-  const {
-    fetchCreditItems,
-    fetchSpendings,
     buyWithCredits,
     creditItems,
+    creditProducts,
     totalCredits,
     totalSpending,
     spendings,
-    loading: creditsLoading,
+    setUp,
+    settingUp,
   } = useCredits()
-
-  useEffect(() => {
-    async function fetchCredits() {
-      setCreditProducts(await fetchCreditsProducts())
-      await fetchCreditItems()
-    }
-    fetchCredits()
-  }, [products])
-
-  useEffect(() => {
-    if (profile) {
-      fetchSpendings(profile.uid)
-    }
-  }, [profile])
 
   function handleBuy(item: CreditItem) {
     console.log('buying', item)
     buyWithCredits(item)
   }
 
+  useEffect(() => {
+    setLoading(true)
+  }, [])
+
+  useEffect(() => {
+    if (!settingUp && !preparingPage) {
+      setLoading(false)
+    }
+  }, [preparingPage, settingUp])
+
+  useEffect(() => {
+    if (profile) {
+      setUp().then(() => {
+        setPreparingPage(false)
+      })
+    }
+  }, [profile])
+
   // Server-render loading state
-  if (!profile || paymentsLoading || creditsLoading) {
-    return <Layout>Loading...</Layout>
+  if (!profile || settingUp || preparingPage) {
+    return <Layout></Layout>
   }
 
   const spendingLabel = (item: CreditItem) => {

@@ -9,11 +9,11 @@ import { where, onSnapshot } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useQuery } from './useQuery'
-import { CREDITS_DB } from '@core/types/payments'
 
 export const useCustomer = () => {
   const { user } = useUserContext()
   const { update, fetchAllWhere, fetch, fetchAll } = useQuery()
+  const [settingUp, setSettingUp] = useState(false)
   const [isPremium, setIsPremium] = useState(false)
   const [subscriptionType, setSubscriptionType] = useState('')
   const [price, setPrice] = useState(0)
@@ -89,10 +89,14 @@ export const useCustomer = () => {
     }
   }
 
-  async function fetchCustomerData(uid: string) {
-    await fetchInvoices(uid)
-    await fetchActiveSubscription(uid)
-    await fetchOrders(uid)
+  async function setUp(uid: string) {
+    setSettingUp(true)
+    setTimeout(async () => {
+      await fetchInvoices(uid)
+      await fetchActiveSubscription(uid)
+      await fetchOrders(uid)
+      setSettingUp(false)
+    }, 1000)
   }
 
   useEffect(() => {
@@ -122,7 +126,8 @@ export const useCustomer = () => {
     orders,
     nextPayment,
     cancelSubscription,
-    fetchCustomerData,
     fetchVault,
+    setUp,
+    settingUp,
   }
 }

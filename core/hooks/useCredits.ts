@@ -6,32 +6,58 @@ import { useQuery } from './useQuery'
 import { CreditItem, CreditSpending } from '@core/types/credits'
 import { CREDITS_DB, CREDITS_ITEMS_DB } from '@core/types/credits'
 import { CUSTOMERS_DB, Invoice } from '@core/types'
+import { usePayments } from './usePayments'
+import { Product, PRODUCTS_DB, Price } from '@core/types/payments'
 
 export const useCredits = () => {
-  const [loading, setLoading] = useState(false)
   const { profile } = useUserContext()
+  const [settingUp, setSettingUp] = useState(false)
   const { fetchAllWhere, addToCollection, fetchAll } = useQuery()
   const [creditItems, setCreditItems] = useState<CreditItem[]>([])
   const [totalCredits, setTotalCredits] = useState<number>(0)
   const [totalSpending, setTotalSpending] = useState<number>(0)
+  const [creditProducts, setCreditProducts] = useState<Product[]>([])
   const [spendings, setSpendings] = useState<CreditSpending[]>([])
 
+  async function fetchProducts() {
+    const items = []
+
+    const list =
+      (await fetchAllWhere<Product>(
+        [where('active', '==', true), where('role', '==', null)],
+        PRODUCTS_DB,
+      )) ?? []
+
+    for (const product of list) {
+      const prices: Price[] = []
+
+      const subList =
+        (await fetchAllWhere<Price>(
+          where('active', '==', true),
+          PRODUCTS_DB,
+          product.docId,
+          'prices',
+        )) ?? []
+
+      subList.forEach((price) => {
+        price.guid = price.docId
+        prices.push(price)
+      })
+      items.push({ ...product, prices })
+    }
+    return items
+  }
+
   async function fetchCreditItems() {
-    setCreditItems([])
-    const list: CreditItem[] =
+    return (
       (await fetchAllWhere<CreditItem>(
         where('active', '==', true),
         CREDITS_ITEMS_DB,
       )) ?? []
-    setCreditItems(list)
+    )
   }
 
   async function fetchSpendings(uid: string) {
-    setSpendings([])
-    setTotalCredits(0)
-    setTotalSpending(0)
-    setLoading(true)
-
     const list: Invoice[] =
       (await fetchAll(CUSTOMERS_DB, uid, 'payments')) ?? []
 
@@ -66,8 +92,6 @@ export const useCredits = () => {
     setSpendings(spendings)
     setTotalCredits(totalCustomerCredits - totalSpending)
     setTotalSpending(totalSpending)
-
-    setLoading(false)
   }
 
   async function buyWithCredits(item: CreditItem) {
@@ -94,14 +118,33 @@ export const useCredits = () => {
     })
   }
 
+  async function fetchCreditsProducts() {
+    const products = await fetchProducts()
+    const list = await fetchAll<{ name: string }>(CREDITS_DB)
+
+    const credits = products.filter((p) =>
+      list.some((c) => c.docId === p.docId),
+    )
+
+    return credits
+  }
+
+  async function setUp() {
+    setSettingUp(true)
+    await fetchCreditsProducts().then((credits) => setCreditProducts(credits))
+    await fetchCreditItems().then((items) => setCreditItems(items))
+    await fetchSpendings(profile!.uid)
+    setSettingUp(false)
+  }
+
   return {
-    loading,
-    fetchCreditItems,
-    fetchSpendings,
     creditItems,
+    creditProducts,
     buyWithCredits,
     totalCredits,
     totalSpending,
     spendings,
+    setUp,
+    settingUp,
   }
 }

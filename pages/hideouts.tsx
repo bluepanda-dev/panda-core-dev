@@ -17,9 +17,10 @@ const Hideouts = () => {
   const { t } = useTranslation(['hideouts', 'common'])
 
   const [, setLoading] = useAtom(loadingAtom)
+  const [preparingPage, setPreparingPage] = useState(true)
   const [hideouts, setHideouts] = useState<Hideout[]>([])
   const { profile } = useUserContext()
-  const { isPremium } = useCustomerContext()
+  const { isPremium, settingUp } = useCustomerContext()
   const { subscribeHideouts, handleAdd } = useHideouts()
 
   function add() {
@@ -31,16 +32,22 @@ const Hideouts = () => {
   }, [])
 
   useEffect(() => {
+    if (!settingUp && !preparingPage) {
+      setLoading(false)
+    }
+  }, [preparingPage, settingUp])
+
+  useEffect(() => {
     if (profile) {
       subscribeHideouts(profile.uid, (data: Hideout[]) => {
         setHideouts(data)
-        setLoading(false)
+        setPreparingPage(false)
       })
     }
   }, [profile])
 
-  if (!profile) {
-    return <Layout>{t('loading', { ns: 'common' })}...</Layout>
+  if (!profile || settingUp || preparingPage) {
+    return <Layout></Layout>
   }
 
   if (!isPremium) {
