@@ -47,7 +47,7 @@ export default function Card({
         <div className="">{children}</div>
       </div>
       {(footer || hints) && (
-        <div className="border-t rounded-b-lg px-2 border-neutral-600 bg-neutral-100 dark:bg-normal-800 flex h-14 w-full items-center">
+        <div className="border-t rounded-b-lg px-2 border-neutral-600 bg-neutral-100 dark:bg-normal-800 flex min-h-full py-2 w-full items-center">
           {hints && (
             <div className="ml-4 w-full text-left hidden sm:block">{hints}</div>
           )}
