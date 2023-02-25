@@ -39,7 +39,7 @@ export default function Card({
     <div
       className={`relative ui-border-group rounded-md w-full flex flex-col items-start ${typeClass}`}
     >
-      <div className="flex flex-col p-6 gap-4 items-start">
+      <div className="flex flex-col p-6 gap-4 items-start w-full">
         <div className="ui-title">{title}</div>
         {description && (
           <div className="ui-focus-text text-sm">{description}</div>
