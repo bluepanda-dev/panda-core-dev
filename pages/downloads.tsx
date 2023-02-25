@@ -1,8 +1,8 @@
-import Layout from '@components/layout'
-import { useUserContext } from '@core/contexts/UserContext'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useEffect, useState } from 'react'
+import Layout from '@components/layout'
+import { useUserContext } from '@core/contexts/UserContext'
 
 const Downloads = () => {
   const { t } = useTranslation('common')

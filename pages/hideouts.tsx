@@ -1,15 +1,15 @@
-import Layout from '@components/layout'
-
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useUserContext } from '@core/contexts/UserContext'
-import { Hideout } from '@core/types'
-import { useState, useEffect } from 'react'
-import { useHideouts } from '@core/hooks/useHideouts'
-import Button from '@components/atoms/Button'
+import { useAtom } from 'jotai'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useState, useEffect } from 'react'
+import Button from '@components/atoms/Button'
+import Layout from '@components/layout'
+
+import { useUserContext } from '@core/contexts/UserContext'
+import { useHideouts } from '@core/hooks/useHideouts'
 import { loadingAtom } from '@core/store/Common'
-import { useAtom } from 'jotai'
+import { Hideout } from '@core/types'
 
 const Hideouts = () => {
   const { t } = useTranslation(['hideouts', 'common'])

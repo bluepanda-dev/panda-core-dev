@@ -1,13 +1,13 @@
-import Layout from '@components/layout'
+import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Container from '@components/atoms/Container'
+import Layout from '@components/layout'
 import SimpleTabs from '@components/molecules/SimpleTabs'
-import Profile from '@components/organisms/account/Profile'
 import Notifications from '@components/organisms/account/Notifications'
+import Profile from '@components/organisms/account/Profile'
 import { useUserContext } from '@core/contexts/UserContext'
 import useBreakpoint from '@core/hooks/useBreakpoint'
 import { breakpointsWidths } from '@core/utils/breakpoints'
-import { useTranslation } from 'next-i18next'
 
 const Account = () => {
   const { t } = useTranslation('common')

@@ -1,6 +1,6 @@
+import { FiCheckCircle } from 'react-icons/fi'
 import Button from '@components/atoms/Button'
 import { useDataPages } from '@core/hooks/useDataPages'
-import { FiCheckCircle } from 'react-icons/fi'
 import { PlanCard } from '@core/types'
 
 const PlanCard = ({ plan }: { plan: PlanCard }) => {

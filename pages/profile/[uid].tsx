@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { Hideout, Profile } from '@core/types'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useEffect, useState } from 'react'
 import Layout from '@components/layout'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useHideouts } from '@core/hooks/useHideouts'
-import Link from 'next/link'
 import { useUser } from '@core/hooks/useUser'
-import { useTranslation } from 'next-i18next'
+import { Hideout, Profile } from '@core/types'
 
 const Hideout = () => {
   const router = useRouter()

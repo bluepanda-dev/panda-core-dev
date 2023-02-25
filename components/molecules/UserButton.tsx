@@ -1,12 +1,12 @@
-import { useUser } from '@core/hooks/useUser'
-import Button from '@components/atoms/Button'
-import DropdownUser from './DropdownUser'
 import { useState } from 'react'
-import Modal from './Modal'
-import { toast } from 'react-toastify'
-import { useUserContext } from '@core/contexts/UserContext'
 import { FiTwitter, FiGithub, FiFacebook } from 'react-icons/fi'
 import { ImGoogle } from 'react-icons/im'
+import { toast } from 'react-toastify'
+import Button from '@components/atoms/Button'
+import { useUserContext } from '@core/contexts/UserContext'
+import { useUser } from '@core/hooks/useUser'
+import DropdownUser from './DropdownUser'
+import Modal from './Modal'
 
 export default function UserButton() {
   const { googleLogIn, twitterLogIn, githubLogIn, facebookLogIn } = useUser()

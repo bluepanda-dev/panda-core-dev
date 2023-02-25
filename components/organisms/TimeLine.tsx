@@ -1,6 +1,6 @@
+import { FiCheck } from 'react-icons/fi'
 import { useDataPages } from '@core/hooks/useDataPages'
 import { TimeLineData } from '@core/types'
-import { FiCheck } from 'react-icons/fi'
 
 export default function TimeLine() {
   const { timeLine } = useDataPages()

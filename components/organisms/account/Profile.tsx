@@ -1,10 +1,10 @@
+import { useEffect, useState } from 'react'
+import { FiShare2 } from 'react-icons/fi'
+import { toast } from 'react-toastify'
 import Button from '@components/atoms/Button'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useUser } from '@core/hooks/useUser'
-import { useEffect, useState } from 'react'
 import { Profile as ProfileType } from '@core/types'
-import { toast } from 'react-toastify'
-import { FiShare2 } from 'react-icons/fi'
 
 export default function Profile() {
   const [loading, setLoading] = useState(false)
