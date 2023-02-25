@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
-import NavBar from './organisms/NavBar'
 import Footer from '@components/organisms/Footer'
+import NavBar from './organisms/NavBar'
 
 interface Props {
   children?: ReactNode

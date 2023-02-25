@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { FiSun, FiMenu } from 'react-icons/fi'
+import { useAtom } from 'jotai'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
+import React, { useEffect, useState } from 'react'
+import { FiSun, FiMenu } from 'react-icons/fi'
+import { Theme, ToastContainer } from 'react-toastify'
+import AlertBanner from '@components/molecules/AlertBanner'
 import Dropdown from '@components/molecules/Dropdown'
 import { useTheme } from '@core/hooks/useTheme'
-import { Theme, ToastContainer } from 'react-toastify'
-import { useTranslation } from 'next-i18next'
-import { useRouter } from 'next/router'
 import { isAlertBannerActive } from '@core/store/Common'
-import { useAtom } from 'jotai'
-import AlertBanner from '@components/molecules/AlertBanner'
 
 export default function NavBar() {
   const router = useRouter()
