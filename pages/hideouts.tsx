@@ -8,10 +8,13 @@ import { useHideouts } from '@core/hooks/useHideouts'
 import Button from '@components/atoms/Button'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
+import { loadingAtom } from '@core/store/Common'
+import { useAtom } from 'jotai'
 
 const Hideouts = () => {
   const { t } = useTranslation(['hideouts', 'common'])
 
+  const [, setLoading] = useAtom(loadingAtom)
   const [hideouts, setHideouts] = useState<Hideout[]>([])
   const { profile } = useUserContext()
   const { subscribeHideouts, handleAdd } = useHideouts()
@@ -21,9 +24,14 @@ const Hideouts = () => {
   }
 
   useEffect(() => {
+    setLoading(true)
+  }, [])
+
+  useEffect(() => {
     if (profile) {
       subscribeHideouts(profile.uid, (data: Hideout[]) => {
         setHideouts(data)
+        setLoading(false)
       })
     }
   }, [profile])

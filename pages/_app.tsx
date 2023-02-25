@@ -7,9 +7,14 @@ import ScrollButton from '@components/molecules/ScrollButton'
 import Button from '@components/atoms/Button'
 import { UserProvider } from '@core/contexts/UserContext'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import LoadingModal from '@components/molecules/LoadingModal'
+import { loadingAtom } from '@core/store/Common'
+import { useAtom } from 'jotai'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { t } = useTranslation('common')
+
+  const [loading] = useAtom(loadingAtom)
 
   function handleDemoButton() {
     window.location.href = 'https://blue-panda.dev/'
@@ -45,6 +50,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             {t('backTo')}
           </Button>
         </div>
+        <LoadingModal loading={loading} />
       </UserProvider>
     </Suspense>
   )
