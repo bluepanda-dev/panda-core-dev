@@ -18,11 +18,9 @@ import Reviews from '@components/organisms/Reviews'
 import ShowVideo from '@components/organisms/ShowVideo'
 import TechStack from '@components/organisms/TechStack'
 import WhyUs from '@components/organisms/WhyUs'
-import { useFirebase } from '@core/hooks/useFirebase'
 
 export default function Home() {
   const { t } = useTranslation()
-  const { app } = useFirebase()
 
   return (
     <Layout>

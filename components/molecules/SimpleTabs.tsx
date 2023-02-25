@@ -1,4 +1,5 @@
 import { Tab } from '@headlessui/react'
+import { FiCheckCircle } from 'react-icons/fi'
 
 type SimpleTabProps = {
   isVertical?: boolean
