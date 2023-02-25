@@ -44,7 +44,7 @@ export default function Card({
         {description && (
           <div className="ui-focus-text text-sm">{description}</div>
         )}
-        <div className="">{children}</div>
+        <div className="w-full">{children}</div>
       </div>
       {(footer || hints) && (
         <div className="border-t rounded-b-lg px-2 border-neutral-600 bg-neutral-100 dark:bg-normal-800 flex min-h-full py-2 w-full items-center">
