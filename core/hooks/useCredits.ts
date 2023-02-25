@@ -1,9 +1,9 @@
 import { onSnapshot, where } from 'firebase/firestore'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
+import { useUserContext } from '@core/contexts/UserContext'
 import { useQuery } from './useQuery'
 import { CreditItem, CreditSpending } from '@core/types/credits'
-import { useUserContext } from '@core/contexts/UserContext'
-import { toast } from 'react-toastify'
 import { CREDITS_DB, CREDITS_ITEMS_DB } from '@core/types/credits'
 import { CUSTOMERS_DB, Invoice } from '@core/types'
 
@@ -71,8 +71,6 @@ export const useCredits = () => {
   }
 
   async function buyWithCredits(item: CreditItem) {
-    setLoading(true)
-
     const docR = await addToCollection(
       {
         amount: item.cost,
@@ -83,15 +81,16 @@ export const useCredits = () => {
       'credits_spendings',
     )
 
-    onSnapshot(docR, (snap: any) => {
+    onSnapshot(docR, async (snap: any) => {
       const { error } = snap.data()
       if (error) {
         alert(`An error occured: ${error.message}`)
-        setLoading(false)
       }
-      toast('Credits successful used')
-      fetchCreditItems()
-      setLoading(false)
+      if (snap.data().proccessed) {
+        toast('Credits successful used')
+        await fetchCreditItems()
+        await fetchSpendings(profile!.uid)
+      }
     })
   }
 
