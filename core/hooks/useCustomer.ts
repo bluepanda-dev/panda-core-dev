@@ -1,3 +1,6 @@
+import { where, onSnapshot } from 'firebase/firestore'
+import { useEffect, useState } from 'react'
+import { useUserContext } from '@core/contexts/UserContext'
 import {
   CUSTOMERS_DB,
   VAULT_DB,
@@ -5,9 +8,6 @@ import {
   Order,
   Subscription,
 } from '@core/types/customer'
-import { where, onSnapshot } from 'firebase/firestore'
-import { useEffect, useState } from 'react'
-import { useUserContext } from '@core/contexts/UserContext'
 import { useQuery } from './useQuery'
 
 export const useCustomer = () => {
@@ -47,7 +47,12 @@ export const useCustomer = () => {
   async function fetchInvoices(uid: string) {
     setInvoices([])
     const list: Invoice[] =
-      (await fetchAll(CUSTOMERS_DB, uid, 'payments')) ?? []
+      (await fetchAllWhere(
+        where('status', '==', 'succeeded'),
+        CUSTOMERS_DB,
+        uid,
+        'payments',
+      )) ?? []
 
     setInvoices(list && list.reverse())
   }
