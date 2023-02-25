@@ -8,6 +8,7 @@
     "prettier"
   ],
   "rules": {
+    "react-hooks/exhaustive-deps": 0,
     "import/order": [
       1,
       {
