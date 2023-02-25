@@ -1,7 +1,7 @@
 'use client'
-import Button from '@components/atoms/Button'
 import React, { useEffect, useState } from 'react'
 import { FaArrowCircleUp } from 'react-icons/fa'
+import Button from '@components/atoms/Button'
 
 const ScrollButton = () => {
   const [visible, setVisible] = useState(false)

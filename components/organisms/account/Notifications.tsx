@@ -1,9 +1,9 @@
-import Button from '@components/atoms/Button'
-import { useUserContext } from '@core/contexts/UserContext'
-import { useUser } from '@core/hooks/useUser'
 import { Switch } from '@headlessui/react'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import Button from '@components/atoms/Button'
+import { useUserContext } from '@core/contexts/UserContext'
+import { useUser } from '@core/hooks/useUser'
 
 export default function Notifications() {
   const { saveUser } = useUser()

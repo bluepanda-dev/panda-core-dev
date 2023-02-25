@@ -1,16 +1,16 @@
 import '../styles/globals.css'
+import { useAtom } from 'jotai'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { appWithTranslation, useTranslation } from 'next-i18next'
-import { Suspense } from 'react'
-import ScrollButton from '@components/molecules/ScrollButton'
-import Button from '@components/atoms/Button'
-import { UserProvider } from '@core/contexts/UserContext'
-import { CustomerProvider } from '@core/contexts/CustomerContext'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { Suspense } from 'react'
+import Button from '@components/atoms/Button'
 import LoadingModal from '@components/molecules/LoadingModal'
+import ScrollButton from '@components/molecules/ScrollButton'
+import { CustomerProvider } from '@core/contexts/CustomerContext'
+import { UserProvider } from '@core/contexts/UserContext'
 import { loadingAtom } from '@core/store/Common'
-import { useAtom } from 'jotai'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { t } = useTranslation('common')

@@ -6,5 +6,46 @@
   ],
   "plugins": [
     "prettier"
-  ]
+  ],
+  "rules": {
+    "import/order": [
+      1,
+      {
+        "groups": [
+          "external",
+          "builtin",
+          "internal",
+          "sibling",
+          "parent",
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "components",
+            "group": "internal"
+          },
+          {
+            "pattern": "core",
+            "group": "internal"
+          },
+          {
+            "pattern": "pages/ **",
+            "group": "internal"
+          },
+          {
+            "pattern": "public/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "internal"
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
 }

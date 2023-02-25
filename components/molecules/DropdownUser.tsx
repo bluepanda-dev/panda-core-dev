@@ -1,4 +1,7 @@
+import { Menu, Transition } from '@headlessui/react'
+import Link from 'next/link'
 import React, { Fragment } from 'react'
+import { useTranslation } from 'react-i18next'
 import {
   FiLogOut,
   FiSettings,
@@ -7,13 +10,10 @@ import {
   FiShoppingBag,
   FiStar,
 } from 'react-icons/fi'
-import { Menu, Transition } from '@headlessui/react'
 import Button from '@components/atoms/Button'
-import { useUser } from '@core/hooks/useUser'
-import Link from 'next/link'
 import { useCustomerContext } from '@core/contexts/CustomerContext'
-import { useTranslation } from 'react-i18next'
 import { useTheme } from '@core/hooks/useTheme'
+import { useUser } from '@core/hooks/useUser'
 
 export type DropdownProps = {
   className?: string

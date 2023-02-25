@@ -1,12 +1,12 @@
-import { useUserContext } from '@core/contexts/UserContext'
-import { toast } from 'react-toastify'
 import * as dayjs from 'dayjs'
-import Button from '@components/atoms/Button'
-import Panel from '@components/molecules/Panel'
-import Modal from '@components/molecules/Modal'
-import { useState } from 'react'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { toast } from 'react-toastify'
+import Button from '@components/atoms/Button'
+import Modal from '@components/molecules/Modal'
+import Panel from '@components/molecules/Panel'
 import { useCustomerContext } from '@core/contexts/CustomerContext'
+import { useUserContext } from '@core/contexts/UserContext'
 
 export default function Billing() {
   const router = useRouter()

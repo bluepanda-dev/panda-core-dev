@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
-import { FaFacebookSquare, FaTwitterSquare, FaInstagram } from 'react-icons/fa'
 import lottie from 'lottie-web'
-import animationData from '../data/lottie-animation.json'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+import React, { useEffect } from 'react'
+import { FaFacebookSquare, FaTwitterSquare, FaInstagram } from 'react-icons/fa'
 import { useDataPages } from '@core/hooks/useDataPages'
+import animationData from '../data/lottie-animation.json'
 
 export default function Footer() {
   const { pathname } = useRouter()

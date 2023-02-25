@@ -1,12 +1,12 @@
-import Button from '@components/atoms/Button'
 import Image from 'next/image'
-import { useDataPages } from '@core/hooks/useDataPages'
-import { ProductCard } from '@core/types'
-import { FiChevronRight } from 'react-icons/fi'
-import Modal from '@components/molecules/Modal'
 import { useEffect, useState } from 'react'
+import { FiChevronRight } from 'react-icons/fi'
+import Button from '@components/atoms/Button'
 import Container from '@components/atoms/Container'
+import Modal from '@components/molecules/Modal'
+import { useDataPages } from '@core/hooks/useDataPages'
 import { usePayments } from '@core/hooks/usePayments'
+import { ProductCard } from '@core/types'
 import { Price } from '@core/types/payments'
 
 const Product = ({

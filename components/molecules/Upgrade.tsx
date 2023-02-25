@@ -1,6 +1,6 @@
+import React from 'react'
 import { PlanCard } from '@components/organisms/Plans'
 import { usePayments } from '@core/hooks/usePayments'
-import React from 'react'
 
 type UpgradeProps = {
   type: string

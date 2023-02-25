@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { Hideout, HideoutUser } from '@core/types'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
-import Layout from '@components/layout'
-import { useUserContext } from '@core/contexts/UserContext'
-import { useHideouts } from '@core/hooks/useHideouts'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useEffect, useState } from 'react'
 import { FiShare2, FiUser } from 'react-icons/fi'
 import { toast } from 'react-toastify'
 import Button from '@components/atoms/Button'
-import Link from 'next/link'
-import { useTranslation } from 'next-i18next'
+import Layout from '@components/layout'
+import { useUserContext } from '@core/contexts/UserContext'
+import { useHideouts } from '@core/hooks/useHideouts'
+import { Hideout, HideoutUser } from '@core/types'
 
 const ProfilePic = ({
   photoURL,
