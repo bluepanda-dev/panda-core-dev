@@ -1,11 +1,11 @@
-import { useFirebase } from '@core/hooks/useFirebase'
-import { useUser } from '@core/hooks/useUser'
-import { Profile, USER_DB } from '@core/types'
-import { getProfileImage } from '@core/utils/images'
 import { Auth, getAuth, onAuthStateChanged } from 'firebase/auth'
 import { doc, getDoc, updateDoc, setDoc } from 'firebase/firestore'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useFirebase } from '@core/hooks/useFirebase'
+import { useUser } from '@core/hooks/useUser'
+import { Profile, USER_DB } from '@core/types'
+import { getProfileImage } from '@core/utils/images'
 
 type UserContextType = {
   loading: boolean
@@ -31,6 +31,27 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const [profile, setProfile] = useState<Profile | undefined>(undefined)
 
   const { fetchUser } = useUser()
+
+  function commonFields(userData: any) {
+    return {
+      uid: userData.uid,
+      email: userData.email,
+      emailVerified: userData.emailVerified,
+      metadata: {
+        createdAt: (userData.metadata as any).createdAt,
+        creationTime: userData.metadata.creationTime,
+        lastSignInTime: userData.metadata.lastSignInTime,
+        lastLoginAt: (userData.metadata as any).lastLoginAt,
+      },
+      language: i18n.language,
+      lastLogIn: new Intl.DateTimeFormat('en-US').format(
+        new Date(Number((userData.metadata as any).lastLoginAt)),
+      ),
+      providerData: {
+        providerId: userData.providerData[0].providerId,
+      },
+    }
+  }
 
   useEffect(() => {
     setAuth(getAuth(app))
@@ -62,51 +83,43 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
             updateDoc(
               doc(db, USER_DB, userData.uid),
               {
-                uid: userData.uid,
-                emailVerified: userData.emailVerified,
-                firstName: userData.displayName?.split(' ')[0],
-                photoURL: getProfileImage(userData),
-                providerData: {
-                  providerId: userData.providerData[0].providerId,
-                },
-                metadata: {
-                  createdAt: (userData.metadata as any).createdAt,
-                  creationTime: userData.metadata.creationTime,
-                  lastSignInTime: userData.metadata.lastSignInTime,
-                  lastLoginAt: (userData.metadata as any).lastLoginAt,
-                },
-                language: i18n.language,
-                lastLogIn: new Intl.DateTimeFormat('en-US').format(
-                  new Date(Number((userData.metadata as any).lastLoginAt)),
-                ),
+                ...commonFields(userData),
               } as any,
               { merge: true },
             )
+
+            if (userData.providerData[0].providerId === 'password') {
+            } else {
+              updateDoc(
+                doc(db, USER_DB, userData.uid),
+                {
+                  ...commonFields(userData),
+                  firstName: userData.displayName?.split(' ')[0],
+                  photoURL: getProfileImage(userData),
+                } as any,
+                { merge: true },
+              )
+            }
           } else {
-            setDoc(doc(db, USER_DB, userData.uid), {
-              uid: userData.uid,
-              email: userData.email,
-              emailVerified: userData.emailVerified,
-              displayName: userData.displayName,
-              firstName: userData.displayName?.split(' ')[0],
-              photoURL: getProfileImage(userData),
-              providerData: {
-                providerId: userData.providerData[0].providerId,
-              },
-              metadata: {
-                createdAt: (userData.metadata as any).createdAt,
-                creationTime: userData.metadata.creationTime,
-                lastSignInTime: userData.metadata.lastSignInTime,
-                lastLoginAt: (userData.metadata as any).lastLoginAt,
-              },
-              language: i18n.language,
-              lastLogIn: new Intl.DateTimeFormat('en-US').format(
-                new Date(Number((userData.metadata as any).lastLoginAt)),
-              ),
-              created: new Intl.DateTimeFormat('en-US').format(
-                new Date(Number((userData.metadata as any).createdAt)),
-              ),
-            })
+            console.log('document!', userData)
+            if (userData.providerData[0].providerId === 'password') {
+              setDoc(doc(db, USER_DB, userData.uid), {
+                ...commonFields(userData),
+                created: new Intl.DateTimeFormat('en-US').format(
+                  new Date(Number((userData.metadata as any).createdAt)),
+                ),
+              })
+            } else {
+              setDoc(doc(db, USER_DB, userData.uid), {
+                ...commonFields(userData),
+                displayName: userData.displayName,
+                firstName: userData.displayName?.split(' ')[0],
+                photoURL: getProfileImage(userData),
+                created: new Intl.DateTimeFormat('en-US').format(
+                  new Date(Number((userData.metadata as any).createdAt)),
+                ),
+              })
+            }
           }
         } else {
           setUser(undefined)

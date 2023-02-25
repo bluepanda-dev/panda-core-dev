@@ -12,6 +12,7 @@ export default function Profile() {
   const { profile } = useUserContext()
   const [website, setWebsite] = useState('')
   const [email, setEmail] = useState('')
+  const [displayName, setDisplayName] = useState('')
   const [publicProfile, setPublicProfile] = useState<ProfileType>()
 
   const { fetchPublicProfile } = useUser()
@@ -22,13 +23,13 @@ export default function Profile() {
       return
     }
     setLoading(true)
-    await saveUser({ ...profile!, website, email })
+    await saveUser({ ...profile!, website, email, displayName })
     await savePublicProfile({
       website,
       email,
-      displayName: profile!.displayName,
+      displayName,
       uid: profile!.uid,
-      photoURL: profile!.photoURL,
+      photoURL: profile?.photoURL ?? '',
     })
     toast('Saved successfully!')
     setLoading(false)
@@ -51,9 +52,9 @@ export default function Profile() {
     await savePublicProfile({
       website,
       email,
-      displayName: profile!.displayName,
+      displayName,
       uid: profile!.uid,
-      photoURL: profile!.photoURL,
+      photoURL: profile?.photoURL ?? '',
     })
     setPublicProfile(profile)
     toast('Profile is now public!')
@@ -70,6 +71,9 @@ export default function Profile() {
     }
     if (profile?.email !== undefined) {
       setEmail(profile?.email)
+    }
+    if (profile?.displayName !== undefined) {
+      setDisplayName(profile?.displayName)
     }
   }, [profile])
 
@@ -93,9 +97,9 @@ export default function Profile() {
           </label>
           <input
             id="display"
-            disabled
+            onChange={(e) => setDisplayName(e.target.value)}
             className="form-control block w-full px-3 py-1.5 text-base font-normal bg-clip-padding border rounded transition dark:text-neutral-300"
-            value={profile?.displayName}
+            value={displayName}
           />
         </div>
         <div className="form-group mb-6">
