@@ -1,7 +1,7 @@
-import { CSSProperties, useEffect, useRef } from 'react'
 import hljs from 'highlight.js'
-import 'highlight.js/styles/base16/3024.css'
 import typescript from 'highlight.js/lib/languages/typescript'
+import { CSSProperties, useEffect, useRef } from 'react'
+import 'highlight.js/styles/base16/3024.css'
 
 // TODO here you can register the programming language
 hljs.registerLanguage('typescript', typescript)
