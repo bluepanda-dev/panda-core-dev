@@ -3,8 +3,8 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
 import { Suspense } from 'react'
-import ScrollButton from '@components/molecules/ScrollButton'
 import Button from '@components/atoms/Button'
+import ScrollButton from '@components/molecules/ScrollButton'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   function handleDemoButton() {

@@ -1,6 +1,6 @@
+import Image from 'next/image'
 import { useDataPages } from '@core/hooks/useDataPages'
 import { ReviewCard } from '@core/types'
-import Image from 'next/image'
 
 const Review = ({ review }: { review: ReviewCard }) => {
   return (

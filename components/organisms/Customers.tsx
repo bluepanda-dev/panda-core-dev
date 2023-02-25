@@ -1,5 +1,5 @@
-import { useDataPages } from '@core/hooks/useDataPages'
 import Image from 'next/image'
+import { useDataPages } from '@core/hooks/useDataPages'
 
 export default function Customers() {
   const { customers } = useDataPages()

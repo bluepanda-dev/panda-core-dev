@@ -1,7 +1,7 @@
-import { isAlertBannerActive } from '@core/store/Common'
 import { useAtom } from 'jotai'
 import { useTranslation } from 'next-i18next'
 import { useEffect } from 'react'
+import { isAlertBannerActive } from '@core/store/Common'
 
 export default function AlertBanner() {
   const { t } = useTranslation('common')

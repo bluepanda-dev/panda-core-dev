@@ -1,6 +1,6 @@
-import CodeTerminal from '@components/molecules/CodeTerminal'
 import Image from 'next/image'
 import { useState } from 'react'
+import CodeTerminal from '@components/molecules/CodeTerminal'
 import { useDataPages } from '@core/hooks/useDataPages'
 
 export default function CodeExample() {

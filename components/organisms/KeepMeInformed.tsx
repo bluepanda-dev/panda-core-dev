@@ -1,6 +1,6 @@
+import { useState } from 'react'
 import Button from '@components/atoms/Button'
 import { useDataPages } from '@core/hooks/useDataPages'
-import { useState } from 'react'
 
 export default function KeepMeInformed() {
   const [email, setEmail] = useState('')

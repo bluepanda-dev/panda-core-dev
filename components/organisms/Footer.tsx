@@ -1,8 +1,8 @@
+import lottie from 'lottie-web'
+import Image from 'next/image'
 import React, { useEffect } from 'react'
 import { FaFacebookSquare, FaTwitterSquare, FaInstagram } from 'react-icons/fa'
-import lottie from 'lottie-web'
 import animationData from '../data/lottie-animation.json'
-import Image from 'next/image'
 
 export default function Footer() {
   useEffect(() => {
