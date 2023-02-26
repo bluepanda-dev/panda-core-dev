@@ -1,7 +1,7 @@
-import { Price, Product, PRODUCTS_DB } from '@core/types/payments'
-import { useState } from 'react'
 import { where, onSnapshot } from 'firebase/firestore'
+import { useState } from 'react'
 import { useUserContext } from '@core/contexts/UserContext'
+import { Price, Product, PRODUCTS_DB } from '@core/types/payments'
 import { useQuery } from './useQuery'
 
 export const usePayments = () => {
@@ -17,7 +17,7 @@ export const usePayments = () => {
 
     const list =
       (await fetchAllWhere<Product>(
-        [where('active', '==', true), where('role', '==', null)],
+        [where('active', '==', true), where('metadata.type', '==', 'products')],
         PRODUCTS_DB,
       )) ?? []
 

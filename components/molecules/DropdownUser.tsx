@@ -17,7 +17,7 @@ import { useUser } from '@core/hooks/useUser'
 
 export type DropdownProps = {
   className?: string
-  image?: string
+  image: React.ReactNode
 }
 
 const MenuAction = ({
@@ -47,10 +47,7 @@ const MenuAction = ({
   )
 }
 
-export default function DropdownUser({
-  className = '',
-  image = '',
-}: DropdownProps) {
+export default function DropdownUser({ className = '', image }: DropdownProps) {
   const { logOut } = useUser()
   const { subscriptionType } = useCustomerContext()
   const { t } = useTranslation()
@@ -67,11 +64,7 @@ export default function DropdownUser({
       >
         {image && (
           <div className="flex gap-2 items-center">
-            <img
-              src={image}
-              alt=""
-              className="ring-neutral-100 hover:ring-neutral-50 ring-2 w-8 h-8 rounded-full"
-            />
+            {image}
             {subscriptionType && (
               <div>
                 <span
@@ -132,9 +125,10 @@ export default function DropdownUser({
               />
             </div>
             <div className="bg-neutral-500 h-px w-full" />
-            <Link href="" onClick={() => logOut()}>
+
+            <a onClick={() => logOut()}>
               <MenuAction icon={<FiLogOut />} text={t('logOut')} />
-            </Link>
+            </a>
             <div className="bg-neutral-500 h-px w-full" />
             <div className="p-4">
               <Button isSpecial={true}>{t('upgrade')}!</Button>

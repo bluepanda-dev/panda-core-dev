@@ -111,14 +111,17 @@ export default function Billing() {
         </div>
         <div>
           <Panel title={t('receips')} description="">
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 w-full">
               {invoices.map((invoice) => (
-                <div key={invoice.id} className="grid grid-cols-4 gap-4">
+                <div
+                  key={invoice.id}
+                  className="grid grid-cols-3 sm:grid-cols-4 gap-4 justify-around"
+                >
                   <div>${invoice.amount / 100}</div>
                   <div>
                     {dayjs.unix(Number(invoice.created)).format('DD/MM/YYYY')}
                   </div>
-                  <div>{invoice.status}</div>
+                  <div className="hidden sm:block">{invoice.status}</div>
                   <div>
                     <a
                       className="cursor-pointer text-primary-500 hover:text-primary-400"

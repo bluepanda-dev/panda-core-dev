@@ -39,15 +39,15 @@ export default function Card({
     <div
       className={`relative ui-border-group rounded-md w-full flex flex-col items-start ${typeClass}`}
     >
-      <div className="flex flex-col p-6 gap-4 items-start">
+      <div className="flex flex-col p-6 gap-4 items-start w-full">
         <div className="ui-title">{title}</div>
         {description && (
           <div className="ui-focus-text text-sm">{description}</div>
         )}
-        <div className="">{children}</div>
+        <div className="w-full">{children}</div>
       </div>
       {(footer || hints) && (
-        <div className="border-t rounded-b-lg px-2 border-neutral-600 bg-neutral-100 dark:bg-normal-800 flex h-14 w-full items-center">
+        <div className="border-t rounded-b-lg px-2 border-neutral-600 bg-neutral-100 dark:bg-normal-800 flex min-h-full py-2 w-full items-center">
           {hints && (
             <div className="ml-4 w-full text-left hidden sm:block">{hints}</div>
           )}

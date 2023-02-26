@@ -1,11 +1,11 @@
-import { useFirebase } from '@core/hooks/useFirebase'
-import { useUser } from '@core/hooks/useUser'
-import { Profile, USER_DB } from '@core/types'
-import { getProfileImage } from '@core/utils/images'
 import { Auth, getAuth, onAuthStateChanged } from 'firebase/auth'
 import { doc, getDoc, updateDoc, setDoc } from 'firebase/firestore'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useFirebase } from '@core/hooks/useFirebase'
+import { useUser } from '@core/hooks/useUser'
+import { Profile, USER_DB } from '@core/types'
+import { getProfileImage } from '@core/utils/images'
 
 type UserContextType = {
   loading: boolean
@@ -32,6 +32,27 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
 
   const { fetchUser } = useUser()
 
+  function commonFields(userData: any) {
+    return {
+      uid: userData.uid,
+      email: userData.email,
+      emailVerified: userData.emailVerified,
+      metadata: {
+        createdAt: (userData.metadata as any).createdAt,
+        creationTime: userData.metadata.creationTime,
+        lastSignInTime: userData.metadata.lastSignInTime,
+        lastLoginAt: (userData.metadata as any).lastLoginAt,
+      },
+      language: i18n.language,
+      lastLogIn: new Intl.DateTimeFormat('en-US').format(
+        new Date(Number((userData.metadata as any).lastLoginAt)),
+      ),
+      providerData: {
+        providerId: userData.providerData[0].providerId,
+      },
+    }
+  }
+
   useEffect(() => {
     setAuth(getAuth(app))
     setLoading(false)
@@ -40,10 +61,13 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function setUpUser() {
       if (user) {
-        setTimeout(async () => {
+        const retry = setInterval(async () => {
           const fetchedProfile = await fetchUser(user.uid)
+          if (fetchedProfile) {
+            clearInterval(retry)
+          }
           setProfile(fetchedProfile)
-        }, 1000)
+        }, 500)
       }
     }
     setUpUser()
@@ -59,54 +83,45 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
           const docSnap = await getDoc(docRef)
 
           if (docSnap.exists()) {
-            updateDoc(
-              doc(db, USER_DB, userData.uid),
-              {
-                uid: userData.uid,
-                emailVerified: userData.emailVerified,
+            if (userData.providerData[0].providerId === 'password') {
+              updateDoc(
+                doc(db, USER_DB, userData.uid),
+                {
+                  ...commonFields(userData),
+                } as any,
+                { merge: true },
+              )
+            } else {
+              updateDoc(
+                doc(db, USER_DB, userData.uid),
+                {
+                  ...commonFields(userData),
+                  firstName: userData.displayName?.split(' ')[0],
+                  photoURL: getProfileImage(userData),
+                } as any,
+                { merge: true },
+              )
+            }
+          } else {
+            if (userData.providerData[0].providerId === 'password') {
+              setDoc(doc(db, USER_DB, userData.uid), {
+                ...commonFields(userData),
+                displayName: '',
+                created: new Intl.DateTimeFormat('en-US').format(
+                  new Date(Number((userData.metadata as any).createdAt)),
+                ),
+              })
+            } else {
+              setDoc(doc(db, USER_DB, userData.uid), {
+                ...commonFields(userData),
+                displayName: userData.displayName,
                 firstName: userData.displayName?.split(' ')[0],
                 photoURL: getProfileImage(userData),
-                providerData: {
-                  providerId: userData.providerData[0].providerId,
-                },
-                metadata: {
-                  createdAt: (userData.metadata as any).createdAt,
-                  creationTime: userData.metadata.creationTime,
-                  lastSignInTime: userData.metadata.lastSignInTime,
-                  lastLoginAt: (userData.metadata as any).lastLoginAt,
-                },
-                language: i18n.language,
-                lastLogIn: new Intl.DateTimeFormat('en-US').format(
-                  new Date(Number((userData.metadata as any).lastLoginAt)),
+                created: new Intl.DateTimeFormat('en-US').format(
+                  new Date(Number((userData.metadata as any).createdAt)),
                 ),
-              } as any,
-              { merge: true },
-            )
-          } else {
-            setDoc(doc(db, USER_DB, userData.uid), {
-              uid: userData.uid,
-              email: userData.email,
-              emailVerified: userData.emailVerified,
-              displayName: userData.displayName,
-              firstName: userData.displayName?.split(' ')[0],
-              photoURL: getProfileImage(userData),
-              providerData: {
-                providerId: userData.providerData[0].providerId,
-              },
-              metadata: {
-                createdAt: (userData.metadata as any).createdAt,
-                creationTime: userData.metadata.creationTime,
-                lastSignInTime: userData.metadata.lastSignInTime,
-                lastLoginAt: (userData.metadata as any).lastLoginAt,
-              },
-              language: i18n.language,
-              lastLogIn: new Intl.DateTimeFormat('en-US').format(
-                new Date(Number((userData.metadata as any).lastLoginAt)),
-              ),
-              created: new Intl.DateTimeFormat('en-US').format(
-                new Date(Number((userData.metadata as any).createdAt)),
-              ),
-            })
+              })
+            }
           }
         } else {
           setUser(undefined)
