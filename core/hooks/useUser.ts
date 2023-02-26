@@ -8,6 +8,8 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth'
+
+import { useRouter } from 'next/router'
 import { useUserContext } from '@core/contexts/UserContext'
 import { Profile, USER_DB, USER_PROFILE_DB } from '@core/types'
 import { useQuery } from './useQuery'
@@ -15,6 +17,7 @@ import { useQuery } from './useQuery'
 export const useUser = () => {
   const { auth, setUser, setProfile } = useUserContext()
   const { fetch, save } = useQuery()
+  const router = useRouter()
 
   async function fetchUser(userId: string) {
     return await fetch<Profile>(USER_DB, userId)
@@ -64,6 +67,7 @@ export const useUser = () => {
     signOut(auth!)
     setUser(undefined)
     setProfile(undefined)
+    router.push('/')
   }
 
   return {

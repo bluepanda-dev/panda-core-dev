@@ -4,14 +4,18 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import React, { useEffect, useState } from 'react'
+import { FiMenu } from 'react-icons/fi'
 import { Theme, ToastContainer } from 'react-toastify'
 import AlertBanner from '@components/molecules/AlertBanner'
 import Dropdown from '@components/molecules/Dropdown'
+import DropdownAnonymous from '@components/molecules/DropdownAnonymous'
 import UserButton from '@components/molecules/UserButton'
+import { useUserContext } from '@core/contexts/UserContext'
 import { useTheme } from '@core/hooks/useTheme'
 import { isAlertBannerActive } from '@core/store/Common'
 
 export default function NavBar() {
+  const { profile } = useUserContext()
   const router = useRouter()
   const { t, i18n } = useTranslation()
   const { theme } = useTheme()
@@ -93,10 +97,32 @@ export default function NavBar() {
         <div className="items-center gap-2 hidden md:flex">
           <Dropdown options={lanOptions} title={flag()} />
           <UserButton />
+          {!profile && (
+            <DropdownAnonymous
+              image={
+                <div
+                  className={`border border-neutral-500 hover:border-primary-600 w-8 h-8 rounded-full bg-neutral-200 dark:bg-normal-800 flex items-center justify-center`}
+                >
+                  <FiMenu />
+                </div>
+              }
+            />
+          )}
         </div>
         <div className="grow justify-end flex items-center gap-2 md:hidden">
           <Dropdown options={lanOptions} title={flag()} />
           <UserButton />
+          {!profile && (
+            <DropdownAnonymous
+              image={
+                <div
+                  className={`border border-neutral-500 hover:border-primary-600 w-8 h-8 rounded-full bg-neutral-200 dark:bg-normal-800 flex items-center justify-center`}
+                >
+                  <FiMenu />
+                </div>
+              }
+            />
+          )}
         </div>
       </nav>
       <ToastContainer position="bottom-right" theme={theme as Theme} />

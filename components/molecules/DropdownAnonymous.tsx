@@ -1,11 +1,8 @@
 import { Menu, Transition } from '@headlessui/react'
-import Link from 'next/link'
 import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FiLogOut, FiSettings, FiSun, FiUsers } from 'react-icons/fi'
-import Button from '@components/atoms/Button'
+import { FiSun } from 'react-icons/fi'
 import { useTheme } from '@core/hooks/useTheme'
-import { useUser } from '@core/hooks/useUser'
 
 export type DropdownProps = {
   className?: string
@@ -39,8 +36,10 @@ const MenuAction = ({
   )
 }
 
-export default function DropdownUser({ className = '', image }: DropdownProps) {
-  const { logOut } = useUser()
+export default function DropdownAnonymous({
+  className = '',
+  image,
+}: DropdownProps) {
   const { t } = useTranslation()
   const { themeDark, themeLight, theme } = useTheme()
 
@@ -66,20 +65,6 @@ export default function DropdownUser({ className = '', image }: DropdownProps) {
       >
         <Menu.Items className="dark:border-neutral-500 absolute z-10 bg-primary-50 dark:bg-normal-900 right-0 mt-2 w-56 origin-top-right shadow-lg rounded-sm border">
           <div className="y-1 ">
-            <Link href="/account">
-              <MenuAction
-                icon={<FiSettings />}
-                text={t('myAccount')}
-                onClick={() => {}}
-              />
-            </Link>
-            <Link href="/hideouts">
-              <MenuAction
-                icon={<FiUsers />}
-                text={t('myHideouts')}
-                onClick={() => {}}
-              />
-            </Link>
             <div
               onClick={() => (theme === 'dark' ? themeLight() : themeDark())}
             >
@@ -89,15 +74,6 @@ export default function DropdownUser({ className = '', image }: DropdownProps) {
                   theme: theme === 'light' ? 'dark' : 'light',
                 })}
               />
-            </div>
-            <div className="bg-neutral-500 h-px w-full" />
-
-            <a onClick={() => logOut()}>
-              <MenuAction icon={<FiLogOut />} text={t('logOut')} />
-            </a>
-            <div className="bg-neutral-500 h-px w-full" />
-            <div className="p-4">
-              <Button isSpecial={true}>{t('upgrade')}!</Button>
             </div>
           </div>
         </Menu.Items>
