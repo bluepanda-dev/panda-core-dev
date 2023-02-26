@@ -125,9 +125,10 @@ export default function DropdownUser({ className = '', image }: DropdownProps) {
               />
             </div>
             <div className="bg-neutral-500 h-px w-full" />
-            <Link href="" onClick={() => logOut()}>
+
+            <a onClick={() => logOut()}>
               <MenuAction icon={<FiLogOut />} text={t('logOut')} />
-            </Link>
+            </a>
             <div className="bg-neutral-500 h-px w-full" />
             <div className="p-4">
               <Button isSpecial={true}>{t('upgrade')}!</Button>
