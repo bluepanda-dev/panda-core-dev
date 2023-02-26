@@ -2,11 +2,11 @@ import { onSnapshot, where } from 'firebase/firestore'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useUserContext } from '@core/contexts/UserContext'
-import { useQuery } from './useQuery'
-import { CreditItem, CreditSpending } from '@core/types/credits'
-import { CREDITS_DB, CREDITS_ITEMS_DB } from '@core/types/credits'
 import { CUSTOMERS_DB, Invoice } from '@core/types'
+import { CreditItem, CreditSpending } from '@core/types/credits'
+import { CREDITS_ITEMS_DB } from '@core/types/credits'
 import { Product, PRODUCTS_DB, Price } from '@core/types/payments'
+import { useQuery } from './useQuery'
 
 export const useCredits = () => {
   const { profile } = useUserContext()
@@ -18,12 +18,12 @@ export const useCredits = () => {
   const [creditProducts, setCreditProducts] = useState<Product[]>([])
   const [spendings, setSpendings] = useState<CreditSpending[]>([])
 
-  async function fetchProducts() {
+  async function fetchCredits(): Promise<Product[]> {
     const items = []
 
     const list =
       (await fetchAllWhere<Product>(
-        [where('active', '==', true), where('role', '==', null)],
+        [where('active', '==', true), where('metadata.type', '==', 'credits')],
         PRODUCTS_DB,
       )) ?? []
 
@@ -60,7 +60,7 @@ export const useCredits = () => {
     const list: Invoice[] =
       (await fetchAll(CUSTOMERS_DB, uid, 'payments')) ?? []
 
-    const credits = await fetchAll<{ name: string }>(CREDITS_DB)
+    const credits = await fetchCredits()
 
     const spendings =
       (await fetchAllWhere<CreditSpending>(
@@ -119,20 +119,9 @@ export const useCredits = () => {
     })
   }
 
-  async function fetchCreditsProducts() {
-    const products = await fetchProducts()
-    const list = await fetchAll<{ name: string }>(CREDITS_DB)
-
-    const credits = products.filter((p) =>
-      list.some((c) => c.docId === p.docId),
-    )
-
-    return credits
-  }
-
   async function setUp() {
     setSettingUp(true)
-    await fetchCreditsProducts().then((credits) => setCreditProducts(credits))
+    await fetchCredits().then((credits) => setCreditProducts(credits))
     await fetchCreditItems().then((items) => setCreditItems(items))
     await fetchSpendings(profile!.uid)
     setSettingUp(false)

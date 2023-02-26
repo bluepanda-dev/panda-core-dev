@@ -1,5 +1,4 @@
 export const PRODUCTS_DB = 'fe-products'
-export const CREDITS_DB = 'fe-credits'
 
 export type Price = {
   guid: string
