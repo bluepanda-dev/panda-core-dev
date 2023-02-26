@@ -61,10 +61,13 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function setUpUser() {
       if (user) {
-        setTimeout(async () => {
+        const retry = setInterval(async () => {
           const fetchedProfile = await fetchUser(user.uid)
+          if (fetchedProfile) {
+            clearInterval(retry)
+          }
           setProfile(fetchedProfile)
-        }, 1000)
+        }, 500)
       }
     }
     setUpUser()
@@ -80,15 +83,14 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
           const docSnap = await getDoc(docRef)
 
           if (docSnap.exists()) {
-            updateDoc(
-              doc(db, USER_DB, userData.uid),
-              {
-                ...commonFields(userData),
-              } as any,
-              { merge: true },
-            )
-
             if (userData.providerData[0].providerId === 'password') {
+              updateDoc(
+                doc(db, USER_DB, userData.uid),
+                {
+                  ...commonFields(userData),
+                } as any,
+                { merge: true },
+              )
             } else {
               updateDoc(
                 doc(db, USER_DB, userData.uid),
@@ -101,10 +103,10 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
               )
             }
           } else {
-            console.log('document!', userData)
             if (userData.providerData[0].providerId === 'password') {
               setDoc(doc(db, USER_DB, userData.uid), {
                 ...commonFields(userData),
+                displayName: '',
                 created: new Intl.DateTimeFormat('en-US').format(
                   new Date(Number((userData.metadata as any).createdAt)),
                 ),
@@ -130,7 +132,14 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <UserContext.Provider
-      value={{ user, profile, auth, setProfile, setUser, loading }}
+      value={{
+        user,
+        profile,
+        auth,
+        setProfile,
+        setUser,
+        loading,
+      }}
     >
       {children}
     </UserContext.Provider>
