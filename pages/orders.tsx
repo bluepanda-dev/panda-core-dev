@@ -52,16 +52,10 @@ const Orders = () => {
         productsMatch.map(async (product) => {
           if (product.order) {
             product.order.invoice = product.order.charges.data[0].receipt_url
-            // FIXME IMPROVE FETCH VAULT BY STH SIMILAR TO CREDITS
-            /*const response = await fetchVault(
-              product.order.id,
-              product.order.items[0].price.product,
-            )*/
             return {
               ...product,
               order: {
                 ...product.order,
-                // download: response.download,
               },
             }
           }
@@ -71,6 +65,7 @@ const Orders = () => {
       )
 
       if (hydratedOrder) {
+        console.log('order:>>> ', hydratedOrder)
         setOwnProducts(hydratedOrder as HydratedProduct[])
       }
     }
@@ -115,9 +110,11 @@ const Orders = () => {
                       Invoice
                     </Button>
                   )}
-                  {product.order.download && (
+                  {product.order.protectedItem?.download && (
                     <Button
-                      onClick={() => handleDownload(product.order.download)}
+                      onClick={() =>
+                        handleDownload(product.order.protectedItem.download)
+                      }
                       isInverted={true}
                       className="w-48"
                       isSmall={true}
@@ -131,6 +128,16 @@ const Orders = () => {
               <span className="absolute right-2 top-2 dark:bg-normal-700 dark:text-neutral-300 rounded-lg p-1">
                 {product.price}
               </span>
+              {product.order.protectedItem?.raw && (
+                <div>
+                  <div className="text-primary-600 font-semibold my-4">
+                    Unlocked content:
+                  </div>
+                  <div className="bg-neutral-200 dark:bg-neutral-800 p-8">
+                    <code>{product.order.protectedItem?.raw}</code>
+                  </div>
+                </div>
+              )}
             </Panel>
           ))}
         </div>
