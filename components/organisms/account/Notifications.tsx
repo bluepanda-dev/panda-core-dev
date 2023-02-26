@@ -1,4 +1,5 @@
 import { Switch } from '@headlessui/react'
+import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import Button from '@components/atoms/Button'
@@ -6,6 +7,7 @@ import { useUserContext } from '@core/contexts/UserContext'
 import { useUser } from '@core/hooks/useUser'
 
 export default function Notifications() {
+  const { t } = useTranslation(['account', 'common'])
   const { saveUser } = useUser()
   const { profile } = useUserContext()
   const [billing, setBilling] = useState(false)
@@ -20,7 +22,7 @@ export default function Notifications() {
         offers,
       },
     })
-    toast('Saved successfully!')
+    toast(t('savedSuccess!'))
   }
 
   useEffect(() => {
@@ -31,7 +33,7 @@ export default function Notifications() {
   }, [profile])
 
   if (!profile) {
-    return <>Loading...</>
+    return <>{t('loading', { ns: 'common' })}...</>
   }
 
   if (!profile.notifications) {
@@ -60,10 +62,8 @@ export default function Notifications() {
             />
           </Switch>
           <label htmlFor="billing" className="form-label inline-block mb-2 ">
-            Billing{' '}
-            <span className="text-neutral-800">
-              (Payment and receipt notifications)
-            </span>
+            {t('billing')}{' '}
+            <span className="text-neutral-800">({t('paymentAndReceipt')})</span>
           </label>
         </div>
         <div className="flex items-center gap-4 mb-6">
@@ -82,16 +82,14 @@ export default function Notifications() {
             />
           </Switch>
           <label htmlFor="offers" className="form-label inline-block mb-2 ">
-            Offers{' '}
-            <span className="text-neutral-800">
-              (Deals, discounts, and special offers)
-            </span>
+            {t('offers')}{' '}
+            <span className="text-neutral-800">({t('dealsDiscounts')})</span>
           </label>
         </div>
 
         <div className="form-group mb-6">
           <Button isSpecial={true} onClick={handleSave}>
-            Save
+            {t('save')}
           </Button>
         </div>
       </div>

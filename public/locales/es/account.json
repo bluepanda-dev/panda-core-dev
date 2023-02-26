@@ -1,0 +1,22 @@
+{
+  "profile": "Perfil",
+  "myProfile": "Mi Perfil",
+  "name": "Nombre",
+  "email": "Correo",
+  "webSite": "Sitio web (información extra de tu perfil)",
+  "save": "Guardar",
+  "shareProfile": "Compartir tu perfil",
+  "notifications": "Notificaciones",
+  "billings": "Planes (Notificaciones de Pagos y Recibos)",
+  "billing": "Plan",
+  "receips": "Recibos",
+  "offers": "Ofertas (Descuentos y ofertas especiales)",
+  "succeded": "Exitosa",
+  "tabContent": "Contenido de tu Tab",
+  "download": "Descargar",
+  "dangerZone": "Zona Peligrosa",
+  "youWill": "No podrás usar el sistema después de cancelar tu subscripción",
+  "cancelSubcription": "Cancelar Subscripción",
+  "youAre": "Estás en el plan {{billing}}. El próximo pago de {{price}} ocurrirá en {{nextPaymentDate}}.",
+  "other": "Otros"
+}

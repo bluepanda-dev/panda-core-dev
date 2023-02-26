@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { FiShare2, FiUser } from 'react-icons/fi'
 import { toast } from 'react-toastify'
@@ -54,7 +54,7 @@ const Hideout = () => {
 
   function handleShare() {
     navigator.clipboard.writeText(sharableLink)
-    toast.success('Copied to clipboard')
+    toast.success(t('copiedToClipboard', { ns: 'common' }))
   }
 
   function handleAddIdea() {

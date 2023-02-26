@@ -1,4 +1,5 @@
 import * as dayjs from 'dayjs'
+import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
@@ -9,6 +10,7 @@ import { useCustomerContext } from '@core/contexts/CustomerContext'
 import { useUserContext } from '@core/contexts/UserContext'
 
 export default function Billing() {
+  const { t } = useTranslation(['account', 'common'])
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -29,9 +31,9 @@ export default function Billing() {
     if (activeSubscription?.uid) {
       cancelSubscription(activeSubscription.uid, (result) => {
         if (result.canceled) {
-          toast.success('Subscription canceled')
+          toast.success(t('subCanceled'))
         } else {
-          toast.error(`Something went wrong, ${result.error}`)
+          toast.error(`${t('subError')}, ${result.error}`)
         }
         setLoading(false)
         setTimeout(() => {
@@ -49,7 +51,7 @@ export default function Billing() {
   }
 
   if (!profile) {
-    return <>Loading...</>
+    return <>{t('loading', { ns: 'common' })}...</>
   }
 
   return (
@@ -58,33 +60,37 @@ export default function Billing() {
         isOpen={isOpen}
         closeModal={() => setIsOpen(false)}
         hasCloseButton={false}
-        title={'Cancel subscription'}
+        title={t('cancelSub')}
       >
         <div className="h-24">
-          Are you sure?
+          {t('areYouSure')}
           <div className="absolute bottom-3 right-3  flex justify-end mt-4 gap-4">
             <Button
               onClick={() => setIsOpen(false)}
               className="w-auto"
               isSmall={true}
             >
-              Close
+              {t('close', { ns: 'common' })}
             </Button>
             <Button
               className="w-28 text-neutral-100 bg-red-500 hover:!bg-red-400"
               isSmall={true}
               onClick={handleCancel}
             >
-              Confirm
+              {t('confirm', { ns: 'common' })}
             </Button>
           </div>
         </div>
       </Modal>
       <div className="relative max-w-2xl flex flex-col gap-8">
         <div>
-          <Panel title="Plan" description="">
+          <Panel title={t('plan')} description="">
+            {t('youAre', {
+              billing: subscriptionType,
+            })}
+            {/*
             Your are on the
-            <span
+             <span
               className={`mx-2 pb-1 bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300
                     ${
                       subscriptionType === 'plus'
@@ -95,13 +101,16 @@ export default function Billing() {
             >
               {subscriptionType}
             </span>
-            plan.
+            plan. */}
             {!!price &&
-              `The next payment of $${price} will occur on ${nextPayment} `}
+              t('nextPayment', {
+                price: price,
+                nextPayment: nextPayment,
+              })}
           </Panel>
         </div>
         <div>
-          <Panel title="Receips" description="">
+          <Panel title={t('receips')} description="">
             <div className="flex flex-col gap-4">
               {invoices.map((invoice) => (
                 <div key={invoice.id} className="grid grid-cols-4 gap-4">
@@ -117,7 +126,7 @@ export default function Billing() {
                         downloadPDF(invoice.charges.data[0].receipt_url)
                       }
                     >
-                      download
+                      {t('download')}
                     </a>
                   </div>
                 </div>
@@ -128,8 +137,8 @@ export default function Billing() {
         {activeSubscription?.uid && (
           <div>
             <Panel
-              title="Danger Zone"
-              description="You will be unable to use the system after cancelling the subscription"
+              title={t('dangerZone')}
+              description={t('youWill')!}
               type="danger"
               footer={
                 <Button
@@ -138,7 +147,7 @@ export default function Billing() {
                   className="w-48 text-neutral-100 bg-red-500 hover:!bg-red-400"
                   isSmall={true}
                 >
-                  Cancel Subscription
+                  {t('cancelSub')}
                 </Button>
               }
             ></Panel>

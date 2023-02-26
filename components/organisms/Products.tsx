@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { FiChevronRight } from 'react-icons/fi'
@@ -18,6 +19,7 @@ const Product = ({
   price: Price | null
   onBuy: (product: ProductCard, price: Price) => void
 }) => {
+  const { t } = useTranslation(['account', 'common'])
   const { products } = useDataPages()
 
   function handleBuy(product: ProductCard, price: Price) {
@@ -60,7 +62,7 @@ const Product = ({
               {products.texts!.buyNow}
             </Button>
           ) : (
-            <div className="text-lg text-center pt-2">Out of stock</div>
+            <div className="text-lg text-center pt-2">{t('outOfStock')}</div>
           )}
         </div>
       </div>

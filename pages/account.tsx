@@ -11,7 +11,7 @@ import useBreakpoint from '@core/hooks/useBreakpoint'
 import { breakpointsWidths } from '@core/utils/breakpoints'
 
 const Account = () => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation(['account', 'common'])
   const { profile } = useUserContext()
   const { windowSize } = useBreakpoint()
 
@@ -21,10 +21,10 @@ const Account = () => {
   }
 
   const tabs = {
-    'My Profile': <Profile />,
-    Notifications: <Notifications />,
-    Billing: <Billing />,
-    Other: <Container className="h-48" title="Your Tab 2 content" />,
+    [t('myProfile')]: <Profile />,
+    [t('notifications')]: <Notifications />,
+    [t('billing')]: <Billing />,
+    [t('other')]: <Container className="h-48" title={t('tabContent')!} />,
   }
 
   // Once the user request finishes, show the user
@@ -48,7 +48,7 @@ export default Account
 export async function getServerSideProps({ locale }: any) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['account', 'common'])),
     },
   }
 }

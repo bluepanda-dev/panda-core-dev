@@ -27,7 +27,6 @@ const Credits = () => {
   } = useCredits()
 
   function handleBuy(item: CreditItem) {
-    console.log('buying', item)
     setLoading(true)
     buyWithCredits(item, () => {
       setLoading(false)
