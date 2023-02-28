@@ -8,11 +8,11 @@ const PlanCard = ({ plan }: { plan: PlanCard }) => {
 
   return (
     <div
-      className={`shadow-lg border dark:border-normal-700 rounded-md relative p-6 w-full lg:max-w-md h-80 lg:h-[30em]
+      className={`shadow-lg border dark:border-normal-700 rounded-md relative w-full lg:max-w-md h-80 lg:h-[30em]
     ${plan._popular ? 'bg-blue-900 text-neutral-50 lg:h-[35em]' : ''}
     `}
     >
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 p-6">
         <div className="from-accent-600 to-accent-500 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r">
           {plan.title}
         </div>
@@ -27,12 +27,17 @@ const PlanCard = ({ plan }: { plan: PlanCard }) => {
             ))}
           </ul>
         </div>
-        <div className="absolute right-4 bottom-10 lg:bottom-4">
-          <Button isSpecial={true}>{plans.cta}</Button>
-        </div>
         <div className="absolute right-4 lg:left-6 bottom-2 lg:bottom-28">
           {plan.details}
         </div>
+      </div>
+      <div className="absolute bottom-10 lg:bottom-4 flex w-full gap-4 px-4">
+        <Button isSmall={true} isInverted={false}>
+          Try for Free
+        </Button>
+        <Button isSmall={true} isSpecial={true}>
+          {plans.cta}
+        </Button>
       </div>
     </div>
   )
