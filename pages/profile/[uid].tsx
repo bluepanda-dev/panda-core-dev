@@ -48,7 +48,6 @@ const Hideout = () => {
   return (
     <Layout>
       <SimpleHeader
-        className="border-x-0 border-t-0 border-0 border-b"
         title={
           <div className="flex items-center gap-4">
             <FiArrowLeft
