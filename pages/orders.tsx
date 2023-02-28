@@ -6,7 +6,7 @@ import Layout from '@components/layout'
 import Panel from '@components/molecules/Panel'
 import { useCustomerContext } from '@core/contexts/CustomerContext'
 import { useUserContext } from '@core/contexts/UserContext'
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 import { ProductCard, Order } from '@core/types'
 
 type HydratedProduct = ProductCard & { order: Order }
@@ -14,7 +14,7 @@ type HydratedProduct = ProductCard & { order: Order }
 const Orders = () => {
   const { profile } = useUserContext()
   const { orders } = useCustomerContext()
-  const { products } = useDataPages()
+  const { products } = useCopyPages()
   const [ownProducts, setOwnProducts] = useState<HydratedProduct[]>([])
 
   function handleDownload(download?: string) {
