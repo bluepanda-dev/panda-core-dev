@@ -1,5 +1,6 @@
 import { where, onSnapshot } from 'firebase/firestore'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 import { useUserContext } from '@core/contexts/UserContext'
 import { Price, Product, PRODUCTS_DB } from '@core/types/payments'
 import { useQuery } from './useQuery'
@@ -91,6 +92,11 @@ export const usePayments = () => {
   }
 
   async function singlePayment(price: Price, done?: () => void) {
+    if (!profile?.uid) {
+      toast('Please log in!')
+      done && done()
+      return
+    }
     const docR = await addToCollection(
       {
         mode: 'payment',
@@ -98,7 +104,6 @@ export const usePayments = () => {
         success_url: `${window.location.origin}/payment/success`,
         cancel_url: `${window.location.origin}/payment/failure`,
       },
-
       'fe-customers',
       profile!.uid,
       'checkout_sessions',
