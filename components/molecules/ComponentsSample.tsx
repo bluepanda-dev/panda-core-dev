@@ -1,6 +1,7 @@
+import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 import React, { useState } from 'react'
-import { FiMenu } from 'react-icons/fi'
+import { FiArrowLeft, FiMenu } from 'react-icons/fi'
 import { toast } from 'react-toastify'
 import Button from '@components/atoms/Button'
 import Container from '@components/atoms/Container'
@@ -14,6 +15,7 @@ import SimpleTabs from '@components/molecules/SimpleTabs'
 import Accordion from './Accordion'
 import Modal from './Modal'
 import SidePanel from './SidePanel'
+import SimpleHeader from './SimpleHeader'
 
 type ComponentsSampleProps = {
   className?: string
@@ -185,6 +187,13 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
         setActiveComponent('panel')
       },
     },
+    {
+      label: 'Simple Header',
+      icon: <FiMenu />,
+      onClick: () => {
+        setActiveComponent('header')
+      },
+    },
   ]
 
   return (
@@ -211,6 +220,22 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
           ((activeComponent === 'radio' && <RadioSample />) ||
             (activeComponent === 'accordion' && <AccordionSample />) ||
             (activeComponent === 'tabs-v' && <TabsSampleVertical />) ||
+            (activeComponent === 'header' && (
+              <SimpleHeader
+                title={
+                  <div className="flex items-center gap-4">
+                    <FiArrowLeft onClick={() => alert('hi')} />
+                    <Image src="/logo.webp" alt="" width={25} height={12} />
+                    <span>Header Title</span>
+                  </div>
+                }
+                extra={
+                  <Button isInverted={true} className="w-32">
+                    extra action
+                  </Button>
+                }
+              />
+            )) ||
             (activeComponent === 'panel' && (
               <div className="flex flex-col w-4/5 gap-4">
                 <Panel
