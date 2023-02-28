@@ -4,7 +4,7 @@ import { FiChevronRight } from 'react-icons/fi'
 import Button from '@components/atoms/Button'
 import Container from '@components/atoms/Container'
 import Modal from '@components/molecules/Modal'
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 import { usePayments } from '@core/hooks/usePayments'
 import { ProductCard } from '@core/types'
 import { Price } from '@core/types/payments'
@@ -18,7 +18,7 @@ const Product = ({
   price: Price | null
   onBuy: (product: ProductCard, price: Price) => void
 }) => {
-  const { products } = useDataPages()
+  const { products } = useCopyPages()
 
   function handleBuy(product: ProductCard, price: Price) {
     if (price) {
@@ -73,7 +73,7 @@ export default function Products() {
   const [isOpen, setIsOpen] = useState(false)
   const [product, setProduct] = useState<ProductCard | null>(null)
   const [price, setPrice] = useState<Price | null>(null)
-  const { products } = useDataPages()
+  const { products } = useCopyPages()
   const { products: productList, singlePayment, setUp } = usePayments()
 
   function handleBuy(product: ProductCard, price: Price) {

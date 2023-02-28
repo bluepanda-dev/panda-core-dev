@@ -1,7 +1,7 @@
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 
 export default function OurNumbers() {
-  const { ourNumbers } = useDataPages()
+  const { ourNumbers } = useCopyPages()
 
   return (
     <div className="py-8 w-full bg-neutral-100 dark:bg-normal-800">

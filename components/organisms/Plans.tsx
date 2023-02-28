@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import { FiCheckCircle } from 'react-icons/fi'
 import Button from '@components/atoms/Button'
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 import { usePayments } from '@core/hooks/usePayments'
 import { Price } from '@core/types/payments'
 
 export const PlanCard = ({ price }: { price: Price }) => {
-  const { plans } = useDataPages()
+  const { plans } = useCopyPages()
   const features = price.stripe_metadata_features.split('\n') as string[]
   const { startSubscription } = usePayments()
   // TODO remove all hardfcoded text like enterprise, etc
@@ -61,7 +61,7 @@ export const PlanCard = ({ price }: { price: Price }) => {
 }
 
 export default function Plans() {
-  const { plans } = useDataPages()
+  const { plans } = useCopyPages()
   const { planProduct, setUp } = usePayments()
 
   useEffect(() => {

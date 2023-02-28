@@ -1,8 +1,8 @@
 import Accordion from '@components/molecules/Accordion'
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 
 export default function Faqs() {
-  const { faqs } = useDataPages()
+  const { faqs } = useCopyPages()
 
   return (
     <div>

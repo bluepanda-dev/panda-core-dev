@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 import { ReviewCard } from '@core/types'
 
 const Review = ({ review }: { review: ReviewCard }) => {
@@ -26,7 +26,7 @@ const Review = ({ review }: { review: ReviewCard }) => {
 }
 
 export default function Reviews() {
-  const { reviews } = useDataPages()
+  const { reviews } = useCopyPages()
 
   return (
     <div className="py-8 w-full bg-gradient-to-r from-primary-900 via-primary-800 to-primary-600 text-neutral-50">

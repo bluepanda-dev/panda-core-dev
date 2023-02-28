@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react'
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 
 export default function ShowVideo() {
   const videoRef = useRef() as React.MutableRefObject<HTMLVideoElement>
-  const { showVideo } = useDataPages()
+  const { showVideo } = useCopyPages()
 
   function handleScroll() {
     videoRef.current.playbackRate = 2

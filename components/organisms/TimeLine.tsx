@@ -1,9 +1,9 @@
 import { FiCheck } from 'react-icons/fi'
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 import { TimeLineData } from '@core/types'
 
 export default function TimeLine() {
-  const { timeLine } = useDataPages()
+  const { timeLine } = useCopyPages()
 
   return (
     <div className="w-full">
