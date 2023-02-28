@@ -30,49 +30,49 @@ const Orders = () => {
   }
 
   async function fetchOwnProducts() {
-    if (orders) {
-      const productsMatch =
-        products.list
-          ?.filter((product) => {
-            const found = orders.find(
-              (order) => order.items[0].description === product.title,
-            )
-            if (!found) return false
-            return product.title === found.items[0].description
-          })
-          .map((product) => {
-            const found = orders.find(
-              (order) => order.items[0].description === product.title,
-            )
-            return { ...product, order: found }
-          }) ?? []
+    const productsMatch =
+      products.list
+        ?.filter((product) => {
+          const found = orders.find(
+            (order) => order.items[0].description === product.title,
+          )
+          if (!found) return false
+          return product.title === found.items[0].description
+        })
+        .map((product) => {
+          const found = orders.find(
+            (order) => order.items[0].description === product.title,
+          )
+          return { ...product, order: found }
+        }) ?? []
 
-      // it checks if the product has metadata such as download link
-      const hydratedOrder = await Promise.all(
-        productsMatch.map(async (product) => {
-          if (product.order) {
-            product.order.invoice = product.order.charges.data[0].receipt_url
-            return {
-              ...product,
-              order: {
-                ...product.order,
-              },
-            }
+    // it checks if the product has metadata such as download link
+    const hydratedOrder = await Promise.all(
+      productsMatch.map(async (product) => {
+        if (product.order) {
+          product.order.invoice = product.order.charges.data[0].receipt_url
+          return {
+            ...product,
+            order: {
+              ...product.order,
+            },
           }
+        }
 
-          return product
-        }),
-      )
+        return product
+      }),
+    )
 
-      if (hydratedOrder) {
-        setOwnProducts(hydratedOrder as HydratedProduct[])
-      }
+    if (hydratedOrder) {
+      setOwnProducts(hydratedOrder as HydratedProduct[])
     }
   }
 
   useEffect(() => {
-    setOwnProducts([])
-    fetchOwnProducts()
+    if (orders) {
+      setOwnProducts([])
+      fetchOwnProducts()
+    }
   }, [orders])
 
   // Server-render loading state
