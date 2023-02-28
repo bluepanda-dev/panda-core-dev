@@ -52,15 +52,13 @@ const Credits = () => {
   }, [preparingPage, settingUp])
 
   useEffect(() => {
-    if (profile) {
-      setUp().then(() => {
-        setPreparingPage(false)
-      })
-    }
+    setUp().then(() => {
+      setPreparingPage(false)
+    })
   }, [profile])
 
   // Server-render loading state
-  if (!profile || settingUp || preparingPage) {
+  if (settingUp || preparingPage) {
     return <Layout></Layout>
   }
 

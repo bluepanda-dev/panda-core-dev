@@ -93,7 +93,13 @@ export const useCredits = () => {
     setTotalSpending(totalSpending)
   }
 
-  async function buyWithCredits(item: CreditItem, onDone: () => void) {
+  async function buyWithCredits(item: CreditItem, done: () => void) {
+    if (!profile?.uid) {
+      toast('Please log in!')
+      done && done()
+      return
+    }
+
     const docR = await addToCollection(
       {
         amount: item.cost,
@@ -107,14 +113,14 @@ export const useCredits = () => {
     onSnapshot(docR, async (snap: any) => {
       const { error } = snap.data()
       if (error) {
-        alert(`An error occured: ${error.message}`)
-        onDone()
+        toast.error(`An error occured: ${error.message}`)
+        done()
       }
       if (snap.data().proccessed) {
         toast('Credits successful used')
         await fetchCreditItems()
         await fetchSpendings(profile!.uid)
-        onDone()
+        done()
       }
     })
   }
@@ -123,7 +129,7 @@ export const useCredits = () => {
     setSettingUp(true)
     await fetchCredits().then((credits) => setCreditProducts(credits))
     await fetchCreditItems().then((items) => setCreditItems(items))
-    await fetchSpendings(profile!.uid)
+    if (profile) await fetchSpendings(profile.uid)
     setSettingUp(false)
   }
 

@@ -1,7 +1,8 @@
 import { Menu, Transition } from '@headlessui/react'
+import Link from 'next/link'
 import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FiSun } from 'react-icons/fi'
+import { FiStar, FiSun } from 'react-icons/fi'
 import { useTheme } from '@core/hooks/useTheme'
 
 export type DropdownProps = {
@@ -65,6 +66,9 @@ export default function DropdownAnonymous({
       >
         <Menu.Items className="dark:border-neutral-500 absolute z-10 bg-primary-50 dark:bg-normal-900 right-0 mt-2 w-56 origin-top-right shadow-lg rounded-sm border">
           <div className="y-1 ">
+            <Link href="/credits">
+              <MenuAction icon={<FiStar />} text="Credits" />
+            </Link>
             <div
               onClick={() => (theme === 'dark' ? themeLight() : themeDark())}
             >

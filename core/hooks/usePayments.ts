@@ -83,7 +83,7 @@ export const usePayments = () => {
     onSnapshot(docR, (snap: any) => {
       const { error, url } = snap.data()
       if (error) {
-        alert(`An error occured: ${error.message}`)
+        toast.error(`An error occured: ${error.message}`)
       }
       if (url) {
         window.location.assign(url)
@@ -112,7 +112,7 @@ export const usePayments = () => {
     onSnapshot(docR, (snap: any) => {
       const { error, url } = snap.data()
       if (error) {
-        alert(`An error occured: ${error.message}`)
+        toast.error(`An error occured: ${error.message}`)
         done && done()
       }
       if (url) {
