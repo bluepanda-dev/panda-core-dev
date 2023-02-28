@@ -65,7 +65,6 @@ const Orders = () => {
       )
 
       if (hydratedOrder) {
-        console.log('order:>>> ', hydratedOrder)
         setOwnProducts(hydratedOrder as HydratedProduct[])
       }
     }
