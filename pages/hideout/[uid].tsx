@@ -3,10 +3,11 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useEffect, useState } from 'react'
-import { FiShare2, FiUser } from 'react-icons/fi'
+import { FiArrowLeft, FiShare2, FiUser } from 'react-icons/fi'
 import { toast } from 'react-toastify'
 import Button from '@components/atoms/Button'
 import Layout from '@components/layout'
+import SimpleHeader from '@components/molecules/SimpleHeader'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useHideouts } from '@core/hooks/useHideouts'
 import { Hideout, HideoutUser } from '@core/types'
@@ -72,6 +73,10 @@ const Hideout = () => {
       ]),
     })
     setNewIdea('')
+  }
+
+  function back() {
+    router.push('/hideouts')
   }
 
   useEffect(() => {
@@ -153,40 +158,45 @@ const Hideout = () => {
 
   return (
     <Layout>
-      {profile && (
-        <div className="absolute right-2 top-2">
-          <Link href={`/hideouts`}>
-            <Button>{t('myHideouts')}</Button>
-          </Link>
-        </div>
-      )}
+      <SimpleHeader
+        className="border-x-0 border-t-0 border-0 border-b"
+        title={
+          <div className="flex items-center gap-4">
+            <FiArrowLeft
+              className="cursor-pointer hover:opacity-75"
+              onClick={back}
+            />
+            <div className="text-center text-xl font-bold">{hideout.name}</div>
+          </div>
+        }
+        extra={
+          <div className="flex justify-end items-center gap-4">
+            <span>{t('activeUsers')}:</span>
+            <div className="ml-4 flex gap-1">
+              {hideout.activeUsers?.map((user, index) => (
+                <div key={index} style={{ marginLeft: '-18px' }}>
+                  <ProfilePic
+                    className="bg-normal-900"
+                    photoURL={user.photoURL}
+                    alt={user.displayName}
+                  />
+                </div>
+              ))}
+            </div>
+            <span>{t('shareIt')}:</span>
+            <button
+              onClick={handleShare}
+              className="border-neutral-500 hover:border-primary-600 bg-primary-800 border rounded-md p-1 text-xl"
+            >
+              <FiShare2 />
+            </button>
+          </div>
+        }
+      />
 
       <div className="mx-8 my-16 relative">
-        <div className="text-center text-4xl font-bold">{hideout.name}</div>
-
         <div className="text-neutral-600 dark:text-neutral-400 flex justify-center text-xl md:text-2xl font-extralight mt-6 md:mt-16 px-8 ">
           <div className="md:max-w-lg text-center">{t('hereYouCan')}</div>
-        </div>
-        <div className="mt-8 flex justify-end items-center gap-4">
-          <span>{t('activeUsers')}:</span>
-          <div className="ml-4 flex gap-1">
-            {hideout.activeUsers?.map((user, index) => (
-              <div key={index} style={{ marginLeft: '-18px' }}>
-                <ProfilePic
-                  className="bg-normal-900"
-                  photoURL={user.photoURL}
-                  alt={user.displayName}
-                />
-              </div>
-            ))}
-          </div>
-          <span>{t('shareIt')}:</span>
-          <button
-            onClick={handleShare}
-            className="border-neutral-500 hover:border-primary-600 bg-primary-800 border rounded-md p-1 text-xl"
-          >
-            <FiShare2 />
-          </button>
         </div>
         <div className="mt-8 flex gap-4 justify-end md:justify-start flex flex-col md:flex-row">
           <input
