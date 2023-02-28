@@ -11,7 +11,7 @@ export default function SimpleHeaderProps({
 }: SimpleHeaderProps) {
   return (
     <div
-      className={`rounded-sm border-2 justify-between border-neutral-200 dark:border-neutral-800 p-6 w-full items-center flex gap-4 ${className}`}
+      className={`rounded-sm justify-between border-neutral-200 dark:border-neutral-800 p-6 w-full items-center flex gap-4 border-x-0 border-t-0 border-0 border-b ${className}`}
     >
       <div>{title}</div>
       <div>{extra}</div>
