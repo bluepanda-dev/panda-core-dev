@@ -1,8 +1,8 @@
 import Image from 'next/image'
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 
 export default function TechStack() {
-  const { techStack } = useDataPages()
+  const { techStack } = useCopyPages()
 
   const logos = [
     {

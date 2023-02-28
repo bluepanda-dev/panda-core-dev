@@ -4,7 +4,7 @@ import { FiChevronRight } from 'react-icons/fi'
 import Button from '@components/atoms/Button'
 import Container from '@components/atoms/Container'
 import Modal from '@components/molecules/Modal'
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 import { ProductCard } from '@core/types'
 
 const Product = ({
@@ -14,7 +14,7 @@ const Product = ({
   product: ProductCard
   onBuy: (product: ProductCard) => void
 }) => {
-  const { products } = useDataPages()
+  const { products } = useCopyPages()
 
   function handleBuy(product: ProductCard) {
     onBuy(product)
@@ -61,7 +61,7 @@ const Product = ({
 export default function Products() {
   const [isOpen, setIsOpen] = useState(false)
   const [product, setProduct] = useState<ProductCard | null>(null)
-  const { products } = useDataPages()
+  const { products } = useCopyPages()
 
   function handleBuy(product: ProductCard) {
     setProduct(product)

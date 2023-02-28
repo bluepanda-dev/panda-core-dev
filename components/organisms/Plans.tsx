@@ -1,10 +1,10 @@
 import { FiCheckCircle } from 'react-icons/fi'
 import Button from '@components/atoms/Button'
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 import { PlanCard } from '@core/types'
 
 const PlanCard = ({ plan }: { plan: PlanCard }) => {
-  const { plans } = useDataPages()
+  const { plans } = useCopyPages()
 
   return (
     <div
@@ -39,7 +39,7 @@ const PlanCard = ({ plan }: { plan: PlanCard }) => {
 }
 
 export default function Plans() {
-  const { plans } = useDataPages()
+  const { plans } = useCopyPages()
 
   return (
     <div className="w-full">

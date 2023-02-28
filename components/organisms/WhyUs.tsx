@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 import { WhyUsCard } from '@core/types'
 
 const Why = ({ why }: { why: WhyUsCard }) => {
@@ -25,7 +25,7 @@ const Why = ({ why }: { why: WhyUsCard }) => {
 }
 
 export default function WhyUs() {
-  const { whyUs } = useDataPages()
+  const { whyUs } = useCopyPages()
 
   return (
     <div>

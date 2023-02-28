@@ -1,6 +1,6 @@
+import { useTranslation } from 'next-i18next'
 import { Faq, OurNumber, ProductCard, TimeLineData } from '@core/types'
 import { PlanCard, FeatureCard, WhyUsCard, ReviewCard } from '@core/types'
-import { useTranslation } from 'next-i18next'
 
 export type MetaPage<T extends any = any> = {
   title?: string
@@ -10,7 +10,7 @@ export type MetaPage<T extends any = any> = {
   texts?: Record<string, string>
 }
 
-export const useDataPages = () => {
+export const useCopyPages = () => {
   const { t } = useTranslation()
   const hero: MetaPage<string> = {
     content: t('hero.content')!,

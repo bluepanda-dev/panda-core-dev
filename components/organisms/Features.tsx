@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 import { FeatureCard } from '@core/types'
 
 const Feature = ({ feature }: { feature: FeatureCard }) => {
@@ -21,7 +21,7 @@ const Feature = ({ feature }: { feature: FeatureCard }) => {
 }
 
 export default function Features() {
-  const { features } = useDataPages()
+  const { features } = useCopyPages()
 
   return (
     <div>
