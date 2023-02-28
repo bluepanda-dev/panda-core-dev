@@ -74,6 +74,11 @@ export default function DropdownUser({ className = '', image }: DropdownProps) {
                         ? '!bg-primary-500 !text-primary-100'
                         : ''
                     }
+                    ${
+                      subscriptionType === 'trial'
+                        ? '!bg-blue-500 !text-primary-100'
+                        : ''
+                    }
                   `}
                 >
                   {subscriptionType}

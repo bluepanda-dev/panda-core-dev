@@ -6,6 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { useState, useEffect } from 'react'
 import { FiArrowLeft } from 'react-icons/fi'
+import { toast } from 'react-toastify'
 import Button from '@components/atoms/Button'
 import Layout from '@components/layout'
 import SimpleHeader from '@components/molecules/SimpleHeader'
@@ -23,10 +24,16 @@ const Hideouts = () => {
   const [preparingPage, setPreparingPage] = useState(true)
   const [hideouts, setHideouts] = useState<Hideout[]>([])
   const { profile } = useUserContext()
-  const { isPremium, settingUp } = useCustomerContext()
+  const { subscriptionType, isPremium, settingUp } = useCustomerContext()
   const { subscribeHideouts, handleAdd } = useHideouts()
 
   function add() {
+    if (subscriptionType === 'trial') {
+      if (hideouts.length >= 3) {
+        toast.error('you reached the limit of trial plan')
+        return
+      }
+    }
     handleAdd({ owner: profile!.uid as string, name: 'New hideout' })
   }
 

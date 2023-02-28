@@ -80,17 +80,18 @@ export const useCustomer = () => {
 
   async function fetchActiveSubscription(uid: string) {
     setActiveSubscription(null)
-    let list = await fetchAll<Subscription>(CUSTOMERS_DB, uid, 'subscriptions')
-
-    const subs = list.map((sub) => {
-      return { ...sub, uid: sub.docId }
-    })
-
-    const sub = subs.find(
-      (sub) => sub.status === 'active' && sub.role === 'premium',
+    const list = await fetchAllWhere<Subscription>(
+      [
+        where('status', 'in', ['trialing', 'active']),
+        where('role', '==', 'premium'),
+      ],
+      CUSTOMERS_DB,
+      uid,
+      'subscriptions',
     )
-    if (sub) {
-      setActiveSubscription(sub)
+
+    if (list && list.length > 0) {
+      setActiveSubscription({ ...list[0], uid: list[0].docId })
     }
   }
 
@@ -107,7 +108,11 @@ export const useCustomer = () => {
   useEffect(() => {
     if (activeSubscription) {
       // TODO check when I go from plus to pro or downgrade
-      setSubscriptionType(activeSubscription.items[0].plan.metadata.type)
+      if (activeSubscription.status === 'trialing') {
+        setSubscriptionType('trial')
+      } else {
+        setSubscriptionType(activeSubscription.items[0].plan.metadata.type)
+      }
       if (activeSubscription.items[0]?.plan?.amount) {
         setPrice(activeSubscription.items[0].plan.amount / 100)
       } else {

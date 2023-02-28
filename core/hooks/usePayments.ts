@@ -91,6 +91,30 @@ export const usePayments = () => {
     })
   }
 
+  async function startTrial(price: Price) {
+    const docR = await addToCollection(
+      {
+        price: price.guid,
+        trial_from_plan: true,
+        success_url: `${window.location.origin}/payment/success`,
+        cancel_url: `${window.location.origin}/payment/failure`,
+      },
+      'fe-customers',
+      profile!.uid,
+      'checkout_sessions',
+    )
+
+    onSnapshot(docR, (snap: any) => {
+      const { error, url } = snap.data()
+      if (error) {
+        toast.error(`An error occured: ${error.message}`)
+      }
+      if (url) {
+        window.location.assign(url)
+      }
+    })
+  }
+
   async function singlePayment(price: Price, done?: () => void) {
     if (!profile?.uid) {
       toast('Please log in!')
@@ -133,6 +157,7 @@ export const usePayments = () => {
     planProduct,
     products,
     startSubscription,
+    startTrial,
     singlePayment,
     setUp,
     settingUp,
