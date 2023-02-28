@@ -3,7 +3,9 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useEffect, useState } from 'react'
+import { FiArrowLeft } from 'react-icons/fi'
 import Layout from '@components/layout'
+import SimpleHeader from '@components/molecules/SimpleHeader'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useHideouts } from '@core/hooks/useHideouts'
 import { useUser } from '@core/hooks/useUser'
@@ -18,6 +20,10 @@ const Hideout = () => {
   const { fetchPublicProfile } = useUser()
   const { uid } = router.query
   const { t } = useTranslation(['profile', 'common'])
+
+  function back() {
+    router.push('/')
+  }
 
   useEffect(() => {
     if (uid) {
@@ -41,15 +47,26 @@ const Hideout = () => {
 
   return (
     <Layout>
-      <div className="mx-8 my-16 relative">
-        <div className="text-center text-4xl font-bold">
-          {profile.displayName}s Hideouts
-          <div>Web: {profile.website}</div>
-        </div>
+      <SimpleHeader
+        className="border-x-0 border-t-0 border-0 border-b"
+        title={
+          <div className="flex items-center gap-4">
+            <FiArrowLeft
+              className="cursor-pointer hover:opacity-75"
+              onClick={back}
+            />
+            <div className="text-center text-xl font-bold">
+              {profile.displayName}s Hideouts
+            </div>
+          </div>
+        }
+      />
 
+      <div className="mx-8 my-16 relative">
         <div className="text-neutral-600 dark:text-neutral-400 flex justify-center text-xl md:text-2xl font-extralight mt-6 md:mt-16 px-8 ">
           <div className="md:max-w-lg text-center">
             {t('hereIs')} {profile.displayName}
+            <div>website: {profile.website}</div>
           </div>
         </div>
         <div className="mt-8 grid gap-8 md:grid-cols-3 lg:grid-cols-5">

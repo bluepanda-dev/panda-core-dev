@@ -1,11 +1,14 @@
 import { useAtom } from 'jotai'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useState, useEffect } from 'react'
+import { FiArrowLeft } from 'react-icons/fi'
 import Button from '@components/atoms/Button'
 import Layout from '@components/layout'
 
+import SimpleHeader from '@components/molecules/SimpleHeader'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useHideouts } from '@core/hooks/useHideouts'
 import { loadingAtom } from '@core/store/Common'
@@ -13,7 +16,7 @@ import { Hideout } from '@core/types'
 
 const Hideouts = () => {
   const { t } = useTranslation(['hideouts', 'common'])
-
+  const router = useRouter()
   const [, setLoading] = useAtom(loadingAtom)
   const [hideouts, setHideouts] = useState<Hideout[]>([])
   const { profile } = useUserContext()
@@ -21,6 +24,10 @@ const Hideouts = () => {
 
   function add() {
     handleAdd({ owner: profile!.uid as string, name: 'New hideout' })
+  }
+
+  function back() {
+    router.push('/')
   }
 
   useEffect(() => {
@@ -42,8 +49,21 @@ const Hideouts = () => {
 
   return (
     <Layout>
+      <SimpleHeader
+        className="border-x-0 border-t-0 border-0 border-b"
+        title={
+          <div className="flex items-center gap-4">
+            <FiArrowLeft
+              className="cursor-pointer hover:opacity-75"
+              onClick={back}
+            />
+            <div className="text-center text-xl font-bold">
+              {t('myHideouts')}
+            </div>
+          </div>
+        }
+      />
       <div className="mx-8 my-16 h-full">
-        <div className="text-center text-4xl font-bold">{t('myHideouts')}</div>
         <div className="mt-8">
           <Button isSpecial={true} className="!w-auto" onClick={add}>
             {t('addNew')}
