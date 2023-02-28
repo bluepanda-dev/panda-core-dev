@@ -103,7 +103,7 @@ const Orders = () => {
       />
 
       <div className="flex justify-center">
-        <div className="mx-2 md:mx-8 my-16 h-full max-w-2xl w-full">
+        <div className="px-4 md:px-8 my-16 h-full max-w-2xl w-full">
           <div className="mt-8 flex flex-col gap-6 justify-center">
             {ownProducts.map((product) => (
               <Panel

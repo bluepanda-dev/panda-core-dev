@@ -166,7 +166,9 @@ const Hideout = () => {
               className="cursor-pointer hover:opacity-75"
               onClick={back}
             />
-            <div className="text-center text-xl font-bold">{hideout.name}</div>
+            <div className="hidden sm:block text-center text-xl font-bold">
+              {hideout.name}
+            </div>
           </div>
         }
         extra={
