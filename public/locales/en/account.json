@@ -29,7 +29,5 @@
   "areYouSure": "¿Are you sure?",
   "close": "close",
   "cancelSub": "Cancel Subscription",
-  "youAre": "Your are on the {{billing}} plan.",
-  "nextPayment": "The next payment of {{price}} will occur on {{nextPayment}}.",
   "other": "Other"
 }

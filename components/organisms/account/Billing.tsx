@@ -1,5 +1,6 @@
 import * as dayjs from 'dayjs'
-import { useTranslation } from 'next-i18next'
+import { Trans, useTranslation } from 'next-i18next'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
@@ -84,29 +85,27 @@ export default function Billing() {
       </Modal>
       <div className="relative max-w-2xl flex flex-col gap-8">
         <div>
-          <Panel title={t('plan')} description="">
-            {t('youAre', {
-              billing: subscriptionType,
-            })}
-            {/*
+          <Panel title="Plan" description="">
             Your are on the
-             <span
+            <span
               className={`mx-2 pb-1 bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300
                     ${
                       subscriptionType === 'plus'
                         ? '!bg-primary-500 !text-primary-100'
                         : ''
                     }
+                    ${
+                      subscriptionType === 'trial'
+                        ? '!bg-blue-500 !text-primary-100'
+                        : ''
+                    }
                   `}
             >
               {subscriptionType}
             </span>
-            plan. */}
+            plan.
             {!!price &&
-              t('nextPayment', {
-                price: price,
-                nextPayment: nextPayment,
-              })}
+              `The next payment of $${price} will occur on ${nextPayment} `}
           </Panel>
         </div>
         <div>

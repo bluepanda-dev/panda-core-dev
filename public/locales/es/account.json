@@ -17,6 +17,5 @@
   "dangerZone": "Zona Peligrosa",
   "youWill": "No podrás usar el sistema después de cancelar tu subscripción",
   "cancelSubcription": "Cancelar Subscripción",
-  "youAre": "Estás en el plan {{billing}}. El próximo pago de {{price}} ocurrirá en {{nextPaymentDate}}.",
   "other": "Otros"
 }
