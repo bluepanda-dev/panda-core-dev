@@ -4,13 +4,13 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import React, { useEffect } from 'react'
 import { FaFacebookSquare, FaTwitterSquare, FaInstagram } from 'react-icons/fa'
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 import animationData from '../data/lottie-animation.json'
 
 export default function Footer() {
   const { pathname } = useRouter()
   const { t } = useTranslation()
-  const { features, techStack } = useDataPages()
+  const { features, techStack } = useCopyPages()
   useEffect(() => {
     if (
       pathname === '' &&

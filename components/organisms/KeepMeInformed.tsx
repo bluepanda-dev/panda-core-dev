@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import Button from '@components/atoms/Button'
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 
 export default function KeepMeInformed() {
   const [email, setEmail] = useState('')
-  const { keepMeInformed } = useDataPages()
+  const { keepMeInformed } = useCopyPages()
 
   function handleSubscription() {
     // TODO handle sub here

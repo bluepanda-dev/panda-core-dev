@@ -1,5 +1,6 @@
 import { where, onSnapshot } from 'firebase/firestore'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 import { useUserContext } from '@core/contexts/UserContext'
 import { Price, Product, PRODUCTS_DB } from '@core/types/payments'
 import { useQuery } from './useQuery'
@@ -82,7 +83,7 @@ export const usePayments = () => {
     onSnapshot(docR, (snap: any) => {
       const { error, url } = snap.data()
       if (error) {
-        alert(`An error occured: ${error.message}`)
+        toast.error(`An error occured: ${error.message}`)
       }
       if (url) {
         window.location.assign(url)
@@ -90,15 +91,14 @@ export const usePayments = () => {
     })
   }
 
-  async function singlePayment(price: Price, done?: () => void) {
+  async function startTrial(price: Price) {
     const docR = await addToCollection(
       {
-        mode: 'payment',
         price: price.guid,
+        trial_from_plan: true,
         success_url: `${window.location.origin}/payment/success`,
         cancel_url: `${window.location.origin}/payment/failure`,
       },
-
       'fe-customers',
       profile!.uid,
       'checkout_sessions',
@@ -107,7 +107,36 @@ export const usePayments = () => {
     onSnapshot(docR, (snap: any) => {
       const { error, url } = snap.data()
       if (error) {
-        alert(`An error occured: ${error.message}`)
+        toast.error(`An error occured: ${error.message}`)
+      }
+      if (url) {
+        window.location.assign(url)
+      }
+    })
+  }
+
+  async function singlePayment(price: Price, done?: () => void) {
+    if (!profile?.uid) {
+      toast('Please log in!')
+      done && done()
+      return
+    }
+    const docR = await addToCollection(
+      {
+        mode: 'payment',
+        price: price.guid,
+        success_url: `${window.location.origin}/payment/success`,
+        cancel_url: `${window.location.origin}/payment/failure`,
+      },
+      'fe-customers',
+      profile!.uid,
+      'checkout_sessions',
+    )
+
+    onSnapshot(docR, (snap: any) => {
+      const { error, url } = snap.data()
+      if (error) {
+        toast.error(`An error occured: ${error.message}`)
         done && done()
       }
       if (url) {
@@ -128,6 +157,7 @@ export const usePayments = () => {
     planProduct,
     products,
     startSubscription,
+    startTrial,
     singlePayment,
     setUp,
     settingUp,

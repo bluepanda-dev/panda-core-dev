@@ -12,7 +12,9 @@ export default function Layout({ children, className }: Props) {
     <>
       <NavBar />
       <div className="bg-neutral-50 dark:bg-normal-900 text-normal dark:text-neutral-50 flex flex-col min-h-screen justify-between">
-        <main className={`mt-14 relative ${className}`}>{children}</main>
+        <main className={`min-h-[100vh] mt-14 relative ${className}`}>
+          {children}
+        </main>
         <Footer />
       </div>
     </>

@@ -1,8 +1,8 @@
 import Image from 'next/image'
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 
 export default function Customers() {
-  const { customers } = useDataPages()
+  const { customers } = useCopyPages()
 
   const customersLogos = [
     {

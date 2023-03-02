@@ -1,3 +1,4 @@
+import { ProtectedItem } from './credits'
 import { Price } from './payments'
 
 export const CUSTOMERS_DB = 'fe-customers'
@@ -61,4 +62,5 @@ export type Order = {
   created: string
   items: { description: string; price: Price }[]
   charges: { data: { receipt_url: string }[] }
+  protectedItem: ProtectedItem
 }

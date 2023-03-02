@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 
 export default function Hero() {
-  const { hero } = useDataPages()
+  const { hero } = useCopyPages()
 
   const words = hero.list!
   const [active, setActive] = useState(0)

@@ -1,9 +1,12 @@
 import { useAtom } from 'jotai'
+import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useState, useEffect } from 'react'
+import { FiArrowLeft } from 'react-icons/fi'
 import Button from '@components/atoms/Button'
 import Layout from '@components/layout'
 import Panel from '@components/molecules/Panel'
+import SimpleHeader from '@components/molecules/SimpleHeader'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useCredits } from '@core/hooks/useCredits'
 import { usePayments } from '@core/hooks/usePayments'
@@ -11,6 +14,7 @@ import { loadingAtom } from '@core/store/Common'
 import { CreditItem } from '@core/types/credits'
 
 const Credits = () => {
+  const router = useRouter()
   const { profile } = useUserContext()
   const [, setLoading] = useAtom(loadingAtom)
   const [preparingPage, setPreparingPage] = useState(true)
@@ -33,6 +37,10 @@ const Credits = () => {
     })
   }
 
+  function back() {
+    router.push('/')
+  }
+
   useEffect(() => {
     setLoading(true)
   }, [])
@@ -44,15 +52,13 @@ const Credits = () => {
   }, [preparingPage, settingUp])
 
   useEffect(() => {
-    if (profile) {
-      setUp().then(() => {
-        setPreparingPage(false)
-      })
-    }
+    setUp().then(() => {
+      setPreparingPage(false)
+    })
   }, [profile])
 
   // Server-render loading state
-  if (!profile || settingUp || preparingPage) {
+  if (settingUp || preparingPage) {
     return <Layout></Layout>
   }
 
@@ -103,18 +109,24 @@ const Credits = () => {
     )
   }
 
-  console.log('spendings', spendings)
-
   return (
     <Layout>
-      <div>
-        <div className="mt-4 text-center text-4xl font-bold">My Credits</div>
-        <div className="mt-8 flex gap-6 justify-center">
+      <SimpleHeader
+        title={
+          <div className="flex items-center gap-4">
+            <FiArrowLeft
+              className="cursor-pointer hover:opacity-75"
+              onClick={back}
+            />
+            <div className="text-center text-xl font-bold">My Credits</div>
+          </div>
+        }
+        extra={
           <span className="dark:bg-yellow-700 dark:text-yellow-100 rounded-lg p-1">
             I have {totalCredits} credits
           </span>
-        </div>
-      </div>
+        }
+      />
       <div className="px-4 mt-12 h-full w-full flex flex-col md:flex-row gap-8  justify-center">
         <div className="basis-1/2 max-w-2xl">
           <div className="text-center text-4xl font-bold">Buy Credits</div>

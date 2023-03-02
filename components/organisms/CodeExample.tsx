@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import CodeTerminal from '@components/molecules/CodeTerminal'
-import { useDataPages } from '@core/hooks/useDataPages'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 
 export default function CodeExample() {
-  const { codeExample } = useDataPages()
+  const { codeExample } = useCopyPages()
   const [blur, setBlur] = useState(0)
 
   const inner = `
