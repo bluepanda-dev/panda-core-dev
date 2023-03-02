@@ -344,5 +344,15 @@
     "errorTitle": "Payment Error",
     "errorContent": "Something went wrong with your payment.",
     "ctaError": "Go Home"
+  },
+  "login": {
+    "thereIsProblem": "Wow there was a problem!",
+    "createAccount": "Create Account!",
+    "login": "Login",
+    "newUser": "New User?",
+    "orLoginWith": "Or Login With",
+    "iHave": "I have an account",
+    "logIn": "Log In",
+    "signUp": "Sign Up"
   }
 }
