@@ -30,11 +30,11 @@ const Hideouts = () => {
   function add() {
     if (subscriptionType === 'trial') {
       if (hideouts.length >= 3) {
-        toast.error('you reached the limit of trial plan')
+        toast.error(t('youReached'))
         return
       }
     }
-    handleAdd({ owner: profile!.uid as string, name: 'New hideout2' })
+    handleAdd({ owner: profile!.uid as string, name: t('newHideout')! })
   }
 
   function back() {
