@@ -1,6 +1,7 @@
 import { useAtom } from 'jotai'
-import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { FiArrowLeft } from 'react-icons/fi'
 import Button from '@components/atoms/Button'
@@ -14,6 +15,7 @@ import { loadingAtom } from '@core/store/Common'
 import { CreditItem } from '@core/types/credits'
 
 const Credits = () => {
+  const { t } = useTranslation(['credits', 'common'])
   const router = useRouter()
   const { profile } = useUserContext()
   const [, setLoading] = useAtom(loadingAtom)
@@ -67,14 +69,14 @@ const Credits = () => {
     if (found) {
       return (
         <span className="text-sm md:text-md absolute right-0 top-0 dark:bg-success-700 dark:text-success-300 rounded-sm p-1">
-          You own it
+          {t('youOwnIt')}
         </span>
       )
     }
 
     return (
       <span className="text-sm md:text-md absolute right-0 top-0 dark:bg-normal-700 dark:text-neutral-300 rounded-sm p-1">
-        {item.cost} credits
+        {item.cost} {t('credits')}
       </span>
     )
   }
@@ -85,7 +87,7 @@ const Credits = () => {
       if (found.protectedItem.download) {
         return (
           <Button isInverted={true} isSmall={true} className="w-24">
-            Download
+            {t('download')}
           </Button>
         )
       } else {
@@ -104,7 +106,7 @@ const Credits = () => {
         isSmall={true}
         onClick={() => handleBuy(item)}
       >
-        Buy
+        {t('buy')}
       </Button>
     )
   }
@@ -118,20 +120,24 @@ const Credits = () => {
               className="cursor-pointer hover:opacity-75"
               onClick={back}
             />
-            <div className="text-center text-xl font-bold">My Credits</div>
+            <div className="text-center text-xl font-bold">
+              {t('myCredits')}
+            </div>
           </div>
         }
         extra={
           <span className="dark:bg-yellow-700 dark:text-yellow-100 rounded-lg p-1">
-            I have {totalCredits} credits
+            {t('iHave')} {totalCredits} {t('credits')}
           </span>
         }
       />
       <div className="px-4 mt-12 h-full w-full flex flex-col md:flex-row gap-8  justify-center">
         <div className="basis-1/2 max-w-2xl">
-          <div className="text-center text-4xl font-bold">Buy Credits</div>
+          <div className="text-center text-4xl font-bold">
+            {t('buyCredits')}
+          </div>
           <div className="mt-8 flex gap-6 justify-center mb-4">
-            Buy credits to unlock protected content
+            {t('buyCreditsTo')}
           </div>
           <div className="flex flex-col gap-4 mx-6 md:mx-0">
             {creditProducts.map((product) =>
@@ -142,7 +148,7 @@ const Credits = () => {
                   footer={
                     <>
                       <Button onClick={() => singlePayment(price)}>
-                        Buy for ${price.unit_amount / 100}
+                        {t('buyFor')} ${price.unit_amount / 100}
                       </Button>
                     </>
                   }
@@ -152,12 +158,11 @@ const Credits = () => {
                     className="w-12 absolute right-2 top-2"
                   />
                   <div className="text-justify">
-                    The packaga contains{' '}
+                    {t('thePackage')}{' '}
                     <span className="font-semibold text-yellow-600">
                       {price.transform_quantity.divide_by}
                     </span>{' '}
-                    credits, you can spend it on any of our services with no
-                    time limit.
+                    {t('youCanSpend')}
                   </div>
                 </Panel>
               )),
@@ -167,7 +172,7 @@ const Credits = () => {
         <div className="basis-1/2 max-w-2xl">
           <div className="text-center text-4xl font-bold">Spend Credits</div>
           <div className="mt-8 flex gap-6 justify-center mb-4">
-            You have used {totalSpending} credits
+            {t('youHaveUsed')} {totalSpending} {t('credits')}
           </div>
           <div>
             <div className="flex flex-col gap-4 mx-6 md:mx-0">
@@ -194,7 +199,7 @@ export default Credits
 export async function getServerSideProps({ locale }: any) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['credits', 'common'])),
     },
   }
 }

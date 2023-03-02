@@ -1,8 +1,8 @@
 import { useAtom } from 'jotai'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import { useState, useEffect } from 'react'
 import { FiArrowLeft } from 'react-icons/fi'
@@ -34,7 +34,7 @@ const Hideouts = () => {
         return
       }
     }
-    handleAdd({ owner: profile!.uid as string, name: 'New hideout' })
+    handleAdd({ owner: profile!.uid as string, name: 'New hideout2' })
   }
 
   function back() {
@@ -72,7 +72,7 @@ const Hideouts = () => {
             <span
               className={`bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-400`}
             >
-              You need a plan
+              {t('youNeed')}
             </span>
           </div>
         </div>
