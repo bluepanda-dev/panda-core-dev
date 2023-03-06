@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 import { FiTwitter, FiGithub, FiFacebook } from 'react-icons/fi'
 import { ImGoogle } from 'react-icons/im'
@@ -15,6 +16,7 @@ export default function LoginRegisterModal({
   isOpen,
   closeModal,
 }: LoginRegisterModalProps) {
+  const { t } = useTranslation()
   const {
     googleLogIn,
     twitterLogIn,
@@ -33,8 +35,7 @@ export default function LoginRegisterModal({
       await provider()
       closeModal()
     } catch (error: any) {
-      toast.error(`Wow there was a problem! ${error?.message}`)
-      console.log(error)
+      toast.error(`${t('login.thereIsProblem')}! ${error?.message}`)
     } finally {
     }
   }
@@ -44,8 +45,7 @@ export default function LoginRegisterModal({
       await nativeLogIn(email, password)
       closeModal()
     } catch (error: any) {
-      toast.error(`Wow there was a problem! ${error?.message}`)
-      console.log(error)
+      toast.error(`${t('login.thereIsProblem')} ${error?.message}`)
     }
   }
 
@@ -58,12 +58,11 @@ export default function LoginRegisterModal({
       await nativeCreateAccount(email, password)
       closeModal()
     } catch (error: any) {
-      toast.error(`Wow there was a problem! ${error?.message}`)
-      console.log(error)
+      toast.error(`${t('login.thereIsProblem')} ${error?.message}`)
     }
   }
   return (
-    <Modal isOpen={isOpen} closeModal={closeModal} title="Log In">
+    <Modal isOpen={isOpen} closeModal={closeModal} title={t('login.logIn')}>
       <div className="mt-4 flex flex-col gap-4 items-center justify-center">
         <input
           type="email"
@@ -87,11 +86,11 @@ export default function LoginRegisterModal({
           <div className="basis-1/2">
             {isNewUser ? (
               <Button isInverted={true} onClick={handleCreateAccount}>
-                Create Account
+                {t('login.createAccount')}
               </Button>
             ) : (
               <Button isInverted={true} onClick={handleNativeLogIn}>
-                Log in
+                {t('login.login')}
               </Button>
             )}
           </div>
@@ -99,14 +98,14 @@ export default function LoginRegisterModal({
             {isNewUser ? (
               <>
                 <a className="ui-link" onClick={() => setIsNewUser(false)}>
-                  I have an account
+                  {t('login.iHave')}
                 </a>
               </>
             ) : (
               <>
-                <span>New user? </span>
+                <span>{t('login.newUser')}</span>
                 <a className="w-24 ui-link" onClick={() => setIsNewUser(true)}>
-                  Sign up
+                  {t('login.signUp')}
                 </a>
               </>
             )}
@@ -115,7 +114,7 @@ export default function LoginRegisterModal({
       </div>
       <div className="my-4 text-center">
         <div className="h-px bg-primary-900 my-8" />
-        Or Login with
+        {t('login.orLoginWith')}
       </div>
 
       <div className="mt-2 grid grid-cols-2 gap-2 items-center justify-center">

@@ -11,8 +11,12 @@
   "logOut": "Log Out",
   "upgrade": "Upgrade",
   "contactUs": "Contact us",
+  "copiedToClipboard": "Copied to clipboard",
+  "close": "Close",
+  "confirm": "Confirm",
   "shipFaster": "Ship faster",
   "simplicityFirst": "Simplicity first",
+  "outOfStock": "Out of Stock",
   "supportForYou": "Support for you",
   "madeWithLove": "Made with 💙",
   "youAreInDemo": "You are in a Demo Template",
@@ -340,5 +344,15 @@
     "errorTitle": "Payment Error",
     "errorContent": "Something went wrong with your payment.",
     "ctaError": "Go Home"
+  },
+  "login": {
+    "thereIsProblem": "Wow there was a problem!",
+    "createAccount": "Create Account!",
+    "login": "Login",
+    "newUser": "New User?",
+    "orLoginWith": "Or Login With",
+    "iHave": "I have an account",
+    "logIn": "Log In",
+    "signUp": "Sign Up"
   }
 }

@@ -1,6 +1,6 @@
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useRouter } from 'next/router'
 import { FiArrowLeft } from 'react-icons/fi'
 import Container from '@components/atoms/Container'
 import Layout from '@components/layout'
@@ -14,7 +14,7 @@ import useBreakpoint from '@core/hooks/useBreakpoint'
 import { breakpointsWidths } from '@core/utils/breakpoints'
 
 const Account = () => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation(['account', 'common'])
   const router = useRouter()
   const { profile } = useUserContext()
   const { windowSize } = useBreakpoint()
@@ -25,10 +25,10 @@ const Account = () => {
   }
 
   const tabs = {
-    'My Profile': <Profile />,
-    Notifications: <Notifications />,
-    Billing: <Billing />,
-    Other: <Container className="h-48" title="Your Tab 2 content" />,
+    [t('myProfile')]: <Profile />,
+    [t('notifications')]: <Notifications />,
+    [t('billing')]: <Billing />,
+    [t('other')]: <Container className="h-48" title={t('tabContent')!} />,
   }
 
   function back() {
@@ -70,7 +70,7 @@ export default Account
 export async function getServerSideProps({ locale }: any) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['account', 'common'])),
     },
   }
 }

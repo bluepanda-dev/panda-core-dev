@@ -5,8 +5,10 @@ import Button from '@components/atoms/Button'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useUser } from '@core/hooks/useUser'
 import { Profile as ProfileType } from '@core/types'
+import { useTranslation } from 'react-i18next'
 
 export default function Profile() {
+  const { t } = useTranslation(['account', 'common'])
   const [loading, setLoading] = useState(false)
   const { saveUser, savePublicProfile } = useUser()
   const { profile } = useUserContext()
@@ -39,7 +41,7 @@ export default function Profile() {
     navigator.clipboard.writeText(
       new URL(`/profile/${profile!.uid}`, window.location.origin).toString(),
     )
-    toast.success('Copied to clipboard')
+    toast.success(t('copiedToClipboard'))
   }
 
   async function handleMakePublic() {
@@ -57,7 +59,7 @@ export default function Profile() {
       photoURL: profile?.photoURL ?? '',
     })
     setPublicProfile(profile)
-    toast('Profile is now public!')
+    toast(t('profileIsNow'))
   }
 
   useEffect(() => {
@@ -78,7 +80,7 @@ export default function Profile() {
   }, [profile])
 
   if (!profile) {
-    return <>Loading...</>
+    return <>{t('loading', { ns: 'common' })}...</>
   }
 
   return (
@@ -93,7 +95,7 @@ export default function Profile() {
 
         <div className="form-group mb-6">
           <label htmlFor="display" className="form-label inline-block mb-2 ">
-            Display Name
+            {t('name')}
           </label>
           <input
             id="display"
@@ -104,7 +106,7 @@ export default function Profile() {
         </div>
         <div className="form-group mb-6">
           <label htmlFor="email" className="form-label inline-block mb-2 ">
-            Email
+            {t('email')}
           </label>
           <input
             id="email"
@@ -116,7 +118,7 @@ export default function Profile() {
         </div>
         <div className="form-group mb-6">
           <label htmlFor="website" className="form-label inline-block mb-2 ">
-            Website (extra info for your profile)
+            {t('webSite')}
           </label>
 
           <input
@@ -129,18 +131,18 @@ export default function Profile() {
         </div>
         <div className="form-group mb-6">
           <Button loading={loading} isSpecial={true} onClick={handleSave}>
-            Save
+            {t('save')}
           </Button>
           {!publicProfile ? (
             <div className="mt-6 flex flex-col">
               <Button className="border" onClick={handleMakePublic}>
-                Make My Profile Public
+                {t('makeMyProfile')}
               </Button>
-              <span className="mt-4 text-right">Email will not be shared.</span>
+              <span className="mt-4 text-right">{t('emailWillNot')}</span>
             </div>
           ) : (
             <div className="flex items-center justify-end mt-8 gap-4">
-              <span>Share your profile:</span>
+              <span>{t('shareProfile')}:</span>
               <button
                 onClick={handleShare}
                 className="border-neutral-500 hover:border-primary-600 bg-primary-800 border rounded-md p-1 text-xl"

@@ -1,6 +1,6 @@
 import * as dayjs from 'dayjs'
-import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { FiArrowLeft } from 'react-icons/fi'
 import Button from '@components/atoms/Button'
@@ -11,10 +11,12 @@ import { useCustomerContext } from '@core/contexts/CustomerContext'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useCopyPages } from '@core/hooks/useCopyPages'
 import { ProductCard, Order } from '@core/types'
+import { useTranslation } from 'next-i18next'
 
 type HydratedProduct = ProductCard & { order: Order }
 
 const Orders = () => {
+  const { t } = useTranslation(['orders', 'common'])
   const router = useRouter()
   const { profile } = useUserContext()
   const { orders } = useCustomerContext()
@@ -85,7 +87,7 @@ const Orders = () => {
 
   // Server-render loading state
   if (!profile) {
-    return <Layout>Loading...</Layout>
+    return <Layout>{t('loading', { ns: 'common' })}...</Layout>
   }
 
   return (
@@ -97,7 +99,7 @@ const Orders = () => {
               className="cursor-pointer hover:opacity-75"
               onClick={back}
             />
-            <div className="text-center text-xl font-bold">My Orders</div>
+            <div className="text-center text-xl font-bold">{t('myOrders')}</div>
           </div>
         }
       />
@@ -112,7 +114,7 @@ const Orders = () => {
                 description={product.description}
                 hints={
                   <span>
-                    Purchased on{' '}
+                    {t('purchaseOn')}{' '}
                     {dayjs
                       .unix(Number(product.order.created))
                       .format('DD/MM/YYYY')}
@@ -126,7 +128,7 @@ const Orders = () => {
                         className="w-48"
                         isSmall={true}
                       >
-                        Invoice
+                        {t('invoice')}
                       </Button>
                     )}
                     {product.order.protectedItem?.download && (
@@ -138,7 +140,7 @@ const Orders = () => {
                         className="w-48"
                         isSmall={true}
                       >
-                        Download
+                        {t('download')}
                       </Button>
                     )}
                   </>
@@ -150,7 +152,7 @@ const Orders = () => {
                 {product.order.protectedItem?.raw && (
                   <div>
                     <div className="text-primary-600 font-semibold my-4">
-                      Unlocked content:
+                      {t('unlockedContent')}:
                     </div>
                     <div className="bg-neutral-200 dark:bg-neutral-800 p-8">
                       <code>{product.order.protectedItem?.raw}</code>
@@ -171,7 +173,7 @@ export default Orders
 export async function getServerSideProps({ locale }: any) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['orders', 'common'])),
     },
   }
 }
