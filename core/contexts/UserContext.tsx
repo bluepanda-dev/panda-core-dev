@@ -61,6 +61,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function setUpUser() {
       if (user) {
+        // there is some delay between the user being set and the auth being set
         const retry = setInterval(async () => {
           const fetchedProfile = await fetchUser(user.uid)
           if (fetchedProfile) {
@@ -83,6 +84,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
           const docSnap = await getDoc(docRef)
 
           if (docSnap.exists()) {
+            // when using user an email the info is different
             if (userData.providerData[0].providerId === 'password') {
               updateDoc(
                 doc(db, USER_DB, userData.uid),
@@ -103,6 +105,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
               )
             }
           } else {
+            // when using user an email the info is different
             if (userData.providerData[0].providerId === 'password') {
               setDoc(doc(db, USER_DB, userData.uid), {
                 ...commonFields(userData),
