@@ -43,7 +43,7 @@ const Button = React.forwardRef(
         className={`
         transition-colors h-10 items-center inline-flex w-full justify-center rounded-sm gap-2 px-4 py-2
         ${isSpecial ? 'ui-special-button' : 'ui-normal-button'}
-        ${isSmall && '!h-8 text-sm'}
+        ${isSmall && '!h-8 !text-sm'}
         ${isInverted && 'ui-inverted-button'}
         ${className}`}
       >
