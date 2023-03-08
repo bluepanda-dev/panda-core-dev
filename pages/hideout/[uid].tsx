@@ -151,11 +151,6 @@ const Hideout = () => {
     return <>{t('loading', { ns: 'common' })}...</>
   }
 
-  // TODO: remove ideas
-  // TODO create photo compopnent reusable
-  // convert photo url to abse64 https://stackoverflow.com/questions/22172604/convert-image-from-url-to-base64
-  //
-
   return (
     <Layout>
       <SimpleHeader
@@ -188,7 +183,7 @@ const Hideout = () => {
             <span>{t('shareIt')}:</span>
             <button
               onClick={handleShare}
-              className="border-neutral-500 hover:border-primary-600 bg-primary-800 border rounded-md p-1 text-xl"
+              className="text-neutral-50 hover:bg-primary-500 bg-primary-600 rounded-md p-1 text-xl"
             >
               <FiShare2 />
             </button>
@@ -203,7 +198,7 @@ const Hideout = () => {
         <div className="mt-8 flex gap-4 justify-end md:justify-start flex flex-col md:flex-row">
           <input
             type="text"
-            className="form-control block text-xl px-3 py-1.5 font-normal bg-clip-padding border rounded transition dark:text-neutral-300"
+            className="ui-input"
             value={newIdea}
             onChange={(e) => setNewIdea(e.target.value)}
           />

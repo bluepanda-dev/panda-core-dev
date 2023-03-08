@@ -1,8 +1,8 @@
 import { useAtom } from 'jotai'
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { useState, useEffect } from 'react'
 import { FiArrowLeft } from 'react-icons/fi'
@@ -26,6 +26,7 @@ const Hideouts = () => {
   const { profile } = useUserContext()
   const { subscriptionType, isPremium, settingUp } = useCustomerContext()
   const { subscribeHideouts, handleAdd } = useHideouts()
+  const [hideoutName, setHideoutName] = useState('')
 
   function add() {
     if (subscriptionType === 'trial') {
@@ -34,7 +35,7 @@ const Hideouts = () => {
         return
       }
     }
-    handleAdd({ owner: profile!.uid as string, name: t('newHideout')! })
+    handleAdd({ owner: profile!.uid as string, name: hideoutName })
   }
 
   function back() {
@@ -97,7 +98,17 @@ const Hideouts = () => {
         }
       />
       <div className="mx-8 my-16 h-full">
-        <div className="mt-8">
+        <div className="text-neutral-600 dark:text-neutral-400 flex justify-center text-xl md:text-2xl font-extralight mt-6 md:mt-16 px-8 ">
+          <div className="md:max-w-lg text-center">{t('hereYouCan')}</div>
+        </div>
+        <div className="mt-8 flex gap-4">
+          <input
+            type="text"
+            className="ui-input"
+            value={hideoutName}
+            onChange={(e) => setHideoutName(e.target.value)}
+            placeholder={'Hideout name'}
+          />
           <Button isSpecial={true} className="!w-auto" onClick={add}>
             {t('addNew')}
           </Button>
@@ -109,7 +120,7 @@ const Hideouts = () => {
               className="p-4 rounded-sm ring-2 ring-neutral-200 dark:ring-normal-600 hover:ring-primary-400 dark:hover:ring-primary-400 ring-offset-4 ring-offset-slate-50 dark:ring-offset-slate-900"
             >
               <Link href={`/hideout/${hideout.uid}`}>
-                <div className="font-light">{hideout.uid}</div>
+                <div className="font-light">{hideout.uid.slice(1, 10)}...</div>
                 <div className="font-thin">{hideout.name}</div>
                 <div className="font-thin">
                   {t('activeUsers')}: {hideout.activeUsers?.length ?? 0}
