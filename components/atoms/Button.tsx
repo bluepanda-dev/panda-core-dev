@@ -50,7 +50,7 @@ const Button = React.forwardRef(
         {loading && <FiLoader className="animate-spin" />}
         {!loading && icon && <i>{icon}</i>}
         {!loading && children && (
-          <span className={`text-lg ${isSmall ? 'text-xs' : ''} `}>
+          <span className={`text-lg ${isSmall ? '!text-xs' : ''} `}>
             {children}
           </span>
         )}
