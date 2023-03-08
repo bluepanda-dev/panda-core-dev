@@ -68,15 +68,15 @@ export default function DropdownUser({ className = '', image }: DropdownProps) {
             {subscriptionType && (
               <div>
                 <span
-                  className={`pb-1 bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300
+                  className={`pb-1 bg-yellow-400 text-normal-900 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300
                     ${
                       subscriptionType === 'plus'
-                        ? '!bg-primary-500 !text-primary-100'
+                        ? '!bg-primary-500 !text-normal-900'
                         : ''
                     }
                     ${
                       subscriptionType === 'trial'
-                        ? '!bg-blue-500 !text-primary-100'
+                        ? '!bg-secondary-500 !text-normal-900'
                         : ''
                     }
                   `}

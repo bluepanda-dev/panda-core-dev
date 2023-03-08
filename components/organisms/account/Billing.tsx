@@ -1,7 +1,7 @@
 import * as dayjs from 'dayjs'
-import { Trans, useTranslation } from 'next-i18next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { Trans, useTranslation } from 'next-i18next'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import Button from '@components/atoms/Button'
@@ -88,15 +88,15 @@ export default function Billing() {
           <Panel title="Plan" description="">
             Your are on the
             <span
-              className={`mx-2 pb-1 bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300
+              className={`mx-2 pb-1 bg-yellow-400 text-normal-900 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300
                     ${
                       subscriptionType === 'plus'
-                        ? '!bg-primary-500 !text-primary-100'
+                        ? '!bg-primary-500 !text-normal-900'
                         : ''
                     }
                     ${
                       subscriptionType === 'trial'
-                        ? '!bg-blue-500 !text-primary-100'
+                        ? '!bg-secondary-500 !text-normal-900'
                         : ''
                     }
                   `}
@@ -105,7 +105,7 @@ export default function Billing() {
             </span>
             plan.
             {!!price &&
-              `The next payment of $${price} will occur on ${nextPayment} `}
+              ` The next payment of $${price} will occur on ${nextPayment} `}
           </Panel>
         </div>
         <div>
