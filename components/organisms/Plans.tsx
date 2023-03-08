@@ -31,11 +31,11 @@ const PlanCard = ({ plan }: { plan: PlanCard }) => {
           {plan.details}
         </div>
       </div>
-      <div className="absolute bottom-10 lg:bottom-4 flex w-full gap-4 px-4">
-        <Button isSmall={true} isInverted={false}>
+      <div className="absolute right-2 lg:right-0 bottom-10 lg:bottom-4 flex flex-col lg:flex-row lg:w-full gap-4 px-4 justify-center">
+        <Button className="w-32" isSmall={true} isInverted={false}>
           Try for Free
         </Button>
-        <Button isSmall={true} isSpecial={true}>
+        <Button className="w-32" isSmall={true} isSpecial={true}>
           {plans.cta}
         </Button>
       </div>
