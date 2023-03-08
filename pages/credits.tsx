@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai'
+import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { FiArrowLeft } from 'react-icons/fi'
 import Button from '@components/atoms/Button'
@@ -147,7 +147,11 @@ const Credits = () => {
                   title={`${price.transform_quantity.divide_by} ${product.name}`}
                   footer={
                     <>
-                      <Button onClick={() => singlePayment(price)}>
+                      <Button
+                        className="w-32"
+                        isSmall={true}
+                        onClick={() => singlePayment(price)}
+                      >
                         {t('buyFor')} ${price.unit_amount / 100}
                       </Button>
                     </>
