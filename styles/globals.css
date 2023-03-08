@@ -45,12 +45,12 @@ code {
 /* components */
 .ui-selectable {
   @apply text-neutral-600;
-  @apply hover:text-normal-900;
+  @apply hover: text-normal-900;
 }
 
 html.dark .ui-selectable {
   @apply text-neutral-400;
-  @apply hover:text-neutral-100;
+  @apply hover: text-neutral-100;
 }
 
 .ui-border-group {
@@ -58,21 +58,46 @@ html.dark .ui-selectable {
 }
 
 .ui-hoverable {
-  @apply hover:bg-neutral-100;
-  @apply hover:text-normal-900;
+  @apply hover: bg-neutral-100;
+  @apply hover: text-normal-900;
 }
 
 html.dark .ui-hoverable {
-  @apply hover:bg-normal-800;
-  @apply hover:text-neutral-200;
+  @apply hover: bg-normal-800;
+  @apply hover: text-neutral-200;
 }
 
 .ui-link {
-  @apply cursor-pointer text-primary-500 hover:text-primary-600;
+  @apply cursor-pointer text-primary-500 hover: text-primary-600;
 }
 
 .ui-title {
   @apply text-2xl font-normal
+}
+
+.ui-special-button {
+  @apply !text-neutral-50 bg-primary-600 dark: !text-normal-900 dark:hover:bg-primary-500 hover: !bg-primary-500 shadow-lg shadow-primary-700/50 h-12;
+}
+
+.ui-normal-button {
+  @apply border dark: bg-normal-900 border-primary-900 hover:border-primary-600 text-neutral-800 hover:text-primary-600 dark:text-neutral-500 dark:hover:text-neutral-100;
+}
+
+.ui-inverted-button {
+  @apply bg-normal-800 !text-neutral-100 dark: !text-neutral-100 hover: !text-primary-600 dark:bg-neutral-100 dark: !text-neutral-900 dark:hover: !text-neutral-200 hover: !bg-transparent;
+}
+
+/* extra css specific */
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: black;
+  background: magenta;
+}
+
+::selection {
+  color: black;
+  background: magenta;
 }
 
 /* loader css */
