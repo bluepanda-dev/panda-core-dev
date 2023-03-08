@@ -13,6 +13,7 @@ import { useCredits } from '@core/hooks/useCredits'
 import { usePayments } from '@core/hooks/usePayments'
 import { loadingAtom } from '@core/store/Common'
 import { CreditItem } from '@core/types/credits'
+import { formatPrice } from '@core/utils/currency'
 
 const Credits = () => {
   const { t } = useTranslation(['credits', 'common'])
@@ -152,7 +153,7 @@ const Credits = () => {
                         isSmall={true}
                         onClick={() => singlePayment(price)}
                       >
-                        {t('buyFor')} ${price.unit_amount / 100}
+                        {t('buyFor')} {formatPrice(price.unit_amount)}
                       </Button>
                     </>
                   }

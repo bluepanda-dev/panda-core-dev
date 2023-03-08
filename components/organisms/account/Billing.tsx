@@ -1,7 +1,6 @@
 import * as dayjs from 'dayjs'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Trans, useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import Button from '@components/atoms/Button'
@@ -9,6 +8,7 @@ import Modal from '@components/molecules/Modal'
 import Panel from '@components/molecules/Panel'
 import { useCustomerContext } from '@core/contexts/CustomerContext'
 import { useUserContext } from '@core/contexts/UserContext'
+import { formatPrice } from '@core/utils/currency'
 
 export default function Billing() {
   const { t } = useTranslation(['account', 'common'])
@@ -116,7 +116,7 @@ export default function Billing() {
                   key={invoice.id}
                   className="grid grid-cols-3 sm:grid-cols-4 gap-4 justify-around"
                 >
-                  <div>${invoice.amount / 100}</div>
+                  <div>{formatPrice(invoice.amount)}</div>
                   <div>
                     {dayjs.unix(Number(invoice.created)).format('DD/MM/YYYY')}
                   </div>

@@ -8,6 +8,7 @@ import {
   Order,
   Subscription,
 } from '@core/types/customer'
+import { computePrice } from '@core/utils/currency'
 import { useQuery } from './useQuery'
 
 export const useCustomer = () => {
@@ -114,7 +115,7 @@ export const useCustomer = () => {
         setSubscriptionType(activeSubscription.items[0].plan.metadata.type)
       }
       if (activeSubscription.items[0]?.plan?.amount) {
-        setPrice(activeSubscription.items[0].plan.amount / 100)
+        setPrice(computePrice(activeSubscription.items[0].plan.amount))
       } else {
         setPrice(0)
       }

@@ -4,6 +4,7 @@ import Button from '@components/atoms/Button'
 import { useCopyPages } from '@core/hooks/useCopyPages'
 import { usePayments } from '@core/hooks/usePayments'
 import { Price } from '@core/types/payments'
+import { formatPrice } from '@core/utils/currency'
 
 export const PlanCard = ({ price }: { price: Price }) => {
   const { plans } = useCopyPages()
@@ -27,7 +28,7 @@ export const PlanCard = ({ price }: { price: Price }) => {
         </div>
         <div className="text-3xl font-bold">
           {price.unit_amount
-            ? `${price.unit_amount / 100} ${price.currency}`
+            ? `${formatPrice(price.unit_amount)} ${price.currency}`
             : price.stripe_metadata_type}
         </div>
         <div className="text-md text-left">
