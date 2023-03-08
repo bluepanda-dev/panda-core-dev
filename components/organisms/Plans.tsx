@@ -48,6 +48,7 @@ export const PlanCard = ({ price }: { price: Price }) => {
         {price.unit_amount > 0 && (
           <>
             <Button
+              className="w-32"
               isSmall={true}
               isInverted={false}
               onClick={() => startTrial(price)}
@@ -55,6 +56,7 @@ export const PlanCard = ({ price }: { price: Price }) => {
               Try for Free
             </Button>
             <Button
+              className="w-32"
               isSmall={true}
               isSpecial={true}
               onClick={() => startSubscription(price)}
