@@ -146,7 +146,7 @@ export default function Billing() {
                 <Button
                   onClick={() => setIsOpen(true)}
                   loading={loading}
-                  className="w-48 text-neutral-100 bg-red-500 hover:!bg-red-400"
+                  className="w-48 !border-none !text-neutral-100 !bg-red-600 hover:!bg-red-500"
                   isSmall={true}
                 >
                   {t('cancelSub')}
