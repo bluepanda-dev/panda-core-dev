@@ -151,11 +151,6 @@ const Hideout = () => {
     return <>{t('loading', { ns: 'common' })}...</>
   }
 
-  // TODO: remove ideas
-  // TODO create photo compopnent reusable
-  // convert photo url to abse64 https://stackoverflow.com/questions/22172604/convert-image-from-url-to-base64
-  //
-
   return (
     <Layout>
       <SimpleHeader
@@ -186,7 +181,7 @@ const Hideout = () => {
             <span>{t('shareIt')}:</span>
             <button
               onClick={handleShare}
-              className="border-neutral-500 hover:border-primary-600 bg-primary-800 border rounded-md p-1 text-xl"
+              className="text-neutral-50 hover:bg-primary-500 bg-primary-600 rounded-md p-1 text-xl"
             >
               <FiShare2 />
             </button>
