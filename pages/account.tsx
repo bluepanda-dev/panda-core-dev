@@ -52,7 +52,7 @@ const Account = () => {
         }
       />
       <div className="flex justify-center">
-        <div className="md:mx-8 my-16 h-full max-w-2xl w-full">
+        <div className="md:mx-8 h-full max-w-2xl w-full">
           <div className="mt-8 flex justify-center">
             <SimpleTabs
               tabs={tabs}
