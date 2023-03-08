@@ -98,7 +98,7 @@ export default function Profile() {
           <input
             id="display"
             onChange={(e) => setDisplayName(e.target.value)}
-            className="form-control block w-full px-3 py-1.5 text-base font-normal bg-clip-padding border rounded transition dark:text-neutral-300"
+            className="ui-input w-full"
             value={displayName}
           />
         </div>
@@ -108,7 +108,7 @@ export default function Profile() {
           </label>
           <input
             id="email"
-            className="form-control block w-full px-3 py-1.5 text-base font-normal bg-clip-padding border rounded transition dark:text-neutral-300"
+            className="ui-input w-full"
             placeholder="Enter email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -121,7 +121,7 @@ export default function Profile() {
 
           <input
             id="website"
-            className="form-control block w-full px-3 py-1.5 text-base font-normal bg-clip-padding border rounded transition dark:text-neutral-300"
+            className="ui-input w-full"
             placeholder="Enter website"
             value={website}
             onChange={(e) => setWebsite(e.target.value)}

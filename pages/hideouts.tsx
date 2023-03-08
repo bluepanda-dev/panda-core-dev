@@ -70,7 +70,7 @@ const Hideouts = () => {
         <div className="mt-8 flex gap-4">
           <input
             type="text"
-            className="form-control block text-xl px-3 py-1.5 font-normal bg-clip-padding border rounded transition dark:text-neutral-300"
+            className="ui-input"
             value={hideoutName}
             onChange={(e) => setHideoutName(e.target.value)}
             placeholder={'Hideout name'}

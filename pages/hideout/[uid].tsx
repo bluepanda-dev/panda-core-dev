@@ -196,7 +196,7 @@ const Hideout = () => {
         <div className="mt-8 flex gap-4 justify-end md:justify-start flex flex-col md:flex-row">
           <input
             type="text"
-            className="form-control block text-xl px-3 py-1.5 font-normal bg-clip-padding border rounded transition dark:text-neutral-300"
+            className="ui-input"
             value={newIdea}
             onChange={(e) => setNewIdea(e.target.value)}
           />

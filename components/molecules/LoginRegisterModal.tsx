@@ -69,7 +69,7 @@ export default function LoginRegisterModal({
           type="email"
           placeholder="Email"
           name="panda_email"
-          className="form-control block w-full px-3 py-1.5 text-base font-normal bg-clip-padding border rounded transition dark:text-neutral-300"
+          className="ui-input w-full"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
         />
@@ -80,7 +80,7 @@ export default function LoginRegisterModal({
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
-          className="form-control block w-full px-3 py-1.5 text-base font-normal bg-clip-padding border rounded transition dark:text-neutral-300"
+          className="ui-input w-full"
         />
 
         <div className="flex w-full gap-4">
