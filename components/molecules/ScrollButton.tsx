@@ -38,7 +38,7 @@ const ScrollButton = () => {
             className="text-4xl"
           />
         }
-        name={'backToTop'}
+        label={'scroll'}
       ></Button>
     </div>
   )
