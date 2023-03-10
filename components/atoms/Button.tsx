@@ -10,6 +10,7 @@ type ButtonProps = {
   title?: string
   label?: string
   loading?: boolean
+  name?: string
   isSmall?: boolean
   isInverted?: boolean
   onClick?: () => void
@@ -26,6 +27,7 @@ const Button = React.forwardRef(
       isInverted = false,
       role = '',
       label = '',
+      name = 'btn-default',
       title = '',
       loading = false,
       onClick = () => {},
@@ -39,6 +41,7 @@ const Button = React.forwardRef(
         role={role}
         aria-label={label}
         title={title}
+        name={name}
         disabled={loading}
         className={`
         h-10 items-center hover:bg-neutral-200 dark:hover:bg-normal-700 inline-flex w-full justify-center rounded-sm gap-2 px-4 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75

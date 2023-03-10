@@ -30,6 +30,7 @@ export default function BlurExample() {
         <div className="px-2 md:px-0 flex flex-col sm:flex-row justify-center gap-4 items-center w-full">
           <div>
             <input
+              aria-label="range"
               type="range"
               min="0"
               max="50"
