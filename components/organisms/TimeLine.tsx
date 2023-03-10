@@ -30,7 +30,7 @@ export default function TimeLine() {
                 <h1 className="mx-auto font-semibold text-lg">{index + 1}</h1>
               </div>
               <div className="order-1 border rounded-lg shadow-xl sm:w-5/12 px-6 py-4">
-                <h3 className="mb-3 font-bold text-xl">{option.title}</h3>
+                <h2 className="mb-3 font-bold text-xl">{option.title}</h2>
                 <p className="text-sm leading-snug tracking-wide dark:text-neutral-400 text-opacity-100">
                   {option.content}
                 </p>
