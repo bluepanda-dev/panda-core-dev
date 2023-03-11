@@ -23,7 +23,7 @@ export default function KeepMeInformed() {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="bg-neutral-100 dark:bg-normal-700 focus:border-primary-500 dark:focus:border-primary-800 caret-primary-600 h-12 tracking-wide focus:border-2 outline-0 rounded-sm grow p-2 text-xl"
+            className="ui-input"
           />
           <Button
             className="w-auto"

@@ -15,7 +15,7 @@ export default function OurNumbers() {
               key={index}
               className="text-6xl text-center md:w-full flex flex-col gap-4"
             >
-              <div className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-500">
+              <div className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600">
                 {option.figure}
               </div>
               <div className="text-2xl font-light">{option.text}</div>

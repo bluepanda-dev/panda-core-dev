@@ -16,7 +16,7 @@ export default function Code({ inner, css }: CodeProps) {
 
   useEffect(() => {
     if (codeSample.current) {
-      hljs.highlightBlock(codeSample.current)
+      hljs.highlightElement(codeSample.current)
     }
   }, [inner])
 
