@@ -53,18 +53,20 @@ export const usePayments = () => {
 
     const prices: Price[] = []
 
-    const subList =
-      (await fetchAllWhere<Price>(
-        where('active', '==', true),
-        PRODUCTS_DB,
-        product.docId,
-        'prices',
-      )) ?? []
+    if (product) {
+      const subList =
+        (await fetchAllWhere<Price>(
+          where('active', '==', true),
+          PRODUCTS_DB,
+          product.docId,
+          'prices',
+        )) ?? []
 
-    subList.forEach((price) => {
-      price.guid = price.docId
-      prices.push(price)
-    })
+      subList.forEach((price) => {
+        price.guid = price.docId
+        prices.push(price)
+      })
+    }
     return { ...product, prices }
   }
 
