@@ -76,11 +76,11 @@ html.dark .ui-hoverable {
 }
 
 .ui-special-button {
-  @apply !text-neutral-50 bg-primary-600 dark:!text-normal-900  dark:hover:bg-primary-500 hover:!bg-primary-500  shadow-lg shadow-primary-700/50 h-12;
-}
+  @apply !text-neutral-50 bg-primary-700 dark:hover:bg-primary-500 hover:!bg-primary-500  shadow-lg shadow-primary-700/50 h-12;
+  }
 
 .ui-normal-button {
-  @apply border dark:bg-normal-900 border-primary-900 hover:border-primary-600 text-neutral-800 hover:text-primary-600 dark:text-neutral-500 dark:hover:text-neutral-100;
+  @apply border dark:bg-normal-900 bg-white border-primary-900 hover:border-primary-600 hover:bg-primary-800 text-neutral-800 hover:text-primary-100 dark:text-white dark:hover:text-neutral-100;
 }
 
 .ui-inverted-button {
