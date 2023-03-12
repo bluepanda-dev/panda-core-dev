@@ -43,7 +43,7 @@ const Product = ({
             </span>
           </div>
         </div>
-        <div className="px-4 text-sm text-normal-100">
+        <div className="px-4 text-sm text-normal dark:text-slate-300">
           <ul>
             {product.features.map((feature, index) => (
               <li key={index} className="flex items-baseline">
