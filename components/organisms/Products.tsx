@@ -19,7 +19,7 @@ const Product = ({
   price: Price | null
   onBuy: (product: ProductCard, price: Price) => void
 }) => {
-  const { t } = useTranslation(['account', 'common'])
+  const { t } = useTranslation(['common'])
   const { products } = useCopyPages()
 
   function handleBuy(product: ProductCard, price: Price) {
