@@ -89,8 +89,8 @@ export default function Profile() {
       <div>
         <div className="form-group mb-6">
           <Image
-            alt=""
             src={profile.photoURL}
+            alt={'profile'}
             className="ring-neutral-100 hover:ring-neutral-50 ring-2 w-24 h-24 rounded-full"
           />
         </div>

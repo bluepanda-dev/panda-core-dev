@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next'
 import React, { useEffect, useState } from 'react'
 import { FiMenu } from 'react-icons/fi'
 import { Theme, ToastContainer } from 'react-toastify'
+import { Statsig, useLayer } from 'statsig-react'
 import AlertBanner from '@components/molecules/AlertBanner'
 import Dropdown from '@components/molecules/Dropdown'
 import DropdownAnonymous from '@components/molecules/DropdownAnonymous'
@@ -21,6 +22,7 @@ export default function NavBar() {
   const { theme } = useTheme()
   const [scrollPosition, setScrollPosition] = useState(0)
   const [alertActive] = useAtom(isAlertBannerActive)
+  const { layer } = useLayer('flags_names')
 
   const handleScroll = () => {
     const position = window.pageYOffset
@@ -31,24 +33,28 @@ export default function NavBar() {
     {
       label: `🇺🇸 ${t('lanOptions.en')}`,
       onClick: () => {
+        Statsig.logEvent('select_language', 'en')
         router.push('/', '', { locale: 'en' })
       },
     },
     {
       label: `🇪🇸 ${t('lanOptions.es')}`,
       onClick: () => {
+        Statsig.logEvent('select_language', 'es')
         router.push('/', '', { locale: 'es' })
       },
     },
     {
       label: `🇩🇪 ${t('lanOptions.de')}`,
       onClick: () => {
+        Statsig.logEvent('select_language', 'de')
         router.push('/', '', { locale: 'de' })
       },
     },
     {
       label: `🇯🇵 ${t('lanOptions.jp')}`,
       onClick: () => {
+        Statsig.logEvent('select_language', 'jp')
         router.push('/', '', { locale: 'jp' })
       },
     },
@@ -65,13 +71,13 @@ export default function NavBar() {
   function flag() {
     switch (i18n.language) {
       case 'en':
-        return '🇺🇸'
+        return layer.get('hide_flags', false) ? t('lanOptions.en') : '🇺🇸'
       case 'es':
-        return '🇪🇸'
+        return layer.get('hide_flags', false) ? t('lanOptions.es') : '🇪🇸'
       case 'de':
-        return '🇩🇪'
+        return layer.get('hide_flags', false) ? t('lanOptions.de') : '🇩🇪'
       case 'jp':
-        return '🇯🇵'
+        return layer.get('hide_flags', false) ? t('lanOptions.jp') : '🇯🇵'
     }
   }
 

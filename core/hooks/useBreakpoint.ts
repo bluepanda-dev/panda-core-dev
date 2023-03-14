@@ -1,5 +1,5 @@
-import { BreakPoint, breakpoints } from '@core/utils/breakpoints'
 import { useState, useEffect } from 'react'
+import { BreakPoint, breakpoints } from '@core/utils/breakpoints'
 
 const useBreakpoint = () => {
   const [breakpoint, setBreakPoint] = useState<BreakPoint | undefined>(

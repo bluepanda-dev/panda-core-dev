@@ -14,7 +14,7 @@ export const PlanCard = ({ price }: { price: Price }) => {
 
   return (
     <div
-      className={`shadow-lg border dark:border-normal-700 rounded-md relative w-full lg:max-w-md h-80 lg:h-[30em] 
+      className={`shadow-lg border dark:border-normal-700 rounded-md relative w-full lg:max-w-md
       ${
         price.stripe_metadata_special
           ? 'bg-blue-900 text-neutral-50 lg:h-[35em]'
@@ -31,7 +31,7 @@ export const PlanCard = ({ price }: { price: Price }) => {
             ? `${formatPrice(price.unit_amount)} ${price.currency}`
             : price.stripe_metadata_type}
         </div>
-        <div className="text-md text-left">
+        <div className="text-md text-left mb-24">
           <ul>
             {features.map((item, index) => (
               <li key={index} className="flex items-center gap-2 md:py-1">
@@ -41,11 +41,11 @@ export const PlanCard = ({ price }: { price: Price }) => {
             ))}
           </ul>
         </div>
-        <div className="absolute right-4 lg:left-6 bottom-2 lg:bottom-28 text-neutral-300">
+        <div className="absolute right-4 lg:left-6 bottom-3 lg:bottom-18 text-neutral-300 hidden md:block">
           {price.stripe_metadata_description}
         </div>
       </div>
-      <div className="absolute bottom-10 lg:bottom-4 flex w-full gap-4 px-4">
+      <div className="absolute bottom-2 lg:bottom-14 flex w-full gap-4 px-4 lg:justify-center">
         {price.unit_amount > 0 && (
           <>
             <Button
@@ -67,8 +67,8 @@ export const PlanCard = ({ price }: { price: Price }) => {
           </>
         )}
         {price.stripe_metadata_type === 'enterprise' && (
-          <div className="absolute right-4 bottom-10 lg:bottom-4">
-            <Button>Contact us</Button>
+          <div className="absolute bottom-2 lg:right-4 lg:bottom-2">
+            <Button isSmall={true}>Contact us</Button>
           </div>
         )}
       </div>

@@ -9,6 +9,7 @@
   ],
   "rules": {
     "react-hooks/exhaustive-deps": 0,
+    "@next/next/no-img-element": "off",
     "import/order": [
       1,
       {
