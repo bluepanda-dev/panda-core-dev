@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FiLogOut, FiSettings, FiSun, FiUsers } from 'react-icons/fi'
+import { useGate } from 'statsig-react'
 import Button from '@components/atoms/Button'
 import { useTheme } from '@core/hooks/useTheme'
 import { useUser } from '@core/hooks/useUser'
@@ -43,6 +44,7 @@ export default function DropdownUser({ className = '', image }: DropdownProps) {
   const { logOut } = useUser()
   const { t } = useTranslation()
   const { themeDark, themeLight, theme } = useTheme()
+  const { value: isSettingsVisible } = useGate('show_settings')
 
   return (
     <Menu
@@ -97,7 +99,9 @@ export default function DropdownUser({ className = '', image }: DropdownProps) {
             </a>
             <div className="bg-neutral-500 h-px w-full" />
             <div className="p-4">
-              <Button isSpecial={true}>{t('upgrade')}!</Button>
+              {isSettingsVisible && (
+                <Button isSpecial={true}>{t('upgrade')}!</Button>
+              )}
             </div>
           </div>
         </Menu.Items>
