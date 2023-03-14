@@ -26,6 +26,7 @@ const ProfilePic = ({
       {photoURL ? (
         <img
           title={alt}
+          alt={alt}
           src={photoURL}
           className={`border border-neutral-500 hover:border-primary-600 w-8 h-8 rounded-full ${className}`}
         />
