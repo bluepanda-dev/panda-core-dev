@@ -26,5 +26,6 @@ export type Product = {
   role: string
   prices: Price[]
   images: string[]
+  stripe_metadata_features: string
   docId?: string
 }

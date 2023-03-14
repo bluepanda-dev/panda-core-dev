@@ -1,6 +1,7 @@
 {
-  "myOrders": "Mis Órdenes",
-  "purchaseOn": "Comprado en",
+  "myOrders": "My orders",
+  "purchaseOn": "Purchased on",
   "invoice": "Invoice",
-  "download": "Download"
+  "download": "Download",
+  "unlockedContent": "Unlocked content"
 }

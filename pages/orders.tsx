@@ -1,6 +1,8 @@
 import * as dayjs from 'dayjs'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useState, useEffect } from 'react'
 import { FiArrowLeft } from 'react-icons/fi'
 import Button from '@components/atoms/Button'
@@ -9,18 +11,22 @@ import Panel from '@components/molecules/Panel'
 import SimpleHeader from '@components/molecules/SimpleHeader'
 import { useCustomerContext } from '@core/contexts/CustomerContext'
 import { useUserContext } from '@core/contexts/UserContext'
-import { useCopyPages } from '@core/hooks/useCopyPages'
-import { ProductCard, Order } from '@core/types'
-import { useTranslation } from 'next-i18next'
+import { usePayments } from '@core/hooks/usePayments'
+import { loadingAtom } from '@core/store/Common'
+import { Order } from '@core/types'
+import { Product } from '@core/types/payments'
+import { formatPrice } from '@core/utils/currency'
 
-type HydratedProduct = ProductCard & { order: Order }
+type HydratedProduct = Product & { order: Order }
 
 const Orders = () => {
   const { t } = useTranslation(['orders', 'common'])
   const router = useRouter()
+  const [, setLoading] = useAtom(loadingAtom)
+  const [preparingPage, setPreparingPage] = useState(true)
   const { profile } = useUserContext()
   const { orders } = useCustomerContext()
-  const { products } = useCopyPages()
+  const { products, setUp, settingUp } = usePayments()
   const [ownProducts, setOwnProducts] = useState<HydratedProduct[]>([])
 
   function handleDownload(download?: string) {
@@ -41,17 +47,17 @@ const Orders = () => {
 
   async function fetchOwnProducts() {
     const productsMatch =
-      products.list
+      products
         ?.filter((product) => {
           const found = orders.find(
-            (order) => order.items[0].description === product.title,
+            (order) => order.items[0].description === product.name,
           )
           if (!found) return false
-          return product.title === found.items[0].description
+          return product.name === found.items[0].description
         })
         .map((product) => {
           const found = orders.find(
-            (order) => order.items[0].description === product.title,
+            (order) => order.items[0].description === product.name,
           )
           return { ...product, order: found }
         }) ?? []
@@ -75,19 +81,31 @@ const Orders = () => {
 
     if (hydratedOrder) {
       setOwnProducts(hydratedOrder as HydratedProduct[])
+      setPreparingPage(false)
     }
   }
 
   useEffect(() => {
-    if (orders) {
+    if (orders && products) {
       setOwnProducts([])
       fetchOwnProducts()
     }
-  }, [orders])
+  }, [orders, products])
+
+  useEffect(() => {
+    setLoading(true)
+    setUp()
+  }, [])
+
+  useEffect(() => {
+    if (!settingUp && !preparingPage) {
+      setLoading(false)
+    }
+  }, [preparingPage, settingUp])
 
   // Server-render loading state
   if (!profile) {
-    return <Layout>{t('loading', { ns: 'common' })}...</Layout>
+    return <Layout></Layout>
   }
 
   return (
@@ -110,7 +128,7 @@ const Orders = () => {
             {ownProducts.map((product) => (
               <Panel
                 key={product.order.id}
-                title={product.title}
+                title={product.name}
                 description={product.description}
                 hints={
                   <span>
@@ -147,7 +165,7 @@ const Orders = () => {
                 }
               >
                 <span className="absolute right-2 top-2 dark:bg-normal-700 dark:text-neutral-300 rounded-lg p-1">
-                  {product.price}
+                  {formatPrice(product.prices[0].unit_amount)}
                 </span>
                 {product.order.protectedItem?.raw && (
                   <div>
