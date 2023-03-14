@@ -1,5 +1,5 @@
-import { BreakPoint, breakpoints } from '@core/utils/breakpoints'
 import { useState, useEffect } from 'react'
+import { BreakPoint, breakpoints } from '@core/utils/breakpoints'
 
 const useBreakpoint = () => {
   const [breakpoint, setBreakPoint] = useState<BreakPoint | undefined>(
@@ -25,7 +25,6 @@ const useBreakpoint = () => {
     handleResize()
 
     if (windowSize.width) {
-      console.log('breakpoints:', breakpoints, Object.keys(breakpoints))
       const bp = Object.keys(breakpoints)
         .map((b) => Number(b))
         .concat()

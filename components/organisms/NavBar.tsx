@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next'
 import React, { useEffect, useState } from 'react'
 import { FiSun, FiMenu } from 'react-icons/fi'
 import { Theme, ToastContainer } from 'react-toastify'
+import { Statsig, useGate, useLayer } from 'statsig-react'
 import AlertBanner from '@components/molecules/AlertBanner'
 import Dropdown from '@components/molecules/Dropdown'
 import { useTheme } from '@core/hooks/useTheme'
@@ -17,6 +18,8 @@ export default function NavBar() {
   const { themeDark, themeLight, theme } = useTheme()
   const [scrollPosition, setScrollPosition] = useState(0)
   const [alertActive] = useAtom(isAlertBannerActive)
+  const { value: isSettingsVisible } = useGate('show_settings')
+  const { layer } = useLayer('flags_names')
 
   const handleScroll = () => {
     const position = window.pageYOffset
@@ -29,6 +32,9 @@ export default function NavBar() {
       icon: <FiSun />,
       onClick: () => {
         theme === 'dark' ? themeLight() : themeDark()
+        Statsig.logEvent('switchTheme', 'SKU_10000', {
+          currentTheme: theme,
+        })
       },
     },
   ]
@@ -37,24 +43,28 @@ export default function NavBar() {
     {
       label: `🇺🇸 ${t('lanOptions.en')}`,
       onClick: () => {
+        Statsig.logEvent('select_language', 'en')
         router.push('/', '', { locale: 'en' })
       },
     },
     {
       label: `🇪🇸 ${t('lanOptions.es')}`,
       onClick: () => {
+        Statsig.logEvent('select_language', 'es')
         router.push('/', '', { locale: 'es' })
       },
     },
     {
       label: `🇩🇪 ${t('lanOptions.de')}`,
       onClick: () => {
+        Statsig.logEvent('select_language', 'de')
         router.push('/', '', { locale: 'de' })
       },
     },
     {
       label: `🇯🇵 ${t('lanOptions.jp')}`,
       onClick: () => {
+        Statsig.logEvent('select_language', 'jp')
         router.push('/', '', { locale: 'jp' })
       },
     },
@@ -71,13 +81,13 @@ export default function NavBar() {
   function flag() {
     switch (i18n.language) {
       case 'en':
-        return '🇺🇸'
+        return layer.get('hide_flags', false) ? t('lanOptions.en') : '🇺🇸'
       case 'es':
-        return '🇪🇸'
+        return layer.get('hide_flags', false) ? t('lanOptions.es') : '🇪🇸'
       case 'de':
-        return '🇩🇪'
+        return layer.get('hide_flags', false) ? t('lanOptions.de') : '🇩🇪'
       case 'jp':
-        return '🇯🇵'
+        return layer.get('hide_flags', false) ? t('lanOptions.jp') : '🇯🇵'
     }
   }
 
@@ -101,7 +111,9 @@ export default function NavBar() {
           Your are in a Demo Template
         </div>
         <div className="items-center gap-2 hidden md:flex">
-          <Dropdown options={AccountOptions} title={t('settings') ?? ''} />
+          {isSettingsVisible && (
+            <Dropdown options={AccountOptions} title={t('settings') ?? ''} />
+          )}
           <Dropdown options={lanOptions} title={flag()} />
         </div>
         <div className="items-center gap-2 md:hidden">
