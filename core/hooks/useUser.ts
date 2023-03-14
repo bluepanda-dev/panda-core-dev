@@ -7,6 +7,7 @@ import {
   FacebookAuthProvider,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from 'firebase/auth'
 
 import { useRouter } from 'next/router'
@@ -63,6 +64,10 @@ export const useUser = () => {
     return await createUserWithEmailAndPassword(auth!, email, password)
   }
 
+  async function resetPassword(email: string) {
+    return await sendPasswordResetEmail(auth, email)
+  }
+
   function logOut() {
     signOut(auth!)
     setUser(undefined)
@@ -82,5 +87,6 @@ export const useUser = () => {
     savePublicProfile,
     fetchUser,
     fetchPublicProfile,
+    resetPassword,
   }
 }

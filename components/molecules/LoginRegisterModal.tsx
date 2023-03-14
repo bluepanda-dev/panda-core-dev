@@ -22,9 +22,11 @@ export default function LoginRegisterModal({
     facebookLogIn,
     nativeLogIn,
     nativeCreateAccount,
+    resetPassword,
   } = useUser()
 
   const [isNewUser, setIsNewUser] = useState(false)
+  const [isForgotPassword, setIsForgotPassword] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -62,6 +64,12 @@ export default function LoginRegisterModal({
       console.log(error)
     }
   }
+
+  async function handleResetPassword() {
+    await resetPassword(email)
+    toast('Done! check your email')
+  }
+
   return (
     <Modal isOpen={isOpen} closeModal={closeModal} title="Log In">
       <div className="mt-4 flex flex-col gap-4 items-center justify-center">
@@ -74,14 +82,16 @@ export default function LoginRegisterModal({
           value={email}
         />
 
-        <input
-          type="password"
-          name="panda_password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          className="ui-input w-full"
-        />
+        {isForgotPassword === false && (
+          <input
+            type="password"
+            name="panda_password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            className="ui-input w-full"
+          />
+        )}
 
         <div className="flex w-full gap-4">
           <div className="basis-1/2">
@@ -89,9 +99,13 @@ export default function LoginRegisterModal({
               <Button isInverted={true} onClick={handleCreateAccount}>
                 Create Account
               </Button>
-            ) : (
+            ) : isForgotPassword === false ? (
               <Button isInverted={true} onClick={handleNativeLogIn}>
                 Log in
+              </Button>
+            ) : (
+              <Button isInverted={true} onClick={handleResetPassword}>
+                Reset Password
               </Button>
             )}
           </div>
@@ -111,6 +125,13 @@ export default function LoginRegisterModal({
               </>
             )}
           </div>
+        </div>
+        <div className="w-full text-start">
+          {!isForgotPassword && (
+            <a className="ui-link" onClick={() => setIsForgotPassword(true)}>
+              Forgot password
+            </a>
+          )}
         </div>
       </div>
       <div className="my-4 text-center">
