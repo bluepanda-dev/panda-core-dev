@@ -1,11 +1,12 @@
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FiShare2 } from 'react-icons/fi'
 import { toast } from 'react-toastify'
 import Button from '@components/atoms/Button'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useUser } from '@core/hooks/useUser'
 import { Profile as ProfileType } from '@core/types'
-import { useTranslation } from 'react-i18next'
 
 export default function Profile() {
   const { t } = useTranslation(['account', 'common'])
@@ -87,7 +88,8 @@ export default function Profile() {
     <div className="relative">
       <div>
         <div className="form-group mb-6">
-          <img
+          <Image
+            alt=""
             src={profile.photoURL}
             className="ring-neutral-100 hover:ring-neutral-50 ring-2 w-24 h-24 rounded-full"
           />

@@ -1,5 +1,5 @@
-import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
+import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 import { FiChevronRight } from 'react-icons/fi'
 import Button from '@components/atoms/Button'

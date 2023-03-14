@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { useState } from 'react'
 import { FiUser } from 'react-icons/fi'
 import Button from '@components/atoms/Button'
@@ -21,7 +22,7 @@ export default function UserButton() {
           <DropdownUser
             image={
               profile?.photoURL ? (
-                <img
+                <Image
                   src={profile!.photoURL}
                   alt=""
                   className="ring-neutral-100 hover:ring-neutral-50 ring-2 w-8 h-8 rounded-full"

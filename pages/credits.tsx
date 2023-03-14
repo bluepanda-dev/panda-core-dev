@@ -1,4 +1,5 @@
 import { useAtom } from 'jotai'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -158,7 +159,8 @@ const Credits = () => {
                     </>
                   }
                 >
-                  <img
+                  <Image
+                    alt=""
                     src={product.images[0]}
                     className="w-12 absolute right-2 top-2"
                   />
@@ -187,7 +189,7 @@ const Credits = () => {
                   title={`${item.name}`}
                   footer={spendingFooter(item)}
                 >
-                  <img className="max-w-[150px]" src={item.preview} />
+                  <Image alt="" className="max-w-[150px]" src={item.preview} />
                   {spendingLabel(item)}
                 </Panel>
               ))}

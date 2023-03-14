@@ -1,6 +1,7 @@
 import * as dayjs from 'dayjs'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useState, useEffect } from 'react'
 import { FiArrowLeft } from 'react-icons/fi'
 import Button from '@components/atoms/Button'
@@ -11,7 +12,6 @@ import { useCustomerContext } from '@core/contexts/CustomerContext'
 import { useUserContext } from '@core/contexts/UserContext'
 import { useCopyPages } from '@core/hooks/useCopyPages'
 import { ProductCard, Order } from '@core/types'
-import { useTranslation } from 'next-i18next'
 
 type HydratedProduct = ProductCard & { order: Order }
 

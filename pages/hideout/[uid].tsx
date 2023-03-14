@@ -1,7 +1,7 @@
+import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { FiArrowLeft, FiShare2, FiUser } from 'react-icons/fi'
 import { toast } from 'react-toastify'
@@ -24,7 +24,8 @@ const ProfilePic = ({
   return (
     <>
       {photoURL ? (
-        <img
+        <Image
+          alt=""
           title={alt}
           src={photoURL}
           className={`border border-neutral-500 hover:border-primary-600 w-8 h-8 rounded-full ${className}`}
