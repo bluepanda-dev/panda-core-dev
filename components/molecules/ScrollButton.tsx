@@ -30,12 +30,12 @@ const ScrollButton = () => {
   return (
     <div className="fixed z-10 bottom-24 right-4 ">
       <Button
-        className="border-none hover:!bg-transparent"
+        className="border-none hover:!bg-transparent !bg-transparent"
         icon={
           <FaArrowCircleUp
             onClick={scrollToTop}
             style={{ display: visible ? 'inline' : 'none' }}
-            className="text-4xl"
+            className="text-4xl hover:text-secondary-600"
           />
         }
         label={'scroll'}
