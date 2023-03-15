@@ -2,7 +2,13 @@ import { where, onSnapshot } from 'firebase/firestore'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useUserContext } from '@core/contexts/UserContext'
-import { Price, Product, PRODUCTS_DB } from '@core/types/payments'
+import {
+  Price,
+  Product,
+  PRODUCTS_DB,
+  STRIPE_PLANS_TYPE,
+  STRIPE_PRODUCTS_TYPE,
+} from '@core/types/payments'
 import { useQuery } from './useQuery'
 
 export const usePayments = () => {
@@ -18,7 +24,10 @@ export const usePayments = () => {
 
     const list =
       (await fetchAllWhere<Product>(
-        [where('active', '==', true), where('metadata.type', '==', 'products')],
+        [
+          where('active', '==', true),
+          where('metadata.type', '==', STRIPE_PRODUCTS_TYPE),
+        ],
         PRODUCTS_DB,
       )) ?? []
 
@@ -45,7 +54,10 @@ export const usePayments = () => {
   async function fetchPlans() {
     const list =
       (await fetchAllWhere<Product>(
-        [where('active', '==', true), where('metadata.type', '==', 'plans')],
+        [
+          where('active', '==', true),
+          where('metadata.type', '==', STRIPE_PLANS_TYPE),
+        ],
         PRODUCTS_DB,
       )) ?? []
     // there is only one plan which has multiple prices
