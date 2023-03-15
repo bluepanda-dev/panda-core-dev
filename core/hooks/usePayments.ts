@@ -71,6 +71,10 @@ export const usePayments = () => {
   }
 
   async function startSubscription(price: Price) {
+    if (!profile) {
+      toast.error('You must be logged in to start a subscription')
+      return
+    }
     const docR = await addToCollection(
       {
         price: price.guid,
@@ -94,6 +98,10 @@ export const usePayments = () => {
   }
 
   async function startTrial(price: Price) {
+    if (!profile) {
+      toast.error('You must be logged in to start a trial')
+      return
+    }
     const docR = await addToCollection(
       {
         price: price.guid,
