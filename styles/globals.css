@@ -20,7 +20,7 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-  @apply underline text-blue-600 hover: text-blue-800 visited:text-purple-600
+  @apply underline text-blue-600 hover:text-blue-800 visited:text-purple-600
 }
 
 html.light {
@@ -46,12 +46,12 @@ code {
 /* components */
 .ui-selectable {
   @apply text-neutral-600;
-  @apply hover: text-normal-900;
+  @apply hover:text-normal-900;
 }
 
 html.dark .ui-selectable {
   @apply text-neutral-400;
-  @apply hover: text-neutral-100;
+  @apply hover:text-neutral-100;
 }
 
 .ui-border-group {
@@ -59,13 +59,13 @@ html.dark .ui-selectable {
 }
 
 .ui-hoverable {
-  @apply hover: bg-neutral-100;
-  @apply hover: text-normal-900;
+  @apply hover:bg-neutral-100;
+  @apply hover:text-normal-900;
 }
 
 html.dark .ui-hoverable {
-  @apply hover: bg-normal-800;
-  @apply hover: text-neutral-200;
+  @apply hover:bg-normal-800;
+  @apply hover:text-neutral-200;
 }
 
 .ui-title {
@@ -73,28 +73,28 @@ html.dark .ui-hoverable {
 }
 
 .ui-special-button {
-  @apply !text-neutral-50 bg-primary-700 dark: hover:bg-primary-500 hover: !bg-primary-500 shadow-lg shadow-primary-700/50 h-12;
-}
+  @apply !text-neutral-50 bg-primary-700 dark:hover:bg-primary-500 hover:!bg-primary-500  shadow-lg shadow-primary-700/50 h-12;
+  }
 
 .ui-normal-button {
-  @apply border dark: bg-normal-900 bg-white border-primary-900 hover:border-primary-600 hover:bg-primary-800 text-neutral-800 hover:text-primary-100 dark:text-white dark:hover:text-neutral-100;
+  @apply border dark:bg-normal-900 bg-white border-primary-900 hover:border-primary-600 hover:bg-primary-800 text-neutral-800 hover:text-primary-100 dark:text-white dark:hover:text-neutral-100;
 }
 
 .ui-inverted-button {
-  @apply bg-normal-800 !text-neutral-100 dark: !text-neutral-100 hover: !text-primary-600 dark:bg-neutral-100 dark: !text-neutral-900 dark:hover: !text-neutral-200 hover: !bg-transparent;
+  @apply bg-normal-800 !text-neutral-100 dark:!text-neutral-100 hover:!text-primary-600 dark:bg-neutral-100 dark:!text-neutral-900 dark:hover:!text-neutral-200 hover:!bg-transparent;
 }
 
-.ui-focus-text {}
+.ui-focus-text {
+}
 
 .ui-input {
-  @apply rounded-md border border-neutral-600 text-neutral-800 dark: text-neutral-100;
-  @apply bg-neutral-100 dark: bg-normal-900 focus:border-primary-500 dark:focus:border-neutral-100 caret-primary-600 h-12 tracking-wide outline-0 grow p-2 text-lg;
+  @apply rounded-md border border-neutral-600 text-neutral-800 dark:text-neutral-100;
+  @apply bg-neutral-100 dark:bg-normal-900 focus:border-primary-500 dark:focus:border-neutral-100 caret-primary-600 h-12 tracking-wide outline-0 grow p-2 text-lg;
 }
 
 /* extra css specific */
 
-::-moz-selection {
-  /* Code for Firefox */
+::-moz-selection { /* Code for Firefox */
   color: black;
   background: magenta;
 }
