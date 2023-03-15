@@ -3,6 +3,7 @@ import { FiShare2 } from 'react-icons/fi'
 import { toast } from 'react-toastify'
 import Button from '@components/atoms/Button'
 import { useUserContext } from '@core/contexts/UserContext'
+import { useStorage } from '@core/hooks/useStorage'
 import { useUser } from '@core/hooks/useUser'
 import { Profile as ProfileType } from '@core/types'
 
@@ -14,7 +15,8 @@ export default function Profile() {
   const [email, setEmail] = useState('')
   const [displayName, setDisplayName] = useState('')
   const [publicProfile, setPublicProfile] = useState<ProfileType>()
-
+  const { upload } = useStorage()
+  const [file, setFile] = useState('')
   const { fetchPublicProfile } = useUser()
 
   async function handleSave() {
@@ -60,6 +62,18 @@ export default function Profile() {
     toast('Profile is now public!')
   }
 
+  function handleFileChange(event: any) {
+    console.log(event.target.files[0])
+    setFile(event.target.files[0])
+  }
+
+  async function replacePhoto() {
+    setLoading(true)
+    await upload(file)
+    toast('Photo uploaded successfully!')
+    setLoading(false)
+  }
+
   useEffect(() => {
     if (profile) {
       fetchPublicProfile(profile.uid).then((user) => {
@@ -84,12 +98,20 @@ export default function Profile() {
   return (
     <div className="relative">
       <div>
-        <div className="form-group mb-6">
+        <div className="form-group mb-6 flex flex-col gap-6">
           <img
             src={profile.photoURL}
             alt={'profile'}
             className="ring-neutral-100 hover:ring-neutral-50 ring-2 w-24 h-24 rounded-full"
           />
+          <div className="flex gap-6">
+            <input type="file" accept="image/*" onChange={handleFileChange} />
+            {file && (
+              <Button loading={loading} isSmall={true} onClick={replacePhoto}>
+                Replace Photo
+              </Button>
+            )}
+          </div>
         </div>
 
         <div className="form-group mb-6">
