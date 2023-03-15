@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
+  updateProfile,
 } from 'firebase/auth'
 
 import { useRouter } from 'next/router'
@@ -60,12 +61,23 @@ export const useUser = () => {
     return await signInWithEmailAndPassword(auth!, email, password)
   }
 
-  async function nativeCreateAccount(email: string, password: string) {
-    return await createUserWithEmailAndPassword(auth!, email, password)
+  async function nativeCreateAccount(
+    email: string,
+    password: string,
+    fullName: string,
+  ) {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth!,
+      email,
+      password,
+    )
+    updateProfile(auth!.currentUser!, {
+      displayName: fullName,
+    })
   }
 
   async function resetPassword(email: string) {
-    return await sendPasswordResetEmail(auth, email)
+    return await sendPasswordResetEmail(auth!, email)
   }
 
   function logOut() {
