@@ -24,43 +24,66 @@ export default function LoginRegisterModal({
     facebookLogIn,
     nativeLogIn,
     nativeCreateAccount,
+    resetPassword,
   } = useUser()
 
   const [isNewUser, setIsNewUser] = useState(false)
+  const [isForgotPassword, setIsForgotPassword] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [fullName, setFullName] = useState('')
+  const [loading, setLoading] = useState(false)
 
   async function handleLogIn(provider: () => Promise<any>) {
     try {
+      setLoading(true)
       await provider()
       closeModal()
     } catch (error: any) {
       toast.error(`${t('login.thereIsProblem')}! ${error?.message}`)
     } finally {
+      setLoading(false)
     }
   }
 
   async function handleNativeLogIn() {
     try {
+      setLoading(true)
       await nativeLogIn(email, password)
       closeModal()
     } catch (error: any) {
-      toast.error(`${t('login.thereIsProblem')} ${error?.message}`)
+      toast.error(`Wow there was a problem! ${error?.message}`)
+      console.log(error)
+    } finally {
+      setLoading(false)
     }
   }
 
   async function handleCreateAccount() {
     try {
+      setLoading(true)
       if (!email || !password) {
         toast.error('Please fill all the fields')
         return
       }
-      await nativeCreateAccount(email, password)
+      await nativeCreateAccount(email, password, fullName)
       closeModal()
     } catch (error: any) {
-      toast.error(`${t('login.thereIsProblem')} ${error?.message}`)
+      toast.error(`Wow there was a problem! ${error?.message}`)
+      console.log(error)
+    } finally {
+      setLoading(false)
     }
   }
+
+  async function handleResetPassword() {
+    setLoading(true)
+    await resetPassword(email)
+    toast('Done! check your email')
+
+    setLoading(false)
+  }
+
   return (
     <Modal isOpen={isOpen} closeModal={closeModal} title={t('login.logIn')}>
       <div className="mt-4 flex flex-col gap-4 items-center justify-center">
@@ -73,24 +96,52 @@ export default function LoginRegisterModal({
           value={email}
         />
 
-        <input
-          type="password"
-          name="panda_password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          className="ui-input w-full"
-        />
+        {isForgotPassword === false && (
+          <input
+            type="password"
+            name="panda_password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            className="ui-input w-full"
+          />
+        )}
+
+        {isNewUser && (
+          <input
+            placeholder="Full Name"
+            name="fullname"
+            className="ui-input w-full"
+            onChange={(e) => setFullName(e.target.value)}
+            value={fullName}
+          />
+        )}
 
         <div className="flex w-full gap-4">
           <div className="basis-1/2">
             {isNewUser ? (
-              <Button isInverted={true} onClick={handleCreateAccount}>
-                {t('login.createAccount')}
+              <Button
+                loading={loading}
+                isInverted={true}
+                onClick={handleCreateAccount}
+              >
+                Create Account
+              </Button>
+            ) : isForgotPassword === false ? (
+              <Button
+                loading={loading}
+                isInverted={true}
+                onClick={handleNativeLogIn}
+              >
+                Log in
               </Button>
             ) : (
-              <Button isInverted={true} onClick={handleNativeLogIn}>
-                {t('login.login')}
+              <Button
+                loading={loading}
+                isInverted={true}
+                onClick={handleResetPassword}
+              >
+                Reset Password
               </Button>
             )}
           </div>
@@ -110,6 +161,13 @@ export default function LoginRegisterModal({
               </>
             )}
           </div>
+        </div>
+        <div className="w-full text-start">
+          {!isForgotPassword && (
+            <a className="ui-link" onClick={() => setIsForgotPassword(true)}>
+              Forgot password
+            </a>
+          )}
         </div>
       </div>
       <div className="my-4 text-center">
