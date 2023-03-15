@@ -1,7 +1,7 @@
 export const PRODUCTS_DB = 'fe-products'
 export const STRIPE_PRODUCTS_TYPE = 'products'
 export const STRIPE_PLANS_TYPE = 'plans'
-export const STRIPE_CREDITS_TYPE = 'plans'
+export const STRIPE_CREDITS_TYPE = 'credits'
 
 export type Price = {
   guid: string
