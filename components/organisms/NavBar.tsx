@@ -108,7 +108,7 @@ export default function NavBar() {
           </div>
         </div>
         <div className="hidden font-semibold md:flex items-center gap-4 text-accent-800 dark:text-accent-500">
-          Your are in a Demo Template
+          {t('youAre')}
         </div>
         <div className="items-center gap-2 hidden md:flex">
           {isSettingsVisible && (

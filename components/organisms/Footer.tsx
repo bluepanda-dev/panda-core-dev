@@ -1,10 +1,12 @@
 import lottie from 'lottie-web'
 import Image from 'next/image'
+import { useTranslation } from 'next-i18next'
 import React, { useEffect } from 'react'
 import { FaFacebookSquare, FaTwitterSquare, FaInstagram } from 'react-icons/fa'
 import animationData from '../data/lottie-animation.json'
 
 export default function Footer() {
+  const { t } = useTranslation()
   useEffect(() => {
     if (!document.querySelector('#lottie-animation')!.innerHTML) {
       lottie.loadAnimation({
@@ -30,7 +32,7 @@ export default function Footer() {
           />
           <div className="h-full md:justify-self-end">
             <h2 className="mb-4 md:border-none border-b border-neutral-800 pb-2">
-              Contact Us
+              {t('footer.contactUs')}
             </h2>
             <ul className="list-none text-normal-400 dark:text-normal-100">
               <li className="pb-2">info@example.com</li>
@@ -39,18 +41,18 @@ export default function Footer() {
           </div>
           <div className="h-full md:justify-self-center">
             <h2 className="mb-4 md:border-none border-b border-neutral-800 pb-2">
-              Features
+              {t('footer.features')}
             </h2>
             <ul className="list-none text-normal-400 dark:text-normal-100">
-              <li className="pb-2">Ship faster </li>
-              <li className="pb-2">Simplicity first</li>
-              <li className="pb-2">Support for you </li>
-              <li className="pb-2">Made with 💙 </li>
+              <li className="pb-2">{t('footer.shipFaster')} </li>
+              <li className="pb-2">{t('footer.simplicity')}</li>
+              <li className="pb-2">{t('footer.support')} </li>
+              <li className="pb-2">{t('footer.madeWith')}</li>
             </ul>
           </div>
           <div className="h-full md:justify-self-initial">
             <h2 className="mb-4 md:border-none border-b border-neutral-800 pb-2">
-              Tech Stack
+              {t('footer.techStack')}
             </h2>
             <ul className="list-none text-normal-400 dark:text-normal-100">
               <li className="pb-2">ReactJS</li>
@@ -60,7 +62,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="text-normal-500 dark:text-normal-100 px-4 flex flex-col gap-4 items-right md:text-right">
-          <span>Copyright © 2023 Blue Panda. All rights reserved.</span>
+          <span>Copyright © 2023 Blue Panda. {t('footer.allRights')}.</span>
           <div className="flex gap-4 flex-wrap md:justify-end">
             <FaFacebookSquare size={32} />
             <FaTwitterSquare size={32} />

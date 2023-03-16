@@ -37,19 +37,25 @@ const options = [
 ]
 
 const TabsSample = () => {
+  const { t } = useTranslation()
   const tabs = {
-    'My Tab Title': <Container className="h-48" title="Your Tab 1 content" />,
-    Tab2: <Container className="h-48" title="Your Tab 2 content" />,
-    Tab3: <Container className="h-48" title="Your Tab 3 content" />,
+    [t('myTabTitle')]: (
+      <Container className="h-48" title="Lorem ipsum dolor sit amet" />
+    ),
+    Tab2: <Container className="h-48" title="Lorem ipsum dolor sit amet" />,
+    Tab3: <Container className="h-48" title="Lorem ipsum dolor sit amet" />,
   }
   return <SimpleTabs tabs={tabs} />
 }
 
 const TabsSampleVertical = () => {
+  const { t } = useTranslation()
   const tabs = {
-    'My Tab Title': <Container className="h-48" title="Your Tab 1 content" />,
-    Tab2: <Container className="h-48" title="Your Tab 2 content" />,
-    Tab3: <Container className="h-48" title="Your Tab 3 content" />,
+    [t('myTabTitle')]: (
+      <Container className="h-48" title="Lorem ipsum dolor sit amet" />
+    ),
+    Tab2: <Container className="h-48" title="Lorem ipsum dolor sit amet" />,
+    Tab3: <Container className="h-48" title="Lorem ipsum dolor sit amet" />,
   }
   return <SimpleTabs tabs={tabs} isVertical={true} />
 }
@@ -69,11 +75,12 @@ const RadioSample = () => {
 }
 
 const AccordionSample = () => {
+  const { t } = useTranslation()
   return (
     <Accordion
       options={[
         {
-          title: 'What is the return policy?',
+          title: t('whatIsReturn'),
           content: `
                     Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry. Lorem Ipsum has been the industrys
@@ -82,7 +89,7 @@ const AccordionSample = () => {
         },
 
         {
-          title: 'How do I track my order?',
+          title: t('howDoI'),
           content: `
                     Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry. Lorem Ipsum has been the industrys
@@ -91,7 +98,7 @@ const AccordionSample = () => {
         },
 
         {
-          title: 'Do you offer gift wrapping?',
+          title: t('doYouOffer'),
           content: `
                     Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry. Lorem Ipsum has been the industrys
@@ -113,7 +120,7 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
 
   const AccountOptions = [
     {
-      label: 'Side Panel Right',
+      label: t('sidePanelR'),
       icon: <FiMenu />,
       onClick: () => {
         setSide('right')
@@ -121,7 +128,7 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
       },
     },
     {
-      label: 'Side Panel Left',
+      label: t('sidePanelL'),
       icon: <FiMenu />,
       onClick: () => {
         setSide('left')
@@ -129,49 +136,49 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
       },
     },
     {
-      label: 'Simple Modal',
+      label: t('simpleModal'),
       icon: <FiMenu />,
       onClick: () => {
         setIsOpen(true)
       },
     },
     {
-      label: 'Simple Toast',
+      label: t('simpleToast'),
       icon: <FiMenu />,
       onClick: () => {
         toast('Wow so easy!')
       },
     },
     {
-      label: 'Radio Group',
+      label: t('radioGroup'),
       icon: <FiMenu />,
       onClick: () => {
         setActiveComponent('radio')
       },
     },
     {
-      label: 'Accordion',
+      label: t('accordion'),
       icon: <FiMenu />,
       onClick: () => {
         setActiveComponent('accordion')
       },
     },
     {
-      label: 'Tabs',
+      label: t('tabs'),
       icon: <FiMenu />,
       onClick: () => {
         setActiveComponent('tabs')
       },
     },
     {
-      label: 'Tabs Vertical',
+      label: t('tabsV'),
       icon: <FiMenu />,
       onClick: () => {
         setActiveComponent('tabs-v')
       },
     },
     {
-      label: 'General Loading',
+      label: t('generalLoading'),
       icon: <FiMenu />,
       onClick: () => {
         setLoading(true)
@@ -181,14 +188,14 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
       },
     },
     {
-      label: 'Panel',
+      label: t('panel'),
       icon: <FiMenu />,
       onClick: () => {
         setActiveComponent('panel')
       },
     },
     {
-      label: 'Simple Header',
+      label: t('simpleHeader'),
       icon: <FiMenu />,
       onClick: () => {
         setActiveComponent('header')
@@ -199,14 +206,18 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
   return (
     <div className={`relative ${className}`}>
       <LoadingModal loading={loading} />
-      <Modal isOpen={isOpen} closeModal={() => setIsOpen(false)} title="Title">
+      <Modal
+        isOpen={isOpen}
+        closeModal={() => setIsOpen(false)}
+        title={t('modalTitle')}
+      >
         <Container className="h-48" />
       </Modal>
       <SidePanel
         isOpen={isSideOpen}
         closeModal={() => setIsSideOpen(false)}
         side={side}
-        title="Title"
+        title={t('sidePanelTitle')}
       >
         <Container className="h-full" />
       </SidePanel>
@@ -226,12 +237,12 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
                   <div className="flex items-center gap-4">
                     <FiArrowLeft onClick={() => alert('hi')} />
                     <Image src="/logo.webp" alt="" width={25} height={12} />
-                    <span>Header Title</span>
+                    <span>{t('headerTitle')}</span>
                   </div>
                 }
                 extra={
                   <Button isInverted={true} className="w-32">
-                    extra action
+                    {t('extraAction')}
                   </Button>
                 }
               />
@@ -239,29 +250,31 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
             (activeComponent === 'panel' && (
               <div className="flex flex-col w-4/5 gap-4">
                 <Panel
-                  title="Panel Title"
-                  description="Panel Description"
+                  title={t('panelTitle')}
+                  description={t('panelDesc')!}
                   hints={
-                    <span className="justify-self-start">Some hints......</span>
+                    <span className="justify-self-start">
+                      {t('headerTitle')}......
+                    </span>
                   }
                   footer={
                     <>
-                      <Button className="w-32">Cancel</Button>
+                      <Button className="w-32">{t('headerTitle')}</Button>
                       <Button isInverted={true} className="w-32">
-                        Save
+                        {t('save')}
                       </Button>
                     </>
                   }
                 ></Panel>
                 <Panel
-                  title="Panel Title"
-                  description="Panel with danger type"
+                  title={t('panelTitle')}
+                  description={t('panelWithDanger')!}
                   type="danger"
                   footer={
                     <>
                       <Button className="w-32">Cancel</Button>
                       <Button isInverted={true} className="w-32">
-                        Save
+                        {t('save')}
                       </Button>
                     </>
                   }

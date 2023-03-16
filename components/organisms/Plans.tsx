@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next'
 import { FiCheckCircle } from 'react-icons/fi'
 import Button from '@components/atoms/Button'
 import { useCopyPages } from '@core/hooks/useCopyPages'
@@ -5,6 +6,7 @@ import { PlanCard } from '@core/types'
 
 const PlanCard = ({ plan }: { plan: PlanCard }) => {
   const { plans } = useCopyPages()
+  const { t } = useTranslation()
 
   return (
     <div
@@ -33,7 +35,7 @@ const PlanCard = ({ plan }: { plan: PlanCard }) => {
       </div>
       <div className="absolute right-2 lg:right-0 bottom-10 lg:bottom-4 flex flex-col lg:flex-row lg:w-full gap-4 px-4 justify-center">
         <Button className="w-32" isSmall={true} isInverted={false}>
-          Try for Free
+          {t('tryFree')}
         </Button>
         <Button className="w-32" isSmall={true} isSpecial={true}>
           {plans.cta}
