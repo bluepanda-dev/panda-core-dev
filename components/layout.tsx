@@ -4,14 +4,17 @@ import NavBar from './organisms/NavBar'
 
 interface Props {
   children?: ReactNode
+  className?: string
 }
 
-export default function Layout({ children }: Props) {
+export default function Layout({ children, className }: Props) {
   return (
     <>
       <NavBar />
-      <div className="bg-neutral-50 dark:bg-normal-900 text-normal dark:text-neutral-50 flex flex-col min-h-screen">
-        <main className="mt-14 relative">{children}</main>
+      <div className="bg-neutral-50 dark:bg-normal-900 text-normal dark:text-neutral-50 flex flex-col min-h-screen justify-between">
+        <main className={`min-h-[100vh] mt-14 relative ${className}`}>
+          {children}
+        </main>{' '}
         <Footer />
       </div>
     </>

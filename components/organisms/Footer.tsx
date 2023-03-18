@@ -1,12 +1,21 @@
 import lottie from 'lottie-web'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 import React, { useEffect } from 'react'
 import { FaFacebookSquare, FaTwitterSquare, FaInstagram } from 'react-icons/fa'
+import { useCopyPages } from '@core/hooks/useCopyPages'
 import animationData from '../data/lottie-animation.json'
 
 export default function Footer() {
+  const { pathname } = useRouter()
+  const { t } = useTranslation()
+  const { features, techStack } = useCopyPages()
   useEffect(() => {
-    if (!document.querySelector('#lottie-animation')!.innerHTML) {
+    if (
+      pathname === '' &&
+      !document.querySelector('#lottie-animation')!.innerHTML
+    ) {
       lottie.loadAnimation({
         container: document.querySelector('#lottie-animation')!,
         animationData,
@@ -15,10 +24,10 @@ export default function Footer() {
         autoplay: true,
       })
     }
-  }, [])
+  }, [pathname])
   return (
     <div className="relative mt-16">
-      <div id="lottie-animation" className="w-full" />
+      {pathname === '' && <div id="lottie-animation" className="w-full" />}
       <footer className="relative bg-neutral-100 dark:bg-normal-800 border-t border-neutral-800 py-4">
         <div className="justify-center grid grid-cols-1 md:grid-cols-3 items-center px-4 py-12 w-full">
           <Image
@@ -30,7 +39,7 @@ export default function Footer() {
           />
           <div className="h-full md:justify-self-end">
             <h2 className="mb-4 md:border-none border-b border-neutral-800 pb-2">
-              Contact Us
+              {t('contactUs')}
             </h2>
             <ul className="list-none text-normal-400 dark:text-normal-100">
               <li className="pb-2">info@example.com</li>
@@ -39,18 +48,18 @@ export default function Footer() {
           </div>
           <div className="h-full md:justify-self-center">
             <h2 className="mb-4 md:border-none border-b border-neutral-800 pb-2">
-              Features
+              {features.title}
             </h2>
             <ul className="list-none text-normal-400 dark:text-normal-100">
-              <li className="pb-2">Ship faster </li>
-              <li className="pb-2">Simplicity first</li>
-              <li className="pb-2">Support for you </li>
-              <li className="pb-2">Made with 💙 </li>
+              <li className="pb-2">{t('shipFaster')} </li>
+              <li className="pb-2">{t('simplicityFirst')}</li>
+              <li className="pb-2">{t('supportForYou')}</li>
+              <li className="pb-2">{t('madeWithLove')} </li>
             </ul>
           </div>
           <div className="h-full md:justify-self-initial">
             <h2 className="mb-4 md:border-none border-b border-neutral-800 pb-2">
-              Tech Stack
+              {techStack.title}
             </h2>
             <ul className="list-none text-normal-400 dark:text-normal-100">
               <li className="pb-2">ReactJS</li>

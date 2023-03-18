@@ -36,7 +36,7 @@ const useBreakpoint = () => {
     return () => window.removeEventListener('resize', handleResize)
   }, [windowSize.width])
 
-  return { breakpoint }
+  return { breakpoint, windowSize }
 }
 
 export default useBreakpoint
