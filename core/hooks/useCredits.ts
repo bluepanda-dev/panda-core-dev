@@ -5,7 +5,12 @@ import { useUserContext } from '@core/contexts/UserContext'
 import { CUSTOMERS_DB, Invoice } from '@core/types'
 import { CreditItem, CreditSpending } from '@core/types/credits'
 import { CREDITS_ITEMS_DB } from '@core/types/credits'
-import { Product, PRODUCTS_DB, Price } from '@core/types/payments'
+import {
+  Product,
+  PRODUCTS_DB,
+  Price,
+  STRIPE_CREDITS_TYPE,
+} from '@core/types/payments'
 import { useQuery } from './useQuery'
 
 export const useCredits = () => {
@@ -23,7 +28,10 @@ export const useCredits = () => {
 
     const list =
       (await fetchAllWhere<Product>(
-        [where('active', '==', true), where('metadata.type', '==', 'credits')],
+        [
+          where('active', '==', true),
+          where('metadata.type', '==', STRIPE_CREDITS_TYPE),
+        ],
         PRODUCTS_DB,
       )) ?? []
 

@@ -48,14 +48,16 @@ export const PlanCard = ({ price }: { price: Price }) => {
       <div className="absolute bottom-2 lg:bottom-14 flex w-full gap-4 px-4 lg:justify-center">
         {price.unit_amount > 0 && (
           <>
-            <Button
-              className="w-32"
-              isSmall={true}
-              isInverted={false}
-              onClick={() => startTrial(price)}
-            >
-              Try for Free
-            </Button>
+            {price.stripe_metadata_hasTrial && (
+              <Button
+                className="w-32"
+                isSmall={true}
+                isInverted={false}
+                onClick={() => startTrial(price)}
+              >
+                Try for Free
+              </Button>
+            )}
             <Button
               className="w-32"
               isSmall={true}

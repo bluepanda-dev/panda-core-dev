@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useState, useEffect } from 'react'
 import { FiArrowLeft } from 'react-icons/fi'
+import { HiSparkles } from 'react-icons/hi'
 import Button from '@components/atoms/Button'
 import Layout from '@components/layout'
 import Panel from '@components/molecules/Panel'
@@ -125,6 +126,18 @@ const Orders = () => {
       <div className="flex justify-center">
         <div className="px-4 md:px-8 my-16 h-full max-w-2xl w-full">
           <div className="mt-8 flex flex-col gap-6 justify-center">
+            <div className="w-full text-center">
+              <div className="text-6xl text-primary-600 flex flex-col justify-center gap-6 items-center">
+                <HiSparkles />
+                <div>You have no orders so far</div>
+              </div>
+
+              <div className="text-neutral-600 dark:text-neutral-400 flex justify-center text-xl md:text-2xl font-extralight mt-6 md:mt-16 px-8 ">
+                <div className="md:max-w-lg">
+                  You can buy a pooroduct from home page and come back here.
+                </div>
+              </div>
+            </div>
             {ownProducts.map((product) => (
               <Panel
                 key={product.order.id}

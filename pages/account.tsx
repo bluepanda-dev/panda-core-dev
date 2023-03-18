@@ -1,6 +1,8 @@
+import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useEffect } from 'react'
 import { FiArrowLeft } from 'react-icons/fi'
 import Container from '@components/atoms/Container'
 import Layout from '@components/layout'
@@ -11,6 +13,7 @@ import Notifications from '@components/organisms/account/Notifications'
 import Profile from '@components/organisms/account/Profile'
 import { useUserContext } from '@core/contexts/UserContext'
 import useBreakpoint from '@core/hooks/useBreakpoint'
+import { loadingAtom } from '@core/store/Common'
 import { breakpointsWidths } from '@core/utils/breakpoints'
 
 const Account = () => {
@@ -18,10 +21,21 @@ const Account = () => {
   const router = useRouter()
   const { profile } = useUserContext()
   const { windowSize } = useBreakpoint()
+  const [, setGlobalLoading] = useAtom(loadingAtom)
+
+  useEffect(() => {
+    setGlobalLoading(true)
+  }, [])
+
+  useEffect(() => {
+    if (profile) {
+      setGlobalLoading(false)
+    }
+  }, [profile])
 
   // Server-render loading state
   if (!profile) {
-    return <Layout>{t('loading')}...</Layout>
+    return <Layout />
   }
 
   const tabs = {

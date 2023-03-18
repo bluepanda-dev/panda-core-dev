@@ -13,6 +13,7 @@ import { useUserContext } from '@core/contexts/UserContext'
 import { useCredits } from '@core/hooks/useCredits'
 import { usePayments } from '@core/hooks/usePayments'
 import { loadingAtom } from '@core/store/Common'
+import { Price } from '@core/types'
 import { CreditItem } from '@core/types/credits'
 import { formatPrice } from '@core/utils/currency'
 
@@ -37,6 +38,13 @@ const Credits = () => {
   function handleBuy(item: CreditItem) {
     setLoading(true)
     buyWithCredits(item, () => {
+      setLoading(false)
+    })
+  }
+
+  function handlePayment(price: Price) {
+    setLoading(true)
+    singlePayment(price, () => {
       setLoading(false)
     })
   }
@@ -70,8 +78,8 @@ const Credits = () => {
     const found = spendings.find((spending) => spending.item === item.docId)
     if (found) {
       return (
-        <span className="text-sm md:text-md absolute right-0 top-0 dark:bg-success-700 dark:text-success-300 rounded-sm p-1">
-          {t('youOwnIt')}
+        <span className="text-sm md:text-md absolute right-1 top-1 dark:bg-success-700 dark:text-success-300 rounded-sm p-1">
+          You own it
         </span>
       )
     }
@@ -152,7 +160,7 @@ const Credits = () => {
                       <Button
                         className="w-32"
                         isSmall={true}
-                        onClick={() => singlePayment(price)}
+                        onClick={() => handlePayment(price)}
                       >
                         {t('buyFor')} {formatPrice(price.unit_amount)}
                       </Button>

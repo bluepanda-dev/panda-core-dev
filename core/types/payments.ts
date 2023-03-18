@@ -1,4 +1,7 @@
 export const PRODUCTS_DB = 'fe-products'
+export const STRIPE_PRODUCTS_TYPE = 'products'
+export const STRIPE_PLANS_TYPE = 'plans'
+export const STRIPE_CREDITS_TYPE = 'credits'
 
 export type Price = {
   guid: string
@@ -14,6 +17,7 @@ export type Price = {
   stripe_metadata_description: string
   stripe_metadata_order: string
   stripe_metadata_type: string
+  stripe_metadata_hasTrial: string
   transform_quantity: { round: string; divide_by: number }
   items: { description: string; price: Price }[]
   docId?: string

@@ -109,7 +109,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
             if (userData.providerData[0].providerId === 'password') {
               setDoc(doc(db, USER_DB, userData.uid), {
                 ...commonFields(userData),
-                displayName: '',
+                displayName: userData.displayName,
                 created: new Intl.DateTimeFormat('en-US').format(
                   new Date(Number((userData.metadata as any).createdAt)),
                 ),
