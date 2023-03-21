@@ -7,6 +7,16 @@ const withPWA = require('next-pwa')({
 const nextConfig = {
   reactStrictMode: true,
   i18n,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'firebasestorage.googleapis.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
 }
 
 module.exports = withPWA(nextConfig)
