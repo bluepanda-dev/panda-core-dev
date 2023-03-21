@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import React, { useEffect } from 'react'
 import { FaFacebookSquare, FaTwitterSquare, FaInstagram } from 'react-icons/fa'
+import { EMAIL, NAME } from '@core/helpers/branding'
 import { useCopyPages } from '@core/hooks/useCopyPages'
 import animationData from '../data/lottie-animation.json'
 
@@ -42,8 +43,18 @@ export default function Footer() {
               {t('contactUs')}
             </h2>
             <ul className="list-none text-normal-400 dark:text-normal-100">
-              <li className="pb-2">info@example.com</li>
-              <li className="pb-2">Slack</li>
+              <li className="pb-2">
+                <a href={`mailto:{EMAIL}`}>{EMAIL}</a>
+              </li>
+              <li className="pb-2">
+                <a
+                  target="_blank"
+                  href="https://docu.blue-panda.dev/"
+                  rel="noreferrer"
+                >
+                  Documentation
+                </a>
+              </li>
             </ul>
           </div>
           <div className="h-full md:justify-self-center">
@@ -51,10 +62,15 @@ export default function Footer() {
               {features.title}
             </h2>
             <ul className="list-none text-normal-400 dark:text-normal-100">
-              <li className="pb-2">{t('shipFaster')} </li>
-              <li className="pb-2">{t('simplicityFirst')}</li>
-              <li className="pb-2">{t('supportForYou')}</li>
-              <li className="pb-2">{t('madeWithLove')} </li>
+              <li className="pb-2">
+                <a href="/license">License</a>
+              </li>
+              <li className="pb-2">
+                <a href="/privacy">Privacy</a>
+              </li>
+              <li className="pb-2">
+                <a href="/termsofservice">Terms of Service</a>
+              </li>
             </ul>
           </div>
           <div className="h-full md:justify-self-initial">
@@ -69,7 +85,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="text-normal-500 dark:text-normal-100 px-4 flex flex-col gap-4 items-right md:text-right">
-          <span>Copyright © 2023 Blue Panda. All rights reserved.</span>
+          <span>Copyright © 2023 {NAME}. All rights reserved.</span>
           <div className="flex gap-4 flex-wrap md:justify-end">
             <FaFacebookSquare size={32} />
             <FaTwitterSquare size={32} />

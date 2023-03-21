@@ -7,10 +7,11 @@ import { Suspense, useEffect } from 'react'
 import { StatsigProvider } from 'statsig-react'
 import Button from '@components/atoms/Button'
 import ScrollButton from '@components/molecules/ScrollButton'
+import { NAME, WEBSITE } from '@core/helpers/branding'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   function handleDemoButton() {
-    window.location.href = 'https://blue-panda.dev/'
+    window.location.href = WEBSITE
   }
 
   useEffect(() => {
@@ -38,13 +39,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             name="viewport"
             content="width=device-width, user-scalable=no"
           />
-          <meta
-            title="Blue Panda Dev Demo"
-            content="Production ready templates"
-          />
+          <meta title={NAME} content="Production ready templates" />
           <meta
             name="description"
-            content="Template for Blue Panda Dev Plus."
+            content="Template for Blue Panda Dev Plus. CHANGE_NAME"
           />
           <meta name="theme-color" content="#000000" />
           <link rel="manifest" href="/manifest.json" />
@@ -57,7 +55,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             onClick={handleDemoButton}
             className="bg-blue-600/70 shadow-blue-700/50 hover:bg-blue-500"
           >
-            Back to Blue Panda
+            Back to {NAME}
           </Button>
         </div>
       </Suspense>

@@ -9,6 +9,7 @@ import { Theme, ToastContainer } from 'react-toastify'
 import { Statsig, useGate, useLayer } from 'statsig-react'
 import AlertBanner from '@components/molecules/AlertBanner'
 import Dropdown from '@components/molecules/Dropdown'
+import { NAME } from '@core/helpers/branding'
 import { useTheme } from '@core/hooks/useTheme'
 import { isAlertBannerActive } from '@core/store/Common'
 
@@ -104,7 +105,7 @@ export default function NavBar() {
             <Image src="/logo.webp" alt="" width={45} height={22} />
           </Link>
           <div className="hidden md:block from-blue-600 to-blue-900 dark:from-blue-400 dark:to-blue-800 text-xl bg-clip-text text-transparent bg-gradient-to-r pl-6">
-            Blue Panda
+            {NAME}
           </div>
         </div>
         <div className="hidden font-semibold md:flex items-center gap-4 text-accent-800 dark:text-accent-500">

@@ -1,5 +1,5 @@
 /** @type {import('next-sitemap').IConfig} */
-const siteUrl = process.env.SITE_URL || 'https://blue-panda.dev'
+const siteUrl = process.env.SITE_URL || process.env.NEXT_PUBLIC_WEBSITE
 
 module.exports = {
   siteUrl,
