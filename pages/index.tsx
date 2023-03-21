@@ -26,6 +26,12 @@ export default function Home() {
     <Layout>
       <Head>
         <title>{t('title')}</title>
+        <meta name="robots" content="all" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="test title" />
+        <meta name="twitter:description" content="test description" />
+        <meta name="twitter:image" content="/pandas/group.png" />
+        <meta property="og:image" content="/pandas/group.png" />
       </Head>
       <main className="flex flex-col gap-y-36 md:gap-y-48 mt-12">
         <Hero />
