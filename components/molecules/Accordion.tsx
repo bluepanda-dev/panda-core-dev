@@ -35,7 +35,7 @@ export default function Accordion({
                     <span>{option.title}</span>
                     <FiChevronsUp
                       className={`${
-                        open ? 'rotate-180 transform' : ''
+                        !open ? 'rotate-180 transform' : ''
                       } h-5 w-5 text-primary-600 z-0`}
                     />
                   </Disclosure.Button>

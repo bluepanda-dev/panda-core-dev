@@ -16,6 +16,7 @@ import Accordion from './Accordion'
 import Modal from './Modal'
 import SidePanel from './SidePanel'
 import SimpleHeader from './SimpleHeader'
+import Link from 'next/link'
 
 type ComponentsSampleProps = {
   className?: string
@@ -224,7 +225,9 @@ export default function ComponentsSample({ className }: ComponentsSampleProps) {
               <SimpleHeader
                 title={
                   <div className="flex items-center gap-4">
-                    <FiArrowLeft onClick={() => alert('hi')} />
+                    <Link href="javascript:void(0)">
+                      <FiArrowLeft onClick={() => {}} />
+                    </Link>
                     <Image src="/logo.webp" alt="" width={25} height={12} />
                     <span>Header Title</span>
                   </div>
