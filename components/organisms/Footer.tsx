@@ -1,5 +1,6 @@
 import lottie from 'lottie-web'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import React, { useEffect } from 'react'
@@ -85,11 +86,29 @@ export default function Footer() {
           </div>
         </div>
         <div className="text-normal-500 dark:text-normal-100 px-4 flex flex-col gap-4 items-right md:text-right">
-          <span>Copyright © 2023 {NAME}. All rights reserved.</span>
+          <span>
+            Copyright © {new Date().getFullYear()} {NAME}. All rights reserved.
+          </span>
+          <span>
+            Made by{' '}
+            <Link href="https://plus.blue-panda.dev/" target="_blank">
+              {NAME}
+            </Link>
+            .
+          </span>
           <div className="flex gap-4 flex-wrap md:justify-end">
-            <FaFacebookSquare size={32} />
-            <FaTwitterSquare size={32} />
-            <FaInstagram size={32} />
+            <Link
+              href="https://web.facebook.com/blue.panda.io/"
+              target="_blank"
+            >
+              <FaFacebookSquare size={32} />
+            </Link>
+            <Link href="https://www.instagram.com/bluepandadev" target="_blank">
+              <FaTwitterSquare size={32} />
+            </Link>
+            <Link href="https://twitter.com/bluepandadev" target="_blank">
+              <FaInstagram size={32} />
+            </Link>
           </div>
         </div>
         <Image
