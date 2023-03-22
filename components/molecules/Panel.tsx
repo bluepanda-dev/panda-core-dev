@@ -9,7 +9,7 @@ type PanelProps = {
   footer?: React.ReactNode
 }
 
-export default function Card({
+export default function Panel({
   title,
   description,
   type,
