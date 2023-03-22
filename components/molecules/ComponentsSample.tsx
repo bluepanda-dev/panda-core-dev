@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import React, { useState } from 'react'
 import { FiArrowLeft, FiMenu } from 'react-icons/fi'
@@ -16,7 +17,6 @@ import Accordion from './Accordion'
 import Modal from './Modal'
 import SidePanel from './SidePanel'
 import SimpleHeader from './SimpleHeader'
-import Link from 'next/link'
 
 type ComponentsSampleProps = {
   className?: string
