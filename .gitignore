@@ -36,3 +36,4 @@ public/sw.js
 public/workbox-*.js
 public/*.map
 public/sw.js
+swap-pane
