@@ -31,8 +31,11 @@ export const Basic: Story = {
 }
 
 export const Disable: Story = {
-  render: () => (
-    <BPSelect placeholder="Select an Option">
+  args: {
+    placeholder: 'Select an Option',
+  },
+  render: ({ placeholder }) => (
+    <BPSelect placeholder={placeholder}>
       <BPSelectGroup>
         <BPSelectLabel className="SelectLabel">Fruits</BPSelectLabel>
         <BPSelectItem value="apple">Apple</BPSelectItem>
@@ -51,3 +54,5 @@ export const Disable: Story = {
     </BPSelect>
   ),
 }
+
+// TODO magic one with multi color bg
