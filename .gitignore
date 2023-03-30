@@ -37,3 +37,5 @@ public/workbox-*.js
 public/*.map
 public/sw.js
 swap-pane
+
+/storybook-static

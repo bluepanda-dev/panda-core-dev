@@ -23,13 +23,13 @@ a {
   @apply text-blue-600 hover:text-blue-800 visited:text-purple-600
 }
 
-html.light {
+html.light, body.light {
   color-scheme: light;
   @apply bg-neutral-50;
   @apply text-normal-800 font-light;
 }
 
-html.dark {
+html.dark , body.dark {
   color-scheme: dark;
   @apply bg-normal-900;
   @apply text-neutral-100 font-light;
