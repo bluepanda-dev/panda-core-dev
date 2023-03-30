@@ -7,6 +7,12 @@ import React, { useEffect, useState } from 'react'
 import { FiSun, FiMenu } from 'react-icons/fi'
 import { Theme, ToastContainer } from 'react-toastify'
 import { Statsig, useGate, useLayer } from 'statsig-react'
+import {
+  BPSelect,
+  BPSelectGroup,
+  BPSelectItem,
+  BPSelectLabel,
+} from '@components/atoms/BPSelect'
 import AlertBanner from '@components/molecules/AlertBanner'
 import Dropdown from '@components/molecules/Dropdown'
 import { NAME } from '@core/helpers/branding'
@@ -96,7 +102,7 @@ export default function NavBar() {
     <>
       {alertActive && <AlertBanner />}
       <nav
-        className={`z-40 backdrop-blur-sm bg-neutral-50/30 dark:bg-normal-900/30 fixed top-0 w-full p-2 flex justify-between items-center border-b border-neutral-800
+        className={`z-10 backdrop-blur-sm bg-neutral-50/30 dark:bg-normal-900/30 fixed top-0 w-full p-2 flex justify-between items-center border-b border-neutral-800
         ${scrollPosition <= 0.5 && alertActive ? 'mt-12' : ''}
       `}
       >
@@ -111,7 +117,25 @@ export default function NavBar() {
         <div className="hidden font-semibold md:flex items-center gap-4 text-accent-800 dark:text-accent-500">
           {t('youAreInDemo')}
         </div>
-        <div className="items-center gap-2 hidden md:flex">
+        <div className="z-20 items-center gap-2 hidden md:flex">
+          <BPSelect placeholder="Select my item">
+            <BPSelectGroup>
+              <BPSelectLabel className="SelectLabel">Fruits</BPSelectLabel>
+              <BPSelectItem value="apple">Apple</BPSelectItem>
+              <BPSelectItem value="banana">Banana</BPSelectItem>
+              <BPSelectItem value="blueberry">Blueberry</BPSelectItem>
+              <BPSelectItem value="grapes">Grapes</BPSelectItem>
+              <BPSelectItem value="pineapple">Pineapple</BPSelectItem>
+            </BPSelectGroup>
+            <BPSelectGroup>
+              <BPSelectLabel className="SelectLabel">Fruits</BPSelectLabel>
+              <BPSelectItem value="apple">Apple</BPSelectItem>
+              <BPSelectItem value="banana">Banana</BPSelectItem>
+              <BPSelectItem value="blueberry">Blueberry</BPSelectItem>
+              <BPSelectItem value="grapes">Grapes</BPSelectItem>
+              <BPSelectItem value="pineapple">Pineapple</BPSelectItem>
+            </BPSelectGroup>
+          </BPSelect>
           {isSettingsVisible && (
             <Dropdown options={AccountOptions} title={t('settings') ?? ''} />
           )}

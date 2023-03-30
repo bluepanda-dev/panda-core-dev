@@ -1,0 +1,7 @@
+.ui-link {
+  @apply cursor-pointer text-primary-500 hover:text-primary-600;
+}
+
+.ui-title {
+  @apply text-2xl font-normal
+}

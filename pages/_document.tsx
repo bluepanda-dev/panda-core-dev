@@ -13,6 +13,7 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
+        <div id="BPportal" />
       </body>
     </Html>
   )

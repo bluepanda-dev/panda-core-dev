@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @import 'react-toastify/dist/ReactToastify.css';
+@import './components/base.css';
+@import './components/button.css';
+@import './components/select.css';
+@import './components/animation.css';
+@import './components/input.css';
+@import './components/link.css';
+@import './components/select.css';
+@import './components/heading.css';
 
 
 * {
@@ -17,12 +25,6 @@ body {
   overflow-x: hidden;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-  @apply text-blue-600 hover:text-blue-800 visited:text-purple-600
-}
-
 html.light, body.light {
   color-scheme: light;
   @apply bg-neutral-50;
@@ -35,69 +37,6 @@ html.dark , body.dark {
   @apply text-neutral-100 font-light;
 }
 
-code {
-  border-radius: 10px;
-}
-
-.grecaptcha-badge {
-  visibility: hidden;
-}
-
-/* components */
-.ui-selectable {
-  @apply text-neutral-600;
-  @apply hover:text-normal-900;
-}
-
-html.dark .ui-selectable {
-  @apply text-neutral-400;
-  @apply hover:text-neutral-100;
-}
-
-.ui-border-group {
-  @apply border border-neutral-600;
-}
-
-.ui-hoverable {
-  @apply hover:bg-neutral-100;
-  @apply hover:text-normal-900;
-}
-
-html.dark .ui-hoverable {
-  @apply hover:bg-normal-800;
-  @apply hover:text-neutral-200;
-}
-
-.ui-link {
-  @apply cursor-pointer text-primary-500 hover:text-primary-600;
-}
-
-.ui-title {
-  @apply text-2xl font-normal
-}
-
-.ui-special-button {
-  @apply !text-neutral-50 bg-primary-700 dark:hover:bg-primary-500 hover:!bg-primary-500  shadow-lg shadow-primary-700/50 h-12;
-  }
-
-.ui-normal-button {
-  @apply border dark:bg-normal-900 bg-white border-primary-900 hover:border-primary-600 hover:bg-primary-800 text-neutral-800 hover:text-primary-100 dark:text-white dark:hover:text-neutral-100;
-}
-
-.ui-inverted-button {
-  @apply bg-normal-800 !text-neutral-100 dark:!text-neutral-100 hover:!text-primary-600 dark:bg-neutral-100 dark:!text-neutral-900 dark:hover:!text-neutral-200 hover:!bg-transparent;
-}
-
-.ui-focus-text {
-}
-
-.ui-input {
-  @apply rounded-md border border-neutral-600 text-neutral-800 dark:text-neutral-100;
-  @apply bg-neutral-100 dark:bg-normal-900 focus:border-primary-500 dark:focus:border-neutral-100 caret-primary-600 h-12 tracking-wide outline-0 grow p-2 text-lg;
-}
-
-/* extra css specific */
-
 ::-moz-selection { /* Code for Firefox */
   color: black;
   background: magenta;
@@ -108,89 +47,8 @@ html.dark .ui-hoverable {
   background: magenta;
 }
 
-/* loader css */
-.lds-grid {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
 
-.lds-grid div {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: #000;
-  animation: lds-grid 1.2s linear infinite;
-}
-
-html.dark .lds-grid div {
-  background: #fff;
-}
-
-.lds-grid div:nth-child(1) {
-  top: 8px;
-  left: 8px;
-  animation-delay: 0s;
-}
-
-.lds-grid div:nth-child(2) {
-  top: 8px;
-  left: 32px;
-  animation-delay: -0.4s;
-}
-
-.lds-grid div:nth-child(3) {
-  top: 8px;
-  left: 56px;
-  animation-delay: -0.8s;
-}
-
-.lds-grid div:nth-child(4) {
-  top: 32px;
-  left: 8px;
-  animation-delay: -0.4s;
-}
-
-.lds-grid div:nth-child(5) {
-  top: 32px;
-  left: 32px;
-  animation-delay: -0.8s;
-}
-
-.lds-grid div:nth-child(6) {
-  top: 32px;
-  left: 56px;
-  animation-delay: -1.2s;
-}
-
-.lds-grid div:nth-child(7) {
-  top: 56px;
-  left: 8px;
-  animation-delay: -0.8s;
-}
-
-.lds-grid div:nth-child(8) {
-  top: 56px;
-  left: 32px;
-  animation-delay: -1.2s;
-}
-
-.lds-grid div:nth-child(9) {
-  top: 56px;
-  left: 56px;
-  animation-delay: -1.6s;
-}
-
-@keyframes lds-grid {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
+#BPportal{
+  z-index: 9000000;
+  position: fixed;
 }

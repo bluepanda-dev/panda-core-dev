@@ -1,0 +1,28 @@
+.ui-selectable {
+  @apply text-neutral-600;
+  @apply hover:text-normal-900;
+}
+
+html.dark .ui-selectable {
+  @apply text-neutral-400;
+  @apply hover:text-neutral-100;
+}
+
+.ui-border-group {
+  @apply border border-neutral-600;
+}
+
+.ui-hoverable {
+  @apply hover:bg-neutral-100;
+  @apply hover:text-normal-900;
+}
+
+html.dark .ui-hoverable {
+  @apply hover:bg-normal-800;
+  @apply hover:text-neutral-200;
+}
+
+code {
+  border-radius: 10px;
+}
+
