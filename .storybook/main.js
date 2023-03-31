@@ -6,6 +6,14 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     'storybook-addon-themes',
+    {
+      name: '@storybook/addon-postcss',
+      options: {
+        postcssLoaderOptions: {
+          implementation: require('postcss'),
+        },
+      },
+    },
   ],
   stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
   framework: {
@@ -27,12 +35,6 @@ module.exports = {
         os: false,
       },
     }
-    config.module.rules.push({
-      test: /\.css$/,
-      use: ['style-loader', 'css-loader'],
-      include: path.resolve(__dirname, '../src'),
-    })
-    // Return the altered config
     return config
   },
 }

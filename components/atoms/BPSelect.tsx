@@ -1,18 +1,29 @@
 import * as Select from '@radix-ui/react-select'
-import classnames from 'classnames'
+import classNames from 'classnames'
 import React, { ReactNode } from 'react'
 import { FiCheck, FiChevronDown, FiChevronUp } from 'react-icons/fi'
+import {
+  SIZE,
+  DEFAULT_SIZE,
+  PADDINGS,
+  PADDINGS_X,
+  ROUNDED,
+  TYPE,
+  DEFAULT_TYPE,
+  TYPES,
+} from '@core/types/ui-kit'
 
 type SelectProps = {
   placeholder: string
-  children?: ReactNode
+  children: ReactNode
   ariaLabel?: string
+  size?: SIZE
+  type?: TYPE
   [x: string]: any
 }
 
 type SelectItemProps = {
   children?: ReactNode
-  className?: string
   value?: string
   [x: string]: any
 }
@@ -27,16 +38,15 @@ export const BPSelectLabel = Select.Label
 
 export const BPSelectItem = ({
   children,
-  className = '',
   value = '',
   ...props
 }: SelectItemProps) => {
+  const selectClass = classNames({
+    SelectItem: true,
+  })
+
   return (
-    <Select.Item
-      className={classnames('SelectItem', className)}
-      value={value}
-      {...props}
-    >
+    <Select.Item className={selectClass} value={value} {...props}>
       <Select.ItemText>{children}</Select.ItemText>
       <Select.ItemIndicator className="SelectItemIndicator">
         <FiCheck />
@@ -49,11 +59,30 @@ export function BPSelect({
   children,
   placeholder,
   ariaLabel,
+  size = DEFAULT_SIZE,
+  type = DEFAULT_TYPE,
   ...props
 }: SelectProps) {
+  const triggerClass = classNames({
+    [`text-${size === 'md' ? 'base' : size}`]: true,
+    [`p-${PADDINGS[size]}`]: true,
+    [`px-${PADDINGS_X[size]}`]: true,
+    [`${ROUNDED[size]}`]: true,
+    [`${TYPES[type].color}`]: true,
+    [`${TYPES[type].bg}`]: true,
+    [`${TYPES[type].border}`]: true,
+    [`${TYPES[type].other}`]: true,
+    SelectTrigger: true,
+  })
+
+  const viewportClass = classNames({
+    [`text-${size === 'md' ? 'base' : size}`]: true,
+    SelectViewport: true,
+  })
+
   return (
     <Select.Root {...props}>
-      <Select.Trigger className="SelectTrigger" aria-label={ariaLabel}>
+      <Select.Trigger className={triggerClass} aria-label={ariaLabel}>
         <Select.Value placeholder={placeholder} />
         <Select.Icon className="SelectIcon">
           <FiChevronDown />
@@ -64,7 +93,7 @@ export function BPSelect({
           <Select.ScrollUpButton className="SelectScrollButton">
             <FiChevronUp />
           </Select.ScrollUpButton>
-          <Select.Viewport className="SelectViewport">
+          <Select.Viewport className={viewportClass}>
             {children}
           </Select.Viewport>
           <Select.ScrollDownButton className="SelectScrollButton">

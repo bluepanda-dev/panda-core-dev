@@ -5,6 +5,7 @@ module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
+    './stories/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -114,4 +115,41 @@ module.exports = {
     },
   },
   plugins: [],
+  safelist: [
+    'underline',
+    'text-white',
+    'text-black',
+    'text-xs',
+    'text-sm',
+    'text-base',
+    'text-lg',
+    'text-xl',
+    'rounded-xs',
+    'rounded-sm',
+    'rounded-base',
+    'rounded-lg',
+    'rounded-xl',
+    'rounded-2xl',
+    'rounded-3xl',
+    'rounded-4xl',
+    'bg-white',
+    'dark:bg-black',
+    'focus:ring',
+    {
+      pattern: /p-\d+/,
+    },
+    {
+      pattern: /text-(blue)-\d+/,
+    },
+    {
+      pattern: /bg-(neutral|green|orange|white|red|primary|secondary)-\d+/,
+    },
+    {
+      pattern: /border-(neutral|green|orange|white|red|primary|secondary)-\d+/,
+    },
+    {
+      pattern: /ring-(neutral|green|orange|white|red|primary|secondary)-\d+/,
+      variants: ['focus'],
+    },
+  ],
 }

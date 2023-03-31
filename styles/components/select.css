@@ -2,23 +2,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
-  padding: 0 15px;
   line-height: 1;
-  height: 35px;
   gap: 5px;
-  @apply rounded-2xl border border-primary-600;
+  width: inherit;
 }
 
-.SelectTrigger:hover {
-  @apply border-primary-400;
-}
-
-.SelectTrigger:focus {
-  @apply shadow shadow-primary-600;
-}
-
-.SelectIcon {
+.SelectTrigger span {
+  white-space: nowrap;
 }
 
 .SelectContent {
@@ -28,8 +18,7 @@
 
 .SelectViewport {
   padding: 5px;
-  @apply bg-neutral-50 dark:bg-normal-900;
-  @apply rounded-2xl border border-primary-600;
+  @apply rounded-2xl bg-white dark:bg-black border px-1 py-3 border-normal-600 hover:border-normal-400;
 }
 
 .SelectItem {
@@ -41,7 +30,11 @@
   padding: 0 35px 0 25px;
   position: relative;
   user-select: none;
-  @apply text-primary-600;
+}
+
+.SelectItem[data-disabled] {
+  @apply text-normal-200 dark:text-normal-600;
+  pointer-events: none;
 }
 
 .SelectItem[data-disabled] {
@@ -51,7 +44,7 @@
 
 .SelectItem[data-highlighted] {
   outline: none;
-  @apply text-white bg-primary-600;
+  @apply dark:text-white bg-black/10 dark:bg-white/10;
 }
 
 .SelectLabel {
@@ -80,7 +73,6 @@
   align-items: center;
   justify-content: center;
   height: 25px;
-  color: var(--violet11);
   cursor: default;
 }
 
