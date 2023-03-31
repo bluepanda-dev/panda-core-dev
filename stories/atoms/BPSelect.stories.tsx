@@ -81,38 +81,51 @@ export const Sizes: Story = {
 
 export const Types: Story = {
   render: () => (
-    <div className="flex flex-col gap-8 w-full items-center">
-      <BPSelect placeholder="Default type">
-        <DefaultList />
-      </BPSelect>
+    <div className="w-full flex gap-6">
+      <div className="flex flex-col gap-8 items-center">
+        <BPSelect placeholder="Primary type" type="primary">
+          <DefaultList />
+        </BPSelect>
 
-      <BPSelect placeholder="Primary type" type="primary">
-        <DefaultList />
-      </BPSelect>
+        <BPSelect placeholder="Secodnary type" type="secondary">
+          <DefaultList />
+        </BPSelect>
 
-      <BPSelect placeholder="Secodnary type" type="secondary">
-        <DefaultList />
-      </BPSelect>
+        <BPSelect placeholder="Success type" type="success">
+          <DefaultList />
+        </BPSelect>
 
-      <BPSelect placeholder="Success type" type="success">
-        <DefaultList />
-      </BPSelect>
+        <BPSelect placeholder="Danger type" type="danger">
+          <DefaultList />
+        </BPSelect>
 
-      <BPSelect placeholder="Danger type" type="danger">
-        <DefaultList />
-      </BPSelect>
+        <BPSelect placeholder="Caution type" type="caution">
+          <DefaultList />
+        </BPSelect>
 
-      <BPSelect placeholder="Caution type" type="caution">
-        <DefaultList />
-      </BPSelect>
+        <BPSelect placeholder="Light type" type="light">
+          <DefaultList />
+        </BPSelect>
 
-      <BPSelect placeholder="Light type" type="light">
-        <DefaultList />
-      </BPSelect>
+        <BPSelect placeholder="Link type" type="link">
+          <DefaultList />
+        </BPSelect>
+      </div>
+      <div className="flex flex-col gap-8 items-center">
+        <BPSelect placeholder="Default type">
+          <DefaultList />
+        </BPSelect>
 
-      <BPSelect placeholder="Link type" type="link">
-        <DefaultList />
-      </BPSelect>
+        <BPSelect placeholder="Second type" type="secondary" outline>
+          <DefaultList />
+        </BPSelect>
+        <BPSelect placeholder="Success type" type="success" outline>
+          <DefaultList />
+        </BPSelect>
+        <BPSelect placeholder="Danger type" type="danger" outline>
+          <DefaultList />
+        </BPSelect>
+      </div>
     </div>
   ),
 }

@@ -139,13 +139,16 @@ module.exports = {
       pattern: /p-\d+/,
     },
     {
-      pattern: /text-(blue)-\d+/,
+      pattern: /text-(secondary|red|blue|green)-\d+/,
+      variants: ['hover'],
     },
     {
       pattern: /bg-(neutral|green|orange|white|red|primary|secondary)-\d+/,
+      variants: ['hover'],
     },
     {
       pattern: /border-(neutral|green|orange|white|red|primary|secondary)-\d+/,
+      variants: ['hover'],
     },
     {
       pattern: /ring-(neutral|green|orange|white|red|primary|secondary)-\d+/,

@@ -19,6 +19,7 @@ type SelectProps = {
   ariaLabel?: string
   size?: SIZE
   type?: TYPE
+  outline?: boolean
   [x: string]: any
 }
 
@@ -61,6 +62,7 @@ export function BPSelect({
   ariaLabel,
   size = DEFAULT_SIZE,
   type = DEFAULT_TYPE,
+  outline = false,
   ...props
 }: SelectProps) {
   const triggerClass = classNames({
@@ -72,6 +74,7 @@ export function BPSelect({
     [`${TYPES[type].bg}`]: true,
     [`${TYPES[type].border}`]: true,
     [`${TYPES[type].other}`]: true,
+    [`${TYPES[type].outline}`]: outline,
     SelectTrigger: true,
   })
 
