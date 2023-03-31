@@ -119,6 +119,7 @@ module.exports = {
     'underline',
     'text-white',
     'text-black',
+    'dark:text-black',
     'text-xs',
     'text-sm',
     'text-base',

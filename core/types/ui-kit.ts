@@ -55,15 +55,15 @@ export const TYPES = {
     outline: '',
   },
   primary: {
-    color: 'text-white',
+    color: 'text-white dark:text-black',
     border: 'border border-transparent',
-    bg: 'bg-primary-800 hover:bg-primary-700/70',
+    bg: 'bg-primary-600 hover:bg-primary-700/70',
     other:
       'active:bg-primary-700 focus:outline-none focus:ring focus:ring-primary-400',
     outline: '',
   },
   secondary: {
-    color: 'text-white',
+    color: 'text-white dark:text-black',
     border: '',
     bg: 'bg-secondary-800  hover:bg-secondary-700/70',
     other:
@@ -72,7 +72,7 @@ export const TYPES = {
       'bg-white dark:bg-black border border-secondary-600 text-secondary-600 hover:border-secondary-500 hover:text-secondary-500',
   },
   success: {
-    color: 'text-white',
+    color: 'text-white dark:text-black',
     border: '',
     bg: 'bg-green-500 hover:bg-green-700/70',
     other:
@@ -81,7 +81,7 @@ export const TYPES = {
       'bg-white dark:bg-black border border-green-600 text-green-600 hover:border-green-500 hover:text-green-500',
   },
   danger: {
-    color: 'text-white',
+    color: 'text-white dark:text-black',
     border: '',
     bg: 'bg-red-600 hover:bg-red-700/70',
     other: 'active:bg-red-700 focus:outline-none focus:ring focus:ring-red-400',
@@ -89,7 +89,7 @@ export const TYPES = {
       'bg-white dark:bg-black border border-red-600 text-red-600 hover:border-red-500 hover:text-red-500',
   },
   caution: {
-    color: 'text-white',
+    color: 'text-white dark:text-black',
     border: 'border border-transparent',
     bg: 'bg-orange-500 hover:bg-orange-700/70',
     other:
@@ -97,7 +97,7 @@ export const TYPES = {
     outline: '',
   },
   light: {
-    color: '',
+    color: 'text-white dark:text-black',
     border: 'border border-transparent',
     bg: 'bg-neutral-500 hover:bg-neutral-700/70',
     other:
