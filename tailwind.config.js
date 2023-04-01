@@ -77,6 +77,8 @@ module.exports = {
           900: '#744e0f',
         },
         normal: {
+          10: '#efefef',
+          50: '#bdbdbd',
           100: '#808080',
           200: '#707070',
           300: '#606060',
@@ -117,9 +119,6 @@ module.exports = {
   plugins: [],
   safelist: [
     'underline',
-    'text-white',
-    'text-black',
-    'dark:text-black',
     'text-xs',
     'text-sm',
     'text-base',
@@ -133,26 +132,35 @@ module.exports = {
     'rounded-2xl',
     'rounded-3xl',
     'rounded-4xl',
-    'bg-white',
-    'dark:bg-black',
     'focus:ring',
+    'p-[3px] bg-gradient-to-r from-purple-600 from-10% via-sky-500 via-30% via-red-500 via-60% via-orange-500 via-80% to-yellow-500 to-90%',
     {
       pattern: /p-\d+/,
     },
     {
-      pattern: /text-(secondary|red|blue|green)-\d+/,
+      pattern: /text-(white|black)/,
+      variants: ['hover', 'dark'],
+    },
+    {
+      pattern: /bg-(white|black)/,
+      variants: ['hover', 'dark'],
+    },
+    {
+      pattern:
+        /text-(neutral|normal|secondary|red|blue|green|orange|primary)-\d+/,
+      variants: ['hover', 'dark'],
+    },
+    {
+      pattern: /bg-(neutral|normal|green|orange|red|primary|secondary)-\d+/,
+      variants: ['hover', 'dark', 'dark:hover'],
+    },
+    {
+      pattern:
+        /border-(neutral|normal|green|orange|white|red|primary|secondary)-\d+/,
       variants: ['hover'],
     },
     {
-      pattern: /bg-(neutral|green|orange|white|red|primary|secondary)-\d+/,
-      variants: ['hover'],
-    },
-    {
-      pattern: /border-(neutral|green|orange|white|red|primary|secondary)-\d+/,
-      variants: ['hover'],
-    },
-    {
-      pattern: /ring-(neutral|green|orange|white|red|primary|secondary)-\d+/,
+      pattern: /ring-(normal|green|orange|white|red|primary|secondary)-\d+/,
       variants: ['focus'],
     },
   ],

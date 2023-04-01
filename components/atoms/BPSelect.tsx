@@ -2,15 +2,15 @@ import * as Select from '@radix-ui/react-select'
 import classNames from 'classnames'
 import React, { ReactNode } from 'react'
 import { FiCheck, FiChevronDown, FiChevronUp } from 'react-icons/fi'
+import { MagicContainer, Palette } from '@core/helpers/palette'
 import {
   SIZE,
   DEFAULT_SIZE,
   PADDINGS,
   PADDINGS_X,
   ROUNDED,
-  TYPE,
-  DEFAULT_TYPE,
-  TYPES,
+  UI_TYPE,
+  UI_DEFAULT_TYPE,
 } from '@core/types/ui-kit'
 
 type SelectProps = {
@@ -18,8 +18,9 @@ type SelectProps = {
   children: ReactNode
   ariaLabel?: string
   size?: SIZE
-  type?: TYPE
+  type?: UI_TYPE
   outline?: boolean
+  magic?: boolean
   [x: string]: any
 }
 
@@ -61,8 +62,9 @@ export function BPSelect({
   placeholder,
   ariaLabel,
   size = DEFAULT_SIZE,
-  type = DEFAULT_TYPE,
+  type = UI_DEFAULT_TYPE,
   outline = false,
+  magic = false,
   ...props
 }: SelectProps) {
   const triggerClass = classNames({
@@ -70,11 +72,12 @@ export function BPSelect({
     [`p-${PADDINGS[size]}`]: true,
     [`px-${PADDINGS_X[size]}`]: true,
     [`${ROUNDED[size]}`]: true,
-    [`${TYPES[type].color}`]: !outline,
-    [`${TYPES[type].bg}`]: !outline,
-    [`${TYPES[type].border}`]: !outline,
-    [`${TYPES[type].other}`]: true,
-    [`${TYPES[type].outline}`]: outline,
+    [`${Palette[type].focus}`]: true,
+    [`${Palette[type].border}`]: !magic,
+    [`${Palette[type].link}`]: true,
+    [`${Palette[type].color}`]: !outline,
+    [`${Palette[type].bg}`]: !outline,
+    [`${Palette[type].outline}`]: outline,
     SelectTrigger: true,
   })
 
@@ -83,14 +86,24 @@ export function BPSelect({
     SelectViewport: true,
   })
 
+  const Trigger = () => (
+    <Select.Trigger className={triggerClass} aria-label={ariaLabel}>
+      <Select.Value placeholder={placeholder} />
+      <Select.Icon className="SelectIcon">
+        <FiChevronDown />
+      </Select.Icon>
+    </Select.Trigger>
+  )
+
   return (
     <Select.Root {...props}>
-      <Select.Trigger className={triggerClass} aria-label={ariaLabel}>
-        <Select.Value placeholder={placeholder} />
-        <Select.Icon className="SelectIcon">
-          <FiChevronDown />
-        </Select.Icon>
-      </Select.Trigger>
+      {magic ? (
+        <div className={`${ROUNDED[size]} ${MagicContainer}`}>
+          <Trigger />
+        </div>
+      ) : (
+        <Trigger />
+      )}
       <Select.Portal container={document.getElementById('BPportal')}>
         <Select.Content className="SelectContent">
           <Select.ScrollUpButton className="SelectScrollButton">

@@ -83,36 +83,41 @@ export const Types: Story = {
   render: () => (
     <div className="w-full flex gap-6">
       <div className="flex flex-col gap-8 items-center">
+        <BPSelect placeholder="Default type">
+          <DefaultList />
+        </BPSelect>
+
         <BPSelect placeholder="Primary type" type="primary">
           <DefaultList />
         </BPSelect>
-
-        <BPSelect placeholder="Secodnary type" type="secondary">
+        <BPSelect placeholder="Secondary type" type="secondary">
           <DefaultList />
         </BPSelect>
-
         <BPSelect placeholder="Success type" type="success">
           <DefaultList />
         </BPSelect>
-
         <BPSelect placeholder="Danger type" type="danger">
           <DefaultList />
         </BPSelect>
-
         <BPSelect placeholder="Caution type" type="caution">
           <DefaultList />
         </BPSelect>
-
         <BPSelect placeholder="Light type" type="light">
           <DefaultList />
         </BPSelect>
-
         <BPSelect placeholder="Link type" type="link">
+          <DefaultList />
+        </BPSelect>
+        <BPSelect placeholder="Magic type" magic>
           <DefaultList />
         </BPSelect>
       </div>
       <div className="flex flex-col gap-8 items-center">
-        <BPSelect placeholder="Default type">
+        <BPSelect placeholder="Default type" outline>
+          <DefaultList />
+        </BPSelect>
+
+        <BPSelect placeholder="Primary type" type="primary" outline>
           <DefaultList />
         </BPSelect>
 
@@ -125,9 +130,16 @@ export const Types: Story = {
         <BPSelect placeholder="Danger type" type="danger" outline>
           <DefaultList />
         </BPSelect>
+        <BPSelect placeholder="Caution type" type="caution" outline>
+          <DefaultList />
+        </BPSelect>
+        <BPSelect placeholder="Light type" type="light" outline>
+          <DefaultList />
+        </BPSelect>
+        <BPSelect placeholder="Link type" type="link" outline>
+          <DefaultList />
+        </BPSelect>
       </div>
     </div>
   ),
 }
-
-// TODO magic one with multi color bg
