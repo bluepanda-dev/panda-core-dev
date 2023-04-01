@@ -78,6 +78,7 @@ export function BPSelect({
     [`${Palette[type].color}`]: !outline,
     [`${Palette[type].bg}`]: !outline,
     [`${Palette[type].outline}`]: outline,
+    'transition ease-in-out': true,
     SelectTrigger: true,
   })
 

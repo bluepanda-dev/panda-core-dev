@@ -16,6 +16,7 @@ type BPButtonProps = {
   icon?: React.ReactNode
   children?: React.ReactNode
   isLoading?: boolean
+  isDisabled?: boolean
   size?: SIZE
   type?: UI_TYPE
   outline?: boolean
@@ -31,6 +32,7 @@ const BPButton = ({
   outline = false,
   magic = false,
   isLoading = false,
+  isDisabled = false,
   onClick = () => {},
 }: BPButtonProps) => {
   const buttonClass = classNames({
@@ -44,7 +46,9 @@ const BPButton = ({
     [`${Palette[type].color}`]: !outline,
     [`${Palette[type].bg}`]: !outline,
     [`${Palette[type].outline}`]: outline,
-    'whitespace-nowrap': true,
+    'transition ease-in-out': true,
+    'whitespace-nowrap flex items-center gap-2': true,
+    'select-none cursor-not-allowed': isDisabled || isLoading,
   })
 
   const Button = () => (
