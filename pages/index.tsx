@@ -1,12 +1,6 @@
 import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import {
-  BPSelect,
-  BPSelectGroup,
-  BPSelectLabel,
-  BPSelectItem,
-} from '@components/atoms/BPSelect'
 import Layout from '@components/layout'
 import ComponentsSample from '@components/molecules/ComponentsSample'
 import CodeExample from '@components/organisms/CodeExample'
@@ -40,17 +34,6 @@ export default function Home() {
         <meta property="og:image" content="/pandas/group.png" />
       </Head>
       <main className="flex flex-col gap-y-36 md:gap-y-48 mt-12">
-        <BPSelect placeholder="Select my item">
-          <BPSelectGroup>
-            <BPSelectLabel className="SelectLabel">Fruits</BPSelectLabel>
-            <BPSelectItem value="apple">Apple</BPSelectItem>
-            <BPSelectItem value="banana">Banana</BPSelectItem>
-            <BPSelectItem value="blueberry">Blueberry</BPSelectItem>
-            <BPSelectItem value="grapes">Grapes</BPSelectItem>
-            <BPSelectItem value="pineapple">Pineapple</BPSelectItem>
-          </BPSelectGroup>
-        </BPSelect>
-
         <Hero />
         <Features />
         <WhyUs />
