@@ -7,12 +7,6 @@ import React, { useEffect, useState } from 'react'
 import { FiSun, FiMenu } from 'react-icons/fi'
 import { Theme, ToastContainer } from 'react-toastify'
 import { Statsig, useGate, useLayer } from 'statsig-react'
-import {
-  BPSelect,
-  BPSelectGroup,
-  BPSelectItem,
-  BPSelectLabel,
-} from '@components/atoms/BPSelect'
 import AlertBanner from '@components/molecules/AlertBanner'
 import Dropdown from '@components/molecules/Dropdown'
 import { NAME } from '@core/helpers/branding'
@@ -118,24 +112,6 @@ export default function NavBar() {
           {t('youAreInDemo')}
         </div>
         <div className="z-20 items-center gap-2 hidden md:flex">
-          <BPSelect placeholder="Select my item">
-            <BPSelectGroup>
-              <BPSelectLabel className="SelectLabel">Fruits</BPSelectLabel>
-              <BPSelectItem value="apple">Apple</BPSelectItem>
-              <BPSelectItem value="banana">Banana</BPSelectItem>
-              <BPSelectItem value="blueberry">Blueberry</BPSelectItem>
-              <BPSelectItem value="grapes">Grapes</BPSelectItem>
-              <BPSelectItem value="pineapple">Pineapple</BPSelectItem>
-            </BPSelectGroup>
-            <BPSelectGroup>
-              <BPSelectLabel className="SelectLabel">Fruits</BPSelectLabel>
-              <BPSelectItem value="apple">Apple</BPSelectItem>
-              <BPSelectItem value="banana">Banana</BPSelectItem>
-              <BPSelectItem value="blueberry">Blueberry</BPSelectItem>
-              <BPSelectItem value="grapes">Grapes</BPSelectItem>
-              <BPSelectItem value="pineapple">Pineapple</BPSelectItem>
-            </BPSelectGroup>
-          </BPSelect>
           {isSettingsVisible && (
             <Dropdown options={AccountOptions} title={t('settings') ?? ''} />
           )}
