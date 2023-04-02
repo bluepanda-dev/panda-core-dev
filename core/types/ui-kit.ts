@@ -23,7 +23,7 @@ export const UI_TYPES_CONFIG: UIConfig = {
   default: {
     baseColor: 'normal',
     hasBorder: false,
-    textColor: 'text-normal-50',
+    textColor: 'text-normal-100',
     placeholderColor: 'dark:placeholder:text-normal-100',
   },
   danger: { baseColor: 'red', hasBorder: true },
@@ -33,10 +33,10 @@ export const UI_TYPES_CONFIG: UIConfig = {
   secondary: { baseColor: 'secondary', hasBorder: true },
   light: { baseColor: 'neutral', hasBorder: true },
   link: {
-    baseColor: null,
+    baseColor: '',
     hasBorder: false,
     isLink: true,
-    textColor: 'dark:normal-100',
+    textColor: 'text-normal-400 dark:text-normal-50',
     placeholderColor: 'dark:placeholder:text-normal-100',
   },
 }
@@ -73,6 +73,14 @@ export const ROUNDED = {
   xs: 'rounded-2xl',
   sm: 'rounded-3xl',
   md: 'rounded-3xl',
-  lg: 'rounded-3xl',
-  xl: 'rounded-3xl',
+  lg: 'rounded-full',
+  xl: 'rounded-full',
+}
+
+export const ICON_SIZE = {
+  xs: 'h-5 w-5',
+  sm: 'h-6 w-6',
+  md: 'h-8 w-8',
+  lg: 'h-8 w-8',
+  xl: 'h-12 w-12',
 }

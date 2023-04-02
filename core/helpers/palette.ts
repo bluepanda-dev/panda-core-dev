@@ -30,12 +30,12 @@ function buildOutlinePalette({
     if (textColor) {
       return textColor
     } else if (!baseColor) {
-      return `text-normal-400 hover:text-normal-100  ${DEFAULT_HOVER_BG}`
+      return `text-normal-400 hover:text-normal-100`
     } else {
-      return `text-${baseColor}-600 hover:text-${baseColor}-700  ${DEFAULT_HOVER_BG}`
+      return `text-${baseColor}-600 hover:text-${baseColor}-700`
     }
   }
-  const outline = `bg-white dark:bg-black border border-${baseColor}-600  hover:border-${baseColor}-500  `
+  const outline = `border border-${baseColor}-600  hover:border-${baseColor}-500  `
   const placeholder = () => {
     if (placeholderColor) {
       return `placeholder:italic ${placeholderColor}`
@@ -50,7 +50,7 @@ function buildOutlinePalette({
 
   return {
     color: color(),
-    bg: 'hover:opacity-90',
+    bg: `bg-white dark:bg-black dark:hover:bg-${baseColor}-900/30`,
     focus,
     outline: !baseColor
       ? `bg-white dark:bg-black border border-black dark:border-white hover:opacity-90 ${DEFAULT_HOVER_BG}`
@@ -74,7 +74,7 @@ function buildPalette({
     } else if (!baseColor) {
       return `text-normal-800 dark:text-normal-50 ${DEFAULT_HOVER_BG}`
     } else {
-      return `text-normal-100 dark:text-normal-900`
+      return `text-white dark:text-normal-900`
     }
   }
   const placeholder = () => {

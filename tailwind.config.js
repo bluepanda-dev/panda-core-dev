@@ -141,6 +141,18 @@ module.exports = {
       pattern: /p-\d+/,
     },
     {
+      pattern: /h-\d+/,
+    },
+    {
+      pattern: /w-\d+/,
+    },
+    {
+      pattern: /min-w-.*/,
+    },
+    {
+      pattern: /min-h-.*/,
+    },
+    {
       pattern: /text-(white|black)/,
       variants: ['hover', 'dark', 'placeholder', 'dark:placeholder'],
     },
