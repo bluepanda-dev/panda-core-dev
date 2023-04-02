@@ -11,6 +11,7 @@
 @import './components/link.css';
 @import './components/select.css';
 @import './components/heading.css';
+@import './components/accordion.css';
 
 
 * {

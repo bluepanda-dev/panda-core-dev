@@ -10,6 +10,7 @@
   "rules": {
     "react-hooks/exhaustive-deps": 0,
     "@next/next/no-img-element": "off",
+    "react/display-name": "off",
     "import/order": [
       1,
       {

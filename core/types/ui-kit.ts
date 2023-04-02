@@ -23,7 +23,7 @@ export const UI_TYPES_CONFIG: UIConfig = {
   default: {
     baseColor: 'normal',
     hasBorder: false,
-    textColor: 'text-normal-100',
+    textColor: 'text-normal-50',
     placeholderColor: 'dark:placeholder:text-normal-100',
   },
   danger: { baseColor: 'red', hasBorder: true },

@@ -4,11 +4,12 @@ export type PaletteConfigValue = {
   color: string
   bg: string
   focus: string
-  outline: string
   border: string
   link: string
   placeholder: string
 }
+
+// TODO separate hover
 
 export type PaletteConfig = {
   [x: string]: Record<UI_TYPE, PaletteConfigValue>
@@ -35,7 +36,6 @@ function buildOutlinePalette({
       return `text-${baseColor}-600 hover:text-${baseColor}-700`
     }
   }
-  const outline = `border border-${baseColor}-600  hover:border-${baseColor}-500  `
   const placeholder = () => {
     if (placeholderColor) {
       return `placeholder:italic ${placeholderColor}`
@@ -52,11 +52,8 @@ function buildOutlinePalette({
     color: color(),
     bg: `bg-white dark:bg-black dark:hover:bg-${baseColor}-900/30`,
     focus,
-    outline: !baseColor
-      ? `bg-white dark:bg-black border border-black dark:border-white hover:opacity-90 ${DEFAULT_HOVER_BG}`
-      : outline,
     link,
-    border: '',
+    border: `border border-black dark:border-white border border-${baseColor}-600  hover:border-${baseColor}-500`,
     placeholder: placeholder(),
   }
 }
@@ -102,7 +99,6 @@ function buildPalette({
         ? 'border border-black dark:border-white'
         : border,
     placeholder: placeholder(),
-    outline: '',
   }
 }
 
