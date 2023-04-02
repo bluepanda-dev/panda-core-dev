@@ -7,6 +7,7 @@ import {
   BPSelectLabel,
   BPSelectSeparator,
 } from '@components/atoms/BPSelect'
+import { UI_TYPES_CONFIG, UI_TYPE } from '@core/types/ui-kit'
 
 export default {
   title: 'Atoms/BPSelect',
@@ -83,60 +84,24 @@ export const Types: Story = {
   render: () => (
     <div className="w-full flex gap-6">
       <div className="flex flex-col gap-8 items-center">
-        <BPSelect placeholder="Default type">
-          <DefaultList />
-        </BPSelect>
-
-        <BPSelect placeholder="Primary type" type="primary">
-          <DefaultList />
-        </BPSelect>
-        <BPSelect placeholder="Secondary type" type="secondary">
-          <DefaultList />
-        </BPSelect>
-        <BPSelect placeholder="Success type" type="success">
-          <DefaultList />
-        </BPSelect>
-        <BPSelect placeholder="Danger type" type="danger">
-          <DefaultList />
-        </BPSelect>
-        <BPSelect placeholder="Caution type" type="caution">
-          <DefaultList />
-        </BPSelect>
-        <BPSelect placeholder="Light type" type="light">
-          <DefaultList />
-        </BPSelect>
-        <BPSelect placeholder="Link type" type="link">
-          <DefaultList />
-        </BPSelect>
-        <BPSelect placeholder="Magic type" magic>
-          <DefaultList />
-        </BPSelect>
+        {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
+          <BPSelect key={index} type={key as UI_TYPE} placeholder={`${key}...`}>
+            <DefaultList />
+          </BPSelect>
+        ))}
       </div>
       <div className="flex flex-col gap-8 items-center">
-        <BPSelect placeholder="Default type" outline>
-          <DefaultList />
-        </BPSelect>
-
-        <BPSelect placeholder="Primary type" type="primary" outline>
-          <DefaultList />
-        </BPSelect>
-
-        <BPSelect placeholder="Second type" type="secondary" outline>
-          <DefaultList />
-        </BPSelect>
-        <BPSelect placeholder="Success type" type="success" outline>
-          <DefaultList />
-        </BPSelect>
-        <BPSelect placeholder="Danger type" type="danger" outline>
-          <DefaultList />
-        </BPSelect>
-        <BPSelect placeholder="Caution type" type="caution" outline>
-          <DefaultList />
-        </BPSelect>
-        <BPSelect placeholder="Light type" type="light" outline>
-          <DefaultList />
-        </BPSelect>
-        <BPSelect placeholder="Link type" type="link" outline>
+        {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
+          <BPSelect
+            key={index}
+            type={key as UI_TYPE}
+            placeholder={`${key}...`}
+            outline
+          >
+            <DefaultList />
+          </BPSelect>
+        ))}
+        <BPSelect placeholder="Magic type" magic outline>
           <DefaultList />
         </BPSelect>
       </div>

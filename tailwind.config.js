@@ -118,6 +118,7 @@ module.exports = {
   },
   plugins: [],
   safelist: [
+    'placeholder:italic',
     'underline',
     'text-xs',
     'text-sm',
@@ -133,13 +134,15 @@ module.exports = {
     'rounded-3xl',
     'rounded-4xl',
     'focus:ring',
-    'p-[3px] bg-gradient-to-r from-purple-600 from-10% via-sky-500 via-30% via-red-500 via-60% via-orange-500 via-80% to-yellow-500 to-90%',
+    'active:bg-yellow-700 focus-within:outline-none focus-within:ring focus-within:ring-purple-400  p-[3px] bg-gradient-to-r from-purple-600 from-10% via-sky-500 via-30% via-red-500 via-60% via-orange-500 via-80% to-yellow-500 to-90%',
+    'hover:opacity-90',
+    'ring-inset',
     {
       pattern: /p-\d+/,
     },
     {
       pattern: /text-(white|black)/,
-      variants: ['hover', 'dark'],
+      variants: ['hover', 'dark', 'placeholder', 'dark:placeholder'],
     },
     {
       pattern: /bg-(white|black)/,
@@ -148,7 +151,7 @@ module.exports = {
     {
       pattern:
         /text-(neutral|normal|secondary|red|blue|green|orange|primary)-\d+/,
-      variants: ['hover', 'dark'],
+      variants: ['hover', 'dark', 'placeholder', 'dark:placeholder'],
     },
     {
       pattern: /bg-(neutral|normal|green|orange|red|primary|secondary)-\d+/,

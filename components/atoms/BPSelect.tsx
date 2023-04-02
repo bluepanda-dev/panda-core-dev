@@ -2,7 +2,12 @@ import * as Select from '@radix-ui/react-select'
 import classNames from 'classnames'
 import React, { ReactNode } from 'react'
 import { FiCheck, FiChevronDown, FiChevronUp } from 'react-icons/fi'
-import { MagicContainer, Palette } from '@core/helpers/palette'
+import {
+  getMagicPalette,
+  getPalette,
+  MagicContainer,
+  Palette,
+} from '@core/helpers/palette'
 import {
   SIZE,
   DEFAULT_SIZE,
@@ -67,17 +72,21 @@ export function BPSelect({
   magic = false,
   ...props
 }: SelectProps) {
+  const superSet = outline ? 'outline' : 'normal'
+  const palette = getPalette(superSet, type)
+  const magicPalette = getMagicPalette()
+
   const triggerClass = classNames({
     [`text-${size === 'md' ? 'base' : size}`]: true,
     [`p-${PADDINGS[size]}`]: true,
     [`px-${PADDINGS_X[size]}`]: true,
     [`${ROUNDED[size]}`]: true,
-    [`${Palette[type].focus}`]: true,
-    [`${Palette[type].border}`]: !magic,
-    [`${Palette[type].link}`]: true,
-    [`${Palette[type].color}`]: !outline,
-    [`${Palette[type].bg}`]: !outline,
-    [`${Palette[type].outline}`]: outline,
+    [`${palette.focus}`]: true,
+    [`${palette.border}`]: !magic,
+    [`${palette.link}`]: true,
+    [`${palette.color}`]: true,
+    [`${palette.bg}`]: true,
+    [`${palette.outline}`]: true,
     'transition ease-in-out': true,
     SelectTrigger: true,
   })
@@ -95,11 +104,15 @@ export function BPSelect({
       </Select.Icon>
     </Select.Trigger>
   )
+  const wrapperClass = classNames({
+    [`${ROUNDED[size]} ${magicPalette}`]: true,
+    [props.className]: props.className,
+  })
 
   return (
     <Select.Root {...props}>
       {magic ? (
-        <div className={`${ROUNDED[size]} ${MagicContainer}`}>
+        <div className={wrapperClass}>
           <Trigger />
         </div>
       ) : (

@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import React from 'react'
-import { FiLoader } from 'react-icons/fi'
-import { getMagicPalette, getPalette } from '@core/helpers/palette'
+import { getPalette, getMagicPalette } from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
   PADDINGS,
@@ -12,12 +11,7 @@ import {
   UI_TYPE,
 } from '@core/types/ui-kit'
 
-type BPButtonProps = {
-  icon?: React.ReactNode
-  rightIcon?: React.ReactNode
-  children?: React.ReactNode
-  isLoading?: boolean
-  loadingText?: string
+type BPInputProps = {
   isDisabled?: boolean
   size?: SIZE
   type?: UI_TYPE
@@ -26,73 +20,58 @@ type BPButtonProps = {
   [x: string]: any
 }
 
-const BPButton = ({
-  children,
-  icon = null,
-  rightIcon = null,
+const BPInput = ({
+  isDisabled = false,
   size = DEFAULT_SIZE,
   type = UI_DEFAULT_TYPE,
   outline = false,
   magic = false,
-  isLoading = false,
-  isDisabled = false,
-  loadingText = '',
   ...props
-}: BPButtonProps) => {
+}: BPInputProps) => {
   const superSet = outline ? 'outline' : 'normal'
   const palette = getPalette(superSet, type)
   const magicPalette = getMagicPalette()
 
-  const buttonClass = classNames({
+  const inputClass = classNames({
     [`text-${size === 'md' ? 'base' : size}`]: true,
     [`p-${PADDINGS[size]}`]: true,
     [`px-${PADDINGS_X[size]}`]: true,
     [`${ROUNDED[size]}`]: true,
-    [`${palette.focus}`]: true,
+    [`${palette.focus}`]: !magic,
     [`${palette.border}`]: !magic,
     [`${palette.link}`]: true,
     [`${palette.color}`]: true,
     [`${palette.bg}`]: true,
     [`${palette.outline}`]: true,
+    [`${palette.placeholder}`]: true,
     'transition ease-in-out': true,
     'whitespace-nowrap flex items-center gap-2': true,
-    'select-none cursor-not-allowed	': isDisabled || isLoading,
+    'outline-none': magic,
+    'select-none cursor-not-allowed	': isDisabled,
     'opacity-70': isDisabled && !magic,
     [props.className]: props.className,
   })
 
   const wrapperClass = classNames({
-    'select-none cursor-not-allowed	': isDisabled || isLoading,
+    'select-none cursor-not-allowed	': isDisabled,
     'opacity-70': isDisabled,
     [`${ROUNDED[size]} ${magicPalette}`]: true,
     [props.className]: props.className,
   })
 
-  const Button = () => (
-    <button {...props} className={buttonClass}>
-      {isLoading && (
-        <span className="flex gap-2 items-center">
-          <FiLoader className="animate-spin" />
-          {loadingText && <span>{loadingText}</span>}
-        </span>
-      )}
-      {!isLoading && icon && <i>{icon}</i>}
-      {!isLoading && children && <span>{children}</span>}
-      {!isLoading && rightIcon && <i>{rightIcon}</i>}
-    </button>
-  )
+  const Input = () => <input {...props} className={inputClass} />
 
   return (
     <>
       {magic ? (
         <div className={wrapperClass}>
-          <Button />
+          <Input />
         </div>
       ) : (
-        <Button />
+        <Input />
       )}
     </>
   )
 }
 
-export default BPButton
+export default BPInput

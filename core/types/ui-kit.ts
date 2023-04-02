@@ -2,6 +2,8 @@ export type SIZE = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export interface UIBaseConfig {
   baseColor: string | null
+  textColor?: string
+  placeholderColor?: string
   hasBorder?: boolean
   isLink?: boolean
 }
@@ -18,14 +20,25 @@ export type UI_TYPE =
 export type UIConfig = Record<UI_TYPE, UIBaseConfig>
 
 export const UI_TYPES_CONFIG: UIConfig = {
-  default: { baseColor: null, hasBorder: true },
+  default: {
+    baseColor: 'normal',
+    hasBorder: false,
+    textColor: 'text-normal-50',
+    placeholderColor: 'dark:placeholder:text-normal-100',
+  },
   danger: { baseColor: 'red', hasBorder: true },
   caution: { baseColor: 'orange', hasBorder: true },
   success: { baseColor: 'green', hasBorder: true },
   primary: { baseColor: 'primary', hasBorder: true },
   secondary: { baseColor: 'secondary', hasBorder: true },
   light: { baseColor: 'neutral', hasBorder: true },
-  link: { baseColor: null, hasBorder: false, isLink: true },
+  link: {
+    baseColor: null,
+    hasBorder: false,
+    isLink: true,
+    textColor: 'dark:normal-100',
+    placeholderColor: 'dark:placeholder:text-normal-100',
+  },
 }
 
 export const UI_DEFAULT_TYPE = 'default'

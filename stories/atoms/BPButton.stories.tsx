@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 import { FiAlertCircle, FiStar } from 'react-icons/fi'
 import BPButton from '@components/atoms/BPButton'
+import { UI_TYPES_CONFIG, UI_TYPE } from '@core/types/ui-kit'
 
 export default {
   title: 'Atoms/BPButton',
@@ -18,9 +19,12 @@ export const Basic: Story = {
 export const Icons: Story = {
   render: () => (
     <div className="flex gap-8 w-full items-center">
-      <BPButton icon={<FiAlertCircle />}>Button</BPButton>
-      <BPButton icon={<FiStar />} magic>
-        Button
+      <BPButton icon={<FiAlertCircle />}>Normal Icon</BPButton>
+      <BPButton icon={<FiStar />} magic outline>
+        Normal Icon
+      </BPButton>
+      <BPButton rightIcon={<FiStar />} magic outline>
+        Right Icon
       </BPButton>
     </div>
   ),
@@ -34,7 +38,10 @@ export const Statuses: Story = {
         <BPButton isLoading={true} icon={<FiAlertCircle />}>
           Button
         </BPButton>
-        <BPButton isLoading={true} magic>
+        <BPButton isLoading={true} magic outline>
+          Button
+        </BPButton>
+        <BPButton isLoading={true} loadingText="Loading text..." magic outline>
           Button
         </BPButton>
       </div>
@@ -43,7 +50,13 @@ export const Statuses: Story = {
         <BPButton isDisabled={true} icon={<FiAlertCircle />}>
           Button
         </BPButton>
-        <BPButton isDisabled={true} icon={<FiAlertCircle />} magic>
+        <BPButton isDisabled={true} icon={<FiAlertCircle />} magic outline>
+          Button
+        </BPButton>
+      </div>
+      <div className="text-xl text-primary-600">Click</div>
+      <div className="flex gap-8 w-full items-center">
+        <BPButton icon={<FiAlertCircle />} onClick={() => alert('example')}>
           Button
         </BPButton>
       </div>
@@ -69,40 +82,22 @@ export const Types: Story = {
     <div className="w-full flex gap-16">
       <div className="flex flex-col gap-8 items-center">
         <div className="text-xl text-primary-600">Normal buttons</div>
-        <BPButton>Button</BPButton>
-        <BPButton type="primary">Primary</BPButton>
-        <BPButton type="secondary">Secondary</BPButton>
-        <BPButton type="success">Success</BPButton>
-        <BPButton type="danger">Danger</BPButton>
-        <BPButton type="caution">Caution</BPButton>
-        <BPButton type="light">Light</BPButton>
-        <BPButton type="link">Link</BPButton>
-        <BPButton magic>Magic</BPButton>
+        {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
+          <BPButton key={index} type={key as UI_TYPE}>
+            {key}
+          </BPButton>
+        ))}
       </div>
 
       <div className="flex flex-col gap-8 items-center">
         <div className="text-xl text-primary-600">Outlined buttons</div>
-        <BPButton outline>Button</BPButton>
-        <BPButton type="primary" outline>
-          Primary
-        </BPButton>
-        <BPButton type="secondary" outline>
-          Secondary
-        </BPButton>
-        <BPButton type="success" outline>
-          Success
-        </BPButton>
-        <BPButton type="danger" outline>
-          Danger
-        </BPButton>
-        <BPButton type="caution" outline>
-          Caution
-        </BPButton>
-        <BPButton type="light" outline>
-          Light
-        </BPButton>
-        <BPButton type="link" outline>
-          Link
+        {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
+          <BPButton key={index} type={key as UI_TYPE} outline>
+            {key}
+          </BPButton>
+        ))}
+        <BPButton magic outline>
+          Magic
         </BPButton>
       </div>
     </div>
