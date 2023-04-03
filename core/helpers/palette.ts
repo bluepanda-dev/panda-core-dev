@@ -10,8 +10,6 @@ export type PaletteConfigValue = {
   hover: string
 }
 
-// TODO separate hover
-
 export type PaletteConfig = {
   [x: string]: Record<UI_TYPE, PaletteConfigValue>
 }
@@ -24,11 +22,11 @@ function buildOutlinePalette({
   baseColor,
   isLink,
   placeholderColor,
-  textColor,
+  textColorOutline,
 }: UIBaseConfig) {
   const color = () => {
-    if (textColor) {
-      return textColor
+    if (textColorOutline) {
+      return textColorOutline
     } else if (!baseColor) {
       return `text-normal-400 hover:text-normal-100`
     } else {
@@ -54,7 +52,9 @@ function buildOutlinePalette({
     link,
     border: `border border-black dark:border-white border border-${baseColor}-600 `,
     placeholder: placeholder(),
-    hover: `hover:bg-normal-10 dark:hover:bg-normal-800 dark:hover:bg-${baseColor}-900/30  hover:border-${baseColor}-500`,
+    hover: !baseColor
+      ? `hover:bg-normal-10 dark:hover:bg-normal-800`
+      : `hover:bg-${baseColor}-400/20 dark:hover:bg-${baseColor}-900/30  hover:border-${baseColor}-500`,
   }
 }
 
@@ -99,7 +99,9 @@ function buildPalette({
         ? 'border border-black dark:border-white'
         : border,
     placeholder: placeholder(),
-    hover: `hover:bg-${baseColor}-700 dark:hover:bg-${baseColor}-500`,
+    hover: !baseColor
+      ? `hover:bg-normal-10 dark:hover:bg-normal-800`
+      : ` hover:bg-${baseColor}-700 dark:hover:bg-${baseColor}-500`,
   }
 }
 
@@ -132,5 +134,5 @@ export function getPalette(superSet: PaletteSuperSetsType, type: UI_TYPE) {
 }
 
 export function getMagicPalette() {
-  return `ring-inset active:bg-yellow-700 focus-within:outline-none focus-within:ring focus-within:ring-purple-400 p-[3px] bg-gradient-to-r from-purple-600 from-10% via-sky-500 via-30% via-red-500 via-60% via-orange-500 via-80% to-yellow-500 to-90%`
+  return `hover:opacity-90 ring-inset active:bg-yellow-700 focus-within:outline-none focus-within:ring focus-within:ring-purple-400 p-[3px] bg-gradient-to-r from-purple-600 from-10% via-sky-500 via-30% via-red-500 via-60% via-orange-500 via-80% to-yellow-500 to-90%`
 }

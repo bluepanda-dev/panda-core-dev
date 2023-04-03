@@ -3,6 +3,7 @@ export type SIZE = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 export interface UIBaseConfig {
   baseColor: string | null
   textColor?: string
+  textColorOutline?: string
   placeholderColor?: string
   hasBorder?: boolean
   isLink?: boolean
@@ -23,7 +24,8 @@ export const UI_TYPES_CONFIG: UIConfig = {
   default: {
     baseColor: 'normal',
     hasBorder: false,
-    textColor: 'text-normal-50',
+    textColor: 'text-white dark:text-normal-50',
+    textColorOutline: 'text-normal-200 dark:text-normal-50',
     placeholderColor: 'dark:placeholder:text-normal-100',
   },
   danger: { baseColor: 'red', hasBorder: true },
