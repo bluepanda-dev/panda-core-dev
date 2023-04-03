@@ -13,6 +13,7 @@
 @import './components/heading.css';
 @import './components/accordion.css';
 @import './components/alertDialog.css';
+@import './components/dropdown.css';
 
 
 * {
@@ -27,19 +28,22 @@ body {
   overflow-x: hidden;
 }
 
-html.light, body.light {
+html.light,
+body.light {
   color-scheme: light;
   @apply bg-neutral-50;
   @apply text-normal-800 font-light;
 }
 
-html.dark , body.dark {
+html.dark,
+body.dark {
   color-scheme: dark;
   @apply bg-normal-900;
   @apply text-neutral-100 font-light;
 }
 
-::-moz-selection { /* Code for Firefox */
+::-moz-selection {
+  /* Code for Firefox */
   color: black;
   background: magenta;
 }
@@ -50,7 +54,7 @@ html.dark , body.dark {
 }
 
 
-#BPportal{
+#BPportal {
   z-index: 9000000;
   position: fixed;
 }
