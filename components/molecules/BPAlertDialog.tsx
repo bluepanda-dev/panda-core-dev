@@ -55,7 +55,7 @@ const BPAlertDialog = ({
 
   const wrapperClass = classNames({
     [`bg-black p-8`]: magic,
-    'flex flex-col gap-4 p-1 rounded-lg justify-around': true,
+    'flex flex-col gap-8 p-1 rounded-lg justify-around': true,
   })
 
   const Element = () => (
