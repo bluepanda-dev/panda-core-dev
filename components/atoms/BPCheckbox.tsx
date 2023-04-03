@@ -79,7 +79,7 @@ const BPCheckbox = ({
       id={children?.toString()}
     >
       <Checkbox.Indicator className="CheckboxIndicator">
-        <FiCheck />
+        {icon ? icon : <FiCheck />}
       </Checkbox.Indicator>
     </Checkbox.Root>
   )

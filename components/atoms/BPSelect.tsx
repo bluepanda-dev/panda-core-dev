@@ -2,13 +2,7 @@ import * as Select from '@radix-ui/react-select'
 import classNames from 'classnames'
 import React, { ReactNode } from 'react'
 import { FiCheck, FiChevronDown, FiChevronUp } from 'react-icons/fi'
-import {
-  getMagicPalette,
-  getMagicText,
-  getPalette,
-  MagicContainer,
-  Palette,
-} from '@core/helpers/palette'
+import { getMagicPalette, getPalette } from '@core/helpers/palette'
 import {
   SIZE,
   DEFAULT_SIZE,

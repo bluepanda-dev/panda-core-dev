@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
+import { FiMicOff, FiZap } from 'react-icons/fi'
 import BPCheckbox from '@components/atoms/BPCheckbox'
 import { UI_TYPES_CONFIG, UI_TYPE } from '@core/types/ui-kit'
 
@@ -62,6 +63,29 @@ export const Customs: Story = {
         <div className="text-xl text-primary-600">Other shape</div>
         <BPCheckbox className="rounded-full" magic outline>
           Magic
+        </BPCheckbox>
+
+        <div className="text-xl text-primary-600">Custom icon</div>
+        <BPCheckbox icon={<FiZap />} type="danger" outline>
+          Danger outline
+        </BPCheckbox>
+
+        <BPCheckbox icon={<FiZap />} type="danger">
+          Danger
+        </BPCheckbox>
+
+        <div className="text-xl text-primary-600">Custom icon and shape</div>
+        <BPCheckbox
+          className="rounded-full"
+          icon={<FiZap />}
+          type="danger"
+          outline
+        >
+          Danger outline
+        </BPCheckbox>
+
+        <BPCheckbox className="rounded-full" icon={<FiZap />} type="danger">
+          Danger
         </BPCheckbox>
       </div>
     </div>
