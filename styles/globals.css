@@ -12,6 +12,7 @@
 @import './components/select.css';
 @import './components/heading.css';
 @import './components/accordion.css';
+@import './components/alertDialog.css';
 
 
 * {

@@ -86,7 +86,7 @@ export function BPSelect({
     [`${palette.link}`]: true,
     [`${palette.color}`]: true,
     [`${palette.bg}`]: true,
-    [`${palette.outline}`]: true,
+    [`${palette.hover}`]: !magic,
     'transition ease-in-out': true,
     SelectTrigger: true,
   })

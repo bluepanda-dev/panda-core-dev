@@ -31,10 +31,11 @@ export const BPAccordionItem = ({ children, value, ...props }: any) => (
 )
 
 export const AccordionTrigger = React.forwardRef<any, any>(
-  ({ children, className, palette, size, ...props }, forwardedRef) => {
+  ({ children, className, palette, size, magic, ...props }, forwardedRef) => {
     const elementClass = classNames({
       [`${palette?.color}`]: true,
       [`${palette?.bg}`]: true,
+      [`${palette?.hover}`]: !magic,
       [`${palette.link}`]: true,
       [`p-${PADDINGS[size as SIZE]}`]: true,
       [`px-${PADDINGS_X[size as SIZE]}`]: true,
@@ -112,6 +113,7 @@ const BPAccordion = ({
         return React.cloneElement(child as React.ReactElement<any>, {
           palette,
           size,
+          magic,
         })
       })}
     </Accordion.Root>

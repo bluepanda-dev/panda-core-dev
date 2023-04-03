@@ -55,7 +55,7 @@ const BPCheckbox = ({
     [`${palette.link}`]: true,
     [`${palette.color}`]: true,
     [`${palette.bg}`]: true,
-    [`${palette.outline}`]: true,
+    [`${palette.hover}`]: !magic,
     'select-none cursor-not-allowed	': isDisabled || isLoading,
     'opacity-70': isDisabled && !magic,
     'rounded-sm transition ease-in-out whitespace-nowrap flex items-center gap-2 justify-center':

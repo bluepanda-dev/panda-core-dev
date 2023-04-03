@@ -26,7 +26,7 @@ const DefaultExample = ({ ...props }) => (
       </AccordionContent>
     </BPAccordionItem>
     <BPAccordionItem className="AccordionItem" value="item-2">
-      <AccordionTrigger>Nother?</AccordionTrigger>
+      <AccordionTrigger>Another?</AccordionTrigger>
       <AccordionContent>NA no information</AccordionContent>
     </BPAccordionItem>
   </BPAccordion>
@@ -53,7 +53,7 @@ export const Sizes: Story = {
             </AccordionContent>
           </BPAccordionItem>
           <BPAccordionItem className="AccordionItem" value="item-2">
-            <AccordionTrigger>Nother?</AccordionTrigger>
+            <AccordionTrigger>Another?</AccordionTrigger>
             <AccordionContent>NA no information</AccordionContent>
           </BPAccordionItem>
         </BPAccordion>

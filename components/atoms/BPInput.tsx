@@ -42,7 +42,7 @@ const BPInput = ({
     [`${palette.link}`]: true,
     [`${palette.color}`]: true,
     [`${palette.bg}`]: true,
-    [`${palette.outline}`]: true,
+    [`${palette.hover}`]: !magic,
     [`${palette.placeholder}`]: true,
     'transition ease-in-out': true,
     'whitespace-nowrap flex items-center gap-2': true,

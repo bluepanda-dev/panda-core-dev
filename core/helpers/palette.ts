@@ -7,6 +7,7 @@ export type PaletteConfigValue = {
   border: string
   link: string
   placeholder: string
+  hover: string
 }
 
 // TODO separate hover
@@ -18,8 +19,6 @@ export type PaletteConfig = {
 export type PaletteSuperSetsType = 'normal' | 'outline'
 
 export const paletteSuperSets: PaletteSuperSetsType[] = ['outline', 'normal']
-
-const DEFAULT_HOVER_BG = 'hover:bg-normal-10 dark:hover:bg-normal-800'
 
 function buildOutlinePalette({
   baseColor,
@@ -50,11 +49,12 @@ function buildOutlinePalette({
 
   return {
     color: color(),
-    bg: `bg-white dark:bg-black dark:hover:bg-${baseColor}-900/30`,
+    bg: `bg-white dark:bg-black `,
     focus,
     link,
-    border: `border border-black dark:border-white border border-${baseColor}-600  hover:border-${baseColor}-500`,
+    border: `border border-black dark:border-white border border-${baseColor}-600 `,
     placeholder: placeholder(),
+    hover: `hover:bg-normal-10 dark:hover:bg-normal-800 dark:hover:bg-${baseColor}-900/30  hover:border-${baseColor}-500`,
   }
 }
 
@@ -69,7 +69,7 @@ function buildPalette({
     if (textColor) {
       return textColor
     } else if (!baseColor) {
-      return `text-normal-800 dark:text-normal-50 ${DEFAULT_HOVER_BG}`
+      return `text-normal-800 dark:text-normal-50`
     } else {
       return `text-white dark:text-normal-900`
     }
@@ -80,11 +80,11 @@ function buildPalette({
     } else if (!baseColor) {
       return `placeholder:italic placeholder:text-text-normal-400 dark:placeholder:text-normal-100`
     } else {
-      return `placeholder:italic placeholder:text-normal-400 dark:placeholder:text-normal-700`
+      return `placeholder:italic placeholder:text-normal-600 dark:placeholder:text-normal-700`
     }
   }
 
-  const bg = `bg-${baseColor}-600 hover:bg-${baseColor}-700 dark:hover:bg-${baseColor}-500`
+  const bg = `bg-${baseColor}-600 `
   const focus = `active:bg-${baseColor}-700 focus:outline-none focus:ring focus:ring-${baseColor}-400 ring-inset`
   const border = hasBorder && `border border-${baseColor}-600`
   const link = isLink && 'underline'
@@ -99,6 +99,7 @@ function buildPalette({
         ? 'border border-black dark:border-white'
         : border,
     placeholder: placeholder(),
+    hover: `hover:bg-${baseColor}-700 dark:hover:bg-${baseColor}-500`,
   }
 }
 
