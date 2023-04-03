@@ -1,7 +1,11 @@
 import classNames from 'classnames'
 import React from 'react'
 import { FiLoader } from 'react-icons/fi'
-import { getMagicPalette, getPalette } from '@core/helpers/palette'
+import {
+  getMagicPalette,
+  getMagicText,
+  getPalette,
+} from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
   PADDINGS,
@@ -68,6 +72,11 @@ const BPButton = ({
     [props.className]: props.className,
   })
 
+  const magicText = getMagicText()
+  const titleClass = classNames({
+    [magicText]: magic,
+  })
+
   const Button = () => (
     <button {...props} className={buttonClass}>
       {isLoading && (
@@ -77,7 +86,7 @@ const BPButton = ({
         </span>
       )}
       {!isLoading && icon && <i>{icon}</i>}
-      {!isLoading && children && <span>{children}</span>}
+      {!isLoading && children && <span className={titleClass}>{children}</span>}
       {!isLoading && rightIcon && <i>{rightIcon}</i>}
     </button>
   )

@@ -4,6 +4,7 @@ import React, { ReactNode } from 'react'
 import { FiCheck, FiChevronDown, FiChevronUp } from 'react-icons/fi'
 import {
   getMagicPalette,
+  getMagicText,
   getPalette,
   MagicContainer,
   Palette,
@@ -22,6 +23,7 @@ type SelectProps = {
   placeholder: string
   children: ReactNode
   ariaLabel?: string
+  isDisabled?: boolean
   size?: SIZE
   type?: UI_TYPE
   outline?: boolean
@@ -68,6 +70,7 @@ export function BPSelect({
   ariaLabel,
   size = DEFAULT_SIZE,
   type = UI_DEFAULT_TYPE,
+  isDisabled = false,
   outline = false,
   magic = false,
   ...props
@@ -88,10 +91,15 @@ export function BPSelect({
     [`${palette.bg}`]: true,
     [`${palette.hover}`]: !magic,
     'transition ease-in-out': true,
+    'select-none cursor-not-allowed pointer-events-none': isDisabled,
+    'opacity-70': isDisabled && !magic,
     SelectTrigger: true,
   })
 
   const viewportClass = classNames({
+    [`${palette.bg}`]: true,
+    [`${palette.color}`]: true,
+    [`${palette.border}`]: true,
     [`text-${size === 'md' ? 'base' : size}`]: true,
     SelectViewport: true,
   })

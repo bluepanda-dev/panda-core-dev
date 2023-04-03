@@ -3,7 +3,11 @@ import classNames from 'classnames'
 
 import React, { useEffect } from 'react'
 import { FiLoader } from 'react-icons/fi'
-import { getMagicPalette, getPalette } from '@core/helpers/palette'
+import {
+  getMagicPalette,
+  getMagicText,
+  getPalette,
+} from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
   PADDINGS,
@@ -41,6 +45,7 @@ const BPAlertDialog = ({
   const superSet = outline ? 'outline' : 'normal'
   const palette = getPalette(superSet, type)
   const magicPalette = getMagicPalette()
+  const magicText = getMagicText()
 
   const elementClass = classNames({
     [`text-${size === 'md' ? 'base' : size}`]: true,
@@ -58,13 +63,18 @@ const BPAlertDialog = ({
     'flex flex-col gap-8 p-1 rounded-lg justify-around': true,
   })
 
+  const titleClass = classNames({
+    'AlertDialogTitle font-bold': true,
+    [magicText]: magic,
+  })
+
   const Element = () => (
     <AlertDialog.Root open={isOpen} onOpenChange={setOpen}>
       <AlertDialog.Portal>
         <AlertDialog.Overlay className="AlertDialogOverlay" />
         <AlertDialog.Content className={elementClass}>
           <div className={wrapperClass}>
-            <AlertDialog.Title className="AlertDialogTitle font-bold">
+            <AlertDialog.Title className={titleClass}>
               {title}
             </AlertDialog.Title>
             <AlertDialog.Description className="AlertDialogDescription">

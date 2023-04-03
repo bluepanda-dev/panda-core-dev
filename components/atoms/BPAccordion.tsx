@@ -2,7 +2,11 @@ import * as Accordion from '@radix-ui/react-accordion'
 import classNames from 'classnames'
 import React from 'react'
 import { FiChevronDown } from 'react-icons/fi'
-import { getMagicPalette, getPalette } from '@core/helpers/palette'
+import {
+  getMagicPalette,
+  getMagicText,
+  getPalette,
+} from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
   PADDINGS,
@@ -40,6 +44,10 @@ export const AccordionTrigger = React.forwardRef<any, any>(
       [`p-${PADDINGS[size as SIZE]}`]: true,
       [`px-${PADDINGS_X[size as SIZE]}`]: true,
     })
+    const magicText = getMagicText()
+    const titleClass = classNames({
+      [magicText]: magic,
+    })
 
     return (
       <Accordion.Header className={elementClass}>
@@ -47,6 +55,7 @@ export const AccordionTrigger = React.forwardRef<any, any>(
           className={classNames(
             'AccordionTrigger w-full flex justify-between items-center',
             className,
+            titleClass,
           )}
           {...props}
           ref={forwardedRef}

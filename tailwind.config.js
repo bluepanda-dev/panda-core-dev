@@ -136,6 +136,8 @@ module.exports = {
     'focus:ring',
     // magic css
     'active:bg-yellow-700 focus-within:outline-none focus-within:ring focus-within:ring-purple-400  p-[3px] bg-gradient-to-r from-purple-600 from-10% via-sky-500 via-30% via-red-500 via-60% via-orange-500 via-80% to-yellow-500 to-90%',
+    // magic text
+    'text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600',
     'hover:opacity-90',
     'ring-inset',
     {

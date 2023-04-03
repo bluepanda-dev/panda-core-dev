@@ -43,7 +43,7 @@ export const Disable: Story = {
     placeholder: 'Select an Option',
   },
   render: ({ placeholder }) => (
-    <BPSelect placeholder={placeholder}>
+    <BPSelect placeholder={placeholder} isDisabled={true}>
       <DefaultList />
       <BPSelectSeparator />
       <BPSelectGroup>

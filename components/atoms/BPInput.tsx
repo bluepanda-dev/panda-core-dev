@@ -1,6 +1,10 @@
 import classNames from 'classnames'
 import React from 'react'
-import { getPalette, getMagicPalette } from '@core/helpers/palette'
+import {
+  getPalette,
+  getMagicPalette,
+  getMagicText,
+} from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
   PADDINGS,
