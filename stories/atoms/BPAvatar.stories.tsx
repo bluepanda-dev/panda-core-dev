@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 import BPAvatar from '@components/atoms/BPAvatar'
 import { UI_TYPES_CONFIG, UI_TYPE } from '@core/types/ui-kit'
-import { DefaultExample } from './BPDropbox.stories'
+import { DefaultExample } from './BPDropdown.stories'
 
 export default {
   title: 'Atoms/BPAvatar',
@@ -102,7 +102,7 @@ export const Types: Story = {
 export const Combined: Story = {
   render: () => (
     <div className="flex flex-col gap-6 justify-center items-center">
-      <div className="text-xl text-primary-600">Combined with dropbox</div>
+      <div className="text-xl text-primary-600">Combined with Dropdown</div>
       <DefaultExample className="!p-0">
         <BPAvatar
           url="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80"
