@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
+import { FiBell, FiMoon, FiStar } from 'react-icons/fi'
 import BPDropdown, {
   BPDropdownItem,
   BPDropdownSeparator,
@@ -14,9 +15,9 @@ export default {
 
 type Story = StoryObj<typeof BPDropdown>
 
-const DefaultExample = ({ ...props }) => {
+export const DefaultExample = ({ children, ...props }: any) => {
   return (
-    <BPDropdown {...props}>
+    <BPDropdown trigger={children} {...props}>
       <BPDropdownItem>
         New Tab <div className="RightSlot">⌘+T</div>
       </BPDropdownItem>
@@ -34,6 +35,22 @@ const DefaultExample = ({ ...props }) => {
 
 export const Basic: Story = {
   render: () => <DefaultExample />,
+}
+
+export const Custom: Story = {
+  render: () => (
+    <div className="flex gap-8 w-full items-center">
+      <DefaultExample>
+        <FiBell />
+      </DefaultExample>
+      <DefaultExample>
+        <FiMoon />
+      </DefaultExample>
+      <DefaultExample>
+        <FiStar />
+      </DefaultExample>
+    </div>
+  ),
 }
 
 export const Sizes: Story = {

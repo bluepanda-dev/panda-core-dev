@@ -86,3 +86,11 @@ export const ICON_SIZE = {
   lg: 'h-8 w-8',
   xl: 'h-12 w-12',
 }
+
+export const AVATAR_SIZE = {
+  xs: 'h-8 w-8',
+  sm: 'h-10 w-10',
+  md: 'h-12 w-12',
+  lg: 'h-16 w-16',
+  xl: 'h-24 w-24',
+}

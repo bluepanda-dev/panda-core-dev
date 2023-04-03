@@ -18,12 +18,8 @@ import {
 } from '@core/types/ui-kit'
 
 type BPDropdownProps = {
-  icon?: React.ReactNode
-  rightIcon?: React.ReactNode
   children?: React.ReactNode
-  isLoading?: boolean
-  loadingText?: string
-  isDisabled?: boolean
+  trigger?: React.ReactNode
   size?: SIZE
   type?: UI_TYPE
   outline?: boolean
@@ -71,15 +67,11 @@ export const BPDropdownSeparator = ({ palette, outline, ...props }: any) => {
 
 const BPDropdown = ({
   children,
-  icon = null,
-  rightIcon = null,
+  trigger,
   size = DEFAULT_SIZE,
   type = UI_DEFAULT_TYPE,
   outline = false,
   magic = false,
-  isLoading = false,
-  isDisabled = false,
-  loadingText = '',
   ...props
 }: BPDropdownProps) => {
   const superSet = outline ? 'outline' : 'normal'
@@ -97,8 +89,6 @@ const BPDropdown = ({
     [`${palette.hover}`]: !magic,
     'transition ease-in-out': true,
     'whitespace-nowrap flex items-center gap-2 rounded-full': true,
-    'select-none cursor-not-allowed	': isDisabled || isLoading,
-    'opacity-70': isDisabled && !magic,
     [props.className]: props.className,
   })
 
@@ -112,17 +102,13 @@ const BPDropdown = ({
   })
 
   const wrapperClass = classNames({
-    'select-none cursor-not-allowed': isDisabled || isLoading,
-    'opacity-70': isDisabled,
     [`rounded-full w-fit ${magicPalette}`]: true,
     [props.className]: props.className,
   })
 
   const Trigger = () => (
     <DropdownMenu.Trigger asChild>
-      <button className={buttonClass} aria-label="Customise options">
-        <FiMenu />
-      </button>
+      <button className={buttonClass}>{trigger ? trigger : <FiMenu />}</button>
     </DropdownMenu.Trigger>
   )
 
