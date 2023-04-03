@@ -12,9 +12,7 @@ export default {
 
 type Story = StoryObj<typeof BPPanel>
 
-const DefaultExample = ({ children, ...props }: any) => {
-  const [open, setOpen] = React.useState(false)
-
+const DefaultExample = ({ children, type, magic, outline, ...props }: any) => {
   return (
     <BPPanel
       title="Panel Title"
@@ -25,12 +23,15 @@ const DefaultExample = ({ children, ...props }: any) => {
           <BPButton size="sm" outline>
             Details
           </BPButton>
-          <BPButton size="sm" outline>
+          <BPButton size="sm" type={type} magic={magic} outline={outline}>
             Download
           </BPButton>
         </>
       }
       className="w-[400px]"
+      type={type}
+      magic={magic}
+      outline={outline}
       {...props}
     ></BPPanel>
   )
@@ -48,7 +49,7 @@ export const Types: Story = {
   render: () => (
     <div className="w-full flex gap-16">
       <div>
-        <div className="text-xl text-primary-600">Normal</div>
+        <div className="text-xl text-primary-600 py-6">Normal</div>
         <div className="flex flex-col gap-8 items-center max-h-[90vh] overflow-y-auto px-2 pb-6">
           {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
             <DefaultExample
@@ -61,7 +62,7 @@ export const Types: Story = {
       </div>
 
       <div>
-        <div className="text-xl text-primary-600">Outlined</div>
+        <div className="text-xl text-primary-600 py-6">Outlined</div>
         <div className="flex flex-col gap-8 items-center max-h-[90vh] overflow-y-auto px-2 pb-6">
           {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
             <DefaultExample

@@ -45,14 +45,16 @@ export default function BPPanel({
     [`ui-border-group rounded-md`]: true,
     [`${palette.border}`]: true,
     [`${palette.bg}`]: true,
+    [`${palette.hover}`]: !magic,
     [props.className]: props.className,
   })
 
   const footerClass = classNames({
     [`${palette.color}`]: true,
-    [`${palette.border}`]: true,
+    [`${palette.border}`]: outline,
     'border-t border-x-0 border-b-0 rounded-b-lg px-2 flex min-h-full py-2 w-full items-center':
       true,
+    '!border-0': !outline,
   })
 
   const titleClass = classNames({

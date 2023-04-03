@@ -23,7 +23,7 @@ export type UIConfig = Record<UI_TYPE, UIBaseConfig>
 export const UI_TYPES_CONFIG: UIConfig = {
   default: {
     baseColor: 'normal',
-    hasBorder: false,
+    hasBorder: true,
     textColor: 'text-white dark:text-normal-50',
     textColorOutline: 'text-normal-200 dark:text-normal-50',
     placeholderColor: 'dark:placeholder:text-normal-100',

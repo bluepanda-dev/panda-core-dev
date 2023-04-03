@@ -28,9 +28,9 @@ function buildOutlinePalette({
     if (textColorOutline) {
       return textColorOutline
     } else if (!baseColor) {
-      return `text-normal-400 hover:text-normal-100`
+      return `text-normal-400 `
     } else {
-      return `text-${baseColor}-600 hover:text-${baseColor}-700`
+      return `text-${baseColor}-600`
     }
   }
   const placeholder = () => {
@@ -42,6 +42,14 @@ function buildOutlinePalette({
       return `placeholder:italic placeholder:text-${baseColor}-700 dark:placeholder:text-${baseColor}-900`
     }
   }
+  const hover = () => {
+    if (baseColor === 'normal') {
+      return `hover:bg-${baseColor}-50 dark:hover:bg-${baseColor}-700`
+    }
+    return !baseColor
+      ? `hover:bg-normal-10 dark:hover:bg-normal-800 hover:text-normal-100`
+      : `hover:bg-${baseColor}-400/20 dark:hover:bg-${baseColor}-900/30  hover:border-${baseColor}-500  hover:text-${baseColor}-700`
+  }
   const link = isLink && 'underline'
   const focus = `active:bg-${baseColor}-700 focus:outline-none focus:ring focus:ring-${baseColor}-400 ring-inset`
 
@@ -50,11 +58,11 @@ function buildOutlinePalette({
     bg: `bg-white dark:bg-black `,
     focus,
     link,
-    border: `border border-black dark:border-white border border-${baseColor}-600 `,
+    border: baseColor
+      ? ` border border-${baseColor}-400 dark:border-${baseColor}-700 `
+      : `border border-normal-400 dark:border-white`,
     placeholder: placeholder(),
-    hover: !baseColor
-      ? `hover:bg-normal-10 dark:hover:bg-normal-800`
-      : `hover:bg-${baseColor}-400/20 dark:hover:bg-${baseColor}-900/30  hover:border-${baseColor}-500`,
+    hover: hover(),
   }
 }
 
@@ -83,6 +91,14 @@ function buildPalette({
       return `placeholder:italic placeholder:text-normal-600 dark:placeholder:text-normal-700`
     }
   }
+  const hover = () => {
+    if (baseColor === 'normal') {
+      return `hover:bg-${baseColor}-50 dark:hover:bg-${baseColor}-700`
+    }
+    return !baseColor
+      ? `hover:bg-normal-10 dark:hover:bg-normal-800`
+      : ` hover:bg-${baseColor}-700 dark:hover:bg-${baseColor}-500`
+  }
 
   const bg = `bg-${baseColor}-600 `
   const focus = `active:bg-${baseColor}-700 focus:outline-none focus:ring focus:ring-${baseColor}-400 ring-inset`
@@ -99,9 +115,7 @@ function buildPalette({
         ? 'border border-black dark:border-white'
         : border,
     placeholder: placeholder(),
-    hover: !baseColor
-      ? `hover:bg-normal-10 dark:hover:bg-normal-800`
-      : ` hover:bg-${baseColor}-700 dark:hover:bg-${baseColor}-500`,
+    hover: hover(),
   }
 }
 
