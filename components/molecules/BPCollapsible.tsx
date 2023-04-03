@@ -63,19 +63,7 @@ const BPCollapsible = ({
     [magicText]: magic,
   })
 
-  const Button = () => (
-    <button {...props} className={buttonClass}>
-      {isLoading && (
-        <span className="flex gap-2 items-center">
-          <FiLoader className="animate-spin" />
-          {loadingText && <span>{loadingText}</span>}
-        </span>
-      )}
-      {!isLoading && icon && <i>{icon}</i>}
-      {!isLoading && children && <span className={titleClass}>{children}</span>}
-      {!isLoading && rightIcon && <i>{rightIcon}</i>}
-    </button>
-  )
+  const Button = () => <button {...props} className={elementClass}></button>
 
   return (
     <>
