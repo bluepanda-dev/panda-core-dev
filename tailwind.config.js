@@ -165,20 +165,22 @@ module.exports = {
     },
     {
       pattern:
-        /text-(neutral|normal|secondary|red|blue|green|orange|primary)-\d+/,
+        /text-(accent|indigo|neutral|normal|secondary|red|blue|green|orange|primary)-\d+/,
       variants: ['hover', 'dark', 'placeholder', 'dark:placeholder'],
     },
     {
-      pattern: /bg-(neutral|normal|green|orange|red|primary|secondary)-\d+/,
+      pattern:
+        /bg-(accent|indigo|neutral|normal|green|orange|red|primary|secondary)-\d+/,
       variants: ['hover', 'dark', 'dark:hover'],
     },
     {
       pattern:
-        /border-(neutral|normal|green|orange|white|red|primary|secondary)-\d+/,
+        /border-(accent|indigo|neutral|normal|green|orange|white|red|primary|secondary)-\d+/,
       variants: ['hover'],
     },
     {
-      pattern: /ring-(normal|green|orange|white|red|primary|secondary)-\d+/,
+      pattern:
+        /ring-(accent|indigo|normal|green|orange|white|red|primary|secondary)-\d+/,
       variants: ['focus'],
     },
   ],

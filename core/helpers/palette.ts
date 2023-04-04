@@ -8,6 +8,7 @@ export type PaletteConfigValue = {
   link: string
   placeholder: string
   hover: string
+  baseColor: string
 }
 
 export type PaletteConfig = {
@@ -63,6 +64,7 @@ function buildOutlinePalette({
       : `border border-normal-400 dark:border-white`,
     placeholder: placeholder(),
     hover: hover(),
+    baseColor,
   }
 }
 
@@ -116,6 +118,7 @@ function buildPalette({
         : border,
     placeholder: placeholder(),
     hover: hover(),
+    baseColor,
   }
 }
 

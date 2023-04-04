@@ -1,10 +1,6 @@
 import classNames from 'classnames'
 import React from 'react'
-import {
-  getPalette,
-  getMagicPalette,
-  getMagicText,
-} from '@core/helpers/palette'
+import { getPalette, getMagicPalette } from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
   PADDINGS,
@@ -21,8 +17,13 @@ type BPInputProps = {
   type?: UI_TYPE
   outline?: boolean
   magic?: boolean
+  nativeType?: string
   [x: string]: any
 }
+
+const Input = ({ inputClass, nativeType, ...props }: any) => (
+  <input {...props} className={inputClass} type={nativeType} />
+)
 
 const BPInput = ({
   isDisabled = false,
@@ -30,6 +31,7 @@ const BPInput = ({
   type = UI_DEFAULT_TYPE,
   outline = false,
   magic = false,
+  nativeType = 'text',
   ...props
 }: BPInputProps) => {
   const superSet = outline ? 'outline' : 'normal'
@@ -63,16 +65,14 @@ const BPInput = ({
     [props.className]: props.className,
   })
 
-  const Input = () => <input {...props} className={inputClass} />
-
   return (
     <>
       {magic ? (
         <div className={wrapperClass}>
-          <Input />
+          <Input {...props} inputClass={inputClass} nativeType={nativeType} />
         </div>
       ) : (
-        <Input />
+        <Input {...props} inputClass={inputClass} nativeType={nativeType} />
       )}
     </>
   )

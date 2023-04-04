@@ -1,6 +1,8 @@
+import * as Collapsible from '@radix-ui/react-collapsible'
 import classNames from 'classnames'
 import React from 'react'
-import { FiLoader } from 'react-icons/fi'
+import { RxCross1, RxRowSpacing } from 'react-icons/rx'
+import BPButton from '@components/atoms/BPButton'
 import {
   getMagicPalette,
   getMagicText,
@@ -8,6 +10,7 @@ import {
 } from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
+  ICON_SIZE,
   PADDINGS,
   PADDINGS_X,
   ROUNDED,
@@ -22,35 +25,51 @@ type BPCollapsibleProps = {
   type?: UI_TYPE
   outline?: boolean
   magic?: boolean
+  hoverable?: boolean
+  title: string
   [x: string]: any
 }
 
 const BPCollapsible = ({
   children,
+  title,
   size = DEFAULT_SIZE,
   type = UI_DEFAULT_TYPE,
   outline = false,
   magic = false,
+  hoverable = false,
   ...props
 }: BPCollapsibleProps) => {
+  const [open, setOpen] = React.useState(false)
   const superSet = outline ? 'outline' : 'normal'
   const palette = getPalette(superSet, type)
   const magicPalette = getMagicPalette()
 
   const elementClass = classNames({
+    'flex flex-col gap-4 transition ease-in-out': true,
+    [props.className]: props.className,
+  })
+
+  const triggerClass = classNames({
     [`text-${size === 'md' ? 'base' : size}`]: true,
+    [`${ICON_SIZE[size]}`]: true,
+  })
+
+  const itemClass = classNames({
+    [`text-${size === 'md' ? 'base' : size}`]: true,
+    [`${palette.border}`]: !magic,
+    [`${palette.color}`]: true,
+    [`${palette.bg}`]: true,
+    [`${palette.hover}`]: hoverable,
     [`p-${PADDINGS[size]}`]: true,
     [`px-${PADDINGS_X[size]}`]: true,
     [`${ROUNDED[size]}`]: true,
-    [`${palette.focus}`]: true,
-    [`${palette.border}`]: !magic,
-    [`${palette.link}`]: true,
-    [`${palette.color}`]: true,
-    [`${palette.bg}`]: true,
-    [`${palette.hover}`]: !magic,
-    'transition ease-in-out': true,
-    'whitespace-nowrap flex items-center gap-2': true,
-    [props.className]: props.className,
+  })
+
+  const itemTitleClass = classNames({
+    [`text-${size === 'md' ? 'base' : size}`]: true,
+    [`text-${palette.baseColor}-600`]: !magic,
+    [`p-${PADDINGS[size]}`]: true,
   })
 
   const wrapperClass = classNames({
@@ -63,17 +82,59 @@ const BPCollapsible = ({
     [magicText]: magic,
   })
 
-  const Button = () => <button {...props} className={elementClass}></button>
+  const Element = () => (
+    <Collapsible.Root
+      className={elementClass}
+      open={open}
+      onOpenChange={setOpen}
+    >
+      <div className="flex justify-between items-center">
+        <span className={classNames(itemTitleClass, titleClass)}>{title}</span>
+        <Collapsible.Trigger asChild>
+          <BPButton
+            type={type}
+            size={size}
+            icon={open ? <RxCross1 /> : <RxRowSpacing />}
+            className={triggerClass}
+            magic={magic}
+            outline={outline}
+          />
+        </Collapsible.Trigger>
+      </div>
+
+      {magic ? (
+        <div className={wrapperClass}>
+          <div className={itemClass}>
+            {children && (children as Array<any>)[0]}
+          </div>
+        </div>
+      ) : (
+        <div className={itemClass}>
+          {children && (children as Array<any>)[0]}
+        </div>
+      )}
+
+      <Collapsible.Content className="flex flex-col gap-4">
+        {magic
+          ? React.Children.map(children, (child, i) => {
+              return (
+                i !== 0 && (
+                  <div className={wrapperClass}>
+                    <div className={itemClass}>{child}</div>
+                  </div>
+                )
+              )
+            })
+          : React.Children.map(children, (child, i) => {
+              return i !== 0 && <div className={itemClass}>{child}</div>
+            })}
+      </Collapsible.Content>
+    </Collapsible.Root>
+  )
 
   return (
     <>
-      {magic ? (
-        <div className={wrapperClass}>
-          <Button />
-        </div>
-      ) : (
-        <Button />
-      )}
+      <Element />
     </>
   )
 }

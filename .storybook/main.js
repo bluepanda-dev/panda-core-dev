@@ -1,4 +1,5 @@
 const path = require('path')
+import { themes, ensure } from '@storybook/theming'
 
 module.exports = {
   addons: [
@@ -23,7 +24,7 @@ module.exports = {
     },
   },
   docs: {
-    autodocs: true,
+    autodocs: false,
   },
   webpackFinal: async (config, { configType }) => {
     config.resolve = {

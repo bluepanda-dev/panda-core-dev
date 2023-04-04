@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import './sb.css'
+import { themes, ensure } from '@storybook/theming'
 
 export const parameters = {
   themes: {
@@ -25,5 +26,8 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/,
     },
+  },
+  docs: {
+    theme: themes.dark,
   },
 }

@@ -11,10 +11,12 @@ export interface UIBaseConfig {
 export type UI_TYPE =
   | 'default'
   | 'danger'
+  | 'cyber'
   | 'caution'
   | 'success'
   | 'primary'
   | 'secondary'
+  | 'accent'
   | 'light'
   | 'link'
 
@@ -29,7 +31,9 @@ export const UI_TYPES_CONFIG: UIConfig = {
     placeholderColor: 'dark:placeholder:text-normal-100',
   },
   danger: { baseColor: 'red', hasBorder: true },
+  cyber: { baseColor: 'indigo', hasBorder: true },
   caution: { baseColor: 'orange', hasBorder: true },
+  accent: { baseColor: 'accent', hasBorder: true },
   success: { baseColor: 'green', hasBorder: true },
   primary: { baseColor: 'primary', hasBorder: true },
   secondary: { baseColor: 'secondary', hasBorder: true },
