@@ -1,4 +1,4 @@
-export type SIZE = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+export type SIZE = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export interface UIBaseConfig {
   baseColor: string | null
@@ -61,6 +61,7 @@ export const SIZES = {
 }
 
 export const PADDINGS = {
+  xxs: 1,
   xs: 1,
   sm: 2,
   md: 2,
@@ -68,6 +69,7 @@ export const PADDINGS = {
   xl: 2,
 }
 export const PADDINGS_X = {
+  xxs: 1,
   xs: 2,
   sm: 4,
   md: 4,
@@ -76,6 +78,7 @@ export const PADDINGS_X = {
 }
 
 export const ROUNDED = {
+  xxs: 'rounded-xl',
   xs: 'rounded-2xl',
   sm: 'rounded-3xl',
   md: 'rounded-3xl',
@@ -84,6 +87,7 @@ export const ROUNDED = {
 }
 
 export const ICON_SIZE = {
+  xxs: 'h-4 w-4',
   xs: 'h-5 w-5',
   sm: 'h-6 w-6',
   md: 'h-8 w-8',
@@ -92,9 +96,28 @@ export const ICON_SIZE = {
 }
 
 export const AVATAR_SIZE = {
+  xxs: 'h-7 w-7',
   xs: 'h-8 w-8',
   sm: 'h-10 w-10',
   md: 'h-12 w-12',
   lg: 'h-16 w-16',
   xl: 'h-24 w-24',
+}
+
+export const H_ELEMENT = {
+  xl: 'h1',
+  lg: 'h2',
+  md: 'h3',
+  sm: 'h4',
+  xs: 'h5',
+  xxs: 'h6',
+}
+
+export const H_ELEMENT_SIZE = {
+  xl: 'text-6xl',
+  lg: 'text-4xl',
+  md: 'text-3xl',
+  sm: 'text-2xl',
+  xs: 'text-xl',
+  xxs: 'text-lg',
 }
