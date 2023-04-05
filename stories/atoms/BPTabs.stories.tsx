@@ -11,12 +11,52 @@ export default {
 
 type Story = StoryObj<typeof BPTabs>
 
+const DefaultTab = (props: any) => (
+  <BPTabs
+    onValueChange={console.log}
+    className="min-w-[400px] min-h-[300px]"
+    {...props}
+  >
+    <div title="Tab 1">Tab 1 content</div>
+    <div title="Tab 2">Tab 2 content</div>
+    <div title="Tab 3">Tab 3 content</div>
+  </BPTabs>
+)
+
 export const Basic: Story = {
+  render: () => <DefaultTab />,
+}
+export const Vertical: Story = {
+  render: () => <DefaultTab orientation="vertical" />,
+}
+
+export const Types: Story = {
   render: () => (
-    <BPTabs onValueChange={console.log}>
-      <div title="Tab 1">Tab 1 content</div>
-      <div title="Tab 2">Tab 2 content</div>
-      <div title="Tab 3">Tab 3 conten</div>
-    </BPTabs>
+    <div className="w-full flex flex-col gap-12 h-[80vh] overflow-auto px-10">
+      <div className="text-xl text-primary-600">Normal</div>
+      <div className="grid gap-6 items-center">
+        {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
+          <DefaultTab
+            key={index}
+            type={key as UI_TYPE}
+            className="min-w-[400px] min-h-[100px]"
+          />
+        ))}
+      </div>
+
+      <div className="text-xl text-primary-600">Outlined</div>
+      <div className="grid gap-6 items-center">
+        {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
+          <DefaultTab
+            outline
+            key={index}
+            type={key as UI_TYPE}
+            className="min-w-[400px] min-h-[100px]"
+          />
+        ))}
+
+        <DefaultTab magic outline />
+      </div>
+    </div>
   ),
 }

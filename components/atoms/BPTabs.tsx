@@ -11,6 +11,8 @@ import {
   DEFAULT_SIZE,
   ICON_SIZE,
   PADDINGS,
+  PADDINGS_X,
+  ROUNDED,
   SIZE,
   UI_DEFAULT_TYPE,
   UI_TYPE,
@@ -40,27 +42,52 @@ const BPTabs = ({
   const magicPalette = getMagicPalette()
 
   const elementClass = classNames({
-    'flex flex-col gap-2': true,
+    [`text-${size === 'md' ? 'base' : size}`]: true,
+    [`${ROUNDED[size]}`]: true,
+    TabsRoot: true,
     [props.className]: props.className,
   })
 
   const wrapperClass = classNames({
-    [`rounded-sm ${magicPalette}`]: true,
-    [props.className]: props.className,
+    [`${magicPalette}`]: true,
+  })
+
+  const triggerClass = classNames({
+    [`text-${size === 'md' ? 'base' : size}`]: true,
+    [`p-${PADDINGS[size]}`]: true,
+    [`px-${PADDINGS_X[size]}`]: true,
+    [`${palette.hover}`]: true,
+    [`${palette.bg}`]: !magic,
+    [`${palette.color}`]: !magic,
+    [`whitespace-nowrap`]: true,
+    TabsTrigger: true,
+  })
+
+  const contentClass = classNames({
+    [`text-${size === 'md' ? 'base' : size}`]: true,
+    [`p-${PADDINGS[size] * 2}`]: true,
+    [`w-full h-auto`]: true,
+    [`${palette.border}`]: !magic,
   })
 
   const Element = () => (
-    <Tabs.Root defaultValue={defaultValue} {...props}>
-      <Tabs.List>
+    <Tabs.Root defaultValue={defaultValue} {...props} className={elementClass}>
+      <Tabs.List className="flex">
         {React.Children.map(children, (child: any, index) => {
           return (
-            <Tabs.Trigger value={`${index}`}>{child?.props.title}</Tabs.Trigger>
+            <Tabs.Trigger className={triggerClass} value={`${index}`}>
+              {child?.props.title}
+            </Tabs.Trigger>
           )
         })}
       </Tabs.List>
 
       {React.Children.map(children, (child, index) => {
-        return <Tabs.Content value={`${index}`}>{child} </Tabs.Content>
+        return (
+          <Tabs.Content className={contentClass} value={`${index}`}>
+            {child}
+          </Tabs.Content>
+        )
       })}
     </Tabs.Root>
   )
