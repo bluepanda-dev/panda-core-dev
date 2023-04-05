@@ -56,7 +56,6 @@ const BPSwitch = ({
   const labelClass = classNames({
     [`text-${size === 'md' ? 'base' : size}`]: true,
     [`${palette.color}`]: outline,
-    [`${palette.hover}`]: outline,
   })
 
   const thumbClass = classNames({

@@ -8,11 +8,13 @@
 .SwitchRoot:focus {
   box-shadow: 0 0 0 2px black;
 }
+
 .SwitchRoot[data-state='checked'] {
   filter: brightness(1.2);
 }
- html.dark.SwitchRoot, body.dark.SwitchRoot[data-state='checked'] {
-  filter: brightness(1.6);
+
+.dark .SwitchRoot[data-state='checked'] {
+  filter: brightness(1.8);
 }
 
 .SwitchThumb {
