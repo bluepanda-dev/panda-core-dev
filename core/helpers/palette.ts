@@ -104,7 +104,7 @@ function buildPalette({
       : ` hover:bg-${baseColor}-700 dark:hover:bg-${baseColor}-500`
   }
 
-  const bg = !baseColor ? 'bg-white dark:bg-black' : `bg-${baseColor}-600 `
+  const bg = !baseColor ? 'bg-white dark:bg-black' : `bg-${baseColor}-600`
   const focus = `active:bg-${baseColor}-700 focus:outline-none focus:ring focus:ring-${baseColor}-400 ring-inset`
   const border =
     !baseColor && hasBorder

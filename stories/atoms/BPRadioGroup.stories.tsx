@@ -64,6 +64,12 @@ export const Types: Story = {
             <BPRadioGroupItem id="3" value="3" label="Option 3" />
           </BPRadioGroup>
         ))}
+
+        <BPRadioGroup defaultValue="1" outline magic>
+          <BPRadioGroupItem id="1" value="1" label="Option 1" />
+          <BPRadioGroupItem id="2" value="2" label="Option 2" />
+          <BPRadioGroupItem id="3" value="3" label="Option 3" />
+        </BPRadioGroup>
       </div>
     </div>
   ),

@@ -1,19 +1,16 @@
-import * as Checkbox from '@radix-ui/react-checkbox'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import classNames from 'classnames'
 import React from 'react'
-import { FiCheck, FiCircle, FiLoader } from 'react-icons/fi'
+import { FiCheck } from 'react-icons/fi'
 import {
   getMagicPalette,
+  getMagicText,
   getPalette,
-  PaletteConfigValue,
 } from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
   ICON_SIZE,
   PADDINGS,
-  PADDINGS_X,
-  ROUNDED,
   SIZE,
   UI_DEFAULT_TYPE,
   UI_TYPE,
@@ -41,21 +38,27 @@ export const BPRadioGroupItem = ({
   id,
   label,
   outline,
+  magic,
   ...props
 }: BPRadioGroupItemsProps) => {
+  const magicText = getMagicText()
+  const titleClass = classNames({
+    [magicText]: magic,
+  })
+
   const indicatorClass = classNames({
     [`p-${PADDINGS[props.size as SIZE]}`]: true,
     [`${props.palette.bg}`]: true,
     [`${props.palette.border}`]: outline,
     [`${ICON_SIZE[props.size as SIZE]}`]: true,
-    [`${props.palette.color}`]: outline,
+    [`${props.palette.color}`]: outline && !magic,
     [`${props.palette.hover}`]: true,
     [`rounded-full flex justify-center items-center`]: true,
   })
 
   const textClass = classNames({
     [`text-${props.size === 'md' ? 'base' : props.size}`]: true,
-    [`${props.palette.color}`]: outline,
+    [`${props.palette.color}`]: outline && !magic,
   })
   const iconClass = classNames({
     [`text-${props.size === 'md' ? 'base' : props.size}`]: true,
@@ -73,7 +76,7 @@ export const BPRadioGroupItem = ({
           <FiCheck />
         </RadioGroup.Indicator>
       </RadioGroup.Item>
-      <label className={textClass} htmlFor={id}>
+      <label className={classNames(textClass, titleClass)} htmlFor={id}>
         {label}
       </label>
     </>
@@ -116,6 +119,7 @@ const BPRadioGroup = ({
               size,
               palette,
               outline,
+              magic,
             })}
           </div>
         )
