@@ -39,7 +39,7 @@ export const Types: Story = {
           </BPSwitch>
         ))}
 
-        <BPSwitch outline id={'magic'}>
+        <BPSwitch magic outline id={'magic'}>
           Switch magic
         </BPSwitch>
       </div>

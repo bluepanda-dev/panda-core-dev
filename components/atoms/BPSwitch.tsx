@@ -61,8 +61,9 @@ const BPSwitch = ({
   const thumbClass = classNames({
     [`SwitchThumb`]: true,
     [`bg-${palette.baseColor}-400 dark:bg-${palette.baseColor}-700`]:
-      palette.baseColor && outline,
-    [`bg-normal-300`]: palette.baseColor === 'normal' || !palette.baseColor,
+      palette.baseColor && outline && !magic,
+    [`bg-normal-300`]:
+      !magic && (palette.baseColor === 'normal' || !palette.baseColor),
     [`${palette.focus}`]: true,
     [`${palette.hover}`]: !outline,
     [`${magicPalette}`]: magic,

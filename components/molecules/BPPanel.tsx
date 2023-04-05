@@ -45,7 +45,6 @@ export default function BPPanel({
     [`ui-border-group rounded-md`]: true,
     [`${palette.border}`]: true,
     [`${palette.bg}`]: true,
-    [`${palette.hover}`]: !magic,
     [props.className]: props.className,
   })
 

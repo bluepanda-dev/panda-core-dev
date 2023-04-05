@@ -97,7 +97,7 @@ function buildPalette({
   }
   const hover = () => {
     if (baseColor === 'normal') {
-      return `hover:bg-${baseColor}-50 dark:hover:bg-${baseColor}-700`
+      return `hover:bg-${baseColor}-300 dark:hover:bg-${baseColor}-700`
     }
     return !baseColor
       ? `hover:bg-normal-10 dark:hover:bg-normal-800`

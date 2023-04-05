@@ -17,6 +17,9 @@
 @import './components/avatar.css';
 @import './components/slider.css';
 @import './components/switch.css';
+@import './components/toggleGroup.css';
+@import './components/tooltip.css';
+
 
 
 * {
