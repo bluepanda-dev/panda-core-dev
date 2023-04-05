@@ -61,13 +61,12 @@ export default function BPToggleGroup({
   const wrapperClass = classNames({
     [`rounded-lg  ${magicPalette}`]: magic,
   })
-
   return (
     <div className={wrapperClass}>
       <ToggleGroup.Root
         className={elementClass}
         type={selectionType}
-        defaultValue={defaultValue}
+        defaultValue={defaultValue as any}
         {...props}
       >
         {React.Children.map(children, (child) => {

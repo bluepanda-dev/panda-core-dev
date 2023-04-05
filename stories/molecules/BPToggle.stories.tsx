@@ -15,7 +15,12 @@ export default {
 type Story = StoryObj<typeof BPToggleGroup>
 
 const DefaultToggleGroup = ({ ...props }) => (
-  <BPToggleGroup {...props} onValueChange={console.log}>
+  <BPToggleGroup
+    {...props}
+    onValueChange={console.log}
+    defaultValue={['center']}
+    selectionType="multiple"
+  >
     <BPToggleItem value="left">
       <FiAlignLeft />
     </BPToggleItem>
