@@ -59,7 +59,7 @@ export default function BPToggleGroup({
   })
 
   const wrapperClass = classNames({
-    [`rounded-lg  ${magicPalette}`]: magic,
+    [`${magicPalette}`]: true,
   })
   return (
     <div className={wrapperClass}>

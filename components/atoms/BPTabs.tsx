@@ -1,4 +1,3 @@
-import * as RadioGroup from '@radix-ui/react-radio-group'
 import * as Tabs from '@radix-ui/react-tabs'
 import classNames from 'classnames'
 import React from 'react'
@@ -9,7 +8,6 @@ import {
 } from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
-  ICON_SIZE,
   PADDINGS,
   PADDINGS_X,
   ROUNDED,
@@ -52,6 +50,8 @@ const BPTabs = ({
     [`${magicPalette}`]: true,
   })
 
+  const magicText = getMagicText()
+
   const triggerClass = classNames({
     [`text-${size === 'md' ? 'base' : size}`]: true,
     [`p-${PADDINGS[size]}`]: true,
@@ -60,6 +60,7 @@ const BPTabs = ({
     [`${palette.bg}`]: !magic,
     [`${palette.color}`]: !magic,
     [`whitespace-nowrap`]: true,
+    [`${magicText}`]: magic,
     TabsTrigger: true,
   })
 
@@ -67,6 +68,7 @@ const BPTabs = ({
     [`text-${size === 'md' ? 'base' : size}`]: true,
     [`p-${PADDINGS[size] * 2}`]: true,
     [`w-full h-auto`]: true,
+    [`border border-normal-600`]: magic,
     [`${palette.border}`]: !magic,
   })
 
