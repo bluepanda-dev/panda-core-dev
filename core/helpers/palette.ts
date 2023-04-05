@@ -53,17 +53,19 @@ function buildOutlinePalette({
   }
   const link = isLink && 'underline'
   const focus = `active:bg-${baseColor}-700 focus:outline-none focus:ring focus:ring-${baseColor}-400 ring-inset`
+  const bg = `bg-white dark:bg-black`
+  const border = baseColor
+    ? ` border border-${baseColor}-400 dark:border-${baseColor}-700 `
+    : `border border-normal-400 dark:border-white`
 
   return {
     color: color(),
-    bg: `bg-white dark:bg-black `,
-    focus,
-    link,
-    border: baseColor
-      ? ` border border-${baseColor}-400 dark:border-${baseColor}-700 `
-      : `border border-normal-400 dark:border-white`,
     placeholder: placeholder(),
     hover: hover(),
+    border,
+    bg,
+    focus,
+    link,
     baseColor,
   }
 }
@@ -102,22 +104,22 @@ function buildPalette({
       : ` hover:bg-${baseColor}-700 dark:hover:bg-${baseColor}-500`
   }
 
-  const bg = `bg-${baseColor}-600 `
+  const bg = !baseColor ? 'bg-white dark:bg-black' : `bg-${baseColor}-600 `
   const focus = `active:bg-${baseColor}-700 focus:outline-none focus:ring focus:ring-${baseColor}-400 ring-inset`
-  const border = hasBorder && `border border-${baseColor}-600`
+  const border =
+    !baseColor && hasBorder
+      ? 'border border-black dark:border-white'
+      : hasBorder && `border border-${baseColor}-600`
   const link = isLink && 'underline'
 
   return {
     color: color(),
-    bg: !baseColor ? 'bg-white dark:bg-black' : bg,
-    focus,
-    link,
-    border:
-      !baseColor && hasBorder
-        ? 'border border-black dark:border-white'
-        : border,
     placeholder: placeholder(),
     hover: hover(),
+    border,
+    bg,
+    focus,
+    link,
     baseColor,
   }
 }
