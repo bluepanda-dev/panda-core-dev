@@ -19,15 +19,15 @@ export const DefaultExample = ({ children, ...props }: any) => {
   return (
     <BPDropdown trigger={children} {...props}>
       <BPDropdownItem>
-        New Tab <div className="RightSlot">⌘+T</div>
+        New Tab <div>⌘+T</div>
       </BPDropdownItem>
       <BPDropdownItem>
-        Another <div className="RightSlot">⌘+T</div>
+        Another <div>⌘+T</div>
       </BPDropdownItem>
       <BPDropdownSeparator />
 
       <BPDropdownItem>
-        New Private Window <div className="RightSlot">⇧+⌘+N</div>
+        New Private Window <div>⇧+⌘+N</div>
       </BPDropdownItem>
     </BPDropdown>
   )

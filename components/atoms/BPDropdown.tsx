@@ -30,7 +30,7 @@ export const BPDropdownItem = ({
   magic,
   palette,
   size,
-  ...props
+  onSelect,
 }: any) => {
   const itemClass = classNames({
     [`text-${size === 'md' ? 'base' : size}`]: true,
@@ -48,19 +48,22 @@ export const BPDropdownItem = ({
     [magicText]: magic,
   })
   return (
-    <DropdownMenu.Item className={classNames(itemClass, titleClass)} {...props}>
+    <DropdownMenu.Item
+      className={classNames(itemClass, titleClass)}
+      onSelect={onSelect}
+    >
       {children}
     </DropdownMenu.Item>
   )
 }
 
-export const BPDropdownSeparator = ({ palette, outline, ...props }: any) => {
+export const BPDropdownSeparator = ({ palette, outline }: any) => {
   const itemClass = classNames({
     [`${palette.border}`]: true,
     [`border-normal-800 my-2`]: !outline,
   })
 
-  return <DropdownMenu.Separator className={itemClass} {...props} />
+  return <DropdownMenu.Separator className={itemClass} />
 }
 
 const BPDropdown = ({

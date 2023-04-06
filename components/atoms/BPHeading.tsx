@@ -45,7 +45,7 @@ const BPHeading = ({
   const Element = () =>
     React.createElement(
       H_ELEMENT[size],
-      { className: classNames(elementClass, titleClass), ...props },
+      { ...props, className: classNames(elementClass, titleClass) },
       children,
     )
 

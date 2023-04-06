@@ -1,8 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { FaArrowCircleUp } from 'react-icons/fa'
-import Button from '@components/atoms/Button'
-
+import BPButton from '@components/atoms/BPButton'
 const ScrollButton = () => {
   const [visible, setVisible] = useState(false)
 
@@ -29,7 +28,7 @@ const ScrollButton = () => {
 
   return (
     <div className="fixed z-10 bottom-24 right-4 ">
-      <Button
+      <BPButton
         className="border-none hover:!bg-transparent !bg-transparent"
         icon={
           <FaArrowCircleUp
@@ -39,7 +38,7 @@ const ScrollButton = () => {
           />
         }
         label={'scroll'}
-      ></Button>
+      ></BPButton>
     </div>
   )
 }

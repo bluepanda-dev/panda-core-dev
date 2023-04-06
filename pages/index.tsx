@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Layout from '@components/layout'
-import ComponentsSample from '@components/molecules/ComponentsSample'
 import Customers from '@components/organisms/Customers'
 import Faqs from '@components/organisms/Faqs'
 import FareWell from '@components/organisms/FareWell'
@@ -47,7 +46,6 @@ export default function Home() {
         <TechStack />
         <Faqs />
         <FareWell />
-        <ComponentsSample className="m-4" />
       </main>
     </Layout>
   )

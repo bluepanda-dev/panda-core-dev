@@ -1,12 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import { FiAlertCircle, FiStar } from 'react-icons/fi'
 import BPAccordion, {
   BPAccordionItem,
-  AccordionContent,
-  AccordionTrigger,
+  BPAccordionContent,
+  BPAccordionTrigger,
 } from '@components/atoms/BPAccordion'
-import { palette } from '@core/helpers/palette'
 import { UI_TYPES_CONFIG, UI_TYPE } from '@core/types/ui-kit'
 
 export default {
@@ -19,15 +17,15 @@ type Story = StoryObj<typeof BPAccordion>
 
 const DefaultExample = ({ ...props }) => (
   <BPAccordion className="w-[400px]" defaultValue="item-1" {...props}>
-    <BPAccordionItem className="AccordionItem" value="item-1">
-      <AccordionTrigger>Is it accessible?</AccordionTrigger>
-      <AccordionContent>
+    <BPAccordionItem value="item-1">
+      <BPAccordionTrigger>Is it accessible?</BPAccordionTrigger>
+      <BPAccordionContent>
         Yes. It adheres to the WAI-ARIA design pattern.
-      </AccordionContent>
+      </BPAccordionContent>
     </BPAccordionItem>
-    <BPAccordionItem className="AccordionItem" value="item-2">
-      <AccordionTrigger>Another?</AccordionTrigger>
-      <AccordionContent>NA no information</AccordionContent>
+    <BPAccordionItem value="item-2">
+      <BPAccordionTrigger>Another?</BPAccordionTrigger>
+      <BPAccordionContent>NA no information</BPAccordionContent>
     </BPAccordionItem>
   </BPAccordion>
 )
@@ -47,14 +45,14 @@ export const Sizes: Story = {
 
         <BPAccordion size="xl" className="w-[500px]" defaultValue="item-1">
           <BPAccordionItem className="AccordionItem" value="item-1">
-            <AccordionTrigger>Is it accessible? (XL)</AccordionTrigger>
-            <AccordionContent>
+            <BPAccordionTrigger>Is it accessible? (XL)</BPAccordionTrigger>
+            <BPAccordionContent>
               Yes. It adheres to the WAI-ARIA design pattern.
-            </AccordionContent>
+            </BPAccordionContent>
           </BPAccordionItem>
           <BPAccordionItem className="AccordionItem" value="item-2">
-            <AccordionTrigger>Another?</AccordionTrigger>
-            <AccordionContent>NA no information</AccordionContent>
+            <BPAccordionTrigger>Another?</BPAccordionTrigger>
+            <BPAccordionContent>NA no information</BPAccordionContent>
           </BPAccordionItem>
         </BPAccordion>
       </div>

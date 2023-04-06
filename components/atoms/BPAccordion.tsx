@@ -34,9 +34,10 @@ export const BPAccordionItem = ({ children, value, ...props }: any) => (
   </Accordion.Item>
 )
 
-export const AccordionTrigger = React.forwardRef<any, any>(
+export const BPAccordionTrigger = React.forwardRef<any, any>(
   ({ children, className, palette, size, magic, ...props }, forwardedRef) => {
     const elementClass = classNames({
+      [`text-${size === 'md' ? 'base' : size}`]: true,
       [`${palette?.color}`]: true,
       [`${palette?.bg}`]: true,
       [`${palette?.hover}`]: !magic,
@@ -68,9 +69,11 @@ export const AccordionTrigger = React.forwardRef<any, any>(
   },
 )
 
-export const AccordionContent = React.forwardRef<HTMLInputElement, any>(
+export const BPAccordionContent = React.forwardRef<HTMLInputElement, any>(
   ({ children, className, palette, size, ...props }, forwardedRef) => {
+    console.log('size:>>> ', size)
     const elementClass = classNames({
+      [`text-${size === 'md' ? 'base' : size}`]: true,
       [`p-${PADDINGS[size as SIZE]}`]: true,
       [`px-${PADDINGS_X[size as SIZE]}`]: true,
       ['AccordionContent transition-all ease-in-out bg-white dark:bg-black']:
@@ -78,7 +81,7 @@ export const AccordionContent = React.forwardRef<HTMLInputElement, any>(
     })
 
     return (
-      <Accordion.Content className={elementClass} {...props} ref={forwardedRef}>
+      <Accordion.Content className={elementClass} ref={forwardedRef}>
         <div className="AccordionContentText transition-all ease-in-out">
           {children}
         </div>
@@ -111,31 +114,40 @@ const BPAccordion = ({
     [`rounded-sm ${magicPalette}`]: true,
   })
 
-  const Element = () => (
-    <Accordion.Root
-      className={elementClass}
-      type="single"
-      defaultValue={defaultValue}
-      collapsible
-    >
-      {React.Children.map(children, (child) => {
-        return React.cloneElement(child as React.ReactElement<any>, {
-          palette,
-          size,
-          magic,
-        })
-      })}
-    </Accordion.Root>
-  )
-
   return (
     <>
       {magic ? (
         <div className={wrapperClass}>
-          <Element />
+          <Accordion.Root
+            className={elementClass}
+            type="single"
+            defaultValue={defaultValue}
+            collapsible
+          >
+            {React.Children.map(children, (child) => {
+              return React.cloneElement(child as React.ReactElement<any>, {
+                palette,
+                size,
+                magic,
+              })
+            })}
+          </Accordion.Root>
         </div>
       ) : (
-        <Element />
+        <Accordion.Root
+          className={elementClass}
+          type="single"
+          defaultValue={defaultValue}
+          collapsible
+        >
+          {React.Children.map(children, (child) => {
+            return React.cloneElement(child as React.ReactElement<any>, {
+              palette,
+              size,
+              magic,
+            })
+          })}
+        </Accordion.Root>
       )}
     </>
   )

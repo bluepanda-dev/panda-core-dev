@@ -34,6 +34,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  margin-right: -15px !important;
 }
 
 html.light,
@@ -65,4 +66,8 @@ body.dark {
 #BPportal {
   z-index: 9000000;
   position: fixed;
+}
+
+*[data-radix-popper-content-wrapper] {
+  z-index: 9000000000000 !important;
 }

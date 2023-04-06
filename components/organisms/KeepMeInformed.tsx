@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import Button from '@components/atoms/Button'
+import BPButton from '@components/atoms/BPButton'
+import BPInput from '@components/atoms/BPInput'
 import { useCopyPages } from '@core/hooks/useCopyPages'
 
 export default function KeepMeInformed() {
@@ -18,20 +19,18 @@ export default function KeepMeInformed() {
       </div>
       <div className="pt-24 w-full flex  justify-center">
         <div className="px-2 md:px-0 flex flex-col sm:flex-row justify-center gap-4 items-center w-full max-w-lg">
-          <input
-            type="email"
+          <BPInput
+            outline
+            type="primary"
+            nativeType="email"
             placeholder="Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e: any) => setEmail(e.target.value)}
             className="ui-input"
           />
-          <Button
-            className="w-auto"
-            isSpecial={true}
-            onClick={handleSubscription}
-          >
+          <BPButton outline type="primary" onClick={handleSubscription}>
             {keepMeInformed.cta}
-          </Button>
+          </BPButton>
         </div>
       </div>
     </div>

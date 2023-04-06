@@ -5,7 +5,7 @@ import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
 import { Suspense, useEffect } from 'react'
 import { StatsigProvider } from 'statsig-react'
-import Button from '@components/atoms/Button'
+import BPButton from '@components/atoms/BPButton'
 import ScrollButton from '@components/molecules/ScrollButton'
 import { NAME, WEBSITE } from '@core/helpers/branding'
 
@@ -50,13 +50,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <Component {...pageProps} />
         <ScrollButton />
         <div className="fixed bottom-0 left-0 m-4 z-50">
-          <Button
-            isSpecial={true}
-            onClick={handleDemoButton}
-            className="bg-blue-600/70 shadow-blue-700/50 hover:bg-blue-500"
-          >
+          <BPButton outline type="accent" onClick={handleDemoButton}>
             Back to {NAME}
-          </Button>
+          </BPButton>
         </div>
       </Suspense>
     </StatsigProvider>

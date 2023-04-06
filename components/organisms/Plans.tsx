@@ -1,5 +1,5 @@
 import { FiCheckCircle } from 'react-icons/fi'
-import Button from '@components/atoms/Button'
+import BPButton from '@components/atoms/BPButton'
 import { useCopyPages } from '@core/hooks/useCopyPages'
 import { PlanCard } from '@core/types'
 
@@ -32,12 +32,10 @@ const PlanCard = ({ plan }: { plan: PlanCard }) => {
         </div>
       </div>
       <div className="absolute right-2 lg:right-0 bottom-10 lg:bottom-4 flex flex-col lg:flex-row lg:w-full gap-4 px-4 justify-center">
-        <Button className="w-32" isSmall={true} isInverted={false}>
-          Try for Free
-        </Button>
-        <Button className="w-32" isSmall={true} isSpecial={true}>
+        <BPButton outline>Try for Free</BPButton>
+        <BPButton outline type="accent">
           {plans.cta}
-        </Button>
+        </BPButton>
       </div>
     </div>
   )

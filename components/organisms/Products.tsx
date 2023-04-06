@@ -1,9 +1,8 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { FiChevronRight } from 'react-icons/fi'
-import Button from '@components/atoms/Button'
-import Container from '@components/atoms/Container'
-import Modal from '@components/molecules/Modal'
+import BPButton from '@components/atoms/BPButton'
+import BPAlertDialog from '@components/molecules/BPAlertDialog'
 import { useCopyPages } from '@core/hooks/useCopyPages'
 import { ProductCard } from '@core/types'
 
@@ -30,7 +29,6 @@ const Product = ({
           {product.title}
           <div className="absolute text-sm right-2 -top-3">
             <span className="bg-primary-300 text-primary-800 rounded-lg p-1 ">
-              {' '}
               {product.price}
             </span>
           </div>
@@ -45,13 +43,9 @@ const Product = ({
           </ul>
         </div>
         <div className="p-6">
-          <Button
-            onClick={() => handleBuy(product)}
-            isSpecial={true}
-            loading={false}
-          >
+          <BPButton outline type="primary" onClick={() => handleBuy(product)}>
             {products.texts!.buyNow}
-          </Button>
+          </BPButton>
         </div>
       </div>
     </div>
@@ -78,14 +72,29 @@ export default function Products() {
           ))}
         </div>
       </div>
-      <Modal
-        isOpen={isOpen}
-        closeModal={() => setIsOpen(false)}
-        hasCloseButton={false}
-        title={product?.title ?? ''}
-      >
-        <Container className="h-48 mt-4 mb-10" />
 
+      <BPAlertDialog
+        open={isOpen}
+        title="Are you absolutely sure?"
+        outline
+        type="primary"
+        actions={
+          <>
+            <BPButton onClick={() => setIsOpen(false)} outline>
+              Cancel
+            </BPButton>
+            <BPButton onClick={() => setIsOpen(false)} type="primary">
+              {products.texts!.buyNow}
+            </BPButton>
+          </>
+        }
+      >
+        You are under a demo, so keep testing features, remember you can also
+        connect to our{' '}
+        <a href="http://discord.gg/XX3tpJxptC" target="_blank" rel="noreferrer">
+          discord
+        </a>
+        .
         <Image
           className="absolute right-2 top-0 w-16"
           alt="logo"
@@ -93,15 +102,7 @@ export default function Products() {
           width={180}
           height={48}
         />
-
-        <Button
-          className="w-auto absolute bottom-3 right-3 !h-10"
-          isSpecial={true}
-          onClick={() => setIsOpen(false)}
-        >
-          {products.texts!.buyNow}
-        </Button>
-      </Modal>
+      </BPAlertDialog>
     </div>
   )
 }
