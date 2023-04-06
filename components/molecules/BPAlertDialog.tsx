@@ -18,6 +18,7 @@ type BPAlertDialogProps = {
   title: React.ReactNode
   children?: React.ReactNode
   actions?: React.ReactNode
+  titleClassName?: string
   size?: SIZE
   type?: UI_TYPE
   open?: boolean
@@ -32,6 +33,7 @@ const BPAlertDialog = ({
   title,
   size = DEFAULT_SIZE,
   type = UI_DEFAULT_TYPE,
+  titleClassName = '',
   open = false,
   outline = false,
   magic = false,
@@ -60,7 +62,7 @@ const BPAlertDialog = ({
   })
 
   const titleClass = classNames({
-    'AlertDialogTitle font-bold': true,
+    [`AlertDialogTitle font-bold ${titleClassName}`]: true,
     [magicText]: magic,
   })
 
@@ -77,9 +79,7 @@ const BPAlertDialog = ({
             <AlertDialog.Title className={titleClass}>
               {title}
             </AlertDialog.Title>
-            <AlertDialog.Description className="AlertDialogDescription">
-              {children}
-            </AlertDialog.Description>
+            {children}
             <div className="flex gap-4 justify-end">{actions}</div>
           </div>
         </AlertDialog.Content>

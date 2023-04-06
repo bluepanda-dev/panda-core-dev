@@ -9,6 +9,7 @@ import {
 import {
   AVATAR_SIZE,
   DEFAULT_SIZE,
+  ICON_SIZE,
   ROUNDED,
   SIZE,
   UI_DEFAULT_TYPE,
@@ -43,7 +44,7 @@ const BPAvatar = ({
   const elementClass = classNames({
     [`text-${size === 'md' ? 'base' : size}`]: true,
     //[`w-${SIZES[size]} h-${SIZES[size]}`]: true,
-    [`${AVATAR_SIZE[size]}`]: true,
+    [`${ICON_SIZE[size]}`]: true,
     [`${ROUNDED[size]}`]: true,
     [`${palette.focus}`]: true,
     [`${palette.border}`]: !magic,

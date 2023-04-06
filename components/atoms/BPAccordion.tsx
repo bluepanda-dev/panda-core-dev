@@ -71,7 +71,6 @@ export const BPAccordionTrigger = React.forwardRef<any, any>(
 
 export const BPAccordionContent = React.forwardRef<HTMLInputElement, any>(
   ({ children, className, palette, size, ...props }, forwardedRef) => {
-    console.log('size:>>> ', size)
     const elementClass = classNames({
       [`text-${size === 'md' ? 'base' : size}`]: true,
       [`p-${PADDINGS[size as SIZE]}`]: true,

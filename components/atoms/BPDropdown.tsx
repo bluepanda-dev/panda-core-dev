@@ -37,9 +37,8 @@ export const BPDropdownItem = ({
     [`p-${PADDINGS[size as SIZE]}`]: true,
     [`${palette.color}`]: !magic,
     [`${palette.bg}`]: true,
-    [`${palette.hover}`]: true,
-    [`${palette.focus}`]: true,
-    'DropdownMenuItem flex gap-2 justify-between': true,
+    'DropdownMenuItem flex gap-2 justify-between !ring-0 !outline-0 hover:opacity-50 select-none':
+      true,
     DropdownMenuContent: true,
   })
 
