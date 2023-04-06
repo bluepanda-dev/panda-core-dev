@@ -2,8 +2,8 @@
 User-agent: *
 Allow: /
 
-# Host CHANGE_NAME
+# Host
 Host: https://blue-panda.dev
 
-# Sitemaps CHANGE_NAME
+# Sitemaps
 Sitemap: https://blue-panda.dev/sitemap.xml
