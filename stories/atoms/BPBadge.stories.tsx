@@ -28,6 +28,28 @@ export const Sizes: Story = {
   ),
 }
 
+export const Statuses: Story = {
+  render: () => (
+    <div className="flex gap-8 w-full items-center">
+      <BPBadge size={'xs'} hoverable>
+        Hoverable Badge
+      </BPBadge>
+      <BPBadge size={'xs'} type="primary" hoverable>
+        Hoverable Badge
+      </BPBadge>
+      <BPBadge size={'xs'} outline type="primary" hoverable>
+        Hoverable Badge
+      </BPBadge>
+      <BPBadge size={'xs'} type="danger" hoverable>
+        Hoverable Badge
+      </BPBadge>
+      <BPBadge size={'xs'} outline type="danger" hoverable>
+        Hoverable Badge
+      </BPBadge>
+    </div>
+  ),
+}
+
 export const Types: Story = {
   render: () => (
     <div className="w-full flex gap-16">

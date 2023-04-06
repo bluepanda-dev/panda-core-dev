@@ -7,7 +7,6 @@ import {
 } from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
-  ICON_SIZE,
   PADDINGS,
   PADDINGS_X,
   ROUNDED,
@@ -22,6 +21,7 @@ type BPAvatarProps = {
   type?: UI_TYPE
   outline?: boolean
   magic?: boolean
+  hoverable?: boolean
   [x: string]: any
 }
 
@@ -31,6 +31,7 @@ const BPAvatar = ({
   type = UI_DEFAULT_TYPE,
   outline = false,
   magic = false,
+  hoverable = false,
   url = undefined,
   ...props
 }: BPAvatarProps) => {
@@ -46,6 +47,7 @@ const BPAvatar = ({
     [`${palette.link}`]: true,
     [`${palette.color}`]: true,
     [`${palette.bg}`]: true,
+    [`${palette.hover}`]: hoverable,
     [`p-${PADDINGS[size as SIZE] / 2}`]: true,
     [`px-${PADDINGS_X[size as SIZE]}`]: true,
     'whitespace-nowrap flex justify-center': true,
