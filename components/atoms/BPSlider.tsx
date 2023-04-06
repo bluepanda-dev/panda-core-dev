@@ -1,21 +1,10 @@
 import * as Slider from '@radix-ui/react-slider'
 import classNames from 'classnames'
-
 import React from 'react'
+import { getMagicPalette, getPalette } from '@core/helpers/palette'
 import {
-  getMagicPalette,
-  getMagicText,
-  getPalette,
-} from '@core/helpers/palette'
-import {
-  AVATAR_SIZE,
   DEFAULT_SIZE,
-  ICON_SIZE,
-  PADDINGS,
-  PADDINGS_X,
-  ROUNDED,
   SIZE,
-  SIZES,
   UI_DEFAULT_TYPE,
   UI_TYPE,
 } from '@core/types/ui-kit'
@@ -76,7 +65,7 @@ const BPSlider = ({
     [`${magicPalette}`]: magic,
   })
 
-  const Element = () => (
+  return (
     <Slider.Root
       defaultValue={[defaultValue]}
       max={max}
@@ -90,12 +79,6 @@ const BPSlider = ({
       </Slider.Track>
       <Slider.Thumb className={thumbClass} />
     </Slider.Root>
-  )
-
-  return (
-    <>
-      <Element />
-    </>
   )
 }
 

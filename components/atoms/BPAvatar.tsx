@@ -9,12 +9,8 @@ import {
 import {
   AVATAR_SIZE,
   DEFAULT_SIZE,
-  ICON_SIZE,
-  PADDINGS,
-  PADDINGS_X,
   ROUNDED,
   SIZE,
-  SIZES,
   UI_DEFAULT_TYPE,
   UI_TYPE,
 } from '@core/types/ui-kit'

@@ -1,17 +1,10 @@
 import classNames from 'classnames'
 import React from 'react'
-import { FiLoader } from 'react-icons/fi'
-import {
-  getMagicPalette,
-  getMagicText,
-  getPalette,
-} from '@core/helpers/palette'
+import { getMagicText, getPalette } from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
   H_ELEMENT,
   H_ELEMENT_SIZE,
-  PADDINGS,
-  PADDINGS_X,
   ROUNDED,
   SIZE,
   UI_DEFAULT_TYPE,
@@ -34,7 +27,6 @@ const BPHeading = ({
   ...props
 }: BPHeadingProps) => {
   const palette = getPalette('outline', type)
-  const magicPalette = getMagicPalette()
 
   const elementClass = classNames({
     [H_ELEMENT_SIZE[size]]: true,

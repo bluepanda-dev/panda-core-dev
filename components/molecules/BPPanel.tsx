@@ -5,12 +5,7 @@ import {
   getMagicPalette,
   getMagicText,
 } from '@core/helpers/palette'
-import {
-  DEFAULT_SIZE,
-  SIZE,
-  UI_DEFAULT_TYPE,
-  UI_TYPE,
-} from '@core/types/ui-kit'
+import { UI_DEFAULT_TYPE, UI_TYPE } from '@core/types/ui-kit'
 
 type BPPanelProps = {
   title: string

@@ -1,11 +1,7 @@
 import * as Tooltip from '@radix-ui/react-tooltip'
 import classNames from 'classnames'
 import React from 'react'
-import {
-  getMagicPalette,
-  getMagicText,
-  getPalette,
-} from '@core/helpers/palette'
+import { getMagicText, getPalette } from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
   PADDINGS,
@@ -41,7 +37,6 @@ const BPToggle = React.forwardRef(
   ) => {
     const superSet = outline ? 'outline' : 'normal'
     const palette = getPalette(superSet, type)
-    const magicPalette = getMagicPalette()
 
     const elementClass = classNames({
       [`text-${size === 'md' ? 'base' : size}`]: true,
@@ -62,22 +57,20 @@ const BPToggle = React.forwardRef(
       [magicText]: magic,
     })
 
-    const Element = () => {
-      return (
-        <Tooltip.Provider>
-          <Tooltip.Root>
-            <Tooltip.Trigger asChild>{children}</Tooltip.Trigger>
-            <Tooltip.Portal>
-              <Tooltip.Content className={elementClass} sideOffset={5}>
-                <span className={titleClass}>{tooltip}</span>
-              </Tooltip.Content>
-            </Tooltip.Portal>
-          </Tooltip.Root>
-        </Tooltip.Provider>
-      )
-    }
-
-    return <Element />
+    return (
+      <Tooltip.Provider>
+        <Tooltip.Root>
+          <Tooltip.Trigger ref={ref} asChild>
+            {children}
+          </Tooltip.Trigger>
+          <Tooltip.Portal>
+            <Tooltip.Content className={elementClass} sideOffset={5}>
+              <span className={titleClass}>{tooltip}</span>
+            </Tooltip.Content>
+          </Tooltip.Portal>
+        </Tooltip.Root>
+      </Tooltip.Provider>
+    )
   },
 )
 

@@ -1,21 +1,10 @@
-import * as RadioGroup from '@radix-ui/react-radio-group'
-
 import * as Switch from '@radix-ui/react-switch'
-
 import classNames from 'classnames'
 import React from 'react'
-import { FiCheck } from 'react-icons/fi'
-import {
-  getMagicPalette,
-  getMagicText,
-  getPalette,
-} from '@core/helpers/palette'
+import { getMagicPalette, getPalette } from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
-  ICON_SIZE,
-  PADDINGS,
   SIZE,
-  SIZES,
   UI_DEFAULT_TYPE,
   UI_TYPE,
 } from '@core/types/ui-kit'
@@ -69,12 +58,7 @@ const BPSwitch = ({
     [`${magicPalette}`]: magic,
   })
 
-  const wrapperClass = classNames({
-    [`rounded-sm ${magicPalette}`]: true,
-    [props.className]: props.className,
-  })
-
-  const Element = () => (
+  return (
     <div className="flex items-center justify-between">
       <label htmlFor={id} className={labelClass} style={{ paddingRight: 15 }}>
         {children}
@@ -84,8 +68,6 @@ const BPSwitch = ({
       </Switch.Root>
     </div>
   )
-
-  return <Element />
 }
 
 export default BPSwitch

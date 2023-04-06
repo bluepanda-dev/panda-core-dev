@@ -1,12 +1,9 @@
-import * as Checkbox from '@radix-ui/react-checkbox'
 import * as HoverCard from '@radix-ui/react-hover-card'
 import classNames from 'classnames'
 import React from 'react'
-import { FiCheck, FiLoader } from 'react-icons/fi'
 import { getMagicPalette, getPalette } from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
-  ICON_SIZE,
   PADDINGS,
   PADDINGS_X,
   ROUNDED,
@@ -62,8 +59,7 @@ const BPHoverCard = ({
     [props.className]: props.className,
   })
 
-  const Element = () => (
-    // todo fgix id and add auto or sth
+  return (
     <HoverCard.Root>
       <HoverCard.Trigger asChild>{trigger}</HoverCard.Trigger>
       <HoverCard.Portal>
@@ -77,8 +73,6 @@ const BPHoverCard = ({
       </HoverCard.Portal>
     </HoverCard.Root>
   )
-
-  return <Element />
 }
 
 export default BPHoverCard

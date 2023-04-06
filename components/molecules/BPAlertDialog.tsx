@@ -2,7 +2,6 @@ import * as AlertDialog from '@radix-ui/react-alert-dialog'
 import classNames from 'classnames'
 
 import React, { useEffect } from 'react'
-import { FiLoader } from 'react-icons/fi'
 import {
   getMagicPalette,
   getMagicText,
@@ -10,9 +9,6 @@ import {
 } from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
-  PADDINGS,
-  PADDINGS_X,
-  ROUNDED,
   SIZE,
   UI_DEFAULT_TYPE,
   UI_TYPE,
@@ -68,7 +64,11 @@ const BPAlertDialog = ({
     [magicText]: magic,
   })
 
-  const Element = () => (
+  useEffect(() => {
+    setOpen(open)
+  }, [open])
+
+  return (
     <AlertDialog.Root open={isOpen} onOpenChange={setOpen}>
       <AlertDialog.Portal>
         <AlertDialog.Overlay className="AlertDialogOverlay" />
@@ -86,12 +86,6 @@ const BPAlertDialog = ({
       </AlertDialog.Portal>
     </AlertDialog.Root>
   )
-
-  useEffect(() => {
-    setOpen(open)
-  }, [open])
-
-  return <Element />
 }
 
 export default BPAlertDialog

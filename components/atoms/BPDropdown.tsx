@@ -1,7 +1,7 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import classNames from 'classnames'
 import React from 'react'
-import { FiCheck, FiLoader, FiMenu } from 'react-icons/fi'
+import { FiMenu } from 'react-icons/fi'
 import {
   getMagicPalette,
   getMagicText,
@@ -10,8 +10,6 @@ import {
 import {
   DEFAULT_SIZE,
   PADDINGS,
-  PADDINGS_X,
-  ROUNDED,
   SIZE,
   UI_DEFAULT_TYPE,
   UI_TYPE,

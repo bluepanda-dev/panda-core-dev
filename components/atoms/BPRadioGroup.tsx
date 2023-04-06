@@ -2,11 +2,7 @@ import * as RadioGroup from '@radix-ui/react-radio-group'
 import classNames from 'classnames'
 import React from 'react'
 import { FiCheck } from 'react-icons/fi'
-import {
-  getMagicPalette,
-  getMagicText,
-  getPalette,
-} from '@core/helpers/palette'
+import { getMagicText, getPalette } from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
   ICON_SIZE,
@@ -94,15 +90,9 @@ const BPRadioGroup = ({
 }: BPRadioGroupProps) => {
   const superSet = outline ? 'outline' : 'normal'
   const palette = getPalette(superSet, type)
-  const magicPalette = getMagicPalette()
 
   const elementClass = classNames({
     'flex flex-col gap-2': true,
-    [props.className]: props.className,
-  })
-
-  const wrapperClass = classNames({
-    [`rounded-sm ${magicPalette}`]: true,
     [props.className]: props.className,
   })
 

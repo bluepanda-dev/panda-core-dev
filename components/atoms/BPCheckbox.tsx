@@ -1,14 +1,12 @@
 import * as Checkbox from '@radix-ui/react-checkbox'
 import classNames from 'classnames'
 import React from 'react'
-import { FiCheck, FiLoader } from 'react-icons/fi'
+import { FiCheck } from 'react-icons/fi'
 import { getMagicPalette, getPalette } from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
   ICON_SIZE,
   PADDINGS,
-  PADDINGS_X,
-  ROUNDED,
   SIZE,
   UI_DEFAULT_TYPE,
   UI_TYPE,

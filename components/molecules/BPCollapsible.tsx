@@ -82,7 +82,7 @@ const BPCollapsible = ({
     [magicText]: magic,
   })
 
-  const Element = () => (
+  return (
     <Collapsible.Root
       className={elementClass}
       open={open}
@@ -130,12 +130,6 @@ const BPCollapsible = ({
             })}
       </Collapsible.Content>
     </Collapsible.Root>
-  )
-
-  return (
-    <>
-      <Element />
-    </>
   )
 }
 

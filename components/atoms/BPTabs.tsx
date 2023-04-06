@@ -1,11 +1,7 @@
 import * as Tabs from '@radix-ui/react-tabs'
 import classNames from 'classnames'
 import React from 'react'
-import {
-  getMagicPalette,
-  getMagicText,
-  getPalette,
-} from '@core/helpers/palette'
+import { getMagicText, getPalette } from '@core/helpers/palette'
 import {
   DEFAULT_SIZE,
   PADDINGS,
@@ -37,17 +33,12 @@ const BPTabs = ({
 }: BPTabsProps) => {
   const superSet = outline ? 'outline' : 'normal'
   const palette = getPalette(superSet, type)
-  const magicPalette = getMagicPalette()
 
   const elementClass = classNames({
     [`text-${size === 'md' ? 'base' : size}`]: true,
     [`${ROUNDED[size]}`]: true,
     TabsRoot: true,
     [props.className]: props.className,
-  })
-
-  const wrapperClass = classNames({
-    [`${magicPalette}`]: true,
   })
 
   const magicText = getMagicText()
@@ -72,7 +63,7 @@ const BPTabs = ({
     [`${palette.border}`]: !magic,
   })
 
-  const Element = () => (
+  return (
     <Tabs.Root defaultValue={defaultValue} {...props} className={elementClass}>
       <Tabs.List className="flex">
         {React.Children.map(children, (child: any, index) => {
@@ -93,8 +84,6 @@ const BPTabs = ({
       })}
     </Tabs.Root>
   )
-
-  return <>{magic ? <Element /> : <Element />}</>
 }
 
 export default BPTabs
