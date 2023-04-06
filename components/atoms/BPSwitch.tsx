@@ -15,6 +15,7 @@ type BPSwitchProps = {
   type?: UI_TYPE
   outline?: boolean
   magic?: boolean
+  disabled?: boolean
   id: string
   [x: string]: any
 }
@@ -24,6 +25,7 @@ const BPSwitch = ({
   type = UI_DEFAULT_TYPE,
   outline = false,
   magic = false,
+  disabled = false,
   id,
   ...props
 }: BPSwitchProps) => {
@@ -40,11 +42,13 @@ const BPSwitch = ({
       palette.baseColor !== 'normal' && outline,
     [`border border-normal-700`]: palette.baseColor === 'normal',
     [`${palette.focus}`]: true,
+    'select-none cursor-not-allowed	': disabled,
     [props.className]: props.className,
   })
   const labelClass = classNames({
     [`text-${size === 'md' ? 'base' : size}`]: true,
     [`${palette.color}`]: outline,
+    'opacity-70': disabled && !magic,
   })
 
   const thumbClass = classNames({
@@ -54,7 +58,8 @@ const BPSwitch = ({
     [`bg-normal-300`]:
       !magic && (palette.baseColor === 'normal' || !palette.baseColor),
     [`${palette.focus}`]: true,
-    [`${palette.hover}`]: !outline,
+    [`${palette.hover}`]: !disabled,
+    'opacity-70': disabled && !magic,
     [`${magicPalette}`]: magic,
   })
 
@@ -63,7 +68,12 @@ const BPSwitch = ({
       <label htmlFor={id} className={labelClass} style={{ paddingRight: 15 }}>
         {children}
       </label>
-      <Switch.Root id={id} {...props} className={elementClass}>
+      <Switch.Root
+        id={id}
+        {...props}
+        className={elementClass}
+        disabled={disabled}
+      >
         <Switch.Thumb className={thumbClass} />
       </Switch.Root>
     </div>

@@ -63,12 +63,23 @@ const BPTabs = ({
     [`${palette.border}`]: !magic,
   })
 
+  const disabledTabClass = classNames({
+    'opacity-70 select-none cursor-not-allowed	': true,
+  })
+
   return (
     <Tabs.Root defaultValue={defaultValue} {...props} className={elementClass}>
       <Tabs.List className="flex">
         {React.Children.map(children, (child: any, index) => {
           return (
-            <Tabs.Trigger className={triggerClass} value={`${index}`}>
+            <Tabs.Trigger
+              disabled={child.props['data-disabled']}
+              className={classNames(
+                triggerClass,
+                child.props['data-disabled'] ? disabledTabClass : '',
+              )}
+              value={`${index}`}
+            >
               {child?.props.title}
             </Tabs.Trigger>
           )

@@ -26,13 +26,42 @@ const DefaultTab = (props: any) => (
 export const Basic: Story = {
   render: () => <DefaultTab />,
 }
+
 export const Vertical: Story = {
   render: () => <DefaultTab orientation="vertical" />,
 }
 
+export const Statuses: Story = {
+  render: () => (
+    <div className="flex gap-4 w-full flex-col items-center">
+      <BPTabs className="min-w-[400px] min-h-[300px]">
+        <div title="Tab 1">Tab 1 content</div>
+        <div title="Disabled" data-disabled>
+          Tab 2 content
+        </div>
+        <div title="Tab 3">Tab 3 content</div>
+      </BPTabs>
+      <BPTabs type="danger" className="min-w-[400px] min-h-[300px]">
+        <div title="Tab 1">Tab 1 content</div>
+        <div title="Disabled" data-disabled>
+          Tab 2 content
+        </div>
+        <div title="Tab 3">Tab 3 content</div>
+      </BPTabs>
+      <BPTabs outline type="danger" className="min-w-[400px] min-h-[300px]">
+        <div title="Tab 1">Tab 1 content</div>
+        <div title="Disabled" data-disabled>
+          Tab 2 content
+        </div>
+        <div title="Tab 3">Tab 3 content</div>
+      </BPTabs>
+    </div>
+  ),
+}
+
 export const Types: Story = {
   render: () => (
-    <div className="w-full flex flex-col gap-12 h-[80vh] overflow-auto px-10">
+    <div className="w-full flex flex-col gap-12 h-[80vh] overflow-y-auto px-10">
       <div className="text-xl text-primary-600">Normal</div>
       <div className="grid gap-6 items-center">
         {Object.keys(UI_TYPES_CONFIG).map((key, index) => (

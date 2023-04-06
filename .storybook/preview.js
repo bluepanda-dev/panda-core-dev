@@ -8,7 +8,7 @@ export const parameters = {
     list: [
       {
         name: 'Light',
-        class: [],
+        class: ['light'],
         color: '#ffffff',
       },
       {

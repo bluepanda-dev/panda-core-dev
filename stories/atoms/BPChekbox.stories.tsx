@@ -29,6 +29,17 @@ export const Sizes: Story = {
   ),
 }
 
+export const Statuses: Story = {
+  render: () => (
+    <div className="flex gap-4 w-full items-center">
+      <BPCheckbox type="danger">Default</BPCheckbox>
+      <BPCheckbox disabled type="danger">
+        Disabled
+      </BPCheckbox>
+    </div>
+  ),
+}
+
 export const Types: Story = {
   render: () => (
     <div className="w-full flex gap-16">

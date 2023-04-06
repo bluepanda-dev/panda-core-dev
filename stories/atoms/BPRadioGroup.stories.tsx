@@ -12,26 +12,36 @@ export default {
 
 type Story = StoryObj<typeof BPRadioGroup>
 
-const DefaultExample = ({ ...props }) => (
+const DefaultExample = ({ id, ...props }: any) => (
   <BPRadioGroup onValueChange={console.log} {...props}>
-    <BPRadioGroupItem id="1" value="1" label="Option 1" />
-    <BPRadioGroupItem id="2" value="2" label="Option 2" />
-    <BPRadioGroupItem id="3" value="3" label="Option 3" />
+    <BPRadioGroupItem id={`${id}1`} value="1" label="Option 1" />
+    <BPRadioGroupItem id={`${id}2`} value="2" label="Option 2" />
+    <BPRadioGroupItem id={`${id}3`} value="3" label="Option 3" />
   </BPRadioGroup>
 )
 
 export const Basic: Story = {
-  render: () => <DefaultExample />,
+  render: () => <DefaultExample id="def" />,
+}
+
+export const Statuses: Story = {
+  render: () => (
+    <BPRadioGroup onValueChange={console.log}>
+      <BPRadioGroupItem id={`1`} value="1" label="Option 1" />
+      <BPRadioGroupItem disabled id={`2`} value="2" label="Disabled Option 2" />
+      <BPRadioGroupItem id={`3`} value="3" label="Option 3" />
+    </BPRadioGroup>
+  ),
 }
 
 export const Sizes: Story = {
   render: () => (
     <div className="flex flex-col gap-8 w-full items-center">
-      <DefaultExample />
-      <DefaultExample size="xs" />
-      <DefaultExample size="sm" />
-      <DefaultExample size="lg" />
-      <DefaultExample size="xl" />
+      <DefaultExample id="default" />
+      <DefaultExample id="xs" size="xs" />
+      <DefaultExample id="sm" size="sm" />
+      <DefaultExample id="lg" size="lg" />
+      <DefaultExample id="xl" size="xl" />
     </div>
   ),
 }
@@ -43,9 +53,9 @@ export const Types: Story = {
       <div className="flex flex-wrap gap-8 items-center">
         {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
           <BPRadioGroup key={index} type={key as UI_TYPE} defaultValue="1">
-            <BPRadioGroupItem id="1" value="1" label="Option 1" />
-            <BPRadioGroupItem id="2" value="2" label="Option 2" />
-            <BPRadioGroupItem id="3" value="3" label="Option 3" />
+            <BPRadioGroupItem id={`1${key}`} value="1" label="Option 1" />
+            <BPRadioGroupItem id={`2${key}`} value="2" label="Option 2" />
+            <BPRadioGroupItem id={`3${key}`} value="3" label="Option 3" />
           </BPRadioGroup>
         ))}
       </div>
@@ -59,16 +69,16 @@ export const Types: Story = {
             defaultValue="1"
             outline
           >
-            <BPRadioGroupItem id="1" value="1" label="Option 1" />
-            <BPRadioGroupItem id="2" value="2" label="Option 2" />
-            <BPRadioGroupItem id="3" value="3" label="Option 3" />
+            <BPRadioGroupItem id={`o1${key}`} value="1" label="Option 1" />
+            <BPRadioGroupItem id={`o2${key}`} value="2" label="Option 2" />
+            <BPRadioGroupItem id={`o3${key}`} value="3" label="Option 3" />
           </BPRadioGroup>
         ))}
 
         <BPRadioGroup defaultValue="1" outline magic>
-          <BPRadioGroupItem id="1" value="1" label="Option 1" />
-          <BPRadioGroupItem id="2" value="2" label="Option 2" />
-          <BPRadioGroupItem id="3" value="3" label="Option 3" />
+          <BPRadioGroupItem id="m1" value="1" label="Option 1" />
+          <BPRadioGroupItem id="m2" value="2" label="Option 2" />
+          <BPRadioGroupItem id="m3" value="3" label="Option 3" />
         </BPRadioGroup>
       </div>
     </div>

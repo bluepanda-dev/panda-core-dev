@@ -14,10 +14,8 @@ import {
 } from '@core/types/ui-kit'
 
 type SelectProps = {
-  placeholder: string
+  placeholder: ReactNode
   children: ReactNode
-  ariaLabel?: string
-  isDisabled?: boolean
   size?: SIZE
   type?: UI_TYPE
   outline?: boolean
@@ -61,12 +59,11 @@ export const BPSelectItem = ({
 export function BPSelect({
   children,
   placeholder,
-  ariaLabel,
   size = DEFAULT_SIZE,
   type = UI_DEFAULT_TYPE,
-  isDisabled = false,
   outline = false,
   magic = false,
+  disabled = false,
   ...props
 }: SelectProps) {
   const superSet = outline ? 'outline' : 'normal'
@@ -85,8 +82,8 @@ export function BPSelect({
     [`${palette.bg}`]: true,
     [`${palette.hover}`]: !magic,
     'transition ease-in-out': true,
-    'select-none cursor-not-allowed pointer-events-none': isDisabled,
-    'opacity-70': isDisabled && !magic,
+    'select-none cursor-not-allowed': disabled,
+    'opacity-70': disabled && !magic,
     SelectTrigger: true,
   })
 
@@ -99,7 +96,7 @@ export function BPSelect({
   })
 
   const Trigger = () => (
-    <Select.Trigger className={triggerClass} aria-label={ariaLabel}>
+    <Select.Trigger className={triggerClass}>
       <Select.Value placeholder={placeholder} />
       <Select.Icon className="SelectIcon">
         <FiChevronDown />
@@ -112,7 +109,7 @@ export function BPSelect({
   })
 
   return (
-    <Select.Root {...props}>
+    <Select.Root {...props} disabled={disabled}>
       {magic ? (
         <div className={wrapperClass}>
           <Trigger />

@@ -18,8 +18,8 @@ const DefaultToggleGroup = ({ ...props }) => (
   <BPToggleGroup
     {...props}
     onValueChange={console.log}
-    defaultValue={['center']}
-    selectionType="multiple"
+    defaultValue={'center'}
+    selectionType="single"
   >
     <BPToggleItem value="left">
       <FiAlignLeft />
@@ -38,6 +38,80 @@ export const Basic: Story = {
     <>
       <DefaultToggleGroup />
     </>
+  ),
+}
+
+export const Statuses: Story = {
+  render: () => (
+    <div className="w-full flex flex-col gap-12 items-center">
+      <div className="text-xl text-primary-600">Center Disabled</div>
+      <BPToggleGroup
+        defaultValue="left"
+        onValueChange={console.log}
+        selectionType="single"
+      >
+        <BPToggleItem value="left">
+          <FiAlignLeft />
+        </BPToggleItem>
+        <BPToggleItem disabled value="center">
+          <FiAlignCenter />
+        </BPToggleItem>
+        <BPToggleItem value="right">
+          <FiAlignRight />
+        </BPToggleItem>
+      </BPToggleGroup>
+      <BPToggleGroup
+        outline
+        type="danger"
+        onValueChange={console.log}
+        selectionType="single"
+        defaultValue="left"
+      >
+        <BPToggleItem value="left">
+          <FiAlignLeft />
+        </BPToggleItem>
+        <BPToggleItem disabled value="center">
+          <FiAlignCenter />
+        </BPToggleItem>
+        <BPToggleItem value="right">
+          <FiAlignRight />
+        </BPToggleItem>
+      </BPToggleGroup>
+
+      <BPToggleGroup
+        defaultValue="left"
+        type="danger"
+        onValueChange={console.log}
+        selectionType="single"
+      >
+        <BPToggleItem value="left">
+          <FiAlignLeft />
+        </BPToggleItem>
+        <BPToggleItem disabled value="center">
+          <FiAlignCenter />
+        </BPToggleItem>
+        <BPToggleItem value="right">
+          <FiAlignRight />
+        </BPToggleItem>
+      </BPToggleGroup>
+
+      <div className="text-xl text-primary-600">Component Disabled</div>
+      <BPToggleGroup
+        onValueChange={console.log}
+        selectionType="single"
+        disabled
+      >
+        <BPToggleItem value="left">
+          <FiAlignLeft />
+        </BPToggleItem>
+        <BPToggleItem value="center">
+          <FiAlignCenter />
+        </BPToggleItem>
+        <BPToggleItem value="right">
+          <FiAlignRight />
+        </BPToggleItem>
+      </BPToggleGroup>
+    </div>
   ),
 }
 

@@ -57,6 +57,7 @@ const BPButton = React.forwardRef(
       [`text-${size === 'md' ? 'base' : size}`]: true,
       [`p-${PADDINGS[size]}`]: !!children,
       [`px-${PADDINGS_X[size]}`]: !!children,
+      'h-fit': !!children,
       [`${ROUNDED[size]}`]: true,
       [`${palette.focus}`]: true,
       [`${palette.border}`]: !magic,
@@ -64,7 +65,7 @@ const BPButton = React.forwardRef(
       [`${palette.color}`]: true,
       [`${palette.bg}`]: true,
       [`${palette.hover}`]: !magic,
-      'transition ease-in-out h-fit': true,
+      'transition ease-in-out': true,
       'whitespace-nowrap flex items-center gap-2 font-normal justify-center':
         true,
       'select-none cursor-not-allowed	': isDisabled || isLoading,

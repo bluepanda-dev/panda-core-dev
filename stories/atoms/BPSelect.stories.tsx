@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
+import { FiAlertCircle } from 'react-icons/fi'
 import {
   BPSelect,
   BPSelectGroup,
@@ -38,12 +39,12 @@ export const Basic: Story = {
   ),
 }
 
-export const Disable: Story = {
+export const Statuses: Story = {
   args: {
-    placeholder: 'Select an Option',
+    placeholder: 'Disabled select',
   },
   render: ({ placeholder }) => (
-    <BPSelect placeholder={placeholder} isDisabled={true}>
+    <BPSelect placeholder={placeholder} disabled>
       <DefaultList />
       <BPSelectSeparator />
       <BPSelectGroup>

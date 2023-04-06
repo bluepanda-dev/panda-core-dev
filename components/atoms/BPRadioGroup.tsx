@@ -35,6 +35,7 @@ export const BPRadioGroupItem = ({
   label,
   outline,
   magic,
+  disabled,
   ...props
 }: BPRadioGroupItemsProps) => {
   const magicText = getMagicText()
@@ -48,12 +49,13 @@ export const BPRadioGroupItem = ({
     [`${props.palette.border}`]: outline,
     [`${ICON_SIZE[props.size as SIZE]}`]: true,
     [`${props.palette.color}`]: outline && !magic,
-    [`${props.palette.hover}`]: true,
     [`rounded-full flex justify-center items-center`]: true,
+    'select-none cursor-not-allowed	': disabled,
   })
 
   const textClass = classNames({
     [`text-${props.size === 'md' ? 'base' : props.size}`]: true,
+    'opacity-70': disabled,
     [`${props.palette.color}`]: outline && !magic,
   })
   const iconClass = classNames({
@@ -66,6 +68,7 @@ export const BPRadioGroupItem = ({
         className={indicatorClass}
         value={value}
         id={id}
+        disabled={disabled}
         {...props}
       >
         <RadioGroup.Indicator className={iconClass}>

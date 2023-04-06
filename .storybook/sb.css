@@ -5,8 +5,43 @@
   position: fixed;
 }
 
-#storybook-docs,
-.sbdocs-wrapper {
+.dark #storybook-docs,
+.dark .sbdocs-wrapper {
   background: black !important;
 }
 
+html {
+  background: black !important;
+}
+
+html body.light {
+  background: white !important;
+}
+
+.sb-show-main.dark {
+  background: black !important;
+}
+
+body {
+  height: 100vh;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-cyber-800;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-cyber-700;
+}

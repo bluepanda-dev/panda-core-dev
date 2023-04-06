@@ -14,11 +14,7 @@ import {
 
 type BPCheckboxProps = {
   icon?: React.ReactNode
-  rightIcon?: React.ReactNode
   children?: React.ReactNode
-  isLoading?: boolean
-  loadingText?: string
-  isDisabled?: boolean
   size?: SIZE
   type?: UI_TYPE
   outline?: boolean
@@ -28,15 +24,12 @@ type BPCheckboxProps = {
 
 const BPCheckbox = ({
   children,
-  icon = null,
-  rightIcon = null,
+  icon,
   size = DEFAULT_SIZE,
   type = UI_DEFAULT_TYPE,
   outline = false,
   magic = false,
-  isLoading = false,
-  isDisabled = false,
-  loadingText = '',
+  disabled = false,
   ...props
 }: BPCheckboxProps) => {
   const superSet = outline ? 'outline' : 'normal'
@@ -53,19 +46,22 @@ const BPCheckbox = ({
     [`${palette.link}`]: true,
     [`${palette.color}`]: true,
     [`${palette.bg}`]: true,
-    [`${palette.hover}`]: !magic,
-    'select-none cursor-not-allowed	': isDisabled || isLoading,
-    'opacity-70': isDisabled && !magic,
+    [`${palette.hover}`]: !disabled && !magic,
+    'select-none cursor-not-allowed	': disabled,
+    'opacity-70': disabled && !magic,
     'rounded-sm transition ease-in-out whitespace-nowrap flex items-center gap-2 justify-center':
       true,
     [props.className]: props.className,
   })
 
   const wrapperClass = classNames({
-    ' select-none cursor-not-allowed	': isDisabled || isLoading,
-    'opacity-70': isDisabled,
     [`rounded-sm ${magicPalette}`]: true,
     [props.className]: props.className,
+  })
+
+  const labelClass = classNames({
+    'whitespace-nowrap': true,
+    'opacity-70': disabled,
   })
 
   const Element = () => (
@@ -75,6 +71,7 @@ const BPCheckbox = ({
       className={elementClass}
       defaultChecked
       id={children?.toString()}
+      disabled={disabled}
     >
       <Checkbox.Indicator className="CheckboxIndicator">
         {icon ? icon : <FiCheck />}
@@ -96,7 +93,7 @@ const BPCheckbox = ({
       ) : (
         <div className="flex gap-4 items-center">
           <Element />
-          <label className="whitespace-nowrap" htmlFor={children?.toString()}>
+          <label className={labelClass} htmlFor={children?.toString()}>
             {children}
           </label>
         </div>

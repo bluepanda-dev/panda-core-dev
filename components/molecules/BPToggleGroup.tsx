@@ -15,25 +15,35 @@ type BPToggleGroupProps = {
   type?: UI_TYPE
   outline?: boolean
   magic?: boolean
+  disabled?: boolean
   size?: SIZE
   selectionType?: 'single' | 'multiple'
   defaultValue?: string | string[]
   [x: string]: any
 }
 
-export const BPToggleItem = ({ outline, size, palette, ...props }: any) => {
+export const BPToggleItem = ({
+  outline,
+  size,
+  palette,
+  disabled,
+  ...props
+}: any) => {
   const elementClass = classNames({
     [`text-${size === 'md' ? 'base' : size}`]: true,
     [`${palette.bg}`]: true,
     [`${palette.color}`]: true,
-    [`${palette.hover}`]: true,
+    [`${palette.hover}`]: !disabled,
     [`${ICON_SIZE[size as SIZE]}`]: true,
     'flex items-center justify-center': true,
     ToggleGroupItem: true,
     [`isOutline`]: outline,
+    'opacity-70 select-none cursor-not-allowed': disabled,
     [props.className]: props.className,
   })
-  return <ToggleGroup.Item {...props} className={elementClass} />
+  return (
+    <ToggleGroup.Item {...props} className={elementClass} disabled={disabled} />
+  )
 }
 
 export default function BPToggleGroup({
@@ -44,6 +54,7 @@ export default function BPToggleGroup({
   magic = false,
   selectionType = 'single',
   defaultValue = '',
+  disabled = false,
   ...props
 }: BPToggleGroupProps) {
   const superSet = outline ? 'outline' : 'normal'
@@ -59,21 +70,23 @@ export default function BPToggleGroup({
   })
 
   const wrapperClass = classNames({
-    [`${magicPalette}`]: true,
+    [`${magicPalette} rounded-md !p-px`]: magic,
   })
   return (
     <div className={wrapperClass}>
       <ToggleGroup.Root
-        className={elementClass}
         type={selectionType}
         defaultValue={defaultValue as any}
         {...props}
+        className={elementClass}
+        disabled={disabled}
       >
-        {React.Children.map(children, (child) => {
+        {React.Children.map(children, (child: any) => {
           return React.cloneElement(child as React.ReactElement<any>, {
             palette,
             size,
             outline,
+            disabled: child?.props?.disabled ?? disabled,
           })
         })}
       </ToggleGroup.Root>
