@@ -11,7 +11,6 @@ import {
 
 type BPSliderProps = {
   children?: React.ReactNode
-  size?: SIZE
   type?: UI_TYPE
   outline?: boolean
   magic?: boolean
@@ -24,7 +23,6 @@ type BPSliderProps = {
 
 const BPSlider = ({
   children,
-  size = DEFAULT_SIZE,
   type = UI_DEFAULT_TYPE,
   outline = false,
   magic = false,

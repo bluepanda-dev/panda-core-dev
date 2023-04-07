@@ -7,33 +7,47 @@ import { UI_TYPES_CONFIG, UI_TYPE } from '@core/types/ui-kit'
 export default {
   title: 'Atoms/BPTooltip',
   component: BPTooltip,
-  argTypes: {},
+  argTypes: {
+    size: {
+      options: ['xxs', 'xs', 'sm', 'md', 'lg', 'xl'],
+      control: { type: 'select' },
+    },
+    type: {
+      options: [
+        'default',
+        'danger',
+        'cyber',
+        'caution',
+        'success',
+        'primary',
+        'secondary',
+        'accent',
+        'light',
+        'link',
+      ],
+      control: { type: 'select' },
+    },
+    tooltip: {
+      control: { type: 'text' },
+    },
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+  },
 } as Meta<typeof BPTooltip>
 
 type Story = StoryObj<typeof BPTooltip>
 
 const DefaultTooltip = ({ ...props }) => (
-  <BPTooltip tooltip={'Message from tooltip component.'} {...props}>
-    <BPButton type={props.type} outline={props.outline} magic={props.magic}>
-      Tooltip {props.size}
-    </BPButton>
+  <BPTooltip {...props}>
+    <BPButton>Tooltip</BPButton>
   </BPTooltip>
 )
 
 export const Basic: Story = {
-  render: () => <DefaultTooltip />,
-}
-
-export const Sizes: Story = {
-  render: () => (
-    <div className="flex gap-8 w-full items-center">
-      <DefaultTooltip />
-      <DefaultTooltip size="xs" />
-      <DefaultTooltip size="sm" />
-      <DefaultTooltip size="lg" />
-      <DefaultTooltip size="xl" />
-    </div>
-  ),
+  render: ({ children, ...args }: any) => <DefaultTooltip {...args} />,
 }
 
 export const Types: Story = {

@@ -6,7 +6,12 @@ import { UI_TYPES_CONFIG, UI_TYPE } from '@core/types/ui-kit'
 export default {
   title: 'Atoms/BPTabs',
   component: BPTabs,
-  argTypes: {},
+  argTypes: {
+    orientation: {
+      options: ['vertical', 'horizontal'],
+      control: { type: 'select' },
+    },
+  },
 } as Meta<typeof BPTabs>
 
 type Story = StoryObj<typeof BPTabs>
@@ -24,7 +29,7 @@ const DefaultTab = (props: any) => (
 )
 
 export const Basic: Story = {
-  render: () => <DefaultTab />,
+  render: ({ children, ...args }: any) => <DefaultTab {...args} />,
 }
 
 export const Vertical: Story = {

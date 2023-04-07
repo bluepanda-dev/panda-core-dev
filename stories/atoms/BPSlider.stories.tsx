@@ -12,22 +12,7 @@ export default {
 type Story = StoryObj<typeof BPSlider>
 
 export const Basic: Story = {
-  render: () => (
-    <div className="flex gap-6">
-      <BPSlider />
-    </div>
-  ),
-}
-
-export const Sizes: Story = {
-  render: () => (
-    <div className="flex flex-col gap-6">
-      <BPSlider className="w-10" onValueChange={console.log} />
-      <BPSlider className="w-24" onValueChange={console.log} />
-      <BPSlider className="w-60" onValueChange={console.log} />
-      <BPSlider className="w-80" onValueChange={console.log} />
-    </div>
-  ),
+  render: ({ children, ...args }: any) => <BPSlider {...args} />,
 }
 
 export const Types: Story = {

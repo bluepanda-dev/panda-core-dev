@@ -12,34 +12,10 @@ export default {
 type Story = StoryObj<typeof BPSwitch>
 
 export const Basic: Story = {
-  render: () => (
-    <BPSwitch id="1" onCheckedChange={console.log}>
+  render: ({ children, ...args }: any) => (
+    <BPSwitch id="1" {...args} onCheckedChange={console.log}>
       Label switch
     </BPSwitch>
-  ),
-}
-
-export const Statuses: Story = {
-  render: () => (
-    <div className="flex gap-4 w-full items-center">
-      <BPSwitch id="1" onCheckedChange={console.log} disabled>
-        Disabled switch
-      </BPSwitch>
-
-      <BPSwitch
-        type="danger"
-        outline
-        id="2"
-        onCheckedChange={console.log}
-        disabled
-      >
-        Disabled switch
-      </BPSwitch>
-
-      <BPSwitch type="danger" id="3" onCheckedChange={console.log} disabled>
-        Disabled switch
-      </BPSwitch>
-    </div>
   ),
 }
 

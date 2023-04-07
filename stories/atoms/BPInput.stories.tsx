@@ -8,24 +8,26 @@ import { UI_TYPE, UI_TYPES_CONFIG } from '@core/types/ui-kit'
 export default {
   title: 'Atoms/BPInput',
   component: BPInput,
-  argTypes: {},
+  argTypes: {
+    nativeType: {
+      table: {
+        disable: true,
+      },
+    },
+    placeholder: {
+      control: { type: 'text' },
+    },
+    value: {
+      control: { type: 'text' },
+    },
+  },
 } as Meta<typeof BPInput>
 
 type Story = StoryObj<typeof BPInput>
 
 export const Basic: Story = {
-  render: () => <BPInput placeholder="Please add text..." />,
-}
-
-export const Sizes: Story = {
-  render: () => (
-    <div className="flex justify-start items-start gap-2 w-full">
-      <BPInput placeholder="Default" />
-      <BPInput placeholder="Size xs" size="xs" />
-      <BPInput placeholder="Size sm" size="sm" />
-      <BPInput placeholder="Size lg" size="lg" />
-      <BPInput placeholder="Size xl" size="xl" />
-    </div>
+  render: ({ children, ...args }: any) => (
+    <BPInput {...args} placeholder="Please add text..." />
   ),
 }
 

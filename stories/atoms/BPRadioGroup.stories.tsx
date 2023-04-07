@@ -21,7 +21,7 @@ const DefaultExample = ({ id, ...props }: any) => (
 )
 
 export const Basic: Story = {
-  render: () => <DefaultExample id="def" />,
+  render: ({ children, ...args }: any) => <DefaultExample {...args} id="def" />,
 }
 
 export const Statuses: Story = {
@@ -31,18 +31,6 @@ export const Statuses: Story = {
       <BPRadioGroupItem disabled id={`2`} value="2" label="Disabled Option 2" />
       <BPRadioGroupItem id={`3`} value="3" label="Option 3" />
     </BPRadioGroup>
-  ),
-}
-
-export const Sizes: Story = {
-  render: () => (
-    <div className="flex flex-col gap-8 w-full items-center">
-      <DefaultExample id="default" />
-      <DefaultExample id="xs" size="xs" />
-      <DefaultExample id="sm" size="sm" />
-      <DefaultExample id="lg" size="lg" />
-      <DefaultExample id="xl" size="xl" />
-    </div>
   ),
 }
 

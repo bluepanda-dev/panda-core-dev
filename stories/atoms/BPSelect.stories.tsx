@@ -13,7 +13,11 @@ import { UI_TYPES_CONFIG, UI_TYPE } from '@core/types/ui-kit'
 export default {
   title: 'Atoms/BPSelect',
   component: BPSelect,
-  argTypes: {},
+  argTypes: {
+    disabled: {
+      control: { type: 'boolean' },
+    },
+  },
 } as Meta<typeof BPSelect>
 
 type Story = StoryObj<typeof BPSelect>
@@ -32,52 +36,10 @@ const DefaultList = () => (
 )
 
 export const Basic: Story = {
-  render: () => (
-    <BPSelect placeholder="Select an Option">
+  render: ({ children, ...args }: any) => (
+    <BPSelect {...args} placeholder="Select an Option">
       <DefaultList />
     </BPSelect>
-  ),
-}
-
-export const Statuses: Story = {
-  args: {
-    placeholder: 'Disabled select',
-  },
-  render: ({ placeholder }) => (
-    <BPSelect placeholder={placeholder} disabled>
-      <DefaultList />
-      <BPSelectSeparator />
-      <BPSelectGroup>
-        <BPSelectLabel className="SelectLabel">Other</BPSelectLabel>
-        <BPSelectItem value="lemon">Lemon</BPSelectItem>
-      </BPSelectGroup>
-    </BPSelect>
-  ),
-}
-
-export const Sizes: Story = {
-  render: () => (
-    <div className="flex gap-8 w-full items-center">
-      <BPSelect placeholder="Default size">
-        <DefaultList />
-      </BPSelect>
-      <BPSelect size="xs" placeholder="Size xs">
-        <DefaultList />
-      </BPSelect>
-      <BPSelect size="sm" placeholder="Size sm">
-        <DefaultList />
-      </BPSelect>
-      <BPSelect size="lg" placeholder="Size lg">
-        <DefaultList />
-      </BPSelect>
-      <BPSelect size="xl" placeholder="Size xl">
-        <DefaultList />
-      </BPSelect>
-
-      <BPSelect size="xl" placeholder="Size xl long long text">
-        <DefaultList />
-      </BPSelect>
-    </div>
   ),
 }
 
