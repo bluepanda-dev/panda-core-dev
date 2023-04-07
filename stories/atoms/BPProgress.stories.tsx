@@ -53,3 +53,16 @@ export const Types: Story = {
     </div>
   ),
 }
+
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex gap-6 flex-col">
+      <BPDefaultProgress className="w-24 h-4" />
+      <BPDefaultProgress className="w-32 h-4" />
+      <BPDefaultProgress className="w-48 h-4" />
+      <BPDefaultProgress className="w-60 h-4" />
+      <BPDefaultProgress className="w-80 h-4" />
+      <BPDefaultProgress className="w-80 h-8" />
+    </div>
+  ),
+}
