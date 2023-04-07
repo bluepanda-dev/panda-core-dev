@@ -76,7 +76,7 @@ export const Basic: Story = {
 
 export const Statuses: Story = {
   render: () => (
-    <div className="w-[400px] md:w-[800px]">
+    <div className="w-[400px] md:w-[800px] px-6 max-h-[90vh] overflow-y-auto">
       <div className="text-xl text-primary-600 py-6">
         Steps 2 and 3 are Disabled
       </div>

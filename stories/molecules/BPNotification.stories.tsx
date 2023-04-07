@@ -46,7 +46,7 @@ export const Custom: Story = {
 
 export const Types: Story = {
   render: () => (
-    <div className="w-[100vw] flex gap-16 px-6">
+    <div className="w-[100vw] flex gap-16 px-6 max-h-[90vh] overflow-y-auto">
       <div className="flex flex-col gap-8 items-center w-full">
         <div className="text-xl text-primary-600">Normal</div>
         {Object.keys(UI_TYPES_CONFIG).map((key, index) => (

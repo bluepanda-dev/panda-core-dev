@@ -62,10 +62,10 @@ export const Sizes: Story = {
 
 export const Types: Story = {
   render: () => (
-    <div className="w-full flex gap-16">
+    <div className="w-full flex gap-16 max-h-[90vh] overflow-y-auto px-8 ">
       <div>
         <div className="text-xl text-primary-600 my-8">Normal</div>
-        <div className="flex flex-col gap-8 items-center max-h-[90vh] overflow-y-auto px-2 pb-6">
+        <div className="flex flex-col gap-8 items-center pb-6">
           {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
             <div key={index}>
               <div className="text-xl text-primary-600 my-8">{key}</div>
@@ -76,7 +76,7 @@ export const Types: Story = {
       </div>
       <div>
         <div className="text-xl text-primary-600 my-8">Outline</div>
-        <div className="flex flex-col gap-8 items-center max-h-[90vh] overflow-y-auto px-2 pb-6">
+        <div className="flex flex-col gap-8 items-center pb-6">
           {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
             <div key={index}>
               <div className="text-xl text-primary-600 my-8">{key}</div>

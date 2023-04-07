@@ -39,7 +39,7 @@ const DefaultSize = ({ size = 'md', ...props }: any) => (
 
 export const Sizes: Story = {
   render: () => (
-    <div className="w-[400px] flex-col items-center gap-2 flex justify-center">
+    <div className="w-[100vw] flex-col items-center gap-2 flex justify-center">
       <DefaultSize />
       <DefaultSize size="xs" />
       <DefaultSize size="sm" />
@@ -51,7 +51,7 @@ export const Sizes: Story = {
 
 export const Types: Story = {
   render: () => (
-    <div className="w-full flex gap-16 h-[90vh] overflow-y-auto px-6">
+    <div className="w-full flex gap-16 w-[100vw] h-[90vh] overflow-y-auto px-6">
       <div className="flex flex-col gap-8 items-center">
         <div className="text-xl text-primary-600">Normal</div>
         {Object.keys(UI_TYPES_CONFIG).map((key, index) => (

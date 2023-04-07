@@ -1,5 +1,15 @@
 import { Transition } from '@headlessui/react'
+import classNames from 'classnames'
 import { Fragment, useEffect } from 'react'
+import BPButton from '@components/atoms/BPButton'
+import BPHeading from '@components/atoms/BPHeading'
+import {
+  getMagicPalette,
+  getMagicText,
+  getPalette,
+  palette,
+} from '@core/helpers/palette'
+import { UI_DEFAULT_TYPE, UI_TYPE } from '@core/types/ui-kit'
 
 type SidePanelProps = {
   title: string
@@ -7,19 +17,39 @@ type SidePanelProps = {
   children: React.ReactNode
   closeModal: () => void
   closeText?: string
-  className?: string
   side?: 'left' | 'right'
+  type?: UI_TYPE
+  outline?: boolean
+  magic?: boolean
+  [x: string]: any
 }
 
 export default function BPSidePanel({
   title,
-  className,
   isOpen,
   children,
   closeText = 'Close',
   side = 'left',
   closeModal = () => {},
+  type = UI_DEFAULT_TYPE,
+  outline = false,
+  magic = false,
+  ...props
 }: SidePanelProps) {
+  const superSet = outline ? 'outline' : 'normal'
+  const palette = getPalette(superSet, type)
+  const magicPalette = getMagicPalette()
+  const magicText = getMagicText()
+
+  const elementClass = classNames({
+    [`${palette.border}`]: true,
+    [`${palette.bg}`]: true,
+    [`gap-8 fixed flex flex-col z-50 overflow-hidden h-screen w-screen md:w-2/5 top-0 p-2 ${
+      side === 'right' ? 'right-0 border-l-2' : 'left-0 border-r-2'
+    }`]: true,
+    [props.className]: props.className,
+  })
+
   useEffect(() => {
     if (document.body.parentNode) {
       if (isOpen) {
@@ -31,7 +61,7 @@ export default function BPSidePanel({
   }, [isOpen])
 
   return (
-    <>
+    <div>
       <Transition
         show={isOpen}
         as={Fragment}
@@ -46,13 +76,10 @@ export default function BPSidePanel({
           <div
             className={`fixed z-10 bg-normal-400 dark:bg-normal-900 opacity-70 w-screen h-screen top-0 left-0`}
             onClick={closeModal}
+            {...props}
           ></div>
-          <div
-            className={`fixed flex flex-col z-50 overflow-hidden bg-neutral-50 dark:bg-normal-900 h-screen border-neutral-800 w-screen md:w-2/5 top-0 p-2 ${
-              side === 'right' ? 'right-0 border-l-2' : 'left-0 border-r-2'
-            } ${className}`}
-          >
-            <h1 className="text-2xl">{title}</h1>
+          <div className={elementClass}>
+            <BPHeading magic={magic}>{title}</BPHeading>
             <main className="mb-16 h-full">{children}</main>
           </div>
           <div
@@ -60,16 +87,18 @@ export default function BPSidePanel({
              ${side === 'right' ? 'right-0' : 'left-0'}
           `}
           >
-            <button
-              type="button"
-              className="text-neutral-50 bg-primary-700 inline-flex rounded-md border border-transparent px-4 py-2 text-sm font-medium hover:bg-primary-500 "
+            <BPButton
+              magic={magic}
+              outline={outline}
+              type={type}
+              nativeType="button"
               onClick={closeModal}
             >
               {closeText}
-            </button>
+            </BPButton>
           </div>
         </div>
       </Transition>
-    </>
+    </div>
   )
 }
