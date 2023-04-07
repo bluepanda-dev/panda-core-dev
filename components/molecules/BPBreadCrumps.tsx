@@ -1,5 +1,8 @@
 import classNames from 'classnames'
+import { useRouter } from 'next/router'
 import React from 'react'
+import { FiChevronRight } from 'react-icons/fi'
+import BPHeading from '@components/atoms/BPHeading'
 import {
   getMagicPalette,
   getMagicText,
@@ -15,47 +18,55 @@ import {
   UI_TYPE,
 } from '@core/types/ui-kit'
 
-type BPBadgeProps = {
-  children?: React.ReactNode
+type BPBreadCrumpsItem = {
+  label: string
+  to: string
+}
+
+type BPBreadCrumpsProps = {
   size?: SIZE
   type?: UI_TYPE
   outline?: boolean
   magic?: boolean
   hoverable?: boolean
+  items?: BPBreadCrumpsItem[]
   [x: string]: any
 }
 
-const BPBadge = ({
-  children,
+const BPBreadCrumps = ({
   size = DEFAULT_SIZE,
   type = UI_DEFAULT_TYPE,
   outline = false,
   magic = false,
   hoverable = false,
   url = undefined,
+  items = [],
   ...props
-}: BPBadgeProps) => {
+}: BPBreadCrumpsProps) => {
   const superSet = outline ? 'outline' : 'normal'
   const palette = getPalette(superSet, type)
   const magicPalette = getMagicPalette()
+  const router = useRouter()
 
   const elementClass = classNames({
     [`text-${size === 'md' ? 'base' : size}`]: true,
-    [`${ROUNDED[size]}`]: true,
     [`${palette.focus}`]: true,
     [`${palette.border}`]: !magic,
     [`${palette.link}`]: true,
     [`${palette.color}`]: true,
     [`${palette.bg}`]: true,
-    [`${palette.hover}`]: hoverable,
     [`p-${PADDINGS[size as SIZE] / 2}`]: true,
     [`px-${PADDINGS_X[size as SIZE]}`]: true,
-    'whitespace-nowrap flex justify-center': true,
+    'whitespace-nowrap items-center flex justify-start w-full gap-2': true,
     [props.className]: props.className,
   })
 
   const wrapperClass = classNames({
-    [`${ROUNDED[size]} ${magicPalette} !p-px`]: true,
+    [`${magicPalette} !p-px`]: true,
+  })
+
+  const separatorClass = classNames({
+    [`text-${size === 'md' ? 'base' : size}`]: true,
   })
 
   const magicText = getMagicText()
@@ -63,9 +74,31 @@ const BPBadge = ({
     [magicText]: magic,
   })
 
+  function goTo(path: string) {
+    router.push(path)
+  }
+
+  console.log('items', hoverable)
+
   const Element = () => (
     <div className={elementClass}>
-      <span className={titleClass}>{children}</span>
+      {items.map((item, index) => {
+        return (
+          <div className="items-center flex justify-start gap-2" key={index}>
+            <BPHeading
+              size={size}
+              className={titleClass}
+              onClick={() => goTo(item.to)}
+              hoverable={hoverable}
+            >
+              {item.label}
+            </BPHeading>
+            {index < items.length - 1 && (
+              <FiChevronRight className={separatorClass} />
+            )}
+          </div>
+        )
+      })}
     </div>
   )
 
@@ -78,4 +111,4 @@ const BPBadge = ({
   )
 }
 
-export default BPBadge
+export default BPBreadCrumps

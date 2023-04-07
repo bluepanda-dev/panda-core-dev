@@ -16,6 +16,7 @@ type BPHeadingProps = {
   size?: SIZE
   type?: UI_TYPE
   magic?: boolean
+  hoverable?: boolean
   [x: string]: any
 }
 
@@ -24,6 +25,7 @@ const BPHeading = ({
   size = DEFAULT_SIZE,
   type = UI_DEFAULT_TYPE,
   magic = false,
+  hoverable = false,
   ...props
 }: BPHeadingProps) => {
   const palette = getPalette('outline', type)
@@ -34,6 +36,7 @@ const BPHeading = ({
     [`${palette.focus}`]: true,
     [`${palette.link}`]: true,
     [`${palette.color}`]: !magic,
+    [`hover:opacity-70 cursor-pointer`]: hoverable,
     [props.className]: props.className,
   })
 
@@ -42,17 +45,13 @@ const BPHeading = ({
     [magicText]: magic,
   })
 
-  const Element = () =>
-    React.createElement(
-      H_ELEMENT[size],
-      { ...props, className: classNames(elementClass, titleClass) },
-      children,
-    )
-
-  return (
-    <>
-      <Element />
-    </>
+  return React.createElement(
+    H_ELEMENT[size],
+    {
+      ...props,
+      className: classNames(elementClass, titleClass),
+    },
+    children,
   )
 }
 
