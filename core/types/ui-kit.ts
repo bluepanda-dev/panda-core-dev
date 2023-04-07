@@ -111,6 +111,7 @@ export const AVATAR_SIZE = {
 }
 
 export const H_ELEMENT = {
+  '2xl': 'h1',
   xl: 'h1',
   lg: 'h2',
   md: 'h3',
@@ -120,6 +121,7 @@ export const H_ELEMENT = {
 }
 
 export const H_ELEMENT_SIZE = {
+  '2xl': 'text-6xl',
   xl: 'text-6xl',
   lg: 'text-4xl',
   md: 'text-3xl',

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { FiChevronRight } from 'react-icons/fi'
 import BPHeading from '@components/atoms/BPHeading'
+import BPIcon from '@components/atoms/BPIcon'
 import {
   getMagicPalette,
   getMagicText,
@@ -65,10 +66,6 @@ const BPBreadCrumps = ({
     [`${magicPalette} !p-px`]: true,
   })
 
-  const separatorClass = classNames({
-    [`text-${size === 'md' ? 'base' : size}`]: true,
-  })
-
   const magicText = getMagicText()
   const titleClass = classNames({
     [magicText]: magic,
@@ -94,7 +91,9 @@ const BPBreadCrumps = ({
               {item.label}
             </BPHeading>
             {index < items.length - 1 && (
-              <FiChevronRight className={separatorClass} />
+              <BPIcon outline={outline} borderless type={type} size={size}>
+                <FiChevronRight />
+              </BPIcon>
             )}
           </div>
         )
