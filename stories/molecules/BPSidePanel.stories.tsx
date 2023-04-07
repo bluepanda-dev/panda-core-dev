@@ -44,7 +44,7 @@ const DefaultSidePanel = ({ ...props }) => {
 export const Basic: Story = {
   render: () => (
     <div className="h-[100vh] w-[100vw] flex justify-center items-center flex-col gap-8">
-      <DefaultSidePanel />,
+      <DefaultSidePanel />
     </div>
   ),
 }
@@ -52,7 +52,7 @@ export const Basic: Story = {
 export const BasicRight: Story = {
   render: () => (
     <div className="h-[100vh] w-[100vw] flex justify-center items-center flex-col gap-8">
-      <DefaultSidePanel side="right" />,
+      <DefaultSidePanel side="right" />
     </div>
   ),
 }
