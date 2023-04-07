@@ -58,6 +58,7 @@ export const Types: Story = {
         <div className="text-xl text-primary-600">Normal </div>
         {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
           <BPBreadCrumps
+            size={'sm'}
             key={index}
             type={key as UI_TYPE}
             items={items}
@@ -70,6 +71,7 @@ export const Types: Story = {
         <div className="text-xl text-primary-600">Outlined </div>
         {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
           <BPBreadCrumps
+            size={'sm'}
             outline
             key={index}
             type={key as UI_TYPE}
@@ -78,7 +80,7 @@ export const Types: Story = {
           />
         ))}
 
-        <BPBreadCrumps outline magic items={items} hoverable />
+        <BPBreadCrumps size={'sm'} outline magic items={items} hoverable />
       </div>
     </div>
   ),

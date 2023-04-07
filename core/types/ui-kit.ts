@@ -1,4 +1,4 @@
-export type SIZE = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+export type SIZE = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 
 export interface UIBaseConfig {
   baseColor: string | null
@@ -58,6 +58,7 @@ export const SIZES = {
   md: 32,
   lg: 40,
   xl: 48,
+  '2xl': 56,
 }
 
 export const PADDINGS = {
@@ -67,6 +68,7 @@ export const PADDINGS = {
   md: 2,
   lg: 2,
   xl: 2,
+  '2xl': 2,
 }
 export const PADDINGS_X = {
   xxs: 1,
@@ -75,6 +77,7 @@ export const PADDINGS_X = {
   md: 4,
   lg: 6,
   xl: 6,
+  '2xl': 6,
 }
 
 export const ROUNDED = {
@@ -84,6 +87,7 @@ export const ROUNDED = {
   md: 'rounded-3xl',
   lg: 'rounded-full',
   xl: 'rounded-full',
+  '2xl': 'rounded-full',
 }
 
 export const ICON_SIZE = {
@@ -93,6 +97,7 @@ export const ICON_SIZE = {
   md: 'h-8 w-8',
   lg: 'h-8 w-8',
   xl: 'h-12 w-12',
+  '2xl': 'h-14 w-14',
 }
 
 export const AVATAR_SIZE = {
@@ -102,6 +107,7 @@ export const AVATAR_SIZE = {
   md: 'h-12 w-12',
   lg: 'h-16 w-16',
   xl: 'h-24 w-24',
+  '2xl': 'h-32 w-32',
 }
 
 export const H_ELEMENT = {
