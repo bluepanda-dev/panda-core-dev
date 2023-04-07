@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useState } from 'react'
-import CodeTerminal from '@components/molecules/CodeTerminal'
+import BPCodeTerminal from '@components/molecules/BPCodeTerminal'
 import { useCopyPages } from '@core/hooks/useCopyPages'
 
 export default function BPCodeExample() {
@@ -37,7 +37,7 @@ export default function BlurExample() {
               value={blur}
               onChange={(e) => setBlur(Number(e.target.value))}
             />
-            <CodeTerminal inner={inner} />
+            <BPCodeTerminal>{inner}</BPCodeTerminal>
           </div>
           <div>
             <Image

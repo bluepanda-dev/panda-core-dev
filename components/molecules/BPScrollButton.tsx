@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { FaArrowCircleUp } from 'react-icons/fa'
 import BPButton from '@components/atoms/BPButton'
-const ScrollButton = () => {
+export default function BPScrollButton() {
   const [visible, setVisible] = useState(false)
 
   const toggleVisible = () => {
@@ -42,5 +42,3 @@ const ScrollButton = () => {
     </div>
   )
 }
-
-export default ScrollButton

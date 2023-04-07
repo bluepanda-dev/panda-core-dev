@@ -6,7 +6,7 @@ type DialogProps = {
   loading: boolean
 }
 
-export default function LoadingModal({ loading }: DialogProps) {
+export default function BPLoadingModal({ loading }: DialogProps) {
   return (
     <>
       <Transition appear show={loading} as={Fragment}>
@@ -20,7 +20,7 @@ export default function LoadingModal({ loading }: DialogProps) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-30" />
+            <div className="fixed inset-0 bg-black bg-opacity-80" />
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
@@ -36,7 +36,7 @@ export default function LoadingModal({ loading }: DialogProps) {
               >
                 <Dialog.Panel className="w-full flex justify-center flex-col items-center gap-8 max-w-md transform overflow-hidden p-6 align-middle transition-all">
                   <Image
-                    src="/logo.webp"
+                    src="https://plus.blue-panda.dev/logo.webp"
                     alt=""
                     width={65}
                     height={22}

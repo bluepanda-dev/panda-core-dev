@@ -6,7 +6,7 @@ import { appWithTranslation } from 'next-i18next'
 import { Suspense, useEffect } from 'react'
 import { StatsigProvider } from 'statsig-react'
 import BPButton from '@components/atoms/BPButton'
-import ScrollButton from '@components/molecules/ScrollButton'
+import BPScrollButton from '@components/molecules/BPScrollButton'
 import { NAME, WEBSITE } from '@core/helpers/branding'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
@@ -48,7 +48,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <link rel="manifest" href="/manifest.json" />
         </Head>
         <Component {...pageProps} />
-        <ScrollButton />
+        <BPScrollButton />
         <div className="fixed bottom-0 left-0 m-4 z-50">
           <BPButton outline type="accent" onClick={handleDemoButton}>
             Back to {NAME}

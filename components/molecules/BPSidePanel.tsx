@@ -11,7 +11,7 @@ type SidePanelProps = {
   side?: 'left' | 'right'
 }
 
-export default function SidePanel({
+export default function BPSidePanel({
   title,
   className,
   isOpen,
