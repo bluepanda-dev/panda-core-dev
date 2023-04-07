@@ -15,7 +15,7 @@ import { NAME } from '@core/helpers/branding'
 import { useTheme } from '@core/hooks/useTheme'
 import { isAlertBannerActive } from '@core/store/Common'
 
-export default function NavBar() {
+export default function BPNavBar() {
   const router = useRouter()
   const { t } = useTranslation()
   const { themeDark, themeLight, theme } = useTheme()
@@ -81,7 +81,12 @@ export default function NavBar() {
       >
         <div className="flex items-center">
           <Link href="/" aria-label="home link">
-            <Image src="/logo.webp" alt="" width={45} height={22} />
+            <Image
+              src="https://plus.blue-panda.dev/logo.webp"
+              alt=""
+              width={45}
+              height={22}
+            />
           </Link>
           <BPHeading magic className="hidden md:block pl-6" size="sm">
             {NAME}

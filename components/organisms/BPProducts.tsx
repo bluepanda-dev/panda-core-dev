@@ -6,7 +6,7 @@ import BPAlertDialog from '@components/molecules/BPAlertDialog'
 import { useCopyPages } from '@core/hooks/useCopyPages'
 import { ProductCard } from '@core/types'
 
-const Product = ({
+const BPProduct = ({
   product,
   onBuy,
 }: {
@@ -21,7 +21,7 @@ const Product = ({
 
   return (
     <div className="w-full max-w-sm justify-self-center pb-1 rounded-lg bg-gradient-to-r from-blue-600 via-blue-700 to-blue-400">
-      <div className="bg-neutral-50 dark:bg-normal-900 h-full rounded-lg m-0.5 dark:m-[1px] flex flex-col">
+      <div className="bg-neutral-50 dark:bg-normal-950 h-full rounded-lg m-0.5 dark:m-[1px] flex flex-col">
         <div className="w-full rounded-t-lg flex justify-center">
           <Image alt="logo" src={product._image} width={180} height={48} />
         </div>
@@ -52,7 +52,7 @@ const Product = ({
   )
 }
 
-export default function Products() {
+export default function BPProducts() {
   const [isOpen, setIsOpen] = useState(false)
   const [product, setProduct] = useState<ProductCard | null>(null)
   const { products } = useCopyPages()
@@ -68,7 +68,7 @@ export default function Products() {
       <div className="pt-24 w-full flex justify-center">
         <div className="w-full grid px-2 md:px-0 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center max-w-5xl">
           {products.list!.map((product, index) => (
-            <Product key={index} product={product} onBuy={handleBuy} />
+            <BPProduct key={index} product={product} onBuy={handleBuy} />
           ))}
         </div>
       </div>

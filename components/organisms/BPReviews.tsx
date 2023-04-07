@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { useCopyPages } from '@core/hooks/useCopyPages'
 import { ReviewCard } from '@core/types'
 
-const Review = ({ review }: { review: ReviewCard }) => {
+const BPReview = ({ review }: { review: ReviewCard }) => {
   return (
     <div className="max-w-sm bg-neutral-50 bg-opacity-20 rounded-md p-4 py-6 shadow-lg">
       <div className="flex gap-4">
@@ -25,7 +25,7 @@ const Review = ({ review }: { review: ReviewCard }) => {
   )
 }
 
-export default function Reviews() {
+export default function BPReviews() {
   const { reviews } = useCopyPages()
 
   return (
@@ -34,7 +34,7 @@ export default function Reviews() {
       <div className="pt-24 w-full flex  justify-center">
         <div className="px-2 md:px-24 flex flex-col flex-wrap sm:flex-row justify-center gap-16 items-center w-full max-w-8xl">
           {reviews.list!.map((option, index) => (
-            <Review key={index} review={option} />
+            <BPReview key={index} review={option} />
           ))}
         </div>
       </div>

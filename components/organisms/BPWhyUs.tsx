@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { useCopyPages } from '@core/hooks/useCopyPages'
 import { WhyUsCard } from '@core/types'
 
-const Why = ({ why }: { why: WhyUsCard }) => {
+const BPWhy = ({ why }: { why: WhyUsCard }) => {
   return (
     <div className="basis-1/3 max-w-sm">
       <div className="rounded-lg flex flex-col gap-4 items-center h-56">
@@ -24,7 +24,7 @@ const Why = ({ why }: { why: WhyUsCard }) => {
   )
 }
 
-export default function WhyUs() {
+export default function BPWhyUs() {
   const { whyUs } = useCopyPages()
 
   return (
@@ -33,7 +33,7 @@ export default function WhyUs() {
       <div className="pt-24 w-full flex justify-center">
         <div className="grid px-2 md:px-0 md:grid-cols-3 justify-center items-center gap-8 max-w-5xl">
           {whyUs.list!.map((option, index) => (
-            <Why key={index} why={option} />
+            <BPWhy key={index} why={option} />
           ))}
         </div>
       </div>

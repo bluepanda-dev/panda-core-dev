@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export default function FareWell() {
+export default function BPFareWell() {
   return (
     <div className="py-8 w-full">
       <div className="text-center text-6xl font-bold pb-16">
@@ -14,7 +14,7 @@ export default function FareWell() {
       </div>
       <div className="pt-12 w-full flex  justify-center">
         <Image
-          src={`/pandas/group.webp`}
+          src={`https://plus.blue-panda.dev/pandas/group.webp`}
           alt="tech stack"
           className="px-2 mt-16"
           width={880}

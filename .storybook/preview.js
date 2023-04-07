@@ -1,6 +1,8 @@
 import '../styles/globals.css'
 import './sb.css'
-import { themes, ensure } from '@storybook/theming'
+import { themes } from '@storybook/theming'
+import { I18nextProvider } from 'react-i18next'
+import i18n from './i18n'
 
 export const parameters = {
   themes: {
@@ -30,4 +32,12 @@ export const parameters = {
   docs: {
     theme: themes.dark,
   },
+  decorators: [
+    (Story) => (
+      <I18nextProvider i18n={i18n}>
+        {/* 👇 Decorators in Storybook also accept a function. Replace <Story/> with Story() to enable it  */}
+        <Story />
+      </I18nextProvider>
+    ),
+  ],
 }

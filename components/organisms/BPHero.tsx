@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useCopyPages } from '@core/hooks/useCopyPages'
 
-export default function Hero() {
+export default function BPHero() {
   const { hero } = useCopyPages()
 
   const words = hero.list!

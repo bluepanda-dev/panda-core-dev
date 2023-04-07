@@ -3,7 +3,7 @@ import BPButton from '@components/atoms/BPButton'
 import BPInput from '@components/atoms/BPInput'
 import { useCopyPages } from '@core/hooks/useCopyPages'
 
-export default function KeepMeInformed() {
+export default function BPKeepMeInformed() {
   const [email, setEmail] = useState('')
   const { keepMeInformed } = useCopyPages()
 

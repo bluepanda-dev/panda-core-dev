@@ -20,7 +20,7 @@ const Feature = ({ feature }: { feature: FeatureCard }) => {
   )
 }
 
-export default function Features() {
+export default function BPFeatures() {
   const { features } = useCopyPages()
 
   return (

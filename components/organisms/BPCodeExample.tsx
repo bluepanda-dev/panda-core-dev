@@ -3,7 +3,7 @@ import { useState } from 'react'
 import CodeTerminal from '@components/molecules/CodeTerminal'
 import { useCopyPages } from '@core/hooks/useCopyPages'
 
-export default function CodeExample() {
+export default function BPCodeExample() {
   const { codeExample } = useCopyPages()
   const [blur, setBlur] = useState(0)
 
@@ -41,7 +41,7 @@ export default function BlurExample() {
           </div>
           <div>
             <Image
-              src={'/pandas/blue-panda-key.webp'}
+              src={'https://plus.blue-panda.dev/pandas/blue-panda-key.webp'}
               alt="blue panda"
               className={`w-80`}
               style={{ filter: `blur(${blur}px)` }}

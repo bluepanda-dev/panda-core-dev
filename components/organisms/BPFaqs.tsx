@@ -5,11 +5,11 @@ import BPAccordion, {
 } from '@components/atoms/BPAccordion'
 import { useCopyPages } from '@core/hooks/useCopyPages'
 
-export default function Faqs() {
+export default function BPFaqs() {
   const { faqs } = useCopyPages()
 
   return (
-    <div>
+    <div className="w-full">
       <div className="text-center text-6xl font-bold">{faqs.title}</div>
       <div className="pt-24 w-full flex justify-center">
         <div className="px-2 md:px-0 flex justify-center items-center w-full">

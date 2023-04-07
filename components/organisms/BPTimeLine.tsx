@@ -1,8 +1,7 @@
 import { FiCheck } from 'react-icons/fi'
 import { useCopyPages } from '@core/hooks/useCopyPages'
-import { TimeLineData } from '@core/types'
 
-export default function TimeLine() {
+export default function BPTimeLine() {
   const { timeLine } = useCopyPages()
 
   return (

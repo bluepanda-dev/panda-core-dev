@@ -47,7 +47,7 @@ body.light {
 html.dark,
 body.dark {
   color-scheme: dark;
-  @apply bg-normal-900;
+  @apply bg-black;
   @apply text-neutral-100 font-light;
 }
 

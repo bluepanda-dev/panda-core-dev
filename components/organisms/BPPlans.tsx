@@ -3,7 +3,7 @@ import BPButton from '@components/atoms/BPButton'
 import { useCopyPages } from '@core/hooks/useCopyPages'
 import { PlanCard } from '@core/types'
 
-const PlanCard = ({ plan }: { plan: PlanCard }) => {
+const BPPlanCard = ({ plan }: { plan: PlanCard }) => {
   const { plans } = useCopyPages()
 
   return (
@@ -41,7 +41,7 @@ const PlanCard = ({ plan }: { plan: PlanCard }) => {
   )
 }
 
-export default function Plans() {
+export default function BPPlans() {
   const { plans } = useCopyPages()
 
   return (
@@ -50,7 +50,7 @@ export default function Plans() {
       <div className="pt-24 w-full flex justify-center">
         <div className="max-w-[90em] px-2 md:px-24 grid grid-cols-1 lg:grid-cols-3 justify-center justify-items-center gap-8 xl:gap-16 items-center w-full">
           {plans.list!.map((plan, index) => (
-            <PlanCard key={index} plan={plan}></PlanCard>
+            <BPPlanCard key={index} plan={plan}></BPPlanCard>
           ))}
         </div>
       </div>

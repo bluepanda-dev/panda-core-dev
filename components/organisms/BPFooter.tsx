@@ -8,7 +8,7 @@ import { EMAIL, NAME } from '@core/helpers/branding'
 import { useCopyPages } from '@core/hooks/useCopyPages'
 import animationData from '../data/lottie-animation.json'
 
-export default function Footer() {
+export default function BPFooter() {
   const { pathname } = useRouter()
   const { t } = useTranslation()
   const { features, techStack } = useCopyPages()
@@ -27,13 +27,13 @@ export default function Footer() {
     }
   }, [pathname])
   return (
-    <div className="relative mt-16">
+    <div className="relative mt-16 w-full">
       {pathname === '' && <div id="lottie-animation" className="w-full" />}
       <footer className="relative bg-neutral-100 dark:bg-normal-800 border-t border-neutral-800 py-4">
         <div className="justify-center grid grid-cols-1 md:grid-cols-3 items-center px-4 py-12 w-full">
           <Image
             alt="logo"
-            src="/logo-v2.webp"
+            src="https://plus.blue-panda.dev/logo-v2.webp"
             width={140}
             height={48}
             className="absolute -left-16 lg:-left-32 bottom-0 w-48 lg:w-64 xl:w-80 hidden md:block opacity-70 grayscale "
@@ -94,7 +94,7 @@ export default function Footer() {
         </div>
         <Image
           alt="logo"
-          src="/logo-v2.webp"
+          src="https://plus.blue-panda.dev/logo-v2.webp"
           width={140}
           height={48}
           className="bottom-0 -right-16 absolute w-64 md:hidden opacity-30 grayscale "

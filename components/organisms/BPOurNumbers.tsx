@@ -1,10 +1,10 @@
 import { useCopyPages } from '@core/hooks/useCopyPages'
 
-export default function OurNumbers() {
+export default function BPOurNumbers() {
   const { ourNumbers } = useCopyPages()
 
   return (
-    <div className="py-8 w-full bg-neutral-100 dark:bg-normal-800">
+    <div className="py-8 w-full bg-neutral-100 dark:bg-normal-900">
       <div className="text-center text-6xl font-bold pb-16">
         {ourNumbers.title}
       </div>

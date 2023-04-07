@@ -15,6 +15,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'blue-panda.dev',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 }
