@@ -50,7 +50,7 @@ const BPBadge = ({
     [`${palette.hover}`]: hoverable,
     [`p-${PADDINGS[size as SIZE] / 2}`]: true,
     [`px-${PADDINGS_X[size as SIZE]}`]: true,
-    'whitespace-nowrap inline-block justify-center inline': true,
+    'whitespace-nowrap inline-block justify-center inline w-fit': true,
     [props.className]: props.className,
   })
 
