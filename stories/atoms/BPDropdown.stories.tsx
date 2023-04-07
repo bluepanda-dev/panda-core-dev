@@ -6,6 +6,7 @@ import BPDropdown, {
   BPDropdownSeparator,
 } from '@components/atoms/BPDropdown'
 import { UI_TYPES_CONFIG, UI_TYPE } from '@core/types/ui-kit'
+import { hideControl } from '@core/utils/storybook'
 
 export const DefaultExample = ({ children, ...props }: any) => {
   return (
@@ -29,11 +30,7 @@ export default {
   title: 'Atoms/BPDropdown',
   component: BPDropdown,
   argTypes: {
-    trigger: {
-      table: {
-        disable: true,
-      },
-    },
+    trigger: hideControl,
   },
 } as Meta<typeof BPDropdown>
 

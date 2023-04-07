@@ -3,6 +3,7 @@ import React from 'react'
 import { FiAlertCircle, FiStar } from 'react-icons/fi'
 import BPButton from '@components/atoms/BPButton'
 import { UI_TYPE, UI_TYPES_CONFIG } from '@core/types/ui-kit'
+import { hideControl, size, type } from '@core/utils/storybook'
 
 export default {
   title: 'Atoms/BPButton',
@@ -12,44 +13,15 @@ export default {
     loadingText: {
       control: { type: 'text' },
     },
-    type: {
-      options: [
-        'default',
-        'danger',
-        'cyber',
-        'caution',
-        'success',
-        'primary',
-        'secondary',
-        'accent',
-        'light',
-        'link',
-      ],
-      control: { type: 'select' },
-    },
-    size: {
-      options: ['xxs', 'xs', 'sm', 'md', 'lg', 'xl'],
-      control: { type: 'select' },
-    },
+    type: type,
+    size: size,
     nativeType: {
       options: ['button', 'submit', 'reset'],
       control: { type: 'select' },
     },
-    icon: {
-      table: {
-        disable: true,
-      },
-    },
-    children: {
-      table: {
-        disable: true,
-      },
-    },
-    rightIcon: {
-      table: {
-        disable: true,
-      },
-    },
+    icon: hideControl,
+    children: hideControl,
+    rightIcon: hideControl,
   },
 } as Meta<typeof BPButton>
 

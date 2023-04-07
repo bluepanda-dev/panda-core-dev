@@ -4,16 +4,13 @@ import { FiAlertCircle } from 'react-icons/fi'
 import BPButton from '@components/atoms/BPButton'
 import BPInput from '@components/atoms/BPInput'
 import { UI_TYPE, UI_TYPES_CONFIG } from '@core/types/ui-kit'
+import { hideControl } from '@core/utils/storybook'
 
 export default {
   title: 'Atoms/BPInput',
   component: BPInput,
   argTypes: {
-    nativeType: {
-      table: {
-        disable: true,
-      },
-    },
+    nativeType: hideControl,
     placeholder: {
       control: { type: 'text' },
     },

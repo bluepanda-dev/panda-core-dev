@@ -2,16 +2,13 @@ import { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 import BPProgress from '@components/atoms/BPProgress'
 import { UI_TYPES_CONFIG, UI_TYPE } from '@core/types/ui-kit'
+import { hideControl } from '@core/utils/storybook'
 
 export default {
   title: 'Atoms/BPProgress',
   component: BPProgress,
   argTypes: {
-    size: {
-      table: {
-        disable: true,
-      },
-    },
+    size: hideControl,
   },
 } as Meta<typeof BPProgress>
 

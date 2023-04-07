@@ -3,38 +3,18 @@ import React from 'react'
 import BPButton from '@components/atoms/BPButton'
 import BPTooltip from '@components/atoms/BPTooltip'
 import { UI_TYPES_CONFIG, UI_TYPE } from '@core/types/ui-kit'
+import { hideControl, size, type } from '@core/utils/storybook'
 
 export default {
   title: 'Atoms/BPTooltip',
   component: BPTooltip,
   argTypes: {
-    size: {
-      options: ['xxs', 'xs', 'sm', 'md', 'lg', 'xl'],
-      control: { type: 'select' },
-    },
-    type: {
-      options: [
-        'default',
-        'danger',
-        'cyber',
-        'caution',
-        'success',
-        'primary',
-        'secondary',
-        'accent',
-        'light',
-        'link',
-      ],
-      control: { type: 'select' },
-    },
+    size: size,
+    type: type,
     tooltip: {
       control: { type: 'text' },
     },
-    children: {
-      table: {
-        disable: true,
-      },
-    },
+    children: hideControl,
   },
 } as Meta<typeof BPTooltip>
 

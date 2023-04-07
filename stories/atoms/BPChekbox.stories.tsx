@@ -3,16 +3,13 @@ import React from 'react'
 import { FiMicOff, FiZap } from 'react-icons/fi'
 import BPCheckbox from '@components/atoms/BPCheckbox'
 import { UI_TYPES_CONFIG, UI_TYPE } from '@core/types/ui-kit'
+import { hideControl } from '@core/utils/storybook'
 
 export default {
   title: 'Atoms/BPCheckbox',
   component: BPCheckbox,
   argTypes: {
-    icon: {
-      table: {
-        disable: true,
-      },
-    },
+    icon: hideControl,
   },
 } as Meta<typeof BPCheckbox>
 
