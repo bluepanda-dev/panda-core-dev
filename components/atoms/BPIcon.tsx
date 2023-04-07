@@ -45,6 +45,7 @@ const BPIcon = ({
     [`${palette.hover}`]: !disabled && hoverable,
     'select-none cursor-not-allowed	': disabled,
     'opacity-70': disabled,
+    'w-fit': true,
     block: true,
     [props.className]: props.className,
   })

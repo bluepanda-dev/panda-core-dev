@@ -13,7 +13,7 @@ type Story = StoryObj<typeof BPBox>
 
 export const Basic: Story = {
   render: () => (
-    <div className="w-[100vw] flex justify-center">
+    <div className="w-[80vw] flex justify-center">
       <BPBox className="flex flex-col gap-8 w-full">
         <p>Box</p>
         <p>
@@ -39,7 +39,7 @@ const DefaultSize = ({ size = 'md', ...props }: any) => (
 
 export const Sizes: Story = {
   render: () => (
-    <div className="w-[100vw] flex-col items-center gap-2 flex justify-center">
+    <div className="w-[80vw] flex-col items-center gap-2 flex justify-center">
       <DefaultSize />
       <DefaultSize size="xs" />
       <DefaultSize size="sm" />

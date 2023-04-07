@@ -40,9 +40,13 @@ export default function BPBox({
 
   return magic ? (
     <div className={wrapperClass}>
-      <div className={containerClass}>{children}</div>
+      <div {...props} className={containerClass}>
+        {children}
+      </div>
     </div>
   ) : (
-    <div className={containerClass}>{children}</div>
+    <div {...props} className={containerClass}>
+      {children}
+    </div>
   )
 }
