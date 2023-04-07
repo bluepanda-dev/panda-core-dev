@@ -45,11 +45,11 @@ function buildOutlinePalette({
   }
   const hover = () => {
     if (baseColor === 'normal') {
-      return `hover:bg-${baseColor}-50 dark:hover:bg-${baseColor}-700`
+      return `hover:bg-${baseColor}-50 dark:hover:bg-${baseColor}-800`
     }
     return !baseColor
       ? `hover:bg-normal-10 dark:hover:bg-normal-800 hover:text-normal-100`
-      : `hover:bg-${baseColor}-400/20 dark:hover:bg-${baseColor}-900/30  hover:border-${baseColor}-500  hover:text-${baseColor}-700`
+      : `hover:bg-${baseColor}-400/20 dark:hover:bg-${baseColor}-960  hover:border-${baseColor}-500  hover:text-${baseColor}-700`
   }
   const link = isLink && 'underline'
   const focus = `active:bg-${baseColor}-700 focus:outline-none focus:ring focus:ring-${baseColor}-400 ring-inset`

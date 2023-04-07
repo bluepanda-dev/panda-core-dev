@@ -59,7 +59,7 @@ export const BPDropdownItem = ({
 export const BPDropdownSeparator = ({ palette, outline }: any) => {
   const itemClass = classNames({
     [`${palette.border}`]: true,
-    [`border-normal-800 my-2`]: !outline,
+    [`!border-normal-800 my-2`]: !outline,
   })
 
   return <DropdownMenu.Separator className={itemClass} />
