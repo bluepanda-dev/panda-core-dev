@@ -58,7 +58,8 @@ const BPBreadCrumps = ({
     [`${palette.bg}`]: true,
     [`p-${PADDINGS[size as SIZE]}`]: true,
     [`px-${PADDINGS_X[size as SIZE]}`]: true,
-    'whitespace-nowrap items-center flex justify-start w-full gap-2': true,
+    'relative whitespace-nowrap items-center flex justify-start w-full gap-2':
+      true,
     [props.className]: props.className,
   })
 

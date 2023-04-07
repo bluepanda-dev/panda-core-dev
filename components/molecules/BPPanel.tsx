@@ -37,7 +37,7 @@ export default function BPPanel({
 
   const elementClass = classNames({
     'transition ease-in-out whitespace-nowrap': true,
-    [`ui-border-group rounded-md`]: true,
+    [`relative ui-border-group rounded-md`]: true,
     [`${palette.border}`]: true,
     [`${palette.bg}`]: true,
     [props.className]: props.className,

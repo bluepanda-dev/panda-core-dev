@@ -16,7 +16,7 @@ export const Basic: Story = {
   render: () => (
     <>
       <BPEmptyState title="You have no orders so far">
-        You can buy a pooroduct from home page and come back here.
+        You can buy a product from home page and come back here.
       </BPEmptyState>
     </>
   ),
@@ -26,7 +26,7 @@ export const Custom: Story = {
   render: () => (
     <>
       <BPEmptyState icon={<GiPanda />} title="You have no orders so far">
-        You can buy a pooroduct from home page and come back here.
+        You can buy a product from home page and come back here.
       </BPEmptyState>
     </>
   ),
@@ -42,7 +42,7 @@ export const Types: Story = {
             type={key as UI_TYPE}
             title="You have no orders so far"
           >
-            You can buy a pooroduct from home page and come back here.
+            You can buy a product from home page and come back here.
           </BPEmptyState>
         ))}
         <BPEmptyState magic title="You have no orders so far">
