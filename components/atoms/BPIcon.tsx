@@ -17,6 +17,7 @@ type BPIconProps = {
   hoverable?: boolean
   outline?: boolean
   disabled?: boolean
+  borderless?: boolean
   [x: string]: any
 }
 
@@ -27,6 +28,7 @@ const BPIcon = ({
   disabled = false,
   hoverable = false,
   outline = false,
+  borderless = false,
   ...props
 }: BPIconProps) => {
   const superSet = outline ? 'outline' : 'normal'
@@ -39,10 +41,11 @@ const BPIcon = ({
     [`${palette.focus}`]: true,
     [`${palette.color}`]: true,
     [`${palette.bg}`]: true,
-    [`${palette.border}`]: outline,
+    [`${palette.border}`]: outline && !borderless,
     [`${palette.hover}`]: !disabled && hoverable,
     'select-none cursor-not-allowed	': disabled,
     'opacity-70': disabled,
+    block: true,
     [props.className]: props.className,
   })
 

@@ -45,11 +45,38 @@ export const Sizes: Story = {
   ),
 }
 
+export const Statuses: Story = {
+  render: () => (
+    <div className="w-full flex flex-col gap-12 items-center">
+      <div className="text-xl text-primary-600">Disabled</div>
+      <BPIcon disabled>
+        <FiPenTool />
+      </BPIcon>
+      <BPIcon disabled type="danger">
+        <FiPenTool />
+      </BPIcon>
+      <BPIcon outline disabled type="danger">
+        <FiPenTool />
+      </BPIcon>
+      <div className="text-xl text-primary-600">No border</div>
+      <BPIcon borderless>
+        <FiPenTool />
+      </BPIcon>
+      <BPIcon borderless type="danger">
+        <FiPenTool />
+      </BPIcon>
+      <BPIcon outline hover type="danger" borderless>
+        <FiPenTool />
+      </BPIcon>
+    </div>
+  ),
+}
+
 export const Types: Story = {
   render: () => (
     <div className="w-full flex gap-16">
       <div className="flex flex-col gap-8 items-center">
-        <div className="text-xl text-primary-600">Normal buttons</div>
+        <div className="text-xl text-primary-600">Normal </div>
         {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
           <BPIcon hoverable key={index} type={key as UI_TYPE}>
             <FiPenTool />
@@ -58,7 +85,7 @@ export const Types: Story = {
       </div>
 
       <div className="flex flex-col gap-8 items-center">
-        <div className="text-xl text-primary-600">Outlined buttons</div>
+        <div className="text-xl text-primary-600">Outlined </div>
         {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
           <BPIcon hoverable outline key={index} type={key as UI_TYPE}>
             <FiPenTool />
