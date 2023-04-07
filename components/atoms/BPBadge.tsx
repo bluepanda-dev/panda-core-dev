@@ -50,16 +50,18 @@ const BPBadge = ({
     [`${palette.hover}`]: hoverable,
     [`p-${PADDINGS[size as SIZE] / 2}`]: true,
     [`px-${PADDINGS_X[size as SIZE]}`]: true,
-    'whitespace-nowrap inline-block justify-center inline w-fit': true,
+    'whitespace-nowrap ': true,
+    'inline-block justify-center w-fit': !magic,
     [props.className]: props.className,
   })
 
   const wrapperClass = classNames({
-    [`${ROUNDED[size]} ${magicPalette} !p-px`]: true,
+    [`${ROUNDED[size]} ${magicPalette} !p-px !inline`]: true,
   })
 
   const magicText = getMagicText()
   const titleClass = classNames({
+    'flex gap-1 justify-center items-center': !magic,
     [magicText]: magic,
   })
 

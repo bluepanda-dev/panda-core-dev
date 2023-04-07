@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
+import { FiStar } from 'react-icons/fi'
 import BPBadge from '@components/atoms/BPBadge'
 import { UI_TYPES_CONFIG, UI_TYPE } from '@core/types/ui-kit'
 
@@ -45,6 +46,10 @@ export const Statuses: Story = {
       </BPBadge>
       <BPBadge size={'xs'} outline type="danger" hoverable>
         Hoverable Badge
+      </BPBadge>
+      <BPBadge outline type="danger" size={'xs'}>
+        <FiStar />
+        With Icon
       </BPBadge>
     </div>
   ),
