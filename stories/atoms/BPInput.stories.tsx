@@ -52,6 +52,18 @@ export const Statuses: Story = {
   ),
 }
 
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex justify-start items-start gap-2 w-full">
+      <BPInput placeholder="Default" />
+      <BPInput placeholder="Size xs" size="xs" />
+      <BPInput placeholder="Size sm" size="sm" />
+      <BPInput placeholder="Size lg" size="lg" />
+      <BPInput placeholder="Size xl" size="xl" />
+    </div>
+  ),
+}
+
 export const Types: Story = {
   render: () => (
     <div className="w-full flex gap-16">

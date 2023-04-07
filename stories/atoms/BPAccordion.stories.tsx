@@ -31,7 +31,7 @@ const DefaultExample = ({ ...props }) => (
 )
 
 export const Basic: Story = {
-  render: () => <DefaultExample />,
+  render: ({ data, ...args }) => <DefaultExample {...args} />,
 }
 
 export const Sizes: Story = {

@@ -12,7 +12,7 @@ export default {
 type Story = StoryObj<typeof BPBadge>
 
 export const Basic: Story = {
-  render: () => <BPBadge>Badge</BPBadge>,
+  render: ({ data, ...args }) => <BPBadge {...args}>Badge</BPBadge>,
 }
 
 export const Sizes: Story = {

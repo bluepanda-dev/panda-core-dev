@@ -34,6 +34,18 @@ export const Statuses: Story = {
   ),
 }
 
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex flex-col gap-8 w-full items-center">
+      <DefaultExample id="default" />
+      <DefaultExample id="xs" size="xs" />
+      <DefaultExample id="sm" size="sm" />
+      <DefaultExample id="lg" size="lg" />
+      <DefaultExample id="xl" size="xl" />
+    </div>
+  ),
+}
+
 export const Types: Story = {
   render: () => (
     <div className="w-full flex flex-col gap-12">

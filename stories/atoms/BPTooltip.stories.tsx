@@ -50,6 +50,18 @@ export const Basic: Story = {
   render: ({ children, ...args }: any) => <DefaultTooltip {...args} />,
 }
 
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex gap-8 w-full items-center">
+      <DefaultTooltip />
+      <DefaultTooltip size="xs" />
+      <DefaultTooltip size="sm" />
+      <DefaultTooltip size="lg" />
+      <DefaultTooltip size="xl" />
+    </div>
+  ),
+}
+
 export const Types: Story = {
   render: () => (
     <div className="w-full flex flex-col gap-12">

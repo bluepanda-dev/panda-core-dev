@@ -43,6 +43,32 @@ export const Basic: Story = {
   ),
 }
 
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex gap-8 w-full items-center">
+      <BPSelect placeholder="Default size">
+        <DefaultList />
+      </BPSelect>
+      <BPSelect size="xs" placeholder="Size xs">
+        <DefaultList />
+      </BPSelect>
+      <BPSelect size="sm" placeholder="Size sm">
+        <DefaultList />
+      </BPSelect>
+      <BPSelect size="lg" placeholder="Size lg">
+        <DefaultList />
+      </BPSelect>
+      <BPSelect size="xl" placeholder="Size xl">
+        <DefaultList />
+      </BPSelect>
+
+      <BPSelect size="xl" placeholder="Size xl long long text">
+        <DefaultList />
+      </BPSelect>
+    </div>
+  ),
+}
+
 export const Types: Story = {
   render: () => (
     <div className="w-full flex gap-6">

@@ -13,13 +13,13 @@ export default {
 type Story = StoryObj<typeof BPAvatar>
 
 export const Basic: Story = {
-  render: () => (
+  render: ({ data, ...args }) => (
     <div className="flex gap-6">
       <BPAvatar
+        {...args}
         url="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80"
-        text="J M"
       />
-      <BPAvatar text="J M" />
+      <BPAvatar {...args} />
     </div>
   ),
 }

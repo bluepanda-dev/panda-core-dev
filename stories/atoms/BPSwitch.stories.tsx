@@ -19,6 +19,30 @@ export const Basic: Story = {
   ),
 }
 
+export const Statuses: Story = {
+  render: () => (
+    <div className="flex gap-4 w-full items-center">
+      <BPSwitch id="1" onCheckedChange={console.log} disabled>
+        Disabled switch
+      </BPSwitch>
+
+      <BPSwitch
+        type="danger"
+        outline
+        id="2"
+        onCheckedChange={console.log}
+        disabled
+      >
+        Disabled switch
+      </BPSwitch>
+
+      <BPSwitch type="danger" id="3" onCheckedChange={console.log} disabled>
+        Disabled switch
+      </BPSwitch>
+    </div>
+  ),
+}
+
 export const Types: Story = {
   render: () => (
     <div className="w-full flex flex-col gap-12">
