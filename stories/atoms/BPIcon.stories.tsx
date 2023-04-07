@@ -65,7 +65,17 @@ export const Statuses: Story = {
       <BPIcon borderless type="danger">
         <FiPenTool />
       </BPIcon>
-      <BPIcon outline hover type="danger" borderless>
+      <BPIcon outline type="danger" borderless>
+        <FiPenTool />
+      </BPIcon>
+      <div className="text-xl text-primary-600">Hoverable</div>
+      <BPIcon hoverable>
+        <FiPenTool />
+      </BPIcon>
+      <BPIcon hoverable type="danger">
+        <FiPenTool />
+      </BPIcon>
+      <BPIcon outline hoverable type="danger">
         <FiPenTool />
       </BPIcon>
     </div>
