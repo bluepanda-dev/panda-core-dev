@@ -15,7 +15,7 @@ import {
   UI_TYPE,
 } from '@core/types/ui-kit'
 
-type BPAvatarProps = {
+type BPBadgeProps = {
   children?: React.ReactNode
   size?: SIZE
   type?: UI_TYPE
@@ -25,7 +25,7 @@ type BPAvatarProps = {
   [x: string]: any
 }
 
-const BPAvatar = ({
+const BPBadge = ({
   children,
   size = DEFAULT_SIZE,
   type = UI_DEFAULT_TYPE,
@@ -34,7 +34,7 @@ const BPAvatar = ({
   hoverable = false,
   url = undefined,
   ...props
-}: BPAvatarProps) => {
+}: BPBadgeProps) => {
   const superSet = outline ? 'outline' : 'normal'
   const palette = getPalette(superSet, type)
   const magicPalette = getMagicPalette()
@@ -50,16 +50,18 @@ const BPAvatar = ({
     [`${palette.hover}`]: hoverable,
     [`p-${PADDINGS[size as SIZE] / 2}`]: true,
     [`px-${PADDINGS_X[size as SIZE]}`]: true,
-    'whitespace-nowrap flex justify-center': true,
+    'whitespace-nowrap ': true,
+    'inline-block justify-center w-fit': !magic,
     [props.className]: props.className,
   })
 
   const wrapperClass = classNames({
-    [`${ROUNDED[size]} ${magicPalette} !p-px`]: true,
+    [`${ROUNDED[size]} ${magicPalette} !p-px !inline`]: true,
   })
 
   const magicText = getMagicText()
   const titleClass = classNames({
+    'flex gap-1 justify-center items-center': !magic,
     [magicText]: magic,
   })
 
@@ -78,4 +80,4 @@ const BPAvatar = ({
   )
 }
 
-export default BPAvatar
+export default BPBadge

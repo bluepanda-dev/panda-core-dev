@@ -11,12 +11,12 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #000;
+  background: #999;
   animation: lds-grid 1.2s linear infinite;
 }
 
 html.dark .lds-grid div {
-  background: #fff;
+  background: #999;
 }
 
 .lds-grid div:nth-child(1) {

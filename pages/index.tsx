@@ -2,20 +2,20 @@ import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Layout from '@components/layout'
-import Customers from '@components/organisms/Customers'
-import Faqs from '@components/organisms/Faqs'
-import FareWell from '@components/organisms/FareWell'
-import Features from '@components/organisms/Features'
-import Hero from '@components/organisms/Hero'
-import KeepMeInformed from '@components/organisms/KeepMeInformed'
-import OurNumbers from '@components/organisms/OurNumbers'
-import Plans from '@components/organisms/Plans'
-import Products from '@components/organisms/Products'
-import Reviews from '@components/organisms/Reviews'
-import ShowVideo from '@components/organisms/ShowVideo'
-import TechStack from '@components/organisms/TechStack'
-import TimeLine from '@components/organisms/TimeLine'
-import WhyUs from '@components/organisms/WhyUs'
+import BPCustomers from '@components/organisms/BPCustomers'
+import BPFaqs from '@components/organisms/BPFaqs'
+import BPFareWell from '@components/organisms/BPFareWell'
+import BPFeatures from '@components/organisms/BPFeatures'
+import BPHero from '@components/organisms/BPHero'
+import BPKeepMeInformed from '@components/organisms/BPKeepMeInformed'
+import BPOurNumbers from '@components/organisms/BPOurNumbers'
+import BPPlans from '@components/organisms/BPPlans'
+import BPProducts from '@components/organisms/BPProducts'
+import BPReviews from '@components/organisms/BPReviews'
+import BPShowVideo from '@components/organisms/BPShowVideo'
+import BPTechStack from '@components/organisms/BPTechStack'
+import BPTimeLine from '@components/organisms/BPTimeLine'
+import BPWhyUs from '@components/organisms/BPWhyUs'
 
 export default function Home() {
   const { t } = useTranslation()
@@ -32,20 +32,20 @@ export default function Home() {
         <meta property="og:image" content="/pandas/group.png" />
       </Head>
       <main className="flex flex-col gap-y-36 md:gap-y-48 mt-12">
-        <Hero />
-        <Features />
-        <WhyUs />
-        <Reviews />
-        <Plans />
-        <TimeLine />
-        <OurNumbers />
-        <Customers />
-        <Products />
-        <ShowVideo />
-        <KeepMeInformed />
-        <TechStack />
-        <Faqs />
-        <FareWell />
+        <BPHero />
+        <BPFeatures />
+        <BPWhyUs />
+        <BPReviews />
+        <BPPlans />
+        <BPTimeLine />
+        <BPOurNumbers />
+        <BPCustomers />
+        <BPProducts />
+        <BPShowVideo />
+        <BPKeepMeInformed />
+        <BPTechStack />
+        <BPFaqs />
+        <BPFareWell />
       </main>
     </Layout>
   )

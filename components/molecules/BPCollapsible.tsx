@@ -46,7 +46,7 @@ const BPCollapsible = ({
   const magicPalette = getMagicPalette()
 
   const elementClass = classNames({
-    'flex flex-col gap-4 transition ease-in-out': true,
+    'relative flex flex-col gap-4 transition ease-in-out': true,
     [props.className]: props.className,
   })
 

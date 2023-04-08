@@ -1,5 +1,5 @@
 {
-  "title": "Our Panda Plus Template Demo",
+  "title": "Demo - Panda Plus Template",
   "content": "Here is your content",
   "components": "Components",
   "settings": "Settings",
@@ -50,7 +50,7 @@
           "Nunc est aliquam nisl",
           "Vitae aliquam nisl nunc vel lorem"
         ],
-        "_image": "/products/1.webp"
+        "_image": "https://plus.blue-panda.dev/products/1.webp"
       },
       {
         "_id": 2,
@@ -64,7 +64,7 @@
           "Nunc est aliquam nisl",
           "Vitae aliquam nisl nunc vel lorem"
         ],
-        "_image": "/products/2.webp"
+        "_image": "https://plus.blue-panda.dev/products/2.webp"
       },
       {
         "_id": 3,
@@ -78,7 +78,7 @@
           "Nunc est aliquam nisl",
           "Vitae aliquam nisl nunc vel lorem"
         ],
-        "_image": "/products/3.webp"
+        "_image": "https://plus.blue-panda.dev/products/3.webp"
       },
       {
         "_id": 4,
@@ -92,7 +92,7 @@
           "Nunc est aliquam nisl",
           "Vitae aliquam nisl nunc vel lorem"
         ],
-        "_image": "/products/4.webp"
+        "_image": "https://plus.blue-panda.dev/products/4.webp"
       },
       {
         "_id": 5,
@@ -106,7 +106,7 @@
           "Nunc est aliquam nisl",
           "Vitae aliquam nisl nunc vel lorem"
         ],
-        "_image": "/products/5.webp"
+        "_image": "https://plus.blue-panda.dev/products/5.webp"
       },
       {
         "_id": 6,
@@ -120,7 +120,7 @@
           "Nunc est aliquam nisl",
           "Vitae aliquam nisl nunc vel lorem"
         ],
-        "_image": "/products/6.webp"
+        "_image": "https://plus.blue-panda.dev/products/6.webp"
       }
     ]
   },
@@ -231,19 +231,19 @@
         "name": "Jane Doe",
         "position": "CTO",
         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ipsun dolor sit amet, consectetur adipiscing elit.",
-        "_image": "/logo.webp"
+        "_image": "https://plus.blue-panda.dev/logo.webp"
       },
       {
         "name": "John Smith",
         "position": "Manager",
         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ipsum dolor sit amet, consectetur adipiscing elit.",
-        "_image": "/logo.webp"
+        "_image": "https://plus.blue-panda.dev/logo.webp"
       },
       {
         "name": "Yoda Doe",
         "position": "Developer",
         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ipsum dolor sit amet, consectetur adipiscing elit.",
-        "_image": "/logo.webp"
+        "_image": "https://plus.blue-panda.dev/logo.webp"
       }
     ]
   },
@@ -278,17 +278,17 @@
       {
         "title": "We use our product",
         "content": "All our products are built with Blue Panda Bases.",
-        "_image": "/logo.webp"
+        "_image": "https://plus.blue-panda.dev/logo.webp"
       },
       {
         "title": "Made by experts",
         "content": "Ex google engineers and +15 years of experience.",
-        "_image": "/logo.webp"
+        "_image": "https://plus.blue-panda.dev/logo.webp"
       },
       {
         "title": "We support you",
         "content": "We have a dedicated support team to help you on Slack.",
-        "_image": "/logo.webp"
+        "_image": "https://plus.blue-panda.dev/logo.webp"
       }
     ]
   },
@@ -298,32 +298,32 @@
       {
         "title": "Easy to translate",
         "content": "Support for your languages, sell easily in multiple countries. You modify from 1 file only.",
-        "_image": "/features/rainbow.webp"
+        "_image": "https://plus.blue-panda.dev/features/rainbow.webp"
       },
       {
         "title": "Easy to customize",
         "content": "Components, sections, pages, and more are readable and simple. You can customize everything.",
-        "_image": "/features/brown.webp"
+        "_image": "https://plus.blue-panda.dev/features/brown.webp"
       },
       {
         "title": "Up to date",
         "content": "Built with the latest version of React, Next.js, and Libs. You can use the latest features safely.",
-        "_image": "/features/blue.webp"
+        "_image": "https://plus.blue-panda.dev/features/blue.webp"
       },
       {
         "title": "SEO & Performance",
         "content": "All lighthouse scores are 100%. You can use this template for your SEO and performance from day one.",
-        "_image": "/features/green.webp"
+        "_image": "https://plus.blue-panda.dev/features/green.webp"
       },
       {
         "title": "Save time",
         "content": "We use this template too for our websites, so we know how to save your time. You can use it for your business.",
-        "_image": "/features/magenta.webp"
+        "_image": "https://plus.blue-panda.dev/features/magenta.webp"
       },
       {
         "title": "Extendable",
         "content": "This is a base for your project, you can extend it as you want. You can add new pages, components, and more.",
-        "_image": "/features/cyan.webp"
+        "_image": "https://plus.blue-panda.dev/features/cyan.webp"
       }
     ]
   }

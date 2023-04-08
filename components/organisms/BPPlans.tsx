@@ -1,0 +1,59 @@
+import { FiCheckCircle } from 'react-icons/fi'
+import BPButton from '@components/atoms/BPButton'
+import { useCopyPages } from '@core/hooks/useCopyPages'
+import { PlanCard } from '@core/types'
+
+const BPPlanCard = ({ plan }: { plan: PlanCard }) => {
+  const { plans } = useCopyPages()
+
+  return (
+    <div
+      className={`shadow-lg border dark:border-normal-700 rounded-md relative w-full lg:max-w-md h-80 lg:h-[30em]
+    ${plan._popular ? 'bg-blue-900 text-neutral-50 lg:h-[35em]' : ''}
+    `}
+    >
+      <div className="flex flex-col gap-4 p-6">
+        <div className="from-accent-600 to-accent-500 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r">
+          {plan.title}
+        </div>
+        <div className="text-3xl font-bold">{plan.price}</div>
+        <div className="text-md text-left">
+          <ul>
+            {plan.features.map((item, index) => (
+              <li key={index} className="flex items-center gap-2 md:py-1">
+                <FiCheckCircle className="text-success-500" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="absolute right-4 lg:left-6 bottom-2 lg:bottom-28">
+          {plan.details}
+        </div>
+      </div>
+      <div className="absolute right-2 lg:right-0 bottom-10 lg:bottom-4 flex flex-col lg:flex-row lg:w-full gap-4 px-4 justify-center">
+        <BPButton outline>Try for Free</BPButton>
+        <BPButton outline type="accent">
+          {plans.cta}
+        </BPButton>
+      </div>
+    </div>
+  )
+}
+
+export default function BPPlans() {
+  const { plans } = useCopyPages()
+
+  return (
+    <div className="w-full">
+      <div className="text-center text-6xl font-bold">{plans.title}</div>
+      <div className="pt-24 w-full flex justify-center">
+        <div className="max-w-[90em] px-2 md:px-24 grid grid-cols-1 lg:grid-cols-3 justify-center justify-items-center gap-8 xl:gap-16 items-center w-full">
+          {plans.list!.map((plan, index) => (
+            <BPPlanCard key={index} plan={plan}></BPPlanCard>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
