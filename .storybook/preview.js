@@ -35,7 +35,6 @@ export const parameters = {
   decorators: [
     (Story) => (
       <I18nextProvider i18n={i18n}>
-        {/* 👇 Decorators in Storybook also accept a function. Replace <Story/> with Story() to enable it  */}
         <Story />
       </I18nextProvider>
     ),
