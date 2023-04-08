@@ -45,7 +45,7 @@ export const Basic: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div className="flex gap-8 w-full items-center">
+    <div className="flex gap-8 w-full items-center md:w-full  flex overflow-x-auto w-[300px] py-12 md:py-0">
       <BPSelect placeholder="Default size">
         <DefaultList />
       </BPSelect>
@@ -71,7 +71,7 @@ export const Sizes: Story = {
 
 export const Types: Story = {
   render: () => (
-    <div className="w-full flex gap-6">
+    <div className="w-full  gap-16 md:flex block overflow-y-auto h-[700px] px-12 md:px-0">
       <div className="flex flex-col gap-8 items-center">
         {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
           <BPSelect key={index} type={key as UI_TYPE} placeholder={`${key}...`}>

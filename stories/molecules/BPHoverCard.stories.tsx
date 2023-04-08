@@ -66,13 +66,17 @@ export const Basic: Story = {
 
 export const Types: Story = {
   render: () => (
-    <div className="w-full flex gap-16">
+    <div className="w-full text-center gap-16 md:flex block overflow-y-auto h-[700px] px-12 md:px-0">
       <div>
         <div className="text-xl text-primary-600 py-6">Normal</div>
-        <div className="flex flex-col gap-8 items-center max-h-[90vh] overflow-y-auto px-2 pb-6">
+        <div className="items-center max-h-[90vh] overflow-y-auto px-2 pb-6">
           {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
             <DefaultExample
-              trigger={<BPButton type={key as UI_TYPE}>Hover me</BPButton>}
+              trigger={
+                <BPButton className="my-4" type={key as UI_TYPE}>
+                  Hover me
+                </BPButton>
+              }
               key={index}
               type={key as UI_TYPE}
             />
@@ -82,11 +86,11 @@ export const Types: Story = {
 
       <div>
         <div className="text-xl text-primary-600 py-6">Outlined</div>
-        <div className="flex flex-col gap-8 items-center max-h-[90vh] overflow-y-auto px-2 pb-6">
+        <div className="items-center max-h-[90vh] overflow-y-auto px-2 pb-6">
           {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
             <DefaultExample
               trigger={
-                <BPButton type={key as UI_TYPE} outline>
+                <BPButton className="my-4" type={key as UI_TYPE} outline>
                   Hover me
                 </BPButton>
               }

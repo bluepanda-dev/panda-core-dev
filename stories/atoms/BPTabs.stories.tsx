@@ -38,22 +38,26 @@ export const Vertical: Story = {
 
 export const Statuses: Story = {
   render: () => (
-    <div className="flex gap-4 w-full flex-col items-center">
-      <BPTabs className="min-w-[400px] min-h-[300px]">
+    <div className="w-full  gap-16 block overflow-y-auto h-[700px] px-12">
+      <BPTabs className="min-w-[400px] min-h-[300px] mb-4">
         <div title="Tab 1">Tab 1 content</div>
         <div title="Disabled" data-disabled>
           Tab 2 content
         </div>
         <div title="Tab 3">Tab 3 content</div>
       </BPTabs>
-      <BPTabs type="danger" className="min-w-[400px] min-h-[300px]">
+      <BPTabs type="danger" className="min-w-[400px] min-h-[300px] mb-4">
         <div title="Tab 1">Tab 1 content</div>
         <div title="Disabled" data-disabled>
           Tab 2 content
         </div>
         <div title="Tab 3">Tab 3 content</div>
       </BPTabs>
-      <BPTabs outline type="danger" className="min-w-[400px] min-h-[300px]">
+      <BPTabs
+        outline
+        type="danger"
+        className="min-w-[400px] min-h-[300px] mb-4"
+      >
         <div title="Tab 1">Tab 1 content</div>
         <div title="Disabled" data-disabled>
           Tab 2 content

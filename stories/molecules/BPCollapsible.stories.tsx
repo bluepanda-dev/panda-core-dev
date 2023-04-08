@@ -47,7 +47,7 @@ export const Hoverable: Story = {
 
 export const Types: Story = {
   render: () => (
-    <div className="w-[800px] flex gap-16 max-h-[90vh] overflow-y-auto px-2 pb-6 px-10">
+    <div className="w-full  gap-16 md:flex block overflow-y-auto h-[700px] px-6">
       <div className="flex flex-col gap-8 items-center ">
         <div className="text-xl text-primary-600">Normal buttons</div>
         {Object.keys(UI_TYPES_CONFIG).map((key, index) => (

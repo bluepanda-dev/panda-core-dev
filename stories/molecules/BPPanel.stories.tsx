@@ -47,10 +47,10 @@ export const Basic: Story = {
 
 export const Types: Story = {
   render: () => (
-    <div className="w-full flex gap-16">
+    <div className="w-full  gap-16 md:flex block overflow-y-auto h-[700px] px-12 md:px-0">
       <div>
-        <div className="text-xl text-primary-600 py-6">Normal</div>
-        <div className="flex flex-col gap-8 items-center max-h-[90vh] overflow-y-auto px-2 pb-6">
+        <div className="text-xl text-primary-600 py-6 text-center">Normal</div>
+        <div className="flex flex-col gap-8 ">
           {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
             <DefaultExample
               key={index}
@@ -62,8 +62,10 @@ export const Types: Story = {
       </div>
 
       <div>
-        <div className="text-xl text-primary-600 py-6">Outlined</div>
-        <div className="flex flex-col gap-8 items-center max-h-[90vh] overflow-y-auto px-2 pb-6">
+        <div className="text-xl text-primary-600 py-6 text-center">
+          Outlined
+        </div>
+        <div className="flex flex-col gap-8 ">
           {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
             <DefaultExample
               key={index}

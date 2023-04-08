@@ -15,12 +15,7 @@ export default {
 type Story = StoryObj<typeof BPToggleGroup>
 
 const DefaultToggleGroup = ({ ...props }) => (
-  <BPToggleGroup
-    {...props}
-    onValueChange={console.log}
-    defaultValue={'center'}
-    selectionType="single"
-  >
+  <BPToggleGroup {...props} onValueChange={console.log} defaultValue={'center'}>
     <BPToggleItem value="left">
       <FiAlignLeft />
     </BPToggleItem>
@@ -34,9 +29,9 @@ const DefaultToggleGroup = ({ ...props }) => (
 )
 
 export const Basic: Story = {
-  render: () => (
+  render: ({ data, ...args }) => (
     <>
-      <DefaultToggleGroup />
+      <DefaultToggleGroup {...args} />
     </>
   ),
 }
@@ -130,15 +125,15 @@ export const Sizes: Story = {
 export const Types: Story = {
   render: () => (
     <div className="w-full flex flex-col gap-12">
-      <div className="text-xl text-primary-600">Normal</div>
-      <div className="grid grid-cols-3 gap-6 items-center">
+      <div className="text-xl text-primary-600 text-center">Normal</div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 items-center">
         {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
           <DefaultToggleGroup key={index} type={key as UI_TYPE} />
         ))}
       </div>
 
-      <div className="text-xl text-primary-600">Outlined</div>
-      <div className="grid grid-cols-3 gap-6 items-center">
+      <div className="text-xl text-primary-600 text-center">Outlined</div>
+      <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-6 items-center">
         {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
           <DefaultToggleGroup outline key={index} type={key as UI_TYPE} />
         ))}

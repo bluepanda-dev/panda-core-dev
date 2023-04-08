@@ -45,9 +45,9 @@ export const Statuses: Story = {
 
 export const Types: Story = {
   render: () => (
-    <div className="w-full flex flex-col gap-12">
-      <div className="text-xl text-primary-600">Normal</div>
-      <div className="grid grid-cols-3 gap-6 items-center">
+    <div className="md:w-full  gap-16 block overflow-y-auto h-[700px] px-2 w-[300px] text-center">
+      <div className="text-xl text-primary-600 mb-2">Normal</div>
+      <div className="grid md:grid-cols-3 grid-cols-2 gap-6 items-center mb-4">
         {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
           <BPSwitch id={key} key={index} type={key as UI_TYPE}>
             Switch {key}
@@ -55,8 +55,8 @@ export const Types: Story = {
         ))}
       </div>
 
-      <div className="text-xl text-primary-600">Outlined</div>
-      <div className="grid grid-cols-3 gap-6 items-center">
+      <div className="text-xl text-primary-600 mb-2">Outlined</div>
+      <div className="grid md:grid-cols-3 grid-cols-2 gap-6 items-center">
         {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
           <BPSwitch outline id={key} key={index} type={key as UI_TYPE}>
             Switch {key}

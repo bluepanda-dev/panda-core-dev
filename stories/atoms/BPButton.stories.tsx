@@ -47,7 +47,7 @@ export const Icons: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div className="flex gap-8 w-full items-center">
+    <div className="gap-8  items-center md:w-full  flex overflow-x-auto w-[300px] py-12 md:py-0 ">
       <BPButton>Default Button</BPButton>
       <BPButton size="xs">Size xs</BPButton>
       <BPButton size="sm">Size sm</BPButton>
@@ -60,7 +60,7 @@ export const Sizes: Story = {
 
 export const Types: Story = {
   render: () => (
-    <div className="w-full flex gap-16">
+    <div className="w-full  gap-16 md:flex block overflow-y-auto h-[700px] px-12 text-center">
       <div className="flex flex-col gap-8 items-center">
         <div className="text-xl text-primary-600">Normal buttons</div>
         {Object.keys(UI_TYPES_CONFIG).map((key, index) => (

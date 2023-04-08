@@ -32,7 +32,7 @@ export const Sizes: Story = {
 
 export const Types: Story = {
   render: () => (
-    <div className="w-full flex gap-16">
+    <div className="w-full  gap-16 md:flex block overflow-y-auto h-[700px] px-12 text-center">
       <div className="flex flex-col gap-8 items-left">
         <div className="text-xl text-primary-600">Types</div>
         {Object.keys(UI_TYPES_CONFIG).map((key, index) => (

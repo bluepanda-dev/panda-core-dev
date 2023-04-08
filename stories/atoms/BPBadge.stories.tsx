@@ -17,7 +17,7 @@ export const Basic: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div className="flex gap-8 w-full items-center">
+    <div className="flex gap-8 md:w-full items-center md:flex overflow-x-auto w-[300px] py-12 md:py-0">
       <BPBadge>Default Badge</BPBadge>
       <BPBadge size="xs">Size xs</BPBadge>
       <BPBadge size="sm">Size sm</BPBadge>
@@ -30,7 +30,7 @@ export const Sizes: Story = {
 
 export const Statuses: Story = {
   render: () => (
-    <div className="flex gap-8 w-full items-center">
+    <div className="flex gap-8 w-full items-center md:w-full  flex overflow-x-auto w-[300px] py-12 md:py-0">
       <BPBadge size={'xs'} hoverable>
         Hoverable Badge
       </BPBadge>
@@ -52,7 +52,7 @@ export const Statuses: Story = {
 
 export const Types: Story = {
   render: () => (
-    <div className="w-full flex gap-16">
+    <div className="w-full  gap-16 md:flex block overflow-y-auto h-[700px] px-12 md:px-0">
       <div className="flex flex-col gap-8 items-center">
         <div className="text-xl text-primary-600">XS Normal</div>
         {Object.keys(UI_TYPES_CONFIG).map((key, index) => (
