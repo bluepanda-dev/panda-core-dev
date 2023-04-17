@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<a target="_blank" href="https://blue-panda.dev/es"><img src="https://docu.blue-panda.dev/img/logo.webp" width="30" height="25" style="margin: 10px 10px; padding: 5px;"></a>
+<a target="_blank"  href="https://discord.gg/fNPNeZsjsU"><img src="https://docu.blue-panda.dev/img/discord.svg" width="30" height="25" style="margin: 10px 10px; padding: 5px;" ></a>
+<a target="_blank"  href="https://twitter.com/bluepanda_dev"><img src="https://docu.blue-panda.dev/img/twitter.svg" width="30" height="25" style="margin: 10px 10px; padding: 5px;"></a>
 
-## Getting Started
+## Panda core dev
 
-First, run the development server:
+This is a free component of bluepanda
+
+First, install modules:
 
 ```bash
+npm i
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about BluePanda, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Doc Blue Panda](https://docu.blue-panda.dev/) 
+- [Storybook Blue Panda components ](https://ui-kit.blue-panda.dev/?path=/docs/example-introduction--docs)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+You can check out [Official Blue Panda web](https://blue-panda.dev/es) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-deploy test
+## License
