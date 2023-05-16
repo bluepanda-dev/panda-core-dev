@@ -1,0 +1,23 @@
+.ToggleGroupItem[data-state='on'] {
+  filter: brightness(1.3);
+}
+
+.ToggleGroupItem[data-state='off'].isOutline {
+  @apply !text-gray-600;
+}
+
+.dark .ToggleGroupItem[data-state='on'] {
+  filter: brightness(2);
+}
+
+.dark .ToggleGroupItem[data-state='off'].isOutline {
+  @apply !text-gray-600;
+}
+
+.ToggleGroupItem:first-child {
+  @apply rounded-l-md;
+}
+
+.ToggleGroupItem:last-child {
+  @apply rounded-r-md;
+}

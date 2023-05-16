@@ -1,0 +1,46 @@
+.TabsList {
+  flex-shrink: 0;
+  display: flex;
+  border-bottom: 1px solid var(--mauve6);
+}
+
+.TabsRoot[data-orientation='vertical'] .TabsTrigger:first-child {
+  @apply rounded-tl-md;
+}
+
+.TabsRoot[data-orientation='vertical'] .TabsTrigger:last-child {
+  @apply rounded-bl-md;
+}
+
+.TabsRoot[data-orientation='horizontal'] .TabsTrigger:first-child {
+  @apply rounded-tl-md;
+}
+
+.TabsRoot[data-orientation='horizontal'] .TabsTrigger:last-child {
+  @apply rounded-tr-md;
+}
+
+.TabsTrigger[aria-selected='true'] {
+  filter: brightness(1.3);
+}
+
+.dark .TabsTrigger[aria-selected='true'] {
+  filter: brightness(2);
+}
+
+.TabsRoot[data-orientation='vertical'] {
+  @apply flex;
+}
+
+.TabsRoot[data-orientation='vertical'] div[role="tablist"] {
+  @apply flex flex-col;
+}
+
+.TabsRoot[data-orientation='horizontal'] {
+  @apply flex flex-col;
+  align-items: stretch;
+}
+
+.TabsRoot[data-orientation='horizontal'] div[role="tabpanel"] {
+  @apply flex-auto;
+}

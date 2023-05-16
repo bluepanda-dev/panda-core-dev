@@ -1,18 +1,19 @@
 import React, { ReactNode } from 'react'
-import Footer from '@components/organisms/Footer'
-import NavBar from './organisms/NavBar'
+import BPFooter from '@components/organisms/BPFooter'
+import BPNavBar from './organisms/BPNavBar'
 
 interface Props {
   children?: ReactNode
+  className?: string
 }
 
 export default function Layout({ children }: Props) {
   return (
     <>
-      <NavBar />
-      <div className="bg-neutral-50 dark:bg-normal-900 text-normal dark:text-neutral-50 flex flex-col min-h-screen">
-        <main className="mt-14 flex-grow">{children}</main>
-        <Footer />
+      <BPNavBar />
+      <div className="text-normal flex flex-col min-h-screen justify-between relative">
+        {children}
+        <BPFooter />
       </div>
     </>
   )

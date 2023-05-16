@@ -8,6 +8,10 @@
     "prettier"
   ],
   "rules": {
+    "react-hooks/exhaustive-deps": 0,
+    "@next/next/no-img-element": "off",
+    "react/display-name": "off",
+    "no-unused-vars": "error",
     "import/order": [
       1,
       {
@@ -45,6 +49,12 @@
           "order": "asc",
           "caseInsensitive": true
         }
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
       }
     ]
   }

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://blue-panda.dev
+
+# Sitemaps
+Sitemap: https://blue-panda.dev/sitemap.xml

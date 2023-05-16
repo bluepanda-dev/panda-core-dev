@@ -1,0 +1,18 @@
+{
+  "title": "Unsere einfache Panda Plus Template",
+  "content": "Hier ist der Inhalt",
+  "components": "Komponenten",
+  "settings": "Einstellungen",
+  "switchTheme": "Wechseln {{theme}} mode",
+  "lanOptions": {
+    "en": "Englisch",
+    "es": "Spanisch",
+    "de": "Deutsch"
+  },
+  "hero": {
+    "first": "Benutz",
+    "second": "Entwickle",
+    "third": "Ship",
+    "content": "Hier ist der Inhalt der Hero Section mit einem schönen Hintergrundbild. Panda Plus ist ein einfaches Template, das Sie für Ihre nächste Website verwenden können. Es ist vollständig responsiv und hat eine schöne Farbpalette. Es ist auch mit einer Reihe von Komponenten ausgestattet, die Sie verwenden können, um Ihre Website zu erstellen. Sie können auch die Sprache ändern, um Ihre Website in verschiedenen Sprachen zu erstellen. Viel Spaß beim Erstellen Ihrer Website mit Panda Plus!"
+  }
+}

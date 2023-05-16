@@ -1,0 +1,77 @@
+.SelectTrigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: inherit;
+}
+
+.SelectTrigger span {
+  white-space: nowrap;
+}
+
+.SelectContent {
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.SelectViewport {
+  padding: 5px;
+  @apply rounded-2xl border px-1 py-3;
+}
+
+.SelectItem {
+  line-height: 1;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  height: 25px;
+  padding: 0 35px 0 25px;
+  position: relative;
+  user-select: none;
+}
+
+.SelectItem[data-disabled] {
+  @apply text-normal-200 dark:text-normal-600;
+  pointer-events: none;
+}
+
+.SelectItem[data-disabled] {
+  @apply text-normal-200 dark:text-normal-600;
+  pointer-events: none;
+}
+
+.SelectItem[data-highlighted] {
+  outline: none;
+  @apply dark:text-white bg-black/10 dark:bg-white/10;
+}
+
+.SelectLabel {
+  padding: 0 25px;
+  line-height: 25px;
+  @apply text-normal-400;
+}
+
+.SelectSeparator {
+  height: 1px;
+  margin: 5px;
+  @apply bg-normal-200 dark:bg-normal-700;
+}
+
+.SelectItemIndicator {
+  position: absolute;
+  left: 0;
+  width: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SelectScrollButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  cursor: default;
+}
+

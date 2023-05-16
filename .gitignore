@@ -39,3 +39,6 @@ public/sw.js
 swap-pane
 
 /storybook-static
+
+/public/output.css
+styles/output.css

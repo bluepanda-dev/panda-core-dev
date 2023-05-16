@@ -1,0 +1,360 @@
+{
+  "title": "Panda Plus - SaaS Starter Kits, ahorra meses de trabajo",
+  "components": "Componentes",
+  "contactUs": "Contáctanos",
+  "documentation": "Documentación",
+  "license": "Licencia",
+  "privacy": "Privacidad",
+  "terms": "Términos Condiciones",
+  "allRights": "Todos los derechos son reservados",
+  "switchTheme": "Cambiar a {{theme}} mode",
+  "backTo": "Volver a",
+  "lanOptions": {
+    "en": "Inglés",
+    "es": "Español",
+    "jp": "Japonés",
+    "de": "Alemán"
+  },
+  "buyNow": "Compra ahora",
+  "codeExample": {
+    "title": "Yo Código de Ejemplo"
+  },
+  "showVideo": {
+    "title": "Fácil de extender y customizar",
+    "content": "Flexible y customizable - nuestro SaaS starter kit lo hace sencillo para extender and modificar para conocer tus necesitades. Empieza hoy!"
+  },
+  "hero": {
+    "first": "Use",
+    "second": "Develop",
+    "third": "Ship",
+    "content": "El kit de inicio de Blue Panda SaaS le brindará todo lo que necesita para realizar entregas más rápidas (React y Nextjs)."
+  },
+  "products": {
+    "title": "Nuestros Productos (Demo)",
+    "list": [
+      {
+        "_id": 1,
+        "title": "Blue Panda Plus",
+        "price": "$149.99 USD",
+        "features": [
+          "Starter Kit",
+          "UI Kit",
+          "React.js and Next.js",
+          "SEO Friendly",
+          "Stripe and Firebase"
+        ],
+        "_image": "https://plus.blue-panda.dev/products/1.webp"
+      },
+      {
+        "_id": 2,
+        "title": "Smart Blue Panda",
+        "price": "$249.99 USD",
+        "features": [
+          "Reactjs",
+          "Nextjs",
+          "Project management tool",
+          "Reactjs and Nextjs",
+          "UI Kit"
+        ],
+        "_image": "https://plus.blue-panda.dev/products/2.webp"
+      },
+      {
+        "_id": 3,
+        "title": "Stripe Blue Panda",
+        "price": "$299.99 USD",
+        "features": [
+          "Starter Kits",
+          "Made of React",
+          "Made of Nextjs",
+          "51+ UI Components",
+          "Login and Registry"
+        ],
+        "_image": "https://plus.blue-panda.dev/products/3.webp"
+      },
+      {
+        "_id": 4,
+        "title": "CMS Blue Panda",
+        "price": "$399.99 USD",
+        "features": [
+          "E-commerce platform",
+          "Human resources management software",
+          "Project management tool",
+          "Help desk and customer support tool",
+          "UI Kit"
+        ],
+        "_image": "https://plus.blue-panda.dev/products/4.webp"
+      },
+      {
+        "_id": 5,
+        "title": "No Code Blue Panda",
+        "price": "$99.99 USD",
+        "features": [
+          "Business analytics and reporting tool",
+          "CRM (Customer Relationship Management) software",
+          "Help desk and customer support tool",
+          "Social media management platform",
+          "Human resources management software"
+        ],
+        "_image": "https://plus.blue-panda.dev/products/5.webp"
+      },
+      {
+        "_id": 6,
+        "title": "Free Blue Panda",
+        "price": "Free",
+        "features": [
+          "Business analytics and reporting tool",
+          "Business analytics and reporting tool",
+          "E-commerce platform for selling handmade crafts",
+          "Project management tool for remote teams",
+          "CRM (customer relationship management) software for real estate agents"
+        ],
+        "_image": "https://plus.blue-panda.dev/products/6.webp"
+      }
+    ]
+  },
+  "timeline": {
+    "title": "Timeline",
+    "list": [
+      {
+        "title": "Escoge una licencia",
+        "content": "Eliges el tipo de base y luego el diseño que quieres y compra una licencia de acceso de por vida."
+      },
+      {
+        "title": "Recibe todas las notifiaciones",
+        "content": "Después de comprar la licencia, recibirás de inmediato todas las invitaciones de repo para que comiences a construir."
+      },
+      {
+        "title": "Forkea y Empieza",
+        "content": "Fork en github el repositorio de react.js y comience a crear el suyo propio, la bifurcación es mucho mejor ya que agregamos cosas nuevas cada mes donde puede comenzar a usarlas inmediatamente después de la sincronización (consulte el documento para conocer las diferentes configuraciones)"
+      },
+      {
+        "title": "Soporte",
+        "content": "Estamos las 24 horas del día, los 7 días de la semana en Discord para apoyar la construcción de su sueño. (¡Soporte de por vida!)."
+      }
+    ]
+  },
+  "customers": {
+    "title": "Clientes"
+  },
+  "techStack": {
+    "title": "Stack tecnologico"
+  },
+  "ourNumbers": {
+    "title": "Nuestros Números",
+    "list": [
+      {
+        "figure": "1000+",
+        "text": "Clientes felices"
+      },
+      {
+        "figure": "100+",
+        "text": "Proyectos"
+      },
+      {
+        "figure": "100+",
+        "text": "Premios"
+      },
+      {
+        "figure": "100+",
+        "text": "Países"
+      }
+    ]
+  },
+  "plans": {
+    "title": "Planes",
+    "cta": "Empieza",
+    "content": "Escoge el plan correcto para tí",
+    "list": [
+      {
+        "title": "Open Blue Panda",
+        "price": "Gratis",
+        "details": "Para equipos pequeños o proyectos de hobby.",
+        "features": [
+          "1 user",
+          "1 project",
+          "1 GB storage",
+          "1 GB bandwidth",
+          "Free Github fork"
+        ]
+      },
+      {
+        "title": "Panda Plus",
+        "price": "$9 USD",
+        "priceYrl": "$8 USD",
+        "_popular": "true",
+        "details": "Para equipos medianos",
+        "features": [
+          "5 usuarios",
+          "5 proyectos",
+          "5 GB memoria",
+          "5 GB bandwidth",
+          "Priority email support",
+          "Soporte de chat",
+          "Soporte telefónico"
+        ]
+      },
+      {
+        "title": "Panda Pro",
+        "price": "$19 USD",
+        "priceYrl": "$16 USD",
+        "details": "Firebase, Headless CMS, Stripe and more",
+        "features": [
+          "Users ilimitados",
+          "Projects ilimitados",
+          "Storage ilimitados",
+          "Bandwidth ilimitados",
+          "Phone & email support"
+        ]
+      }
+    ]
+  },
+  "keepMeInformed": {
+    "title": "Subscribe US",
+    "cta": "Subscríbete"
+  },
+  "reviews": {
+    "title": "Opiniones",
+    "list": [
+      {
+        "name": "Jane Doe",
+        "position": "Quality Assurance Analyst",
+        "content": "He estado usando este kit de herramientas SaaS basado en reactjs y nextjs para mi negocio durante los últimos meses y debo decir que estoy impresionado. Tiene todas las herramientas necesarias para administrar mis operaciones comerciales y la interfaz de usuario es muy intuitiva.",
+        "_image": "https://plus.blue-panda.dev/logo.webp"
+      },
+      {
+        "name": "John Smith",
+        "position": "Business Development Manager",
+        "content": "Como alguien que ha estado luchando para hacer despegar su negocio de SaaS, era escéptico sobre el uso de un kit de inicio. Pero después de probar este, puedo decir con confianza que es el verdadero negocio. Con su interfaz intuitiva y funciones integrales, pude crear un sitio de aspecto profesional en muy poco tiempo.",
+        "_image": "https://plus.blue-panda.dev/logo.webp"
+      },
+      {
+        "name": "Yoda Doe",
+        "position": "Operations Manager",
+        "content": "Si es un fundador de una startup que busca ahorrar tiempo y dinero, debe consultar este kit de inicio de SaaS. Está repleto de todas las herramientas que necesita para que su negocio despegue y funcione sin problemas.",
+        "_image": "https://plus.blue-panda.dev/logo.webp"
+      },
+      {
+        "name": "Jose Avila",
+        "position": "Project Manager",
+        "content": "Como emprendedor de una startup, luchaba por encontrar las herramientas y los recursos adecuados para ayudarme a hacer crecer mi negocio. Fue entonces cuando descubrí este kit de inicio de SaaS: ¡fue un cambio de juego! Pude optimizar mis procesos y concentrarme en lo que realmente importaba.",
+        "_image": "https://plus.blue-panda.dev/logo.webp"
+      },
+      {
+        "name": "Harris Federer",
+        "position": "Financial Analyst",
+        "content": "El kit de inicio de SaaS de Blue Panda es perfecto para las nuevas empresas que buscan llevar su negocio al siguiente nivel. Es fácil de usar, personalizable y tiene todas las funciones que necesita para tener éxito. ¡Muy recomendable!",
+        "_image": "https://plus.blue-panda.dev/logo.webp"
+      },
+      {
+        "name": "Yoda Doe",
+        "position": "Marketing Manager",
+        "content": "¡Estaba buscando una manera de lanzar mi startup de manera rápida y eficiente, y este kit de inicio de SaaS era justo lo que necesitaba! Tenía todo lo que necesitaba para ponerme en marcha en poco tiempo.",
+        "_image": "https://plus.blue-panda.dev/logo.webp"
+      }
+    ]
+  },
+  "faqs": {
+    "title": "FAQs",
+    "list": [
+      {
+        "question": "¿Qué es exactamente una plantilla SaaS?",
+        "answer": "Las plantillas SaaS son soluciones de software preconstruidas que se pueden personalizar para un negocio específico. Los clientes pueden acceder al software y sus funciones descargándolo de un repositorio después de comprarlo. Las plantillas ahorran tiempo y dinero al proporcionar características y funcionalidades prediseñadas."
+      },
+      {
+        "question": "¿Cómo me ayudan sus plantillas de SaaS a iniciar mi negocio más rápido?",
+        "answer": "Nuestras plantillas SaaS pueden ayudarlo a comenzar su negocio más rápido al proporcionar características y funcionalidades prediseñadas que puede personalizar para satisfacer sus necesidades específicas. En lugar de crear una solución de software desde cero, lo que puede llevar cientos de horas de tiempo de desarrollo, nuestras plantillas pueden ahorrarle hasta 300 horas o más de tiempo de desarrollo. Esto significa que puede lanzar su negocio más rápido, con una solución de software que se adapte a sus necesidades, sin tener que gastar mucho tiempo y dinero en desarrollo. Además, nuestras plantillas están diseñadas para ser fáciles de usar y personalizar, de modo que pueda realizar cambios y actualizaciones rápidamente según sea necesario."
+      },
+      {
+        "question": "¿Qué tipos de empresas pueden beneficiarse de sus plantillas SaaS?",
+        "answer": "Cualquier empresa que necesite software para mejorar la eficiencia y las experiencias de los clientes puede beneficiarse de nuestras plantillas SaaS personalizables. Esto incluye nuevas empresas y organizaciones más grandes en una variedad de industrias."
+      },
+      {
+        "question": "How do I choose the right SaaS template for my business?",
+        "answer": "We base multiple bases (Landing, Users, Payments+Users) and after this, you can combine with 1 of our designs."
+      },
+      {
+        "question": "Can I customize the SaaS templates to fit my specific needs?",
+        "answer": "Yes, you can customize our SaaS templates to fit your specific business needs. Our templates are designed to be flexible and easy to customize, so you can make changes to the design, features, and functionality to fit your specific requirements. This allows you to tailor the software to your business processes and operations, providing a more efficient and effective solution. Additionally, our support team is available to assist you with any customization needs or technical questions you may have."
+      },
+      {
+        "question": "Do I need any technical skills or knowledge to use your SaaS templates?",
+        "answer": "While you may not need an advanced level of proficiency in React to customize our SaaS templates, some familiarity with the language and its syntax may be beneficial. However, our templates are designed to be easy to code and customize, even for those with limited experience with React or coding in general. We provide documentation and support to help customers with any technical questions or issues they may encounter during the customization process."
+      },
+      {
+        "question": "What kind of support do you offer for your SaaS templates?",
+        "answer": "We offer documentation, email support, and dedicated support through our Discord channel to help customers with any questions or technical issues they may encounter during the customization process."
+      },
+      {
+        "question": "Are there any limitations or restrictions on how I can use the SaaS templates?",
+        "answer": "Yes, there are some limitations and restrictions on how you can use the SaaS templates, as outlined in BluePanda.dev's license. \n You are allowed to use the code to create unlimited end products, modify the code to create derivative code, and use the code to create end products for clients or for sale to end users. You are also allowed to use the code to create open-source end products that are freely available to end users. \n However, you cannot use the code to create end products that allow end users to build their own end products using the code, or redistribute the code or derivatives of the code separately from an end product. Additionally, you cannot share your access to the code with other individuals or create a repository of the code and publish it publicly. \n It's important to review and understand the specific terms and conditions of the license before using the SaaS templates. If you have any questions or concerns about the license or your intended use of the templates, you can contact BluePanda.dev at hello@blue-panda.dev."
+      },
+      {
+        "question": "How much do your SaaS templates cost, and are there any hidden fees?",
+        "answer": "The cost of our SaaS templates varies depending on the specific template you're interested in. Our prices are listed on our website and are transparent - there are no hidden fees. Once you purchase a template, you will have access to all of its features and updates for as long as your license is valid. "
+      },
+      {
+        "question": "Can I try out your SaaS templates before I make a purchase?",
+        "answer": "Customers can review the demo and screenshots of the SaaS templates on your website before making a purchase to get a better idea of the features and design."
+      },
+      {
+        "question": "Why you say that save me hundres of hours by using this template?",
+        "answer": "Using a SaaS template can save you hundreds of hours because it provides a starting point for your project. Instead of starting from scratch, you can use the pre-built architecture, user interface, and functionality of the template as a foundation for your own project. This means you don't have to spend time designing and coding basic features, such as user authentication, user management, and payment integration, which can be time-consuming and complex. By using a SaaS template, you can focus on customizing and adding features that are unique to your project, which can significantly reduce the development time and cost."
+      }
+    ]
+  },
+  "whyUs": {
+    "title": "Por qué Nosotros?",
+    "list": [
+      {
+        "title": "Usamos nuestros productos",
+        "content": "Todos nuestros productos están construidos con Bases Blue Panda.",
+        "_image": "https://plus.blue-panda.dev/logo.webp"
+      },
+      {
+        "title": "Hecho por expertos",
+        "content": "Ex ingenieros de Google y más de 15 años de experiencia.",
+        "_image": "https://plus.blue-panda.dev/logo.webp"
+      },
+      {
+        "title": "Te apoyamos",
+        "content": "Tenemos un equipo de soporte dedicado para ayudarte en Discord",
+        "_image": "https://plus.blue-panda.dev/logo.webp"
+      }
+    ]
+  },
+  "features": {
+    "title": "Características",
+    "list": [
+      {
+        "title": "Fácil de traducir",
+        "content": "Soporte para sus idiomas, venda fácilmente en múltiples países. Modificas desde 1 solo archivo.",
+        "_image": "/features/rainbow.webp"
+      },
+      {
+        "title": "Fácil de modificar",
+        "content": "Los componentes, secciones, páginas y más son legibles y simples. Puedes personalizar todo",
+        "_image": "/features/brown.webp"
+      },
+      {
+        "title": "Todo al día",
+        "content": "Creado con la última versión de React, Next.js y Libs. Puede utilizar las funciones más recientes de forma segura.",
+        "_image": "/features/blue.webp"
+      },
+      {
+        "title": "SEO & Performance",
+        "content": "Todos los puntajes de faro son 100%. Puede usar esta plantilla para su SEO y rendimiento desde el primer día.",
+        "_image": "/features/green.webp"
+      },
+      {
+        "title": "Ahorra tiempo",
+        "content": "También usamos esta plantilla para nuestros sitios web, así que sabemos cómo ahorrarle tiempo. Puedes usarlo para tu negocio.",
+        "_image": "/features/magenta.webp"
+      },
+      {
+        "title": "Extendible",
+        "content": "Esta es una base para tu proyecto, puedes ampliarla como quieras. Puede agregar nuevas páginas, componentes y más.",
+        "_image": "/features/cyan.webp"
+      }
+    ]
+  }
+}

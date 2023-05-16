@@ -1,0 +1,6 @@
+.ui-btn-upload{
+  @apply flex justify-center items-center
+}
+.content-files{
+  @apply max-h-[150px] overflow-y-auto
+}

@@ -1,0 +1,317 @@
+{
+  "title": "Our Panda Plus Template Demo",
+  "content": "Here is your content",
+  "components": "Components",
+  "switchTheme": "Switch to {{theme}} mode",
+  "lanOptions": {
+    "en": "English",
+    "es": "Spanish",
+    "jp": "Japanese",
+    "de": "German"
+  },
+  "buyNow": "Buy Now",
+  "codeExample": {
+    "title": "Your Code Example"
+  },
+  "showVideo": {
+    "title": "Easy to extend and customize"
+  },
+  "hero": {
+    "first": "黒て済71",
+    "second": "ゅ著車ミホ",
+    "third": "咲だき。",
+    "content": "一トホ雷伸エニロレ飛続ネトナヘ原神つどなぎ載図近野でスゅ著車ミホ退15国分46者ふけほぞ目災盗二んスが。"
+  },
+  "products": {
+    "title": "Our Products (Demo)",
+    "list": [
+      {
+        "_id": 1,
+        "title": "Blue Panda Plus",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  ",
+        "price": "$149.99 USD",
+        "features": [
+          "Lorem ipsum dolor sit amet",
+          "Consectetur adipiscing elit",
+          "Sed euismod, nisl nec lacinia tincidunt",
+          "Nunc est aliquam nisl",
+          "Vitae aliquam nisl nunc vel lorem"
+        ],
+        "_image": "/products/1.webp"
+      },
+      {
+        "_id": 2,
+        "title": "Smart Blue Panda",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  ",
+        "price": "$249.99 USD",
+        "features": [
+          "Lorem ipsum dolor sit amet",
+          "Consectetur adipiscing elit",
+          "Sed euismod, nisl nec lacinia tincidunt",
+          "Nunc est aliquam nisl",
+          "Vitae aliquam nisl nunc vel lorem"
+        ],
+        "_image": "/products/2.webp"
+      },
+      {
+        "_id": 3,
+        "title": "Stripe Blue Panda",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  ",
+        "price": "$299.99 USD",
+        "features": [
+          "Lorem ipsum dolor sit amet",
+          "Consectetur adipiscing elit",
+          "Sed euismod, nisl nec lacinia tincidunt",
+          "Nunc est aliquam nisl",
+          "Vitae aliquam nisl nunc vel lorem"
+        ],
+        "_image": "/products/3.webp"
+      },
+      {
+        "_id": 4,
+        "title": "CMS Blue Panda",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  ",
+        "price": "$399.99 USD",
+        "features": [
+          "Lorem ipsum dolor sit amet",
+          "Consectetur adipiscing elit",
+          "Sed euismod, nisl nec lacinia tincidunt",
+          "Nunc est aliquam nisl",
+          "Vitae aliquam nisl nunc vel lorem"
+        ],
+        "_image": "/products/4.webp"
+      },
+      {
+        "_id": 5,
+        "title": "No Code Blue Panda",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  ",
+        "price": "$99.99 USD",
+        "features": [
+          "Lorem ipsum dolor sit amet",
+          "Consectetur adipiscing elit",
+          "Sed euismod, nisl nec lacinia tincidunt",
+          "Nunc est aliquam nisl",
+          "Vitae aliquam nisl nunc vel lorem"
+        ],
+        "_image": "/products/5.webp"
+      },
+      {
+        "_id": 6,
+        "title": "Free Blue Panda",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  ",
+        "price": "Free",
+        "features": [
+          "Lorem ipsum dolor sit amet",
+          "Consectetur adipiscing elit",
+          "Sed euismod, nisl nec lacinia tincidunt",
+          "Nunc est aliquam nisl",
+          "Vitae aliquam nisl nunc vel lorem"
+        ],
+        "_image": "/products/6.webp"
+      }
+    ]
+  },
+  "timeline": {
+    "title": "Timeline",
+    "list": [
+      {
+        "title": "Lorem Ipsun",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+      },
+      {
+        "title": "Lorem Ipsun",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+      },
+      {
+        "title": "Lorem Ipsun",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+      },
+      {
+        "title": "Lorem Ipsun",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+      }
+    ]
+  },
+  "customers": {
+    "title": "Customers"
+  },
+  "techStack": {
+    "title": "Tech Stack"
+  },
+  "ourNumbers": {
+    "title": "Our Numbers",
+    "list": [
+      {
+        "figure": "1000+",
+        "text": "Happy Clients"
+      },
+      {
+        "figure": "100+",
+        "text": "Projects"
+      },
+      {
+        "figure": "100+",
+        "text": "Awards"
+      },
+      {
+        "figure": "100+",
+        "text": "Countries"
+      }
+    ]
+  },
+  "plans": {
+    "title": "Plans",
+    "cta": "Get Started",
+    "content": "Choose the plan that's right for you",
+    "list": [
+      {
+        "title": "Open Blue Panda",
+        "price": "Free",
+        "details": "For small teams or hobby projects",
+        "features": [
+          "1 user",
+          "1 project",
+          "1 GB storage",
+          "1 GB bandwidth",
+          "Email support"
+        ]
+      },
+      {
+        "title": "Panda Plus",
+        "price": "$9 USD",
+        "priceYrl": "$8 USD",
+        "_popular": "true",
+        "details": "For medium teams",
+        "features": [
+          "5 users",
+          "5 projects",
+          "5 GB storage",
+          "5 GB bandwidth",
+          "Priority email support",
+          "Chat support",
+          "Phone support"
+        ]
+      },
+      {
+        "title": "Panda Pro",
+        "price": "$19 USD",
+        "priceYrl": "$16 USD",
+        "details": "Firebase, Headless CMS, Stripe and more",
+        "features": [
+          "Unlimited users",
+          "Unlimited projects",
+          "Unlimited storage",
+          "Unlimited bandwidth",
+          "Phone & email support"
+        ]
+      }
+    ]
+  },
+  "keepMeInformed": {
+    "title": "Subscribe US",
+    "cta": "Subscribe"
+  },
+  "reviews": {
+    "title": "Reviews",
+    "list": [
+      {
+        "name": "Jane Doe",
+        "position": "CTO",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ipsun dolor sit amet, consectetur adipiscing elit.",
+        "_image": "/logo.webp"
+      },
+      {
+        "name": "John Smith",
+        "position": "Manager",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ipsum dolor sit amet, consectetur adipiscing elit.",
+        "_image": "/logo.webp"
+      },
+      {
+        "name": "Yoda Doe",
+        "position": "Developer",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ipsum dolor sit amet, consectetur adipiscing elit.",
+        "_image": "/logo.webp"
+      }
+    ]
+  },
+  "faqs": {
+    "title": "FAQs",
+    "list": [
+      {
+        "question": "What is this template?",
+        "answer": "Answer 1"
+      },
+      {
+        "question": "Which languages are supported?",
+        "answer": "Answer 2"
+      },
+      {
+        "question": "How do I use this template?",
+        "answer": "Answer 3"
+      },
+      {
+        "question": "How do I change the language?",
+        "answer": "Answer 3"
+      },
+      {
+        "question": "How do I change the theme?",
+        "answer": "Answer 3"
+      }
+    ]
+  },
+  "whyUs": {
+    "title": "Why Us",
+    "list": [
+      {
+        "title": "We use our product",
+        "content": "All our products are built with Blue Panda Bases.",
+        "_image": "/logo.webp"
+      },
+      {
+        "title": "Made by experts",
+        "content": "Ex google engineers and +15 years of experience.",
+        "_image": "/logo.webp"
+      },
+      {
+        "title": "We support you",
+        "content": "We have a dedicated support team to help you on Discord.",
+        "_image": "/logo.webp"
+      }
+    ]
+  },
+  "features": {
+    "title": "Features",
+    "list": [
+      {
+        "title": "Easy to translate",
+        "content": "Support for your languages, sell easily in multiple countries. You modify from 1 file only.",
+        "_image": "/features/rainbow.webp"
+      },
+      {
+        "title": "Easy to customize",
+        "content": "Components, sections, pages, and more are readable and simple. You can customize everything.",
+        "_image": "/features/brown.webp"
+      },
+      {
+        "title": "Up to date",
+        "content": "Built with the latest version of React, Next.js, and Libs. You can use the latest features safely.",
+        "_image": "/features/blue.webp"
+      },
+      {
+        "title": "SEO & Performance",
+        "content": "All lighthouse scores are 100%. You can use this template for your SEO and performance from day one.",
+        "_image": "/features/green.webp"
+      },
+      {
+        "title": "Save time",
+        "content": "We use this template too for our websites, so we know how to save your time. You can use it for your business.",
+        "_image": "/features/magenta.webp"
+      },
+      {
+        "title": "Extendable",
+        "content": "This is a base for your project, you can extend it as you want. You can add new pages, components, and more.",
+        "_image": "/features/cyan.webp"
+      }
+    ]
+  }
+}
