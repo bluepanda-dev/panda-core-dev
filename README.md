@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
 
-## Getting Started
+  [![Discord](https://img.shields.io/badge/-Discord-7289DA?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/tdFxtnD77j)
+  [![Twitter](https://img.shields.io/badge/-Twitter-1DA1F2?style=flat-square&logo=twitter&logoColor=white)](https://twitter.com/bluepanda_dev)
+  
+# Welcome to Blue Panda
 
-First, run the development server:
+Please fork this repository and enjoy!
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Steps
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clone this repository to your local machine.
+2. Run `npm install` to install the dependencies.
+3. Set the necessary environment variables.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Use
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Feel free to use this template for any project you want.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Docs & Resources
 
-## Learn More
+- [Blue Panda UI kit](https://ui-kit.blue-panda.dev/?path=/docs/example-introduction--docs)
+- [Blue panda Docs](https://docu.blue-panda.dev/)
+- [Blue panda Official website](https://blue-panda.dev/)
 
-To learn more about Next.js, take a look at the following resources:
+##### Import `Blue Panda components` into your project, define some states and you're good to go!
+```jsx
+import BPButton from '@components/atoms/BPButton'
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    <div className="fixed bottom-0 left-0 m-4 z-50">
+        <BPButton outline variant="accent" onClick={handleDemoButton}>
+          {t('backTo')} {NAME}
+        </BPButton>
+    </div>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-deploy test2
